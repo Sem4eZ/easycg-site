@@ -1,3 +1,6 @@
+import { Button } from '@mui/material'
+
+import { FilterLink, Link } from 'shared/ui/link'
 import { LFont, XLFont, XXLFont, XXXLFont } from 'shared/ui/typography'
 
 const ComponentsPage = () => {
@@ -24,6 +27,16 @@ const ComponentsPage = () => {
       <XLFont>XLFont: hello there! it’s EASY </XLFont>
       <LFont>LFont: web, CGI</LFont>
       <p>Common text</p>
+
+      <Button>Primary button: learn more</Button>
+      <Button disabled>Primary button: learn more</Button>
+      <div>
+        <Link href="#">Link</Link>
+        <FilterLink href="#">Filter link </FilterLink>
+        <FilterLink href="#" active>
+          Filter link
+        </FilterLink>
+      </div>
     </div>
   )
 }
