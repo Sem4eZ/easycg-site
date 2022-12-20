@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material'
 
+import { ArrowIcon } from 'shared/icons/arrow'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
 const breakpointsTheme = createTheme({
@@ -21,17 +22,28 @@ const commonTheme = createTheme({
   breakpoints: {
     values: breakpointsTheme.breakpoints.values,
   },
+  typography: {
+    fontFamily: 'Proxima Nova, sans-serif',
+  },
   components: {
     MuiCssBaseline: {
       styleOverrides: theme => {
         return {
           body: {
+            paddingLeft: '50px',
+            paddingRight: '50px',
             margin: 0,
             background: theme.palette.background.default,
             fontSize: pxToRem(16),
+            lineHeight: pxToRem(20),
             fontWeight: 400,
+            color: theme.palette.text.primary,
             [theme.breakpoints.up('laptop')]: {
               fontSize: pxToRem(25),
+              lineHeight: pxToRem(30),
+            },
+            '& .Mui-error': {
+              color: theme.palette.error,
             },
           },
         }
@@ -57,6 +69,7 @@ const commonTheme = createTheme({
         root: ({ theme }) => {
           return {
             fontSize: pxToRem(16),
+            lineHeight: pxToRem(20),
             fontWeight: 700,
             textTransform: 'none',
             borderRadius: '999px',
@@ -76,25 +89,205 @@ const commonTheme = createTheme({
             },
             [theme.breakpoints.up('tablet')]: {
               fontSize: pxToRem(25),
+              lineHeight: pxToRem(30),
             },
             [theme.breakpoints.up('laptop')]: {
               fontSize: pxToRem(42),
+              lineHeight: pxToRem(51),
             },
           }
         },
-        endIcon: ({ theme }) => {
-          return {
-            width: pxToRem(24),
-            marginLeft: pxToRem(8),
-            [theme.breakpoints.up('laptop')]: {
-              width: pxToRem(48),
-              marginLeft: pxToRem(24),
-            },
-          }
-        },
+        endIcon: ({ theme }) => ({
+          width: pxToRem(24),
+          marginLeft: pxToRem(8),
+          [theme.breakpoints.up('laptop')]: {
+            width: pxToRem(48),
+            marginLeft: pxToRem(24),
+          },
+        }),
       },
     },
-    MuiLink: {},
+    MuiSelect: {
+      defaultProps: {
+        IconComponent: () => (
+          <div className="toggleIcon">
+            <ArrowIcon />
+          </div>
+        ),
+      },
+      styleOverrides: {
+        select: ({ theme }) => ({
+          borderBottomColor: theme.palette.accent,
+          '&~.toggleIcon': {
+            transition: 'transform .2s, color .2s',
+            marginRight: pxToRem(22),
+            width: '15px',
+            '& svg': {
+              width: '100%',
+            },
+            [theme.breakpoints.up('laptop')]: {
+              width: '28px',
+              marginRight: pxToRem(40),
+            },
+          },
+          '&[aria-expanded="true"]': {
+            '&~.toggleIcon': {
+              transform: 'rotate(180deg)',
+              color: theme.palette.accent,
+            },
+          },
+        }),
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          '&.Mui-disabled': {
+            '&:before': {
+              borderBottomStyle: 'solid',
+              borderBottomColor: theme.palette.text.disabled,
+            },
+          },
+        }),
+        input: ({ theme }) => ({
+          caretColor: theme.palette.accent,
+          fontSize: pxToRem(16),
+          lineHeight: pxToRem(20),
+          fontWeight: 700,
+          paddingBottom: pxToRem(8),
+          minHeight: 'unset',
+          '&:focus': {
+            backgroundColor: 'transparent',
+          },
+          '&:disabled': {
+            color: theme.palette.text.disabled,
+          },
+          [theme.breakpoints.up('tablet')]: {
+            fontSize: pxToRem(25),
+            lineHeight: pxToRem(30),
+          },
+          [theme.breakpoints.up('laptop')]: {
+            fontSize: pxToRem(42),
+            lineHeight: pxToRem(51),
+            paddingBottom: pxToRem(24),
+          },
+          [theme.breakpoints.up('desktop')]: {
+            paddingTop: pxToRem(8),
+            paddingBottom: pxToRem(32),
+          },
+        }),
+        underline: ({ theme }) => ({
+          '&:after': {
+            borderBottomColor: theme.palette.accent,
+          },
+        }),
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          fontSize: pxToRem(16),
+          lineHeight: pxToRem(20),
+          fontWeight: 700,
+          transform: 'translate(0, 16px) scale(1)',
+          '&.Mui-focused': {
+            color: theme.palette.text.secondary,
+            fontWeight: 400,
+            fontSize: pxToRem(16),
+            lineHeight: pxToRem(20),
+          },
+          [theme.breakpoints.up('tablet')]: {
+            fontSize: pxToRem(25),
+            lineHeight: pxToRem(30),
+          },
+          [theme.breakpoints.up('laptop')]: {
+            fontSize: pxToRem(42),
+            lineHeight: pxToRem(51),
+            '&.Mui-focused': { fontSize: pxToRem(25), lineHeight: pxToRem(30) },
+          },
+        }),
+        shrink: ({ theme }) => ({
+          fontWeight: 400,
+          fontSize: pxToRem(16),
+          lineHeight: pxToRem(20),
+          transform: 'translate(0, -9px) scale(0.75)',
+          [theme.breakpoints.up('laptop')]: {
+            fontSize: pxToRem(25),
+            lineHeight: pxToRem(30),
+          },
+        }),
+      },
+    },
+    MuiMenu: {
+      styleOverrides: {
+        paper: ({ theme }) => ({
+          marginTop: pxToRem(16),
+          '&.MuiPopover-paper': {
+            backgroundColor: theme.palette.inverted,
+            borderRadius: '8px',
+          },
+        }),
+        list: ({ theme }) => ({
+          paddingTop: pxToRem(8),
+          paddingBottom: pxToRem(20),
+          [theme.breakpoints.up('laptop')]: {
+            paddingTop: pxToRem(16),
+            paddingBottom: pxToRem(40),
+          },
+        }),
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          fontSize: pxToRem(16),
+          lineHeight: pxToRem(20),
+          fontWeight: 700,
+          paddingLeft: pxToRem(48),
+          paddingTop: pxToRem(24),
+          paddingBottom: pxToRem(24),
+          '&:hover': {
+            backgroundColor: 'transparent',
+            color: theme.palette.text.secondary,
+          },
+          '&.Mui-selected': {
+            backgroundColor: 'transparent',
+            color: theme.palette.text.secondary,
+            '&:hover': {
+              backgroundColor: 'transparent',
+              color: theme.palette.text.secondary,
+            },
+          },
+          [theme.breakpoints.up('tablet')]: {
+            fontSize: pxToRem(25),
+            lineHeight: pxToRem(30),
+          },
+          [theme.breakpoints.up('laptop')]: {
+            fontSize: pxToRem(42),
+            lineHeight: pxToRem(51),
+            paddingLeft: pxToRem(96),
+            paddingTop: pxToRem(48),
+            paddingBottom: pxToRem(48),
+          },
+        }),
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          marginLeft: 0,
+          marginTop: pxToRem(4),
+          fontWeight: 700,
+          fontSize: pxToRem(16),
+          lineHeight: pxToRem(20),
+          [theme.breakpoints.up('laptop')]: {
+            marginTop: pxToRem(8),
+            fontSize: pxToRem(25),
+            lineHeight: pxToRem(30),
+          },
+        }),
+      },
+    },
   },
 })
 
