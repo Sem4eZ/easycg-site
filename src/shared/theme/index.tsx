@@ -49,6 +49,19 @@ const commonTheme = createTheme({
         }
       },
     },
+    MuiTypography: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          fontSize: pxToRem(16),
+          lineHeight: pxToRem(20),
+          fontWeight: 400,
+          [theme.breakpoints.up('laptop')]: {
+            fontSize: pxToRem(25),
+            lineHeight: pxToRem(30),
+          },
+        }),
+      },
+    },
     MuiButton: {
       defaultProps: {
         endIcon: (

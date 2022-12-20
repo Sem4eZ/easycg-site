@@ -5,11 +5,14 @@ import { pxToRem } from 'shared/lib/px-to-rem'
 
 export const LFont = styled(Typography)<TypographyProps>(({ theme }) => ({
   fontSize: pxToRem(16),
+  lineHeight: pxToRem(20),
   fontWeight: 700,
   [theme.breakpoints.up('tablet')]: {
     fontSize: pxToRem(25),
+    lineHeight: pxToRem(30),
   },
   [theme.breakpoints.up('laptop')]: {
     fontSize: pxToRem(42),
+    lineHeight: pxToRem(51),
   },
 }))

@@ -1,18 +1,15 @@
 import { Button } from '@mui/material'
-import FormControl from '@mui/material/FormControl'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import FormLabel from '@mui/material/FormLabel'
-import Radio from '@mui/material/Radio'
-import RadioGroup from '@mui/material/RadioGroup'
 import TextField from '@mui/material/TextField'
 
 import { services as servicesData } from 'entities/services/data'
 
-import { Select } from 'shared/ui/controls'
+import { RadioGroup, Select } from 'shared/ui/controls'
 import { FilterLink, Link } from 'shared/ui/link'
 import { LFont, XLFont, XXLFont, XXXLFont } from 'shared/ui/typography'
 
 const ComponentsPage = () => {
+  const budget = ['less than 500$', '500-2K$', '2K-5K$', 'over 5K']
+
   return (
     <div>
       <Select
@@ -43,27 +40,16 @@ const ComponentsPage = () => {
       </div>
 
       <div>
-        <FormControl>
-          <FormLabel id="demo-radio-buttons-group-label">
-            kind a project you have in mind?
-          </FormLabel>
-          <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
-            name="radio-buttons-group">
-            <FormControlLabel
-              value="mobile"
-              control={<Radio />}
-              label="mobile app"
-            />
-            <FormControlLabel value="web" control={<Radio />} label="web" />
-            <FormControlLabel
-              value="CGI"
-              control={<Radio />}
-              label="CGI (computer graphics)"
-            />
-          </RadioGroup>
-        </FormControl>
+        <RadioGroup
+          type="budget"
+          label="what budget
+do you have?"
+          options={budget.map(budgetItem => ({
+            value: budgetItem,
+            label: budgetItem,
+            labelExplanation: '(labelExplanation)',
+          }))}
+        />
       </div>
 
       <XXXLFont variant="h1">
