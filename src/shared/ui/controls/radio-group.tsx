@@ -61,14 +61,17 @@ const Label = styled(XLFont)(({ theme }) => ({
   color: theme.palette.text.primary,
 }))
 
-const RadioGroupbBaseStyled = styled(RadioGroupbBase)(() => ({
+const RadioGroupbBaseStyled = styled(RadioGroupbBase)(({ theme }) => ({
   display: 'grid',
-  gridRowGap: pxToRem(48),
+  gridRowGap: pxToRem(32),
+  [theme.breakpoints.up('laptop')]: {
+    gridRowGap: pxToRem(48),
+  },
 }))
 
 const RadioStyled = styled(Radio)(({ theme }) => ({
   padding: pxToRem(4),
-  marginRight: pxToRem(117),
+  marginRight: pxToRem(40),
   transition: 'color .2s',
   '& .MuiSvgIcon-root': {
     opacity: 0,
@@ -83,11 +86,18 @@ const RadioStyled = styled(Radio)(({ theme }) => ({
       color: theme.palette.text.primary,
     },
   },
+  [theme.breakpoints.up('laptop')]: {
+    marginRight: pxToRem(117),
+  },
 }))
 
-const Check = styled('div')(() => ({
+const Check = styled('div')(({ theme }) => ({
   display: 'flex',
+  width: '24px',
   svg: {
-    width: '21px',
+    width: '16px',
+    [theme.breakpoints.up('laptop')]: {
+      width: '21px',
+    },
   },
 }))
