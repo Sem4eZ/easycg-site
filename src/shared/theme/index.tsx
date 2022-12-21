@@ -383,6 +383,26 @@ const commonTheme = createTheme({
         }),
       },
     },
+    MuiDialog: {
+      styleOverrides: {
+        paper: ({ theme }) => ({
+          boxShadow: 'unset',
+          background: theme.palette.background.default,
+          padding: '64px 112px 112px 112px',
+        }),
+      },
+    },
+    MuiDialogTitle: {
+      styleOverrides: { root: () => ({ minHeight: '112px' }) },
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: () => ({
+          borderTop: 'unset',
+          borderBottom: 'unset',
+        }),
+      },
+    },
   },
 })
 

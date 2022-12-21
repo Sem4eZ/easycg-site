@@ -1,20 +1,51 @@
-import { Button } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import TextField from '@mui/material/TextField'
+import { useState } from 'react'
 
 import { services as servicesData } from 'entities/services/data'
 
 import { Accordion } from 'shared/ui/accordion'
 import { RadioGroup, Select } from 'shared/ui/controls'
 import { FilterLink, Link } from 'shared/ui/link'
+import { Modal } from 'shared/ui/modal/default'
 import { NumberOutlined } from 'shared/ui/outlined-text/number'
 import { TextOutlined } from 'shared/ui/outlined-text/text'
 import { LFont, XLFont, XXLFont, XXXLFont } from 'shared/ui/typography'
 
 const ComponentsPage = () => {
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
   const budget = ['less than 500$', '500-2K$', '2K-5K$', 'over 5K']
 
   return (
     <div>
+      <button onClick={handleOpen}>Call modal</button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        title="Modal title"
+        actionsContent={
+          <Button autoFocus onClick={handleClose}>
+            Save changes
+          </Button>
+        }>
+        <Typography gutterBottom>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+          consectetur ac, vestibulum at eros.
+        </Typography>
+        <Typography gutterBottom>
+          Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+          Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+        </Typography>
+        <Typography gutterBottom>
+          Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+          magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+          ullamcorper nulla non metus auctor fringilla.
+        </Typography>
+      </Modal>
       <Accordion
         name="services"
         items={servicesData.map(serviceData => ({
@@ -32,7 +63,9 @@ const ComponentsPage = () => {
       <NumberOutlined>01</NumberOutlined>
 
       <TextOutlined viewBoxWidth={1470}>work</TextOutlined>
-      <TextOutlined viewBoxWidth={2220}>contact</TextOutlined>
+      <TextOutlined viewBoxWidth={2220} animate>
+        contact
+      </TextOutlined>
 
       <Select
         label="select type of project (you can chose few)"
