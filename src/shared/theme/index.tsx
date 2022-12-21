@@ -301,6 +301,62 @@ const commonTheme = createTheme({
         }),
       },
     },
+    MuiAccordion: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          backgroundColor: 'transparent',
+          backgroundImage: 'unset',
+          boxShadow: 'unset',
+          '&::before': {
+            display: 'none',
+          },
+          '&.Mui-expanded': {
+            margin: 0,
+          },
+        }),
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          paddingLeft: 0,
+          overflow: 'hidden',
+          '&::before': {
+            content: "''",
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            height: '1px',
+            width: '100%',
+            backgroundColor: theme.palette.text.secondary,
+          },
+          '&::after': {
+            content: "''",
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            height: '2px',
+            width: '100%',
+            backgroundColor: theme.palette.accent,
+            transform: 'translateX(-100%)',
+            transition: 'transform .5s',
+          },
+          '&.Mui-expanded': {
+            '&::after': {
+              transform: 'translateX(0)',
+            },
+          },
+        }),
+      },
+    },
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          paddingLeft: 0,
+          color: theme.palette.text.secondary,
+        }),
+      },
+    },
   },
 })
 

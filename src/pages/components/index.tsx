@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField'
 
 import { services as servicesData } from 'entities/services/data'
 
+import { Accordion } from 'shared/ui/accordion'
 import { RadioGroup, Select } from 'shared/ui/controls'
 import { FilterLink, Link } from 'shared/ui/link'
 import { NumberOutlined } from 'shared/ui/outlined-text/number'
@@ -14,6 +15,14 @@ const ComponentsPage = () => {
 
   return (
     <div>
+      <Accordion
+        name="services"
+        items={servicesData.map(serviceData => ({
+          title: serviceData.name,
+          titleExplanation: serviceData.nameExplanation,
+          content: serviceData.description,
+        }))}
+      />
       <TextOutlined viewBoxWidth={1480} type="header">
         blog.
       </TextOutlined>
