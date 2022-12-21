@@ -1,7 +1,9 @@
 import { styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
 
+import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
+import { spaceArr } from 'shared/theme'
 
 import { XXXLFont } from '../typography'
 
@@ -30,7 +32,7 @@ export const Page = ({
   }, [])
 
   return (
-    <div>
+    <div style={{ overflow: 'hidden' }}>
       back
       <Title variant="h1" ref={titleRef}>
         {decorationText && (
@@ -50,105 +52,64 @@ export const Page = ({
 const Title = styled(XXXLFont)(({ theme }) => ({
   position: 'relative',
   marginTop: pxToRem(114),
+  ...getBreakpointsStylesByArray(theme, {
+    paddingLeft: spaceArr,
+    paddingRight: spaceArr,
+    marginTop: [114, null, null, null, 258, 234, 85, 188],
+  }),
   '&.animate': {
     '&::before': {
       transform: 'translateX(0)',
     },
   },
   '&::before': {
+    boxSizing: 'border-box',
     content: "''",
     position: 'absolute',
     left: 0,
     top: 0,
     height: '2px',
-    width: '100vw',
+    width: '100%',
     backgroundColor: theme.palette.text.disabled,
-    transform: 'translateX(-110vw)',
+    transform: 'translateX(-100%)',
     transition: 'transform 1s',
-  },
-  [theme.breakpoints.up('tablet')]: {
-    marginTop: pxToRem(258),
-  },
-  [theme.breakpoints.up('tablet_landscape')]: {
-    marginTop: pxToRem(234),
-  },
-  [theme.breakpoints.up('laptop')]: {
-    marginTop: pxToRem(85),
-  },
-  [theme.breakpoints.up('desktop')]: {
-    marginTop: pxToRem(188),
+    ...getBreakpointsStylesByArray(theme, {
+      marginLeft: spaceArr,
+      display: ['none', null, null, null, null, null, 'block'],
+    }),
   },
 }))
 
 const DecorationTextBlock = styled('div')(({ theme }) => ({
   position: 'absolute',
-  top: '-251px',
+  top: '-328px',
   left: '-192px',
   zIndex: '-1',
+  ...getBreakpointsStylesByArray(theme, {
+    paddingLeft: spaceArr,
+    paddingRight: spaceArr,
+    top: [-130, -130, -141, -141, -196, -196, -266, -328],
+    left: [-52, -110, -60, -113, -60, -132, -267, -192],
+  }),
 }))
 
 const SubtitleContentBlock = styled('div')(({ theme }) => ({
   marginTop: pxToRem(24),
-  [theme.breakpoints.up('mobile_s_landscape')]: {
-    marginTop: pxToRem(16),
-  },
-  [theme.breakpoints.up('mobile')]: {
-    marginTop: pxToRem(16),
-  },
-  [theme.breakpoints.up('tablet')]: {
-    marginTop: pxToRem(24),
-  },
-  [theme.breakpoints.up('tablet_landscape')]: {
-    marginTop: pxToRem(16),
-  },
-  [theme.breakpoints.up('laptop')]: {
-    marginTop: pxToRem(16),
-  },
-  [theme.breakpoints.up('desktop')]: {
-    marginTop: pxToRem(24),
-  },
+  ...getBreakpointsStylesByArray(theme, {
+    paddingLeft: spaceArr,
+    paddingRight: spaceArr,
+    marginTop: [24, 16, 16, 16, 24, 16, 16, 24],
+  }),
 }))
 
 const FilterBlock = styled('section')(({ theme }) => ({
-  marginTop: pxToRem(168),
-  [theme.breakpoints.up('mobile_s_landscape')]: {
-    marginTop: pxToRem(135),
-  },
-  [theme.breakpoints.up('mobile')]: {
-    marginTop: pxToRem(112),
-  },
-  [theme.breakpoints.up('mobile_landscape')]: {
-    marginTop: pxToRem(141),
-  },
-  [theme.breakpoints.up('tablet')]: {
-    marginTop: pxToRem(267),
-  },
-  [theme.breakpoints.up('laptop')]: {
-    marginTop: pxToRem(297),
-  },
-  [theme.breakpoints.up('desktop')]: {
-    marginTop: pxToRem(288),
-  },
+  ...getBreakpointsStylesByArray(theme, {
+    marginTop: [168, 135, 112, 141, 267, null, 297, 288],
+  }),
 }))
 
 const ContentBlock = styled('div')(({ theme }) => ({
-  marginTop: pxToRem(168),
-  [theme.breakpoints.up('mobile_s_landscape')]: {
-    marginTop: pxToRem(135),
-  },
-  [theme.breakpoints.up('mobile')]: {
-    marginTop: pxToRem(112),
-  },
-  [theme.breakpoints.up('mobile_landscape')]: {
-    marginTop: pxToRem(141),
-  },
-  [theme.breakpoints.up('tablet')]: {
-    marginTop: pxToRem(267),
-  },
-  [theme.breakpoints.up('laptop')]: {
-    marginTop: pxToRem(297),
-  },
-  [theme.breakpoints.up('desktop')]: {
-    marginTop: pxToRem(288),
-  },
+  ...getBreakpointsStylesByArray(theme, {
+    marginTop: [168, 135, 112, 141, 267, null, 297, 288],
+  }),
 }))

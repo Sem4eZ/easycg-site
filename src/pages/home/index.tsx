@@ -1,7 +1,7 @@
 import { styled } from '@mui/material'
 
 import { FreeRightPartContainer } from 'shared/ui/containers'
-import { VerticalList } from 'shared/ui/vertical-list/vertical-list'
+import { VerticalList } from 'shared/ui/vertical-list/default'
 
 const HomePage = () => (
   <div>
