@@ -3,6 +3,20 @@ import { createTheme } from '@mui/material'
 import { ArrowIcon } from 'shared/icons/arrow'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
+export const maxWidth = '1920px'
+
+export const spaceObj = {
+  se: 24,
+  se_horizontal: 88,
+  ip13: 28,
+  ip13_horizontal: 88,
+  tablet: 24,
+  tablet_horizontal: 88,
+  laptop: 112,
+  desktop: 112,
+}
+export const spaceArr = Object.values(spaceObj).map(value => value)
+
 const breakpointsTheme = createTheme({
   breakpoints: {
     values: {
@@ -21,6 +35,20 @@ const breakpointsTheme = createTheme({
 const commonTheme = createTheme({
   breakpoints: {
     values: breakpointsTheme.breakpoints.values,
+    up: breakpoint => {
+      if (typeof breakpoint !== 'string')
+        return `@media (min-width: ${breakpoint}px)`
+
+      let direction = 'and (orientation: portrait)'
+      if (
+        breakpoint.includes('landscape') ||
+        breakpoint.includes('laptop') ||
+        breakpoint.includes('desktop')
+      ) {
+        direction = 'and (orientation: landscape)'
+      }
+      return `@media (min-width: ${breakpointsTheme.breakpoints.values[breakpoint]}px) ${direction}`
+    },
   },
   typography: {
     fontFamily: 'Proxima Nova, sans-serif',
@@ -30,8 +58,6 @@ const commonTheme = createTheme({
       styleOverrides: theme => {
         return {
           body: {
-            paddingLeft: '50px',
-            paddingRight: '50px',
             margin: 0,
             background: theme.palette.background.default,
             fontSize: pxToRem(16),
@@ -359,6 +385,8 @@ const commonTheme = createTheme({
     },
   },
 })
+
+console.log(commonTheme.breakpoints.up('mobile_s_landscape'))
 
 export const lightTheme = createTheme({
   ...commonTheme,
