@@ -35,7 +35,7 @@ const Icon = styled('div')(({ theme }) => ({
   position: 'absolute',
   color: theme.palette.inverted,
   zIndex: 0,
-  top: 0,
+  top: -10,
   ...getBreakpointsStylesByArray(theme, {
     height: [150, null, null, null, 250, null, 375],
     left: [-15, null, null, null, -30, null, -30],

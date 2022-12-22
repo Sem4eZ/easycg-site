@@ -1,9 +1,6 @@
-import { ARIcon } from 'shared/icons/ar'
-import { CGIIcon } from 'shared/icons/cgi'
 import { ComputerIcon } from 'shared/icons/computer'
 import { PhoneIcon } from 'shared/icons/phone'
-import { UXUIIcon } from 'shared/icons/uxui'
-import { VRIcon } from 'shared/icons/vr'
+import { ServiceSquareIcon } from 'shared/icons/service-square'
 
 interface Service {
   type: string
@@ -82,7 +79,7 @@ export const services: Service[] = [
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
-    icon: <CGIIcon />,
+    icon: <ServiceSquareIcon />,
   },
   {
     type: 'AR',
@@ -103,7 +100,7 @@ export const services: Service[] = [
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
-    icon: <ARIcon />,
+    icon: <ServiceSquareIcon />,
   },
   {
     type: 'VR',
@@ -124,7 +121,7 @@ export const services: Service[] = [
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
-    icon: <VRIcon />,
+    icon: <ServiceSquareIcon />,
   },
   {
     type: 'UX/ UI',
@@ -144,7 +141,7 @@ export const services: Service[] = [
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
-    icon: <UXUIIcon />,
+    icon: <ServiceSquareIcon />,
   },
 ]
 
