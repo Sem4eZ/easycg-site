@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useRef } from 'react'
 
@@ -44,7 +45,7 @@ export const FreeRightPartContainer = ({
         )}
       </div>
       <RightPart>
-        <Section>{section}</Section>
+        <Section variant="h2">{section}</Section>
         <Title ref={titleRef}>
           {title.map(line => (
             <>
@@ -125,7 +126,7 @@ const NumberOutlinedStyled = styled(NumberOutlined)(({ theme }) => ({
   }),
 }))
 
-const Section = styled('div')(({ theme }) => ({
+const Section = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
   marginBottom: pxToRem(51),
   ...getBreakpointsStylesByArray(theme, {
