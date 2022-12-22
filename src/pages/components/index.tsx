@@ -1,15 +1,17 @@
 import { Button, Typography } from '@mui/material'
 import TextField from '@mui/material/TextField'
+import { styled } from '@mui/material/styles'
 import { useState } from 'react'
 
 import { services as servicesData } from 'entities/services/data'
 
+import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { Accordion } from 'shared/ui/accordion'
 import { RadioGroup, Select } from 'shared/ui/controls'
 import { FilterLink, Link } from 'shared/ui/link'
 import { Modal } from 'shared/ui/modal/default'
-import { NumberOutlined } from 'shared/ui/outlined-text/number'
-import { TextOutlined } from 'shared/ui/outlined-text/text'
+// import { NumberOutlined } from 'shared/ui/outlined-text/number'
+// import { TextOutlined } from 'shared/ui/outlined-text/text'
 import { LFont, XLFont, XXLFont, XXXLFont } from 'shared/ui/typography'
 
 const ComponentsPage = () => {
@@ -22,10 +24,10 @@ const ComponentsPage = () => {
   return (
     <div>
       <button onClick={handleOpen}>Call modal</button>
-      <Modal
+      <ModalStyled
         open={open}
         onClose={handleClose}
-        title="Modal title"
+        title={<XLFont>what budget do you have?</XLFont>}
         actionsContent={
           <Button autoFocus onClick={handleClose}>
             Save changes
@@ -36,16 +38,7 @@ const ComponentsPage = () => {
           dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
           consectetur ac, vestibulum at eros.
         </Typography>
-        <Typography gutterBottom>
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-          Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-        </Typography>
-        <Typography gutterBottom>
-          Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-          magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-          ullamcorper nulla non metus auctor fringilla.
-        </Typography>
-      </Modal>
+      </ModalStyled>
       <Accordion
         name="services"
         items={servicesData.map(serviceData => ({
@@ -54,7 +47,7 @@ const ComponentsPage = () => {
           content: serviceData.description,
         }))}
       />
-      <TextOutlined viewBoxWidth={1480} type="header">
+      {/* <TextOutlined viewBoxWidth={1480} type="header">
         blog.
       </TextOutlined>
       <TextOutlined viewBoxWidth={1480}>blog.</TextOutlined>
@@ -65,7 +58,7 @@ const ComponentsPage = () => {
       <TextOutlined viewBoxWidth={1470}>work</TextOutlined>
       <TextOutlined viewBoxWidth={2220} animate>
         contact
-      </TextOutlined>
+      </TextOutlined> */}
 
       <Select
         label="select type of project (you can chose few)"
@@ -143,3 +136,15 @@ do you have?"
 }
 
 export default ComponentsPage
+
+export const ModalStyled = styled(Modal)(({ theme }) => ({
+  '& .MuiDialog-paper': {
+    width: '100%',
+    ...getBreakpointsStylesByArray(theme, {
+      maxWidth: ['100%', null, null, null, null, null, '871px', '871px'],
+      margin: [0, null, null, null, null, null, '32px'],
+      maxHeight: ['100%', null, null, null, null, null, 'calc(100% - 64px)'],
+      height: ['100%'],
+    }),
+  },
+}))

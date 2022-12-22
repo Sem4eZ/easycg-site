@@ -403,6 +403,13 @@ const commonTheme = createTheme({
         }),
       },
     },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          marginLeft: 0,
+        },
+      },
+    },
   },
 })
 
