@@ -1,7 +1,13 @@
 import { styled } from '@mui/material/styles'
+import { useRef } from 'react'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
+import { useRevealBlock } from 'shared/lib/use-reveal-block'
+import {
+  WORD_CLASS,
+  useRevealTextByWord,
+} from 'shared/lib/use-reveal-text-by-word'
 import { maxWidth, spaceObj } from 'shared/theme'
 
 import { NumberOutlined } from '../outlined-text'
@@ -10,7 +16,7 @@ import { XLFont } from '../typography'
 interface Props {
   number?: number
   section: string
-  title: React.ReactNode | string
+  title: string[]
   description?: Array<React.ReactNode | string>
   content: React.ReactNode
 }
@@ -22,6 +28,12 @@ export const FreeRightPartContainer = ({
   description,
   content,
 }: Props) => {
+  const titleRef = useRef<HTMLDivElement | null>(null)
+  const descriptionRef = useRef<HTMLDivElement | null>(null)
+
+  useRevealTextByWord({ ref: titleRef })
+  useRevealBlock({ ref: descriptionRef })
+
   return (
     <Container>
       <div>
@@ -33,9 +45,18 @@ export const FreeRightPartContainer = ({
       </div>
       <RightPart>
         <Section>{section}</Section>
-        <Title>{title}</Title>
+        <Title ref={titleRef}>
+          {title.map(line => (
+            <>
+              {line.split(' ').map(word => (
+                <span className={WORD_CLASS}>{`${word} `}</span>
+              ))}
+              <br />
+            </>
+          ))}
+        </Title>
         {description && (
-          <Description>
+          <Description ref={descriptionRef}>
             {description.map(line => (
               <p>{line}</p>
             ))}
@@ -91,7 +112,16 @@ const NumberOutlinedStyled = styled(NumberOutlined)(({ theme }) => ({
   position: 'absolute',
   ...getBreakpointsStylesByArray(theme, {
     top: [46, 40, 48, 38, '6%', null, '-4%', '-1%'],
-    left: [0, null, null, null, '-5%', null, '-10%', '-8%'],
+    left: [
+      spaceObj.se,
+      spaceObj.se_horizontal,
+      spaceObj.ip13,
+      spaceObj.ip13_horizontal,
+      '-5%',
+      null,
+      '-10%',
+      '-8%',
+    ],
   }),
 }))
 
@@ -104,6 +134,9 @@ const Section = styled('div')(({ theme }) => ({
 }))
 
 const Title = styled(XLFont)(({ theme }) => ({
+  '& .word': {
+    transition: 'opacity .2s',
+  },
   ...getBreakpointsStylesByArray(theme, {
     marginRight: [
       0,
