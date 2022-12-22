@@ -50,6 +50,9 @@ export const TextOutlined = ({
   useEffect(() => {
     if (!animate || window.innerWidth < 1366) return
     window.addEventListener('scroll', fillText)
+    return () => {
+      window.removeEventListener('scroll', fillText)
+    }
   }, [])
 
   return (
