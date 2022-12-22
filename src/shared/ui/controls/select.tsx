@@ -3,6 +3,9 @@ import FormHelperText from '@mui/material/FormHelperText'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import BaseSelect from '@mui/material/Select'
+import { styled } from '@mui/material/styles'
+
+import { CheckIcon } from 'shared/icons/check'
 
 interface Props {
   label: string
@@ -31,6 +34,10 @@ export const Select = ({
       <BaseSelect labelId={`${field}-label`} id={field} variant="standard">
         {options.map(option => (
           <MenuItem key={option.value} value={option.value}>
+            <CheckIconWrapper className="CheckIcon">
+              <CheckIcon />
+            </CheckIconWrapper>
+
             {option.label}
             {option.labelExplanation}
           </MenuItem>
@@ -40,3 +47,17 @@ export const Select = ({
     </FormControl>
   )
 }
+
+export const CheckIconWrapper = styled('div')(({ theme }) => ({
+  width: '16px',
+  marginRight: '24px',
+  '& svg': {
+    width: '100%',
+  },
+  [theme.breakpoints.up('laptop')]: {
+    width: '22px',
+  },
+  [theme.breakpoints.up('laptop')]: {
+    marginRight: '56px',
+  },
+}))

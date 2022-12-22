@@ -282,9 +282,12 @@ const commonTheme = createTheme({
           fontSize: pxToRem(16),
           lineHeight: pxToRem(20),
           fontWeight: 700,
-          paddingLeft: pxToRem(48),
+          paddingLeft: pxToRem(88),
           paddingTop: pxToRem(24),
           paddingBottom: pxToRem(24),
+          '& .CheckIcon': {
+            display: 'none',
+          },
           '&:hover': {
             backgroundColor: 'transparent',
             color: theme.palette.text.secondary,
@@ -292,6 +295,10 @@ const commonTheme = createTheme({
           '&.Mui-selected': {
             backgroundColor: 'transparent',
             color: theme.palette.text.secondary,
+            paddingLeft: pxToRem(48),
+            '& .CheckIcon': {
+              display: 'block',
+            },
             '&:hover': {
               backgroundColor: 'transparent',
               color: theme.palette.text.secondary,
@@ -304,9 +311,12 @@ const commonTheme = createTheme({
           [theme.breakpoints.up('laptop')]: {
             fontSize: pxToRem(42),
             lineHeight: pxToRem(51),
-            paddingLeft: pxToRem(96),
+            paddingLeft: pxToRem(174),
             paddingTop: pxToRem(48),
             paddingBottom: pxToRem(48),
+            '&.Mui-selected': {
+              paddingLeft: pxToRem(96),
+            },
           },
         }),
       },
