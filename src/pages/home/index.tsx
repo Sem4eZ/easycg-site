@@ -5,17 +5,14 @@ import { VerticalList } from 'shared/ui/vertical-list/default'
 
 const HomePage = () => (
   <div>
-    <FreeRightPartContainer
+    {/* <FreeRightPartContainer
       number={1}
       section="about us"
-      title={
-        <>
-          hello there! it’s EASY on the air
-          <br /> we don’t speak about digital
-          <br />
-          we DO digital
-        </>
-      }
+      title={[
+        'hello there! it’s EASY on the air',
+        'we don’t speak about digital',
+        ' we DO digital',
+      ]}
       description={[
         <>
           let us quess! are you looking for a mobile app or website?
@@ -34,19 +31,16 @@ const HomePage = () => (
           items={['locanic', 'simple', 'clear', 'accessible']}
         />
       }
-    />
+    /> */}
     <Block />
     <FreeRightPartContainer
       number={1}
       section="about us"
-      title={
-        <>
-          hello there! it’s EASY on the air
-          <br /> we don’t speak about digital
-          <br />
-          we DO digital
-        </>
-      }
+      title={[
+        'hello there! it’s EASY on the air',
+        'we don’t speak about digital',
+        ' we DO digital',
+      ]}
       description={[
         <>
           let us quess! are you looking for a mobile app or website?

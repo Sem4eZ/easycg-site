@@ -1,6 +1,9 @@
 import { styled } from '@mui/material'
+import { useRef } from 'react'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { useGetIsTouchableVersion } from 'shared/lib/use-get-is-touchable-version'
+import { useRevealBlock } from 'shared/lib/use-reveal-block'
 import { spaceObj } from 'shared/theme'
 
 import { Link } from '../link'
@@ -10,12 +13,16 @@ interface Props {
   items: string[]
 }
 export const VerticalList = ({ title, items }: Props) => {
+  const isTouchableVersion = useGetIsTouchableVersion()
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  useRevealBlock({ ref: containerRef })
+
   return (
-    <Container>
-      {title}
+    <Container ref={containerRef}>
+      {isTouchableVersion ? <b>{title}</b> : title}
       <List>
         {items.map(item => (
-          <Link>{item}</Link>
+          <Link active={isTouchableVersion}>{item}</Link>
         ))}
       </List>
     </Container>
@@ -37,10 +44,14 @@ const Container = styled('div')(({ theme }) => ({
   }),
 }))
 
-const List = styled('ul')(() => ({
+const List = styled('ul')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'space-between',
   listStyle: 'none',
   paddingLeft: 0,
+  marginBottom: 0,
+  ...getBreakpointsStylesByArray(theme, {
+    marginTop: [26, 16, null, null, null, null, 8],
+  }),
 }))
