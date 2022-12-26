@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { useThemeToggler } from 'features/theme/theme-toggler'
 
+import { Header } from 'shared/ui/header'
+
 function App() {
   const { theme, toggler: themeToggler } = useThemeToggler()
   return (
@@ -13,6 +15,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           {themeToggler}
+          <Header />
           <Pages />
         </ThemeProvider>
       </Suspense>
