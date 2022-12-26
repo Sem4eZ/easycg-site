@@ -1,5 +1,8 @@
 import { styled } from '@mui/material'
 
+import { services } from 'entities/services/data'
+
+import { Accordion } from 'shared/ui/accordion'
 import { FreeRightPartContainer } from 'shared/ui/containers'
 import { VerticalList } from 'shared/ui/vertical-list/default'
 
@@ -63,6 +66,21 @@ const HomePage = () => (
         <VerticalList
           title="our style is"
           items={['locanic', 'simple', 'clear', 'accessible']}
+        />
+      }
+    />
+    <FreeRightPartContainer
+      number={2}
+      section="services"
+      title={<>what we DO</>}
+      content={
+        <Accordion
+          name="Services"
+          items={services.map(service => ({
+            title: service.name,
+            titleExplanation: service.nameExplanation,
+            content: service.description,
+          }))}
         />
       }
     />
