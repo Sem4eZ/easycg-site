@@ -1,19 +1,40 @@
+import { useServicesFilter } from 'features/services/filter'
+
+import { projects } from 'entities/project/data'
+
+import { HorizontalList } from 'shared/ui/horizontal-list'
 import { NumberOutlined } from 'shared/ui/outlined-text'
 import { Page } from 'shared/ui/page-templates'
-import { VerticalList } from 'shared/ui/vertical-list'
 
-const ProjectsPage = () => (
-  <Page
-    title="work"
-    decorationText={<NumberOutlined type="header">01</NumberOutlined>}
-    filter={
-      <VerticalList
-        title="our style is"
-        items={['locanic', 'simple', 'clear', 'accessible']}
-      />
-    }>
-    "Some page content"
-  </Page>
-)
+const ProjectsPage = () => {
+  const { template: filterTemplate, filter } = useServicesFilter()
+  return (
+    <Page
+      title="work"
+      decorationText={<NumberOutlined type="header">01</NumberOutlined>}
+      filter={
+        <HorizontalList
+          title="our style is"
+          items={['locanic', 'simple', 'clear', 'accessible']}
+        />
+      }>
+      {filterTemplate}
+      {projects
+        .filter(project => {
+          if (filter.includes('all')) {
+            return project
+          }
+          for (let i = 0; i < project.servicesType.length; i++) {
+            if (filter.includes(project.servicesType[i])) {
+              return project
+            }
+          }
+        })
+        .map(project => (
+          <div>{project.name + ' ' + project.servicesType.join(' ')}</div>
+        ))}
+    </Page>
+  )
+}
 
 export default ProjectsPage

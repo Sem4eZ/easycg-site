@@ -12,7 +12,7 @@ interface Props {
   title: string
   items: string[]
 }
-export const VerticalList = ({ title, items }: Props) => {
+export const HorizontalList = ({ title, items }: Props) => {
   const isTouchableVersion = useGetIsTouchableVersion()
   const containerRef = useRef<HTMLDivElement | null>(null)
   useRevealBlock({ ref: containerRef })
@@ -22,7 +22,9 @@ export const VerticalList = ({ title, items }: Props) => {
       {isTouchableVersion ? <b>{title}</b> : title}
       <List>
         {items.map(item => (
-          <Link active={isTouchableVersion}>{item}</Link>
+          <Link key={item} active={isTouchableVersion ? 1 : 0}>
+            {item}
+          </Link>
         ))}
       </List>
     </Container>

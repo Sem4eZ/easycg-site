@@ -6,8 +6,8 @@ import {
 } from 'entities/services/data'
 
 import { FreeRightPartContainer } from 'shared/ui/containers'
+import { HorizontalList } from 'shared/ui/horizontal-list'
 import { PricesBlock } from 'shared/ui/prices-block'
-import { VerticalList } from 'shared/ui/vertical-list/default'
 
 const HomePage = () => (
   <div>
@@ -42,7 +42,7 @@ const HomePage = () => (
         </>,
       ]}
       content={
-        <VerticalList
+        <HorizontalList
           title="our style is"
           items={['locanic', 'simple', 'clear', 'accessible']}
         />
