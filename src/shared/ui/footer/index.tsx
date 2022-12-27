@@ -8,6 +8,7 @@ import { useGetDevice } from 'shared/lib/use-get-device'
 import { maxWidth, spaceArr } from 'shared/theme'
 
 import { SocialMedia } from '../social-media'
+import { Tags } from '../tags'
 import { LFont } from '../typography'
 
 interface Props {
@@ -42,7 +43,7 @@ export const Footer = ({ projectsCount }: Props) => {
 
   return (
     <Container>
-      EASY CG workshop
+      <TagsStyled type="wide" items={['EASY', 'CG workshop']} />
       <nav>
         <Menu>
           {MENU.map(menuItem => (
@@ -58,7 +59,9 @@ export const Footer = ({ projectsCount }: Props) => {
       <ContactInfo>
         <div>
           <City>Based in Almaty</City>
-          <Time>{`${time.getHours()}:${time.getMinutes()} (GTM +6)  `}</Time>
+          <Time>{`${time.getHours()}:${
+            time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes()
+          } (GTM +6)  `}</Time>
         </div>
         <div>
           <Phone href="tel:+79222222222">+7 922 222 22 22</Phone>
@@ -93,6 +96,21 @@ const Container = styled('footer')(({ theme }) => ({
   '& a': {
     textDecoration: 'none',
   },
+}))
+
+const TagsStyled = styled(Tags)(({ theme }) => ({
+  alignSelf: 'center',
+  fontWeight: 700,
+  '& li': {
+    color: theme.palette.accent,
+  },
+  '& div': {
+    backgroundColor: theme.palette.accent,
+  },
+  ...getBreakpointsStylesByArray(theme, {
+    marginBottom: [16, null, null, null, 88, 40],
+    fontSize: [16, null, null, null, 25],
+  }),
 }))
 
 const Menu = styled('ul')(({ theme }) => ({
