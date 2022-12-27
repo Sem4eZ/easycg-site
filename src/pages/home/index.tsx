@@ -1,25 +1,10 @@
 import { styled } from '@mui/material'
 
-import {
-  serviceDetailsToPricesBlockItems,
-  services,
-} from 'entities/services/data'
-
 import { FreeRightPartContainer } from 'shared/ui/containers'
 import { HorizontalList } from 'shared/ui/horizontal-list'
-import { PricesBlock } from 'shared/ui/prices-block'
 
 const HomePage = () => (
   <div>
-    <PricesBlock
-      items={serviceDetailsToPricesBlockItems(services[0].details)}
-      remark={services[0].remark}
-    />
-    <PricesBlock
-      items={serviceDetailsToPricesBlockItems(services[0].details)}
-      services={services[0].services}
-      remark={services[0].remark}
-    />
     <Block />
     <FreeRightPartContainer
       number={1}

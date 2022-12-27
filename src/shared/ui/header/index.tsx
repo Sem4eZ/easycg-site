@@ -3,9 +3,8 @@ import { styled } from '@mui/material/styles'
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import { projects } from 'entities/project/data'
+import { getMenuSchema } from 'entities/menu/data'
 
-import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
@@ -13,39 +12,11 @@ import { FilterLink } from '../link'
 import { Modal } from '../modal/default'
 import { ExplanationFont } from '../typography'
 
-const MENU: {
-  title: string
-  path: string
-  resourcesCount?: number
-}[] = [
-  {
-    title: 'home',
-    path: PAGES.HomePage,
-  },
-  {
-    title: 'work',
-    path: PAGES.Projects,
-    resourcesCount: projects.length,
-  },
-  {
-    title: 'services',
-    path: PAGES.Services,
-  },
-  {
-    title: 'about us',
-    path: PAGES.AboutUs,
-  },
-  {
-    title: 'blog.',
-    path: PAGES.Blog,
-  },
-  {
-    title: 'contacts',
-    path: PAGES.Contact,
-  },
-]
+interface Props {
+  projectsCount: number
+}
 
-export const Header = () => {
+export const Header = ({ projectsCount }: Props) => {
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
 
@@ -62,8 +33,10 @@ export const Header = () => {
     return pathname.includes(route) ? 1 : 0
   }
 
+  const MENU = getMenuSchema({ projectsCount })
+
   return (
-    <div>
+    <header>
       Change lang icon Logo
       <IconButton onClick={openModal}>+</IconButton>
       <Modal
@@ -88,7 +61,7 @@ export const Header = () => {
           </NavigationList>
         </nav>
       </Modal>
-    </div>
+    </header>
   )
 }
 

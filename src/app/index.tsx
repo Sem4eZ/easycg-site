@@ -5,6 +5,9 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { useThemeToggler } from 'features/theme/theme-toggler'
 
+import { projects } from 'entities/project/data'
+
+import { Footer } from 'shared/ui/footer'
 import { Header } from 'shared/ui/header'
 
 function App() {
@@ -15,8 +18,9 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           {themeToggler}
-          <Header />
+          <Header projectsCount={projects.length} />
           <Pages />
+          <Footer projectsCount={projects.length} />
         </ThemeProvider>
       </Suspense>
     </BrowserRouter>
