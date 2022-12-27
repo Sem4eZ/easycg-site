@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles'
 
 import { pxToRem } from 'shared/lib/px-to-rem'
 
-export const Link = styled(BaseLink)<LinkProps & { active?: boolean }>(
+export const Link = styled(BaseLink)<LinkProps & { active?: number }>(
   ({ theme, active }) => {
     return {
       display: 'inline-block',

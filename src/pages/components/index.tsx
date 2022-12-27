@@ -127,7 +127,7 @@ do you have?"
       <div>
         <Link href="#">Link</Link>
         <FilterLink href="#">Filter link </FilterLink>
-        <FilterLink href="#" active>
+        <FilterLink href="#" active={1}>
           Filter link
         </FilterLink>
       </div>
