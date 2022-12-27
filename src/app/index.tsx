@@ -17,7 +17,6 @@ function App() {
       <Suspense fallback={<CircularProgress />}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          {themeToggler}
           <Header projectsCount={projects.length} />
           <Pages />
           <Footer projectsCount={projects.length} />
