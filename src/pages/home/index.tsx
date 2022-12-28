@@ -1,24 +1,35 @@
 import { styled } from '@mui/material'
 
+import { projects } from 'entities/project/data'
+import { ProjectCard } from 'entities/project/ui/project-card'
 import {
   serviceDetailsToPricesBlockItems,
   services,
 } from 'entities/services/data'
 
-import { FreeRightPartContainer } from 'shared/ui/containers'
-import { HorizontalList } from 'shared/ui/horizontal-list'
+import {
+  FreeRightPartContainer,
+  HorizontalSliderContainer,
+} from 'shared/ui/containers'
+import { HorizontalList, ScrollableList } from 'shared/ui/horizontal-list'
 import { PricesBlock } from 'shared/ui/prices-block'
+import { XLFont } from 'shared/ui/typography'
+
+const service = services[0]
+const topProjects = projects.slice(0, 6)
 
 const HomePage = () => (
   <div>
+    <Block />
+
     <PricesBlock
-      items={serviceDetailsToPricesBlockItems(services[0].details)}
-      remark={services[0].remark}
+      items={serviceDetailsToPricesBlockItems(service.details)}
+      remark={service.remark}
     />
     <PricesBlock
-      items={serviceDetailsToPricesBlockItems(services[0].details)}
-      services={services[0].services}
-      remark={services[0].remark}
+      items={serviceDetailsToPricesBlockItems(service.details)}
+      services={service.services}
+      remark={service.remark}
     />
     <Block />
     <FreeRightPartContainer
@@ -48,6 +59,27 @@ const HomePage = () => (
         />
       }
     />
+    <HorizontalSliderContainer>
+      <XLFont variant="h2" textAlign="center">
+        our projects
+      </XLFont>
+      <ScrollableList parallax>
+        {topProjects.map((project, i) => (
+          <ProjectCard
+            key={project.id}
+            id={project.id}
+            name={project.name}
+            date={project.date}
+            description={project.description}
+            image={project.image}
+            type={project.type}
+            servicesType={project.servicesType}
+            zIndex={topProjects.length - i}
+          />
+        ))}
+      </ScrollableList>
+    </HorizontalSliderContainer>
+
     <Block />
   </div>
 )

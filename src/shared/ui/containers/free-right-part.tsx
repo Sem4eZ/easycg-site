@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { useRef } from 'react'
+import { Fragment, useRef } from 'react'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
@@ -47,19 +47,19 @@ export const FreeRightPartContainer = ({
       <RightPart>
         <Section variant="h2">{section}</Section>
         <Title ref={titleRef}>
-          {title.map(line => (
-            <>
-              {line.split(' ').map(word => (
-                <span className={WORD_CLASS}>{`${word} `}</span>
+          {title.map((line, i) => (
+            <Fragment key={i}>
+              {line.split(' ').map((word, i) => (
+                <span key={i} className={WORD_CLASS}>{`${word} `}</span>
               ))}
               <br />
-            </>
+            </Fragment>
           ))}
         </Title>
         {description && (
           <Description ref={descriptionRef}>
-            {description.map(line => (
-              <p>{line}</p>
+            {description.map((line, i) => (
+              <p key={i}>{line}</p>
             ))}
           </Description>
         )}
