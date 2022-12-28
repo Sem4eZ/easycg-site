@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import { useEffect, useState } from 'react'
 
 import { getMenuSchema } from 'entities/menu/data'
 
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export const Footer = ({ projectsCount }: Props) => {
+  const [time, setTime] = useState(calcTime(6))
   const MENU = getMenuSchema({ projectsCount })
 
   const {
@@ -39,7 +41,14 @@ export const Footer = ({ projectsCount }: Props) => {
 
   const showSeparateEmail = isLaptop || isDesktop
 
-  const time = calcTime(6)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(calcTime(6))
+    }, 30000)
+    return () => {
+      clearInterval(interval)
+    }
+  })
 
   return (
     <Container>
@@ -131,7 +140,7 @@ const MenuItem = styled('li')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     borderBottomWidth: [1, null, null, null, null, null, 0],
     paddingBottom: [8, null, null, null, null, null, 0],
-    marginTop: [16, null, null, null, 24, 0],
+    marginTop: [16, null, null, null, 24, null, 0],
   }),
 }))
 

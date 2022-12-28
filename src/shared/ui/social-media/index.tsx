@@ -14,7 +14,7 @@ interface Props {
 
 const SOCIAL_MEDIA: { link: string; icon: React.ReactNode }[] = [
   {
-    link: 'https://twitter.com/',
+    link: 'https://twitter.com/easycgimmersive',
     icon: <TwitterIcon />,
   },
   {
@@ -22,11 +22,11 @@ const SOCIAL_MEDIA: { link: string; icon: React.ReactNode }[] = [
     icon: <FacebookIcon />,
   },
   {
-    link: 'https://www.instagram.com/',
+    link: 'https://www.instagram.com/easy.cg/',
     icon: <InstagramIcon />,
   },
   {
-    link: 'https://www.linkedin.com/',
+    link: 'http://www.linkedin.com/company/easycg',
     icon: <LinkedinIcon />,
   },
 ]
@@ -36,7 +36,9 @@ export const SocialMedia = ({ size, ...rest }: Props) => {
     <Container data-size={size} {...rest}>
       {SOCIAL_MEDIA.map(socialMedia => (
         <ListItem data-size={size}>
-          <IconButton href={socialMedia.link}>{socialMedia.icon}</IconButton>
+          <IconButton href={socialMedia.link} target="_blank">
+            {socialMedia.icon}
+          </IconButton>
         </ListItem>
       ))}
     </Container>
