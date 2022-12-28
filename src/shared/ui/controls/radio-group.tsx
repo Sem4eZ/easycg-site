@@ -30,6 +30,7 @@ export const RadioGroup = ({ type, label, options }: Props) => {
       <RadioGroupbBaseStyled aria-labelledby={`${type}-label`} name={type}>
         {options.map(option => (
           <FormControlLabel
+            key={option.label}
             value={option.value}
             control={
               <RadioStyled

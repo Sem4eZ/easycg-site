@@ -5,10 +5,11 @@ import {
 import { ServiceCard } from 'entities/services/ui/service-card'
 
 const ServicesPage = () => (
-  <div>
+  <div style={{ display: 'grid', gridRowGap: '50px' }}>
     {services.map(service => {
       return (
         <ServiceCard
+          key={service.name}
           title={service.name}
           pricesBlock={{
             items: serviceDetailsToPricesBlockItems(service.details),

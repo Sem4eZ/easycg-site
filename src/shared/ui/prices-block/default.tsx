@@ -19,7 +19,7 @@ export const PricesBlock = ({ items, services, remark }: Props) => {
             <Name>services</Name>
             <ServicesList>
               {services.map(service => (
-                <li>
+                <li key={service}>
                   <LFont>{service}</LFont>
                 </li>
               ))}

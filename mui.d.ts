@@ -24,9 +24,17 @@ declare module '@mui/material/styles/createPalette' {
   interface Palette {
     inverted: string
     accent: string
+    card: {
+      default: string
+      hover: string
+    }
   }
   interface PaletteOptions {
     inverted: string
     accent: string
+    card: {
+      default: string
+      hover: string
+    }
   }
 }

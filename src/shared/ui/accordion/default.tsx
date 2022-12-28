@@ -3,9 +3,9 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
+import { useState } from 'react'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { pxToRem } from 'shared/lib/px-to-rem'
 
 import { ExplanationFont, LFont } from '../typography'
 
@@ -19,15 +19,25 @@ interface Props {
 }
 
 export const Accordion = ({ name, items }: Props) => {
+  const [expanded, setExpanded] = useState<string | false>(false)
+
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false)
+    }
+
   return (
     <Container>
       {items.map(item => {
         return (
-          <AccordionBase key={item.title}>
+          <AccordionBase
+            key={item.title}
+            expanded={expanded === item.title}
+            onChange={handleChange(item.title)}>
             <Summary
               expandIcon={<LFont></LFont>}
-              aria-controls={`${name}-content`}
-              id={`${name}-header`}>
+              aria-controls={`${item.title}-content`}
+              id={`${item.title}-header`}>
               <LFont>
                 {item.title}
                 <ExplanationFont variant="caption">

@@ -33,6 +33,27 @@ const HomePage = () => (
         />
       }
     />
+    <HorizontalSliderContainer>
+      <XLFont variant="h2" textAlign="center">
+        our projects
+      </XLFont>
+      <ScrollableList parallax>
+        {topProjects.map((project, i) => (
+          <ProjectCard
+            key={project.id}
+            id={project.id}
+            name={project.name}
+            date={project.date}
+            description={project.description}
+            image={project.image}
+            type={project.type}
+            servicesType={project.servicesType}
+            zIndex={topProjects.length - i}
+          />
+        ))}
+      </ScrollableList>
+    </HorizontalSliderContainer>
+
     <Block />
   </div>
 )
