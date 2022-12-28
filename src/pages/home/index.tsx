@@ -1,7 +1,16 @@
 import { styled } from '@mui/material'
 
-import { FreeRightPartContainer } from 'shared/ui/containers'
-import { HorizontalList } from 'shared/ui/horizontal-list'
+import { projects } from 'entities/project/data'
+import { ProjectCard } from 'entities/project/ui/project-card'
+
+import {
+  FreeRightPartContainer,
+  HorizontalSliderContainer,
+} from 'shared/ui/containers'
+import { HorizontalList, ScrollableList } from 'shared/ui/horizontal-list'
+import { XLFont } from 'shared/ui/typography'
+
+const topProjects = projects.slice(0, 6)
 
 const HomePage = () => (
   <div>
