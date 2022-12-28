@@ -1,10 +1,12 @@
 import { styled } from '@mui/material'
 
 import { FreeRightPartContainer } from 'shared/ui/containers'
+import { Hero } from 'shared/ui/hero'
 import { VerticalList } from 'shared/ui/vertical-list/default'
 
 const HomePage = () => (
   <div>
+    <Hero />
     <FreeRightPartContainer
       number={1}
       section="about us"
