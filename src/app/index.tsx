@@ -12,7 +12,7 @@ function App() {
       <Suspense fallback={<CircularProgress />}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          {themeToggler}
+
           <Pages />
         </ThemeProvider>
       </Suspense>

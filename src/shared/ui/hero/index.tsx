@@ -1,12 +1,17 @@
 import { useTheme } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { PAGES } from 'shared/config'
+import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { maxWidth, spaceArr } from 'shared/theme'
+
+import { Link } from '../link'
+
 export const Hero = () => {
   const theme = useTheme()
   return (
-    <>
+    <Container>
       <Decoration>
-        <Title>EASY</Title>
         <svg
           style={{ top: '20%' }}
           width="1730"
@@ -138,13 +143,66 @@ export const Hero = () => {
           </path>
         </svg>
       </Decoration>
-    </>
+      <Content>
+        <ContentMain>
+          <Title>
+            {'EASY'.split('').map(letter => (
+              <span>{letter}</span>
+            ))}
+          </Title>
+          <ul>
+            <Link href={`${PAGES.Services}#services_mobile`} id="">
+              mobile/
+            </Link>
+            <Link href={`${PAGES.Services}#services_web`}>web/</Link>
+            <Link href={`${PAGES.Services}#services_cgi`}>CGI/</Link>
+            <Link href={`${PAGES.Services}#services_vr`}>VR/</Link>
+            <Link href={`${PAGES.Services}#services_ar`}>AR</Link>
+          </ul>
+        </ContentMain>
+        <ContentFooter>
+          <div>SocialMedia</div>
+          <div>Based in Almaty</div>
+        </ContentFooter>
+      </Content>
+    </Container>
   )
 }
 
-const Decoration = styled('div')(() => ({
+const Container = styled('div')(() => ({
   position: 'relative',
   height: '100vh',
+}))
+
+const Content = styled('div')(({ theme }) => ({
+  position: 'relative',
+  display: 'grid',
+  height: '100%',
+  maxWidth: maxWidth,
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  ...getBreakpointsStylesByArray(theme, {
+    paddingLeft: spaceArr,
+    paddingRight: spaceArr,
+  }),
+  gridTemplateRows: '1fr auto',
+}))
+
+const ContentMain = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+}))
+
+const ContentFooter = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+}))
+
+const Decoration = styled('div')(() => ({
+  position: 'absolute',
+  height: '100%',
   width: '100%',
   display: 'flex',
   alignItems: 'center',
@@ -157,8 +215,16 @@ const Decoration = styled('div')(() => ({
   },
 }))
 
-const Title = styled('div')(() => ({
+const Title = styled('div')(({ theme }) => ({
+  display: 'flex',
   fontSize: 177,
+  lineHeight: '216px',
   fontWeight: 800,
-  letterSpacing: 80,
+  gap: 80,
+  ...getBreakpointsStylesByArray(theme, {
+    fontSize: [68, null, 110, null, null, null, null, null, 177],
+    lineHeight: [83, null, 134, null, null, null, null, null, 216],
+    marginBottom: [16, 0, 83, 46, 32, null, 24, null, null],
+    gap: [16, null, null, null, null, null, 56, null, 80],
+  }),
 }))
