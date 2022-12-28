@@ -1,66 +1,78 @@
-import { Project } from './types'
+import { Teammate } from './types'
 
-const IMAGES_PATH = '/assets/images/projects/'
+const IMAGES_PATH = '/assets/images/team/'
 
-export const projects: Project[] = [
+export const team: Teammate[] = [
   {
     id: '1',
     name: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: {
+      main: `${IMAGES_PATH}teammate.png`,
+      hidden: `${IMAGES_PATH}teammate-evil.png`,
+    },
     date: new Date('2021-11-12'),
-    servicesType: ['mobile', 'web'],
-    type: 'Mobile delivery app',
+    position: 'seo',
   },
   {
     id: '2',
-    name: 'Project2',
+    name: 'Teammate2',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card2.jpg`,
+    image: {
+      main: `${IMAGES_PATH}teammate.png`,
+      hidden: `${IMAGES_PATH}teammate-evil.png`,
+    },
     date: new Date('2021-11-12'),
-    servicesType: ['mobile', 'web'],
-    type: 'Mobile delivery app',
+    position: 'seo',
   },
   {
     id: '3',
-    name: 'Project3',
+    name: 'Teammate3',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: {
+      main: `${IMAGES_PATH}teammate.png`,
+      hidden: `${IMAGES_PATH}teammate-evil.png`,
+    },
     date: new Date('2021-11-12'),
-    servicesType: ['mobile'],
-    type: 'Mobile delivery app',
+    position: 'seo',
   },
   {
     id: '4',
-    name: 'Project4',
+    name: 'Teammate4',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: {
+      main: `${IMAGES_PATH}teammate.png`,
+      hidden: `${IMAGES_PATH}teammate-evil.png`,
+    },
     date: new Date('2021-11-12'),
-    servicesType: ['mobile'],
-    type: 'Mobile delivery app',
+    position: 'seo',
   },
   {
     id: '5',
-    name: 'Project4',
+    name: 'Teammate4',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: {
+      main: `${IMAGES_PATH}teammate.png`,
+      hidden: `${IMAGES_PATH}teammate-evil.png`,
+    },
     date: new Date('2021-11-12'),
-    servicesType: ['mobile'],
-    type: 'Mobile delivery app',
+    position: 'seo',
   },
   {
     id: '6',
-    name: 'Project4',
+    name: 'Teammate4',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: {
+      main: `${IMAGES_PATH}teammate.png`,
+      hidden: `${IMAGES_PATH}teammate-evil.png`,
+    },
     date: new Date('2021-11-12'),
-    servicesType: ['CGI'],
-    type: 'Mobile delivery app',
+    position: 'seo',
   },
 ]

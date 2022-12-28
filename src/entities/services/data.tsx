@@ -1,23 +1,12 @@
+import { ARIcon } from 'shared/icons/ar'
+import { CGIIcon } from 'shared/icons/cgi'
 import { ComputerIcon } from 'shared/icons/computer'
 import { PhoneIcon } from 'shared/icons/phone'
 import { ServiceSquareIcon } from 'shared/icons/service-square'
+import { UXUIIcon } from 'shared/icons/uxui'
+import { VRIcon } from 'shared/icons/vr'
 
-interface Service {
-  type: string
-  name: string
-  nameExplanation?: string
-  description: string
-  services: string[]
-  details: {
-    price: string
-    developmentTime: string
-    rate: string
-    exactPrice: string
-    additionalExpenses: string
-  }
-  remark: string
-  icon: React.ReactNode
-}
+import { Service, ServiceType } from './types'
 
 export const services: Service[] = [
   {
@@ -124,7 +113,7 @@ export const services: Service[] = [
     icon: <ServiceSquareIcon />,
   },
   {
-    type: 'UX/ UI',
+    type: 'UX/UI',
     name: 'UX/ UI',
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quae veniam quas, labore velit rem minus quasi doloremque eum. Adipisci aliquam laboriosam rerum perspiciatis illo id veniam iste blanditiis ullam.`,
     services: [
@@ -153,4 +142,13 @@ export const serviceDetailsToPricesBlockItems = (
     name: detail[0],
     value: detail[1],
   }))
+}
+
+export const serviceTypeToIcon: Record<ServiceType, React.ReactNode> = {
+  web: <ComputerIcon />,
+  mobile: <PhoneIcon />,
+  CGI: <CGIIcon />,
+  AR: <ARIcon />,
+  VR: <VRIcon />,
+  'UX/UI': <UXUIIcon />,
 }

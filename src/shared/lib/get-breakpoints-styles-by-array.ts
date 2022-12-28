@@ -17,6 +17,8 @@ export const getBreakpointsStylesByArray = (
     'paddingBottom',
     'paddingLeft',
     'paddingRight',
+    'gridColumnGap',
+    'gridRowGap',
   ]
   const getNotNullValue = (
     values: Array<string | number | null | undefined>,

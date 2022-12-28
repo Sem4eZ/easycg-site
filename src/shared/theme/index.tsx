@@ -71,6 +71,9 @@ const commonTheme = createTheme({
             '& .Mui-error': {
               color: theme.palette.error,
             },
+            '&.disable-scroll': {
+              overflow: 'hidden',
+            },
           },
         }
       },
@@ -423,8 +426,6 @@ const commonTheme = createTheme({
   },
 })
 
-console.log(commonTheme.breakpoints.up('mobile_s_landscape'))
-
 export const lightTheme = createTheme({
   ...commonTheme,
   palette: {
@@ -441,6 +442,10 @@ export const lightTheme = createTheme({
     accent: '#AFD624',
     background: {
       default: 'linear-gradient(247.32deg, #FAFAFF 0%, #ECECEC 100%)',
+    },
+    card: {
+      default: '#CFD6D9',
+      hover: '#797F9A',
     },
   },
 })
@@ -461,6 +466,10 @@ export const darkTheme = createTheme({
     accent: '#6456DD',
     background: {
       default: 'linear-gradient(247.32deg, #20222E 0%, #1E1C1B 100%)',
+    },
+    card: {
+      default: '#CFD6D9',
+      hover: '#797F9A',
     },
   },
 })
