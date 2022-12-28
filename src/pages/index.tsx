@@ -26,14 +26,14 @@ const Pages = () => (
     <Route path={PAGES.HomePage} element={<HomePage />} />
 
     <Route path={PAGES.Projects} element={<ProjectsPage />} />
-    <Route path={PAGES.Project} element={<ProjectDetailPage />} />
+    <Route path={`${PAGES.Projects}/:id`} element={<ProjectDetailPage />} />
 
     <Route path={PAGES.Services} element={<ServicesPage />} />
 
     <Route path={PAGES.AboutUs} element={<AboutUsPage />} />
 
     <Route path={PAGES.Blog} element={<BlogPage />} />
-    <Route path={PAGES.Post} element={<PostPage />} />
+    <Route path={`${PAGES.Blog}/:id`} element={<PostPage />} />
 
     <Route path={PAGES.Contact} element={<ContactPage />} />
 

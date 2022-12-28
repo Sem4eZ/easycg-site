@@ -17,6 +17,9 @@ export const getBreakpointsStylesByArray = (
     'paddingBottom',
     'paddingLeft',
     'paddingRight',
+    'lineHeight',
+    'gridColumnGap',
+    'gridRowGap',
   ]
   const getNotNullValue = (
     values: Array<string | number | null | undefined>,
@@ -59,7 +62,9 @@ export const getBreakpointsStylesByArray = (
     [theme.breakpoints.up('mobile_landscape')]: getStyle(3),
     [theme.breakpoints.up('tablet')]: getStyle(4),
     [theme.breakpoints.up('tablet_landscape')]: getStyle(5),
-    [theme.breakpoints.up('laptop')]: getStyle(6),
-    [theme.breakpoints.up('desktop')]: getStyle(7),
+    [theme.breakpoints.up('desktop_s')]: getStyle(6),
+    [theme.breakpoints.up('laptop')]: getStyle(7),
+    [theme.breakpoints.up('macbook')]: getStyle(8),
+    [theme.breakpoints.up('desktop')]: getStyle(9),
   }
 }

@@ -2,6 +2,12 @@ import { styled } from '@mui/material'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
+import {
+  serviceDetailsToPricesBlockItems,
+  services,
+} from 'entities/services/data'
+import { ServiceCard } from 'entities/services/ui/service-card'
+
 const ServicesPage = () => {
   const { hash } = useLocation()
 
@@ -14,6 +20,21 @@ const ServicesPage = () => {
 
   return (
     <div>
+      <div style={{ display: 'grid', gridRowGap: '50px' }}>
+        {services.map(service => {
+          return (
+            <ServiceCard
+              key={service.name}
+              title={service.name}
+              pricesBlock={{
+                items: serviceDetailsToPricesBlockItems(service.details),
+                services: service.services,
+                remark: service.remark,
+              }}
+            />
+          )
+        })}
+      </div>
       <div id="services_mobile">
         mobile
         <Block />

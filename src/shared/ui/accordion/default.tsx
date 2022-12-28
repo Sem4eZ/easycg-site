@@ -3,9 +3,9 @@ import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
+import { useState } from 'react'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { pxToRem } from 'shared/lib/px-to-rem'
 
 import { ExplanationFont, LFont } from '../typography'
 
@@ -19,15 +19,25 @@ interface Props {
 }
 
 export const Accordion = ({ name, items }: Props) => {
+  const [expanded, setExpanded] = useState<string | false>(false)
+
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false)
+    }
+
   return (
     <Container>
       {items.map(item => {
         return (
-          <AccordionBase key={item.title}>
+          <AccordionBase
+            key={item.title}
+            expanded={expanded === item.title}
+            onChange={handleChange(item.title)}>
             <Summary
               expandIcon={<LFont></LFont>}
-              aria-controls={`${name}-content`}
-              id={`${name}-header`}>
+              aria-controls={`${item.title}-content`}
+              id={`${item.title}-header`}>
               <LFont>
                 {item.title}
                 <ExplanationFont variant="caption">
@@ -47,71 +57,45 @@ export const Accordion = ({ name, items }: Props) => {
 
 const Container = styled('div')(({ theme }) => ({
   display: 'grid',
-  gridRowGap: pxToRem(8),
-  [theme.breakpoints.up('laptop')]: {
-    gridRowGap: pxToRem(16),
-  },
+  ...getBreakpointsStylesByArray(theme, {
+    gridRowGap: [12, 8, null, 10, 12, null, 44],
+  }),
 }))
 
 export const Summary = styled(AccordionSummary)(({ theme }) => ({
-  paddingRight: pxToRem(6),
+  ...getBreakpointsStylesByArray(theme, {
+    paddingRight: [6, null, null, null, 54, 47, 190, null, 123, 230],
+  }),
   '& .MuiAccordionSummary-expandIconWrapper': {
-    p: {
-      '&::after': {
-        content: "'+'",
-      },
+    position: 'relative',
+    '&::after': {
+      content: "''",
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      transform: 'translate(-50%, -50%)',
+      ...getBreakpointsStylesByArray(theme, {
+        width: [14, null, null, null, null, null, 28, null, 32],
+        height: [2, null, null, null, null, null, 4, null, 5],
+      }),
+      backgroundColor: theme.palette.text.primary,
+    },
+    '&::before': {
+      content: "''",
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      transform: 'translate(-50%, -50%)',
+      ...getBreakpointsStylesByArray(theme, {
+        width: [2, null, null, null, null, null, 4, null, 5],
+        height: [14, null, null, null, null, null, 28, null, 32],
+      }),
+      backgroundColor: theme.palette.text.primary,
     },
     '&.Mui-expanded': {
-      p: {
-        '&::after': {
-          content: "'-'",
-          marginRight: '7px',
-          ...getBreakpointsStylesByArray(theme, {
-            marginRight: [2, null, null, null, 4, null, 7],
-          }),
-        },
+      '&::before': {
+        opacity: 0,
       },
-      transform: 'unset',
     },
-  },
-  // '& .MuiAccordionSummary-expandIconWrapper': {
-  //   position: 'relative',
-  //   '&::after': {
-  //     content: "''",
-  //     position: 'absolute',
-  //     top: 0,
-  //     left: 0,
-  //     transform: 'translate(-50%, -50%)',
-  //     width: '12px',
-  //     height: '2px',
-  //     backgroundColor: theme.palette.text.primary,
-  //   },
-  //   '&::before': {
-  //     content: "''",
-  //     position: 'absolute',
-  //     top: 0,
-  //     left: 0,
-  //     transform: 'translate(-50%, -50%)',
-  //     width: '2px',
-  //     height: '12px',
-  //     backgroundColor: theme.palette.text.primary,
-  //   },
-  //   '&.Mui-expanded': {
-  //     '&::before': {
-  //       opacity: 0,
-  //     },
-  //   },
-  // },
-  [theme.breakpoints.up('tablet')]: {
-    paddingRight: pxToRem(54),
-  },
-  [theme.breakpoints.up('tablet_landscape')]: {
-    paddingRight: pxToRem(47),
-  },
-  [theme.breakpoints.up('laptop')]: {
-    paddingRight: pxToRem(190),
-  },
-  [theme.breakpoints.up('desktop')]: {
-    paddingRight: pxToRem(230),
   },
 }))

@@ -13,7 +13,9 @@ declare module '@mui/material/styles' {
     mobile_landscape: true
     tablet: true
     tablet_landscape: true
+    desktop_s: true
     laptop: true
+    macbook: true
     desktop: true
   }
 }
@@ -22,9 +24,17 @@ declare module '@mui/material/styles/createPalette' {
   interface Palette {
     inverted: string
     accent: string
+    card: {
+      default: string
+      hover: string
+    }
   }
   interface PaletteOptions {
     inverted: string
     accent: string
+    card: {
+      default: string
+      hover: string
+    }
   }
 }
