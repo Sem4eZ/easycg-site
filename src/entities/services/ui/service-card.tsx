@@ -6,42 +6,25 @@ import { XXLFont } from 'shared/ui/typography'
 
 interface Props {
   title: string
-  icon: React.ReactNode
   pricesBlock: PricesBlockProps
 }
 
-export const ServiceCard = ({ title, icon, pricesBlock }: Props) => {
+export const ServiceCard = ({ title, pricesBlock }: Props) => {
   return (
     <Container>
-      <Icon>{icon}</Icon>
       <Title variant="h2">{title}</Title>
       <PricesBlock {...pricesBlock} />
     </Container>
   )
 }
 
-const Container = styled('div')(({ theme }) => ({
+const Container = styled('div')(() => ({
   position: 'relative',
 }))
 
 const Title = styled(XXLFont)(({ theme }) => ({
   position: 'relative',
   ...getBreakpointsStylesByArray(theme, {
-    marginBottom: [20, null, null, null, null, 40, 64],
+    marginBottom: [24, 40, 48, 92, 40, null, 116, null, null, 208],
   }),
-}))
-
-const Icon = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  color: theme.palette.inverted,
-  zIndex: 0,
-  top: -10,
-  ...getBreakpointsStylesByArray(theme, {
-    height: [150, null, null, null, 250, null, 375],
-    left: [-15, null, null, null, -30, null, -30],
-  }),
-  '& svg': {
-    height: '100%',
-    width: 'auto',
-  },
 }))

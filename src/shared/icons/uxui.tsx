@@ -20,7 +20,7 @@ export const UXUIIcon = () => (
       height="127"
       rx="13.25"
       stroke="currentColor"
-      stroke-width="7"
+      strokeWidth="7"
     />
   </svg>
 )

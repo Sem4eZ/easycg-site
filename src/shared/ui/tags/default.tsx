@@ -31,7 +31,7 @@ const List = styled('ul')(({ theme }) => ({
   marginRight: 0,
   '&[data-type="wide"]': {
     ...getBreakpointsStylesByArray(theme, {
-      gap: [8, null, null, null, null, null, 24, 36],
+      gap: [8, null, null, null, null, null, 24, null, 36],
     }),
   },
   '&[data-type="narrow"]': {

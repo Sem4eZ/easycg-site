@@ -75,52 +75,16 @@ export const TextOutlined = ({
 
 const fonts = (theme: Theme) => ({
   '&[data-type="header"]': {
-    fontSize: pxToRem(265),
-    lineHeight: pxToRem(323),
+    ...getBreakpointsStylesByArray(theme, {
+      fontSize: [256, null, null, null, 360, null, 543, null, 658],
+      lineHeight: [323, null, null, null, 438, null, 650, null, 801],
+    }),
   },
   '&[data-type="section"]': {
-    fontSize: pxToRem(56),
-    lineHeight: pxToRem(68),
-  },
-  [theme.breakpoints.up('tablet')]: {
-    '&[data-type="header"]': {
-      fontSize: pxToRem(360),
-      lineHeight: pxToRem(438),
-    },
-    '&[data-type="section"]': {
-      fontSize: pxToRem(185),
-      lineHeight: pxToRem(225),
-    },
-  },
-  [theme.breakpoints.up('tablet_landscape')]: {
-    '&[data-type="header"]': {
-      fontSize: pxToRem(360),
-      lineHeight: pxToRem(438),
-    },
-    '&[data-type="section"]': {
-      fontSize: pxToRem(185),
-      lineHeight: pxToRem(225),
-    },
-  },
-  [theme.breakpoints.up('laptop')]: {
-    '&[data-type="header"]': {
-      fontSize: pxToRem(534),
-      lineHeight: pxToRem(650),
-    },
-    '&[data-type="section"]': {
-      fontSize: pxToRem(534),
-      lineHeight: pxToRem(650),
-    },
-  },
-  [theme.breakpoints.up('desktop')]: {
-    '&[data-type="header"]': {
-      fontSize: pxToRem(658),
-      lineHeight: pxToRem(801),
-    },
-    '&[data-type="section"]': {
-      fontSize: pxToRem(658),
-      lineHeight: pxToRem(801),
-    },
+    ...getBreakpointsStylesByArray(theme, {
+      fontSize: [56, null, null, null, 185, null, 534, null, 658],
+      lineHeight: [68, null, null, null, 225, null, 650, null, 801],
+    }),
   },
 })
 
@@ -130,7 +94,7 @@ const Container = styled('div')(({ theme }) => ({
   svg: {
     position: 'absolute',
     ...getBreakpointsStylesByArray(theme, {
-      top: [null, null, null, null, null, null, 4.5, 4.5],
+      top: [null, null, null, null, null, null, 4.5],
     }),
     width: '100%',
   },

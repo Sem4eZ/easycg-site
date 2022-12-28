@@ -5,23 +5,17 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 import { LFont } from '../typography'
 
 export interface Props {
-  variant?: 'dotted' | 'solid'
   items: { name: string; value: string }[]
   services?: string[]
   remark: string
 }
 
-export const PricesBlock = ({
-  variant = 'dotted',
-  items,
-  services,
-  remark,
-}: Props) => {
+export const PricesBlock = ({ items, services, remark }: Props) => {
   return (
     <div>
       <Container>
         {services && (
-          <Row data-variant={variant}>
+          <Row>
             <Name>services</Name>
             <ServicesList>
               {services.map(service => (
@@ -34,7 +28,7 @@ export const PricesBlock = ({
         )}
         {items.map(item => {
           return (
-            <Row key={item.value} data-variant={variant}>
+            <Row key={item.value}>
               <Name>{item.name}</Name>
               <LFont>{item.value}</LFont>
             </Row>
@@ -60,7 +54,7 @@ const ServicesList = styled('ul')(({ theme }) => ({
     display: 'flex',
     alignItems: 'flex-start',
     ...getBreakpointsStylesByArray(theme, {
-      marginBottom: [32, null, 24, null, 32, null, 48, 24],
+      marginBottom: [32, null, 24, null, 32, null, 48, null, 24],
     }),
     '&:before': {
       position: 'relative',
@@ -97,11 +91,8 @@ const Row = styled('li')(({ theme }) => ({
   paddingBottom: '8px',
   borderBottom: `1px ${theme.palette.text.secondary}`,
   borderBottomStyle: 'solid',
-  '&[data-variant="dotted"]': {
-    borderBottomStyle: 'dotted',
-  },
   ...getBreakpointsStylesByArray(theme, {
-    paddingTop: [20, null, 16, 24, null, null, 32, 64],
+    paddingTop: [16, null, null, 20, 24, null, null, null, 64, 32],
   }),
 }))
 

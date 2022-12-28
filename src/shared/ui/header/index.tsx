@@ -15,7 +15,7 @@ import { Language } from '../language'
 import { FilterLink } from '../link'
 import { Logo } from '../logo'
 import { Modal } from '../modal/default'
-import { ExplanationFont, LFont } from '../typography'
+import { ExplanationFont } from '../typography'
 
 interface Props {
   projectsCount: number
@@ -89,6 +89,7 @@ export const Header = ({ projectsCount }: Props) => {
           <NavigationList>
             {MENU.map((menuItem, i) => (
               <MenuItem
+                key={menuItem.title}
                 indicator={
                   isCurrentRoute(menuItem.path) && !hideMenuItemIndicator
                     ? `0${i + 1}`
@@ -120,8 +121,8 @@ const Container = styled('header')(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   ...getBreakpointsStylesByArray(theme, {
-    paddingTop: [51, 41, 48, null, 32, 24, 58, 104],
-    paddingBottom: [51, 41, 48, null, 32, 24, 58, 104],
+    paddingTop: [51, 41, 48, null, 32, 24, 58, null, 104],
+    paddingBottom: [51, 41, 48, null, 32, 24, 58, null, 104],
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
     gridTemplateColumns: [
@@ -155,7 +156,7 @@ const MenuToggler = styled('div')(({ theme }) => ({
     width: '100%',
     height: '4px',
     backgroundColor: theme.palette.text.primary,
-    '&:first-child': {
+    '&:first-of-type': {
       ...getBreakpointsStylesByArray(theme, {
         marginBottom: [4, null, null, null, 6],
       }),
@@ -185,10 +186,10 @@ const MenuItem = styled('li')<{ indicator: string }>(
       lineHeight: pxToRem(20),
       fontWeight: 400,
       transform: 'translateY(-50%)',
-      [theme.breakpoints.up('tablet')]: {
-        fontSize: pxToRem(25),
-        lineHeight: pxToRem(30),
-      },
+      ...getBreakpointsStylesByArray(theme, {
+        fontSize: [16, null, null, null, 25],
+        lineHeight: [20, null, null, null, 30],
+      }),
     },
     ...getBreakpointsStylesByArray(theme, {
       paddingLeft: [0, null, null, null, null, null, 40],
@@ -201,11 +202,13 @@ const Link = styled(FilterLink)(({ theme }) => ({
   fontWeight: 700,
 }))
 
-const ResourcesCount = styled(ExplanationFont)(theme => ({
+const ResourcesCount = styled(ExplanationFont)(({ theme }) => ({
   display: 'inline-block',
   marginLeft: pxToRem(6),
   position: 'relative',
-  top: '-0.7em',
+  ...getBreakpointsStylesByArray(theme, {
+    top: [-9, null, null, null, null, null, -12],
+  }),
 }))
 
 const ModalStyled = styled(Modal)(({ theme }) => ({
@@ -225,6 +228,8 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
         spaceObj.ip13,
         spaceObj.ip13_horizontal,
         80,
+        311,
+        null,
         240,
         400,
       ],
@@ -234,6 +239,8 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
         spaceObj.ip13,
         spaceObj.ip13_horizontal,
         80,
+        311,
+        null,
         240,
         400,
       ],

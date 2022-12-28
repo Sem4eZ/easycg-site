@@ -34,8 +34,8 @@ const SOCIAL_MEDIA: { link: string; icon: React.ReactNode }[] = [
 export const SocialMedia = ({ size, ...rest }: Props) => {
   return (
     <Container data-size={size} {...rest}>
-      {SOCIAL_MEDIA.map(socialMedia => (
-        <ListItem data-size={size}>
+      {SOCIAL_MEDIA.map((socialMedia, i) => (
+        <ListItem key={i} data-size={size}>
           <IconButton href={socialMedia.link} target="_blank">
             {socialMedia.icon}
           </IconButton>
@@ -51,7 +51,7 @@ const Container = styled('ul')(({ theme }) => ({
   display: 'flex',
   '&[data-size="small"]': {
     ...getBreakpointsStylesByArray(theme, {
-      gap: [8, null, null, null, null, null, null],
+      gap: [8],
     }),
   },
   '&[data-size="medium"]': {

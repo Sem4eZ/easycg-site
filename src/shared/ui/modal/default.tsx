@@ -68,7 +68,7 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
   },
   ...getBreakpointsStylesByArray(theme, {
     right: spaceArr.map(space => space - 16),
-    top: [40, 64, 48, 64, 72, 56, 62, 110],
+    top: [40, 64, 48, 64, 72, 56, 62, null, 110],
   }),
 }))
 
@@ -84,14 +84,14 @@ const LanguageButton = styled('div')(({ theme }) => ({
   },
   ...getBreakpointsStylesByArray(theme, {
     left: spaceArr,
-    top: [40, 64, 48, 64, 72, 56, 62, 110],
+    top: [40, 64, 48, 64, 72, 56, 62, null, 110],
   }),
 }))
 
 const DialogActionStyled = styled(DialogActions)(({ theme }) => ({
   marginTop: '40px',
   ...getBreakpointsStylesByArray(theme, {
-    marginTop: [25, null, 61, null, 40, null, 40, 116],
+    marginTop: [25, null, 61, null, 40, null, 40, null, 116],
   }),
 }))
 

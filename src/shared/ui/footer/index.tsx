@@ -20,26 +20,11 @@ export const Footer = ({ projectsCount }: Props) => {
   const [time, setTime] = useState(calcTime(6))
   const MENU = getMenuSchema({ projectsCount })
 
-  const {
-    isMobileS,
-    isMobileLandscape,
-    isMobile,
-    isMobileSLandscape,
-    isTablet,
-    isTabletLandscape,
-    isLaptop,
-    isDesktop,
-  } = useGetDevice()
+  const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
 
-  const showMobileSocial =
-    isMobileS ||
-    isMobileSLandscape ||
-    isMobileLandscape ||
-    isMobile ||
-    isTablet ||
-    isTabletLandscape
+  const showMobileSocial = !isDesktopS && !isLaptop && !isMacbook && !isDesktop
 
-  const showSeparateEmail = isLaptop || isDesktop
+  const showSeparateEmail = isDesktopS || isLaptop || isMacbook || isDesktop
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -56,7 +41,7 @@ export const Footer = ({ projectsCount }: Props) => {
       <nav>
         <Menu>
           {MENU.map(menuItem => (
-            <MenuItem>
+            <MenuItem key={menuItem.title}>
               <MenuLink href={menuItem.path}>
                 <LFont>{menuItem.title}</LFont>
               </MenuLink>
@@ -99,8 +84,8 @@ const Container = styled('footer')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
-    paddingBottom: [32, 119, 72, 122, 165, 115, 138, 213],
-    paddingTop: [50, 74, 56, 140, 150, 112, 208],
+    paddingBottom: [32, 140, 72, 112, 165, 138, null, 213, 64],
+    paddingTop: [50, 74, 56, 140, 150, 112, 165, null, 208, 176],
   }),
   '& a': {
     textDecoration: 'none',
@@ -117,7 +102,7 @@ const TagsStyled = styled(Tags)(({ theme }) => ({
     backgroundColor: theme.palette.accent,
   },
   ...getBreakpointsStylesByArray(theme, {
-    marginBottom: [16, null, null, null, 88, 40],
+    marginBottom: [16, null, null, 32, 88, null, 48],
     fontSize: [16, null, null, null, 25],
   }),
 }))

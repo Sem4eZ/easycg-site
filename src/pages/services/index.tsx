@@ -10,7 +10,6 @@ const ServicesPage = () => (
       return (
         <ServiceCard
           title={service.name}
-          icon={service.icon}
           pricesBlock={{
             items: serviceDetailsToPricesBlockItems(service.details),
             services: service.services,

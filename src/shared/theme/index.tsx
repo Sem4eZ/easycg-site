@@ -12,7 +12,9 @@ export const spaceObj = {
   ip13_horizontal: 88,
   tablet: 24,
   tablet_horizontal: 88,
+  desktop_s: 112,
   laptop: 112,
+  macbook: 112,
   desktop: 112,
 }
 export const spaceArr = Object.values(spaceObj).map(value => value)
@@ -26,7 +28,9 @@ const breakpointsTheme = createTheme({
       mobile_landscape: 844,
       tablet: 768,
       tablet_landscape: 942,
+      desktop_s: 1200,
       laptop: 1366,
+      macbook: 1728,
       desktop: 1920,
     },
   },
@@ -42,10 +46,19 @@ const commonTheme = createTheme({
       let direction = 'and (orientation: portrait)'
       if (
         breakpoint.includes('landscape') ||
+        breakpoint.includes('desktop_s') ||
         breakpoint.includes('laptop') ||
         breakpoint.includes('desktop')
       ) {
         direction = 'and (orientation: landscape)'
+      }
+      if (
+        breakpoint.includes('desktop_s') ||
+        breakpoint.includes('laptop') ||
+        breakpoint.includes('macbook') ||
+        breakpoint.includes('desktop')
+      ) {
+        direction = ''
       }
       return `@media (min-width: ${breakpointsTheme.breakpoints.values[breakpoint]}px) ${direction}`
     },
@@ -422,8 +435,6 @@ const commonTheme = createTheme({
     },
   },
 })
-
-console.log(commonTheme.breakpoints.up('mobile_s_landscape'))
 
 export const lightTheme = createTheme({
   ...commonTheme,

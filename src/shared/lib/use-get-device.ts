@@ -1,3 +1,4 @@
+import { useTheme } from '@mui/material'
 import {
   useCallback,
   useEffect,
@@ -13,13 +14,18 @@ export interface Device {
   isMobileLandscape: boolean
   isTablet: boolean
   isTabletLandscape: boolean
+  isDesktopS: boolean
   isLaptop: boolean
+  isMacbook: boolean
   isDesktop: boolean
 }
 
 export const useGetDevice = (): Device => {
   const [width, setWidth] = useState(0)
   const [height, setHeight] = useState(0)
+
+  const theme = useTheme()
+  const breakpoints = theme.breakpoints.values
 
   const handleResize = useCallback(() => {
     setWidth(document.documentElement.clientWidth)
@@ -47,20 +53,34 @@ export const useGetDevice = (): Device => {
         isMobileLandscape: false,
         isTablet: false,
         isTabletLandscape: false,
+        isDesktopS: false,
         isLaptop: false,
+        isMacbook: false,
         isDesktop: false,
       }
     }
 
     return {
-      isMobileS: width < 390 && width <= height,
+      isMobileS: width < breakpoints.mobile && width <= height,
       isMobileSLandscape: width < 568 && height < width,
-      isMobile: width >= 390 && width < 768 && width <= height,
-      isMobileLandscape: width >= 568 && width < 924 && height < width,
-      isTablet: width >= 768 && width < 1366 && width <= height,
-      isTabletLandscape: width >= 924 && width < 1366 && height < width,
-      isLaptop: width >= 1366 && width < 1728,
-      isDesktop: width >= 1728,
+      isMobile:
+        width >= breakpoints.mobile &&
+        width < breakpoints.tablet &&
+        width <= height,
+      isMobileLandscape:
+        width >= 568 && width < breakpoints.tablet_landscape && height < width,
+      isTablet:
+        width >= breakpoints.tablet &&
+        width < breakpoints.desktop_s &&
+        width <= height,
+      isTabletLandscape:
+        width >= breakpoints.tablet_landscape &&
+        width < breakpoints.desktop_s &&
+        height < width,
+      isDesktopS: width >= breakpoints.desktop_s && width < breakpoints.laptop,
+      isLaptop: width >= breakpoints.laptop && width < breakpoints.macbook,
+      isMacbook: width >= breakpoints.macbook && width < breakpoints.desktop,
+      isDesktop: width >= breakpoints.desktop,
     }
   }, [width])
 }
