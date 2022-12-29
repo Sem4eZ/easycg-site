@@ -1,6 +1,6 @@
 import { Project } from './types'
 
-export const IMAGES_PATH = '/assets/images/projects/'
+const IMAGES_PATH = '/assets/images/projects/'
 
 export const projects: Project[] = [
   {

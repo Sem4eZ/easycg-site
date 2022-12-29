@@ -12,7 +12,7 @@ export const ServiceSquareIcon = () => (
       height="362.909"
       rx="37.0288"
       stroke="currentColor"
-      stroke-width="12.091"
+      strokeWidth="12.091"
     />
   </svg>
 )

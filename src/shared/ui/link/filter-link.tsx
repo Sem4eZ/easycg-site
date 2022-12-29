@@ -1,15 +1,13 @@
 import { styled } from '@mui/material/styles'
 
-import { pxToRem } from 'shared/lib/px-to-rem'
+import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 
 import { Link } from './default'
 
 export const FilterLink = styled(Link)(({ theme }) => ({
-  fontSize: pxToRem(25),
-  lineHeight: pxToRem(30),
-  [theme.breakpoints.up('laptop')]: {
-    fontSize: pxToRem(42),
-    lineHeight: pxToRem(51),
-    paddingBottom: pxToRem(8),
-  },
+  ...getBreakpointsStylesByArray(theme, {
+    fontSize: [25, null, null, null, null, null, 42],
+    lineHeight: [30, null, null, null, null, null, 51],
+    paddingBottom: [0, null, null, null, null, null, 8],
+  }),
 }))

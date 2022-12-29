@@ -141,7 +141,7 @@ export const ModalStyled = styled(Modal)(({ theme }) => ({
   '& .MuiDialog-paper': {
     width: '100%',
     ...getBreakpointsStylesByArray(theme, {
-      maxWidth: ['100%', null, null, null, null, null, '871px', '871px'],
+      maxWidth: ['100%', null, null, null, null, null, '871px'],
       margin: [0, null, null, null, null, null, '32px'],
       maxHeight: ['100%', null, null, null, null, null, 'calc(100% - 64px)'],
       height: ['100%'],

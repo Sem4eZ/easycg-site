@@ -11,7 +11,6 @@ const ServicesPage = () => (
         <ServiceCard
           key={service.name}
           title={service.name}
-          icon={service.icon}
           pricesBlock={{
             items: serviceDetailsToPricesBlockItems(service.details),
             services: service.services,

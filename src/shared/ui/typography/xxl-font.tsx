@@ -1,14 +1,12 @@
 import { Typography, TypographyProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { pxToRem } from 'shared/lib/px-to-rem'
+import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 
 export const XXLFont = styled(Typography)<TypographyProps>(({ theme }) => ({
-  fontSize: pxToRem(42),
-  lineHeight: pxToRem(51),
   fontWeight: 700,
-  [theme.breakpoints.up('laptop')]: {
-    fontSize: pxToRem(110),
-    lineHeight: pxToRem(134),
-  },
+  ...getBreakpointsStylesByArray(theme, {
+    fontSize: [42, null, null, null, null, 68, null, null, 100],
+    lineHeight: [51, null, null, null, null, 83, null, null, 134],
+  }),
 }))
