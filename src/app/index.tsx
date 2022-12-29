@@ -11,7 +11,8 @@ import { Footer } from 'shared/ui/footer'
 import { Header } from 'shared/ui/header'
 
 function App() {
-  const { theme, toggler: themeToggler } = useThemeToggler()
+  const { theme } = useThemeToggler()
+
   return (
     <BrowserRouter>
       <Suspense fallback={<CircularProgress />}>
