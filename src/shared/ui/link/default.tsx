@@ -1,6 +1,7 @@
 import { Link as BaseLink, LinkProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
+import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
 export type Props = Omit<LinkProps, 'active'> & { active?: 1 | 0 }
@@ -9,7 +10,6 @@ export const Link = styled(BaseLink)<Props>(({ theme, active = 0 }) => {
     display: 'inline-block',
     position: 'relative',
     color: active ? theme.palette.text.primary : theme.palette.text.secondary,
-    fontSize: pxToRem(16),
     fontWeight: active ? 700 : 400,
     textDecoration: 'none',
     overflow: 'hidden',
@@ -30,9 +30,9 @@ export const Link = styled(BaseLink)<Props>(({ theme, active = 0 }) => {
         left: '0',
       },
     },
-    [theme.breakpoints.up('laptop')]: {
-      fontSize: pxToRem(25),
-      paddingBottom: pxToRem(8),
-    },
+    ...getBreakpointsStylesByArray(theme, {
+      fontSize: [16, null, null, null, null, null, 25],
+      paddingBottom: [0, null, null, null, null, null, 8],
+    }),
   }
 })

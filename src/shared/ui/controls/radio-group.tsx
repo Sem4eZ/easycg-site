@@ -6,6 +6,7 @@ import RadioGroupbBase from '@mui/material/RadioGroup'
 import { styled } from '@mui/material/styles'
 
 import { CheckIcon } from 'shared/icons/check'
+import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
 import { ExplanationFont, XLFont } from '../typography'
@@ -64,15 +65,13 @@ const Label = styled(XLFont)(({ theme }) => ({
 
 const RadioGroupbBaseStyled = styled(RadioGroupbBase)(({ theme }) => ({
   display: 'grid',
-  gridRowGap: pxToRem(32),
-  [theme.breakpoints.up('laptop')]: {
-    gridRowGap: pxToRem(48),
-  },
+  ...getBreakpointsStylesByArray(theme, {
+    gridRowGap: [32, null, null, null, null, null, 48],
+  }),
 }))
 
 const RadioStyled = styled(Radio)(({ theme }) => ({
   padding: pxToRem(4),
-  marginRight: pxToRem(40),
   transition: 'color .2s',
   '& .MuiSvgIcon-root': {
     opacity: 0,
@@ -87,18 +86,17 @@ const RadioStyled = styled(Radio)(({ theme }) => ({
       color: theme.palette.text.primary,
     },
   },
-  [theme.breakpoints.up('laptop')]: {
-    marginRight: pxToRem(117),
-  },
+  ...getBreakpointsStylesByArray(theme, {
+    margniRight: [40, null, null, null, null, null, 117],
+  }),
 }))
 
 const Check = styled('div')(({ theme }) => ({
   display: 'flex',
   width: '24px',
   svg: {
-    width: '16px',
-    [theme.breakpoints.up('laptop')]: {
-      width: '21px',
-    },
+    ...getBreakpointsStylesByArray(theme, {
+      width: [16, null, null, null, null, null, 21],
+    }),
   },
 }))

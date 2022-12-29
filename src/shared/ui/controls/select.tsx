@@ -6,6 +6,7 @@ import BaseSelect from '@mui/material/Select'
 import { styled } from '@mui/material/styles'
 
 import { CheckIcon } from 'shared/icons/check'
+import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 
 interface Props {
   label: string
@@ -54,10 +55,7 @@ export const CheckIconWrapper = styled('div')(({ theme }) => ({
   '& svg': {
     width: '100%',
   },
-  [theme.breakpoints.up('laptop')]: {
-    width: '22px',
-  },
-  [theme.breakpoints.up('laptop')]: {
-    marginRight: '56px',
-  },
+  ...getBreakpointsStylesByArray(theme, {
+    width: [16, null, null, null, null, null, 22, null, 56],
+  }),
 }))

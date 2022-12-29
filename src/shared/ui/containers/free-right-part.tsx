@@ -47,8 +47,8 @@ export const FreeRightPartContainer = ({
       <RightPart>
         <Section variant="h2">{section}</Section>
         <Title ref={titleRef}>
-          {title.map((line, i) => (
-            <Fragment key={i}>
+          {title.map((line, j) => (
+            <Fragment key={j}>
               {line.split(' ').map((word, i) => (
                 <span key={i} className={WORD_CLASS}>{`${word} `}</span>
               ))}
@@ -77,8 +77,8 @@ const Container = styled('div')(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   ...getBreakpointsStylesByArray(theme, {
-    paddingTop: [71, 63, 71, 63, 72, null, 87, 166],
-    paddingBottom: [71, 63, 71, 63, 72, null, 87, 166],
+    paddingTop: [71, 63, 71, 63, 72, null, 87, null, 181, 166],
+    paddingBottom: [71, 63, 71, 63, 72, null, 87, null, 181, 166],
     paddingLeft: [
       spaceObj.se,
       spaceObj.se_horizontal,
@@ -105,14 +105,25 @@ const Container = styled('div')(({ theme }) => ({
 const RightPart = styled('div')(({ theme }) => ({
   position: 'relative',
   ...getBreakpointsStylesByArray(theme, {
-    width: ['100%', null, null, null, '561px', '640px', '864px', '1087px'],
+    width: [
+      '100%',
+      null,
+      null,
+      null,
+      '561px',
+      '640px',
+      '864px',
+      null,
+      '1077px',
+      '1087px',
+    ],
   }),
 }))
 
 const NumberOutlinedStyled = styled(NumberOutlined)(({ theme }) => ({
   position: 'absolute',
   ...getBreakpointsStylesByArray(theme, {
-    top: [46, 40, 48, 38, '6%', null, '-4%', '-1%'],
+    top: [46, 40, 48, 38, '6%', null, '-4%', null, '-1%'],
     left: [
       spaceObj.se,
       spaceObj.se_horizontal,
@@ -130,7 +141,7 @@ const Section = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
   marginBottom: pxToRem(51),
   ...getBreakpointsStylesByArray(theme, {
-    marginBottom: [51, null, 35, 36, 20, null, 48, 56],
+    marginBottom: [51, null, 35, 36, 20, null, 48, null, 56],
   }),
 }))
 
@@ -146,7 +157,9 @@ const Title = styled(XLFont)(({ theme }) => ({
       0,
       spaceObj.tablet,
       0,
+      spaceObj.desktop_s,
       spaceObj.laptop,
+      spaceObj.macbook,
       spaceObj.desktop,
     ],
   }),
@@ -164,7 +177,9 @@ const Description = styled('div')(({ theme }) => ({
       0,
       spaceObj.tablet,
       0,
+      spaceObj.desktop_s,
       spaceObj.laptop,
+      spaceObj.macbook,
       spaceObj.desktop,
     ],
     marginTop: [24, 48, 32, 40, 48, null, 48, 56],
@@ -173,6 +188,6 @@ const Description = styled('div')(({ theme }) => ({
 
 const Content = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
-    marginTop: [32, null, 40, 32, null, 48, 56],
+    marginTop: [32, null, 40, 32, null, 48, 56, null, 64],
   }),
 }))

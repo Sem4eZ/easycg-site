@@ -55,7 +55,7 @@ const Title = styled(XXXLFont)(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
-    marginTop: [114, null, null, null, 258, 234, 85, 188],
+    marginTop: [114, null, null, null, 258, 234, 85, null, 188],
   }),
   '&.animate': {
     '&::before': {
@@ -88,8 +88,8 @@ const DecorationTextBlock = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
-    top: [-130, -130, -141, -141, -196, -196, -266, -328],
-    left: [-52, -110, -60, -113, -60, -132, -267, -192],
+    top: [-130, -130, -141, -141, -196, -196, -266, null, -328],
+    left: [-52, -110, -60, -113, -60, -132, -267, null, -192],
   }),
 }))
 
@@ -98,18 +98,18 @@ const SubtitleContentBlock = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
-    marginTop: [24, 16, 16, 16, 24, 16, 16, 24],
+    marginTop: [24, 16, 16, 16, 24, 16, 16, null, 24],
   }),
 }))
 
 const FilterBlock = styled('section')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
-    marginTop: [168, 135, 112, 141, 267, null, 297, 288],
+    marginTop: [168, 135, 112, 141, 267, null, 297, null, 288],
   }),
 }))
 
 const ContentBlock = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
-    marginTop: [168, 135, 112, 141, 267, null, 297, 288],
+    marginTop: [168, 135, 112, 141, 267, null, 297, null, 288],
   }),
 }))

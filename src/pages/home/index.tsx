@@ -2,35 +2,18 @@ import { styled } from '@mui/material'
 
 import { projects } from 'entities/project/data'
 import { ProjectCard } from 'entities/project/ui/project-card'
-import {
-  serviceDetailsToPricesBlockItems,
-  services,
-} from 'entities/services/data'
 
 import {
   FreeRightPartContainer,
   HorizontalSliderContainer,
 } from 'shared/ui/containers'
 import { HorizontalList, ScrollableList } from 'shared/ui/horizontal-list'
-import { PricesBlock } from 'shared/ui/prices-block'
 import { XLFont } from 'shared/ui/typography'
 
-const service = services[0]
 const topProjects = projects.slice(0, 6)
 
 const HomePage = () => (
   <div>
-    <Block />
-
-    <PricesBlock
-      items={serviceDetailsToPricesBlockItems(service.details)}
-      remark={service.remark}
-    />
-    <PricesBlock
-      items={serviceDetailsToPricesBlockItems(service.details)}
-      services={service.services}
-      remark={service.remark}
-    />
     <Block />
     <FreeRightPartContainer
       number={1}

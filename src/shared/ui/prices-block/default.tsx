@@ -54,7 +54,7 @@ const ServicesList = styled('ul')(({ theme }) => ({
     display: 'flex',
     alignItems: 'flex-start',
     ...getBreakpointsStylesByArray(theme, {
-      marginBottom: [32, null, 24, null, 32, null, 48, 24],
+      marginBottom: [32, null, 24, null, 32, null, 48, null, 24],
     }),
     '&:before': {
       position: 'relative',
@@ -92,7 +92,7 @@ const Row = styled('li')(({ theme }) => ({
   borderBottom: `1px ${theme.palette.text.secondary}`,
   borderBottomStyle: 'solid',
   ...getBreakpointsStylesByArray(theme, {
-    paddingTop: [20, null, 16, 24, null, null, 32, 64],
+    paddingTop: [16, null, null, 20, 24, null, null, null, 64, 32],
   }),
 }))
 
