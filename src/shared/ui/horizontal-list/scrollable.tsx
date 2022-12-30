@@ -1,3 +1,4 @@
+import { useTheme } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useEffect, useRef, useState } from 'react'
 
@@ -59,6 +60,7 @@ const doParallaxListItemImage = (container: HTMLUListElement) => {
 }
 
 export const ScrollableList = ({ children, parallax }: Props) => {
+  const { breakpoints } = useTheme()
   const scrollRightExceptionCount = useRef(0)
   const scrollOffset = parallax ? SCROLL_OFFSET.parallax : SCROLL_OFFSET.default
   const containerRef = useRef<HTMLUListElement | null>(null)
@@ -151,7 +153,7 @@ export const ScrollableList = ({ children, parallax }: Props) => {
   }
 
   useEffect(() => {
-    if (window.innerWidth < 1366) return
+    if (window.innerWidth < breakpoints.values.desktop_s) return
     containerRef.current?.addEventListener('wheel', scroll)
     window.addEventListener('mousemove', mouseMove)
     return () => {

@@ -1,7 +1,9 @@
+import { useTheme } from '@mui/material'
 import { useCallback, useEffect, useState } from 'react'
 
 export const useGetIsTouchableVersion = () => {
   const [width, setWidth] = useState(0)
+  const { breakpoints } = useTheme()
 
   const handleResize = useCallback(() => {
     setWidth(document.documentElement.clientWidth)
@@ -19,5 +21,5 @@ export const useGetIsTouchableVersion = () => {
     }
   }, [handleResize])
 
-  return width < 1366
+  return width < breakpoints.values.desktop_s
 }
