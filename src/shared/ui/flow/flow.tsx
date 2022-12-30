@@ -14,6 +14,7 @@ export const Flow = ({ sectionRef }: Props) => {
   const reserchRef = useRef<HTMLDivElement>(null)
   const brainstormRef = useRef<HTMLDivElement>(null)
   const designRef = useRef<HTMLDivElement>(null)
+  const developmentRef = useRef<HTMLDivElement>(null)
   const readyRef = useRef<HTMLDivElement>(null)
   const cycleRef = useRef<HTMLDivElement>(null)
 
@@ -56,6 +57,7 @@ export const Flow = ({ sectionRef }: Props) => {
 
     activateElement(cycleRef, 0.7)
     activateElement(progressBarRef, 0.7)
+    activateElement(developmentRef, 0.8)
     activateElement(readyRef, 0.9)
   }
 
@@ -175,6 +177,22 @@ export const Flow = ({ sectionRef }: Props) => {
         </svg>
       </Cycle>
 
+      <Step ref={developmentRef} className="end-step">
+        <svg
+          className="arrow"
+          width="9"
+          height="49"
+          viewBox="0 0 9 49"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M4.14645 48.3536C4.34171 48.5488 4.65829 48.5488 4.85355 48.3536L8.03553 45.1716C8.2308 44.9763 8.2308 44.6597 8.03553 44.4645C7.84027 44.2692 7.52369 44.2692 7.32843 44.4645L4.5 47.2929L1.67157 44.4645C1.47631 44.2692 1.15973 44.2692 0.964466 44.4645C0.769204 44.6597 0.769204 44.9763 0.964466 45.1716L4.14645 48.3536ZM4 0L4 24H5L5 0L4 0ZM4 24L4 48H5L5 24H4Z"
+            fill="currentColor"
+          />
+        </svg>
+        <div className="title">development</div>
+      </Step>
+
       <Step ref={readyRef} className="end-step">
         <svg
           className="arrow"
@@ -273,7 +291,7 @@ const Cycle = styled('div')(({ theme }) => ({
     },
     '& .progress-bar': {
       stroke: theme.palette.accent,
-      transition: 'stroke-dashoffset 1s',
+      transition: 'stroke-dashoffset 1.5s',
       '&.active': {
         strokeDashoffset: '0 !important',
       },
@@ -299,12 +317,12 @@ const Cycle = styled('div')(({ theme }) => ({
       top: '-2px',
       left: '50%',
       transform: 'translateX(-50%)',
-      transitionDelay: '0.3s',
+      transitionDelay: '1.5s',
     },
     '& .title': {
       left: '50%',
       transform: 'translateX(-50%)',
-      transitionDelay: '0.3s',
+      transitionDelay: '1.5s',
       ...getBreakpointsStylesByArray(theme, {
         top: [-50, null, null, null, null, null, -75],
       }),
@@ -315,12 +333,12 @@ const Cycle = styled('div')(({ theme }) => ({
       top: '50%',
       transform: 'translateY(-50%)',
       right: '-3px',
-      transitionDelay: '0.2s',
+      transitionDelay: '1.125s',
     },
     '& .title': {
       top: '50%',
       transform: 'translateY(-50%)',
-      transitionDelay: '0.2s',
+      transitionDelay: '1.125s',
       ...getBreakpointsStylesByArray(theme, {
         right: [-90, null, null, null, null, null, -121],
       }),
@@ -331,12 +349,12 @@ const Cycle = styled('div')(({ theme }) => ({
       bottom: '2px',
       left: '50%',
       transform: 'translateX(-50%)',
-      transitionDelay: '0.1s',
+      transitionDelay: '0.725s',
     },
     '& .title': {
       left: '50%',
       transform: 'translateX(-50%)',
-      transitionDelay: '0.1s',
+      transitionDelay: '0.725s',
       ...getBreakpointsStylesByArray(theme, {
         bottom: [-50, null, null, null, null, null, -75],
       }),
@@ -347,12 +365,12 @@ const Cycle = styled('div')(({ theme }) => ({
       top: '50%',
       left: '-3px',
       transform: 'translateY(-50%)',
-      transitionDelay: '0s',
+      transitionDelay: '0.275s',
     },
     '& .title': {
       top: '50%',
       transform: 'translateY(-50%)',
-      transitionDelay: '0s',
+      transitionDelay: '0.275s',
       ...getBreakpointsStylesByArray(theme, {
         left: [-90, null, null, null, null, null, -121],
       }),
@@ -363,19 +381,33 @@ const Cycle = styled('div')(({ theme }) => ({
     '& .circle': {
       backgroundColor: theme.palette.accent,
     },
-    '& .top-step .title': { transitionDelay: '0s' },
-    '& .right-step .title': {
-      transitionDelay: '0.1s',
-      ...getBreakpointsStylesByArray(theme, {
-        right: [-110, null, null, null, null, null, -184],
-      }),
+    '& .top-step ': {
+      '& .circle': { transitionDelay: '0s' },
+      '& .title': { transitionDelay: '0s' },
     },
-    '& .bottom-step .title': { transitionDelay: '0.2s' },
-    '& .left-step .title': {
-      transitionDelay: '0.3s',
-      ...getBreakpointsStylesByArray(theme, {
-        left: [-110, null, null, null, null, null, -184],
-      }),
+    '& .right-step': {
+      '& .circle': { transitionDelay: '0.175s' },
+      '& .title': {
+        transitionDelay: '0.275s',
+        ...getBreakpointsStylesByArray(theme, {
+          right: [-110, null, null, null, null, null, -184],
+        }),
+      },
+    },
+    '& .bottom-step': {
+      '& .circle': { transitionDelay: '0.55s' },
+      '& .title': { transitionDelay: '0.55s' },
+    },
+    '& .left-step': {
+      '& .circle': {
+        transitionDelay: '0.725s',
+      },
+      '& .title': {
+        transitionDelay: '0.725s',
+        ...getBreakpointsStylesByArray(theme, {
+          left: [-110, null, null, null, null, null, -184],
+        }),
+      },
     },
   },
 }))

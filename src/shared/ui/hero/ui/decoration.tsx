@@ -141,7 +141,7 @@ export const Decoration = () => {
         </path>
       </svg>
       <svg
-        style={{ top: '75%' }}
+        style={{ top: '50%' }}
         width="1729"
         height="369"
         viewBox="0 0 1729 369"
@@ -163,7 +163,7 @@ export const Decoration = () => {
         </path>
       </svg>
       <svg
-        style={{ top: '80%' }}
+        style={{ top: '50%' }}
         width="1730"
         height="400"
         viewBox="0 0 1730 400"
