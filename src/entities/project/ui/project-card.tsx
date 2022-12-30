@@ -78,7 +78,7 @@ const Container = styled('li')(({ theme }) => ({
   listStyle: 'none',
   ...getBreakpointsStylesByArray(theme, {
     minWidth: [253, '100%', 253, '100%', 352, null, 454, 619],
-    height: [290, 250, null, 479, 694, 1107, 1107],
+    height: [290, 250, null, 479, 694, 944, null, 1107],
   }),
   transition: 'opacity 0.5s',
   '& article': {
