@@ -3,10 +3,10 @@ import { styled } from '@mui/material/styles'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { useGetUserTime } from 'shared/lib/use-get-time'
-import { useGetUserCityAndTime } from 'shared/lib/use-get-user-city-and-time'
+import { useGetUserCity } from 'shared/lib/use-get-user-city'
 
 export const ThemeAndLocation = ({ ...rest }) => {
-  const { city } = useGetUserCityAndTime()
+  const { city } = useGetUserCity()
   const { time, timezone } = useGetUserTime()
   const { toggler } = useTheme()
 
