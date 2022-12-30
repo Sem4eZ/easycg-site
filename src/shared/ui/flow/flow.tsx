@@ -93,52 +93,21 @@ export const Flow = ({ sectionRef }: Props) => {
 
   return (
     <Container ref={containerRef}>
-      <Step ref={reserchRef}>
-        <div className="title">reserch</div>
-        <svg
-          className="arrow"
-          width="9"
-          height="49"
-          viewBox="0 0 9 49"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M4.14645 48.3536C4.34171 48.5488 4.65829 48.5488 4.85355 48.3536L8.03553 45.1716C8.2308 44.9763 8.2308 44.6597 8.03553 44.4645C7.84027 44.2692 7.52369 44.2692 7.32843 44.4645L4.5 47.2929L1.67157 44.4645C1.47631 44.2692 1.15973 44.2692 0.964466 44.4645C0.769204 44.6597 0.769204 44.9763 0.964466 45.1716L4.14645 48.3536ZM4 0L4 24H5L5 0L4 0ZM4 24L4 48H5L5 24H4Z"
-            fill="currentColor"
-          />
-        </svg>
-      </Step>
+      <ReserchBrainstormContainer>
+        <Step ref={reserchRef} className="reserch">
+          <div className="title">reserch</div>
+          <Arrow />
+        </Step>
 
-      <Step ref={brainstormRef}>
-        <div className="title">brainstorm</div>
-        <svg
-          className="arrow"
-          width="9"
-          height="49"
-          viewBox="0 0 9 49"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M4.14645 48.3536C4.34171 48.5488 4.65829 48.5488 4.85355 48.3536L8.03553 45.1716C8.2308 44.9763 8.2308 44.6597 8.03553 44.4645C7.84027 44.2692 7.52369 44.2692 7.32843 44.4645L4.5 47.2929L1.67157 44.4645C1.47631 44.2692 1.15973 44.2692 0.964466 44.4645C0.769204 44.6597 0.769204 44.9763 0.964466 45.1716L4.14645 48.3536ZM4 0L4 24H5L5 0L4 0ZM4 24L4 48H5L5 24H4Z"
-            fill="currentColor"
-          />
-        </svg>
-      </Step>
+        <Step ref={brainstormRef} className="brainstorm">
+          <div className="title">brainstorm</div>
+          <Arrow />
+        </Step>
+      </ReserchBrainstormContainer>
 
       <Step ref={designRef}>
         <div className="title">design</div>
-        <svg
-          className="arrow"
-          width="9"
-          height="49"
-          viewBox="0 0 9 49"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M4.14645 48.3536C4.34171 48.5488 4.65829 48.5488 4.85355 48.3536L8.03553 45.1716C8.2308 44.9763 8.2308 44.6597 8.03553 44.4645C7.84027 44.2692 7.52369 44.2692 7.32843 44.4645L4.5 47.2929L1.67157 44.4645C1.47631 44.2692 1.15973 44.2692 0.964466 44.4645C0.769204 44.6597 0.769204 44.9763 0.964466 45.1716L4.14645 48.3536ZM4 0L4 24H5L5 0L4 0ZM4 24L4 48H5L5 24H4Z"
-            fill="currentColor"
-          />
-        </svg>
+        <Arrow />
       </Step>
 
       <Cycle ref={cycleRef}>
@@ -178,34 +147,12 @@ export const Flow = ({ sectionRef }: Props) => {
       </Cycle>
 
       <Step ref={developmentRef} className="end-step">
-        <svg
-          className="arrow"
-          width="9"
-          height="49"
-          viewBox="0 0 9 49"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M4.14645 48.3536C4.34171 48.5488 4.65829 48.5488 4.85355 48.3536L8.03553 45.1716C8.2308 44.9763 8.2308 44.6597 8.03553 44.4645C7.84027 44.2692 7.52369 44.2692 7.32843 44.4645L4.5 47.2929L1.67157 44.4645C1.47631 44.2692 1.15973 44.2692 0.964466 44.4645C0.769204 44.6597 0.769204 44.9763 0.964466 45.1716L4.14645 48.3536ZM4 0L4 24H5L5 0L4 0ZM4 24L4 48H5L5 24H4Z"
-            fill="currentColor"
-          />
-        </svg>
+        <Arrow />
         <div className="title">development</div>
       </Step>
 
       <Step ref={readyRef} className="end-step">
-        <svg
-          className="arrow"
-          width="9"
-          height="49"
-          viewBox="0 0 9 49"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M4.14645 48.3536C4.34171 48.5488 4.65829 48.5488 4.85355 48.3536L8.03553 45.1716C8.2308 44.9763 8.2308 44.6597 8.03553 44.4645C7.84027 44.2692 7.52369 44.2692 7.32843 44.4645L4.5 47.2929L1.67157 44.4645C1.47631 44.2692 1.15973 44.2692 0.964466 44.4645C0.769204 44.6597 0.769204 44.9763 0.964466 45.1716L4.14645 48.3536ZM4 0L4 24H5L5 0L4 0ZM4 24L4 48H5L5 24H4Z"
-            fill="currentColor"
-          />
-        </svg>
+        <Arrow />
         <div className="title">ready</div>
       </Step>
     </Container>
@@ -275,13 +222,44 @@ const Container = styled('div')(({ theme }) => ({
   },
 }))
 
+const ReserchBrainstormContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  ...getBreakpointsStylesByArray(theme, {
+    flexDirection: ['row', null, null, null, null, null, 'column'],
+    gap: [104, null, null, null, null, null, 24],
+  }),
+  [theme.breakpoints.down('desktop_s')]: {
+    '& .reserch': {
+      position: 'relative',
+      '& .arrow': {
+        position: 'absolute',
+        top: '9px',
+        right: '-57px',
+        transform: 'rotate(270deg)',
+      },
+      '&.active': {
+        '& .arrow': {
+          top: '5px',
+        },
+      },
+    },
+    '& .brainstorm .arrow': {
+      transform: 'rotate(45deg)',
+    },
+  },
+}))
+
 const Cycle = styled('div')(({ theme }) => ({
   position: 'relative',
   ...getBreakpointsStylesByArray(theme, {
+    width: [88, null, null, null, null, null, 160],
+    height: [88, null, null, null, null, null, 160],
     marginTop: [46, null, null, null, null, null, 75],
     marginBottom: [46, null, null, null, null, null, 75],
   }),
   '& svg': {
+    width: '100%',
+    height: '100%',
     transform: 'rotate(-90deg)',
     '& circle': {
       stroke: theme.palette.text.primary,
@@ -307,9 +285,11 @@ const Cycle = styled('div')(({ theme }) => ({
     position: 'absolute',
     backgroundColor: theme.palette.text.primary,
     zIndex: 1,
-    width: '10px',
-    height: '10px',
     borderRadius: '50%',
+    ...getBreakpointsStylesByArray(theme, {
+      width: [8, null, null, null, null, null, 10],
+      height: [8, null, null, null, null, null, 10],
+    }),
   },
 
   '& .top-step': {
@@ -346,10 +326,12 @@ const Cycle = styled('div')(({ theme }) => ({
   },
   '& .bottom-step': {
     '& .circle': {
-      bottom: '2px',
       left: '50%',
       transform: 'translateX(-50%)',
       transitionDelay: '0.725s',
+      ...getBreakpointsStylesByArray(theme, {
+        bottom: [-2, null, null, null, null, null, 2],
+      }),
     },
     '& .title': {
       left: '50%',
@@ -420,3 +402,20 @@ const Step = styled('div')(({ theme }) => ({
     gap: [12, null, null, null, null, null, 24],
   }),
 }))
+
+const Arrow = () => {
+  return (
+    <svg
+      className="arrow"
+      width="9"
+      height="49"
+      viewBox="0 0 9 49"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M4.14645 48.3536C4.34171 48.5488 4.65829 48.5488 4.85355 48.3536L8.03553 45.1716C8.2308 44.9763 8.2308 44.6597 8.03553 44.4645C7.84027 44.2692 7.52369 44.2692 7.32843 44.4645L4.5 47.2929L1.67157 44.4645C1.47631 44.2692 1.15973 44.2692 0.964466 44.4645C0.769204 44.6597 0.769204 44.9763 0.964466 45.1716L4.14645 48.3536ZM4 0L4 24H5L5 0L4 0ZM4 24L4 48H5L5 24H4Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
