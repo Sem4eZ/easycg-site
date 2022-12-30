@@ -213,10 +213,10 @@ const Container = styled('div')(({ theme }) => ({
     transition: 'font-size .5s, transform .5s, left .5s, right .5s',
     textAlign: 'center',
     ...getBreakpointsStylesByArray(theme, {
-      fontSize: [16, null, null, null, null, 25],
-      lineHeight: [20, null, null, null, null, 30],
-      fontWeight: [700, null, null, null, null, 400],
-      minHeight: [30, null, null, null, null, 51],
+      fontSize: [16, null, null, null, null, null, 25],
+      lineHeight: [20, null, null, null, null, null, 30],
+      fontWeight: [700, null, null, null, null, null, 400],
+      minHeight: [30, null, null, null, null, null, 51],
     }),
     '&:after': {
       position: 'absolute',
@@ -242,12 +242,10 @@ const Container = styled('div')(({ theme }) => ({
     },
     '& .title': {
       alignItems: 'flex-start',
-      fontSize: 42,
-      lineHeight: '51px',
       fontWeight: 700,
       ...getBreakpointsStylesByArray(theme, {
-        fontSize: [25, null, null, null, null, 42],
-        lineHeight: [30, null, null, null, null, 51],
+        fontSize: [25, null, null, null, null, null, 42],
+        lineHeight: [30, null, null, null, null, null, 51],
       }),
       '&:after': {
         transform: 'translateX(0)',

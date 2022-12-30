@@ -3,10 +3,12 @@ import { useRef } from 'react'
 
 import { projects } from 'entities/project/data'
 import { ProjectCard } from 'entities/project/ui/project-card'
+import { services } from 'entities/services/data'
 
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { spaceArr } from 'shared/theme'
+import { Accordion } from 'shared/ui/accordion'
 import {
   CenterWithSectionNumber,
   FreeRightPartContainer,
@@ -15,6 +17,7 @@ import {
 import { Flow } from 'shared/ui/flow'
 import { Hero } from 'shared/ui/hero'
 import { HorizontalList, ScrollableList } from 'shared/ui/horizontal-list'
+import { TextOutlined } from 'shared/ui/outlined-text'
 import { XLFont } from 'shared/ui/typography'
 
 const topProjects = projects.slice(0, 6)
@@ -26,7 +29,11 @@ const HomePage = () => {
       <Hero />
       <Block />
       <FreeRightPartContainer
-        number={1}
+        number={
+          <TextOutlined viewBoxWidth={680} animate>
+            01
+          </TextOutlined>
+        }
         section="about us"
         title={[
           'hello there! it’s EASY on the air',
@@ -49,6 +56,25 @@ const HomePage = () => {
           <HorizontalList
             title="our style is"
             items={['locanic', 'simple', 'clear', 'accessible']}
+          />
+        }
+      />
+      <FreeRightPartContainer
+        number={
+          <TextOutlined viewBoxWidth={800} animate>
+            02
+          </TextOutlined>
+        }
+        section="services"
+        title={['what we DO']}
+        content={
+          <Accordion
+            name="Services"
+            items={services.map(service => ({
+              title: service.name,
+              titleExplanation: service.nameExplanation,
+              content: service.description,
+            }))}
           />
         }
       />
@@ -78,7 +104,11 @@ const HomePage = () => {
 
       <CenterWithSectionNumber
         ref={processSectionRef}
-        number={3}
+        number={
+          <TextOutlined viewBoxWidth={795} animate>
+            03
+          </TextOutlined>
+        }
         section="process"
         title={['how we work']}
         content={<Flow sectionRef={processSectionRef} />}

@@ -10,8 +10,6 @@ import { Accordion } from 'shared/ui/accordion'
 import { RadioGroup, Select } from 'shared/ui/controls'
 import { FilterLink, Link } from 'shared/ui/link'
 import { Modal } from 'shared/ui/modal/default'
-// import { NumberOutlined } from 'shared/ui/outlined-text/number'
-// import { TextOutlined } from 'shared/ui/outlined-text/text'
 import { LFont, XLFont, XXLFont, XXXLFont } from 'shared/ui/typography'
 
 const ComponentsPage = () => {
@@ -47,18 +45,6 @@ const ComponentsPage = () => {
           content: serviceData.description,
         }))}
       />
-      {/* <TextOutlined viewBoxWidth={1480} type="header">
-        blog.
-      </TextOutlined>
-      <TextOutlined viewBoxWidth={1480}>blog.</TextOutlined>
-
-      <NumberOutlined type="header">01</NumberOutlined>
-      <NumberOutlined>01</NumberOutlined>
-
-      <TextOutlined viewBoxWidth={1470}>work</TextOutlined>
-      <TextOutlined viewBoxWidth={2220} animate>
-        contact
-      </TextOutlined> */}
 
       <Select
         label="select type of project (you can chose few)"

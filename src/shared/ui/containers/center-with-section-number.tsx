@@ -11,11 +11,10 @@ import {
 } from 'shared/lib/use-reveal-text-by-word'
 import { maxWidth, spaceObj } from 'shared/theme'
 
-import { NumberOutlined } from '../outlined-text'
 import { XLFont } from '../typography'
 
 interface Props {
-  number?: number
+  number?: React.ReactNode
   section: string
   title: string[]
   description?: Array<React.ReactNode | string>
@@ -32,13 +31,7 @@ export const CenterWithSectionNumber = forwardRef<HTMLDivElement, Props>(
 
     return (
       <Container ref={ref}>
-        <div>
-          {number && (
-            <NumberOutlinedStyled animate>
-              {number < 10 ? '0' + number : '' + number}
-            </NumberOutlinedStyled>
-          )}
-        </div>
+        <div>{number && <NumberContainer>{number}</NumberContainer>}</div>
         <RightPart>
           <Section variant="h2">{section}</Section>
           <Title ref={titleRef}>
@@ -103,7 +96,7 @@ const RightPart = styled('div')(({ theme }) => ({
   width: '100%',
 }))
 
-const NumberOutlinedStyled = styled(NumberOutlined)(({ theme }) => ({
+const NumberContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
   ...getBreakpointsStylesByArray(theme, {
     top: [46, 40, 48, 38, '6%', null, '-4%', null, '-1%'],
