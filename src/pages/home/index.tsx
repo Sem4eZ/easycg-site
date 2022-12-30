@@ -83,7 +83,7 @@ const HomePage = () => {
           our projects
         </XLFont>
         <ScrollableList parallax>
-          {topProjects.map((project, i) => (
+          {topProjects.map(project => (
             <ProjectCard
               key={project.id}
               id={project.id}
@@ -93,7 +93,6 @@ const HomePage = () => {
               image={project.image}
               type={project.type}
               servicesType={project.servicesType}
-              zIndex={topProjects.length - i}
             />
           ))}
         </ScrollableList>

@@ -15,9 +15,7 @@ import { Project } from '../types'
 type Props = Pick<
   Project,
   'id' | 'name' | 'date' | 'description' | 'image' | 'type' | 'servicesType'
-> & {
-  zIndex: number
-}
+>
 
 export const ProjectCard = ({
   id,
@@ -27,11 +25,10 @@ export const ProjectCard = ({
   image,
   type,
   servicesType,
-  zIndex,
 }: Props) => {
   return (
     <Container>
-      <article style={{ zIndex }}>
+      <article>
         <Link href={`${PAGES.Projects}/${id}`}>
           <ImageContainer>
             <img
@@ -74,40 +71,28 @@ export const ProjectCard = ({
 }
 
 const Container = styled('li')(({ theme }) => ({
-  position: 'relative',
   listStyle: 'none',
+  transition: 'min-width 2s',
   ...getBreakpointsStylesByArray(theme, {
-    minWidth: [253, '100%', 253, '100%', 352, null, 454, 619],
-    height: [290, 250, null, 479, 694, 944, null, 1107],
+    minWidth: [253, '100%', 253, '100%', 352, null, 454, null, 619],
   }),
-  transition: 'opacity 0.5s',
-  '& article': {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    transition: 'width 0.5s',
-  },
-  [theme.breakpoints.up('laptop')]: {
+
+  [theme.breakpoints.up('desktop_s')]: {
     '&:hover': {
-      '& article': {
-        ...getBreakpointsStylesByArray(theme, {
-          width: [253, '100%', 253, '100%', 352, null, 454 * 2, 619 * 2],
-        }),
-        '& .parallax': {
-          transform: 'translateX(0) !important',
-        },
-        img: {
-          width: '100%',
-          objectFit: 'cover',
-        },
+      ...getBreakpointsStylesByArray(theme, {
+        minWidth: [253, '100%', 253, '100%', 352, null, 454 * 2, null, 619 * 2],
+      }),
+      '& .parallax': {
+        transform: 'translateX(0) !important',
       },
-      '&+li': {
-        ...getBreakpointsStylesByArray(theme, {
-          opacity: [1, null, null, null, null, null, 0],
-        }),
+      img: {
+        width: '100%',
+        objectFit: 'cover',
       },
+      transition: 'min-width 0.5s',
     },
   },
+
   '&:last-child': {
     ...getBreakpointsStylesByArray(theme, {
       marginRight: [
@@ -213,6 +198,7 @@ const Description = styled('span')(({ theme }) => ({
   overflow: 'hidden',
   color: theme.palette.text.secondary,
   ...getBreakpointsStylesByArray(theme, {
+    WebkitLineClamp: ['3', null, null, null, null, null, null, null, '2'],
     display: ['none', null, null, null, '-webkit-box'],
     maxWidth: [253, '100%', 253, '100%', 352, null, 454, 619],
   }),
