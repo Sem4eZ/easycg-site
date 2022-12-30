@@ -7,6 +7,7 @@ import {
   FreeRightPartContainer,
   HorizontalSliderContainer,
 } from 'shared/ui/containers'
+import { Hero } from 'shared/ui/hero'
 import { HorizontalList, ScrollableList } from 'shared/ui/horizontal-list'
 import { XLFont } from 'shared/ui/typography'
 
@@ -14,6 +15,7 @@ const topProjects = projects.slice(0, 6)
 
 const HomePage = () => (
   <div>
+    <Hero />
     <Block />
     <FreeRightPartContainer
       number={1}

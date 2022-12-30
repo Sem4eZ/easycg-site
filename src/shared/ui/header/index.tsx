@@ -121,8 +121,8 @@ const Container = styled('header')(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   ...getBreakpointsStylesByArray(theme, {
-    paddingTop: [51, 41, 48, null, 32, 24, 58, null, 104],
-    paddingBottom: [51, 41, 48, null, 32, 24, 58, null, 104],
+    paddingTop: [51, 41, 48, null, 32, 24, 58],
+    paddingBottom: [51, 41, 48, null, 32, 24, 58],
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
     gridTemplateColumns: [

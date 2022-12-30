@@ -1,3 +1,4 @@
+import { useTheme } from '@mui/material'
 import { Theme, styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
 
@@ -18,6 +19,7 @@ export const TextOutlined = ({
   animate = false,
   ...rest
 }: Props) => {
+  const { breakpoints } = useTheme()
   const intersectionContainerRef = useRef<HTMLDivElement | null>(null)
   const textRef = useRef<HTMLDivElement | null>(null)
 
@@ -48,7 +50,7 @@ export const TextOutlined = ({
   }
 
   useEffect(() => {
-    if (!animate || window.innerWidth < 1366) return
+    if (!animate || window.innerWidth < breakpoints.values.desktop_s) return
     window.addEventListener('scroll', fillText)
     return () => {
       window.removeEventListener('scroll', fillText)

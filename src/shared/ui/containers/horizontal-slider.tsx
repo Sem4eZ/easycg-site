@@ -5,7 +5,8 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 export const HorizontalSliderContainer = styled('section')(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
-  display: 'grid',
+  display: 'flex',
+  flexDirection: 'column',
   ...getBreakpointsStylesByArray(theme, {
     paddingTop: [71, 63, 71, 63, 72, null, 87, 166],
     paddingBottom: [71, 63, 71, 63, 72, null, 87, 166],

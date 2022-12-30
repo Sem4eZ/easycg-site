@@ -1,11 +1,11 @@
 import { styled } from '@mui/material/styles'
-import { useEffect, useState } from 'react'
 
 import { getMenuSchema } from 'entities/menu/data'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { calcTime } from 'shared/lib/get-city-time'
 import { useGetDevice } from 'shared/lib/use-get-device'
+import { useGetUserTime } from 'shared/lib/use-get-time'
+import { useGetUserCity } from 'shared/lib/use-get-user-city'
 import { maxWidth, spaceArr } from 'shared/theme'
 
 import { SocialMedia } from '../social-media'
@@ -17,7 +17,6 @@ interface Props {
 }
 
 export const Footer = ({ projectsCount }: Props) => {
-  const [time, setTime] = useState(calcTime(6))
   const MENU = getMenuSchema({ projectsCount })
 
   const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
@@ -26,14 +25,8 @@ export const Footer = ({ projectsCount }: Props) => {
 
   const showSeparateEmail = isDesktopS || isLaptop || isMacbook || isDesktop
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(calcTime(6))
-    }, 30000)
-    return () => {
-      clearInterval(interval)
-    }
-  })
+  const { time, timezone } = useGetUserTime()
+  const { city } = useGetUserCity()
 
   return (
     <Container>
@@ -52,10 +45,10 @@ export const Footer = ({ projectsCount }: Props) => {
       {!showMobileSocial && <SocialMediaStyled size="medium" />}
       <ContactInfo>
         <div>
-          <City>Based in Almaty</City>
+          <City>Based in {city}</City>
           <Time>{`${time.getHours()}:${
             time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes()
-          } (GTM +6)  `}</Time>
+          } (GTM ${timezone})  `}</Time>
         </div>
         <div>
           <Phone href="tel:+79222222222">+7 922 222 22 22</Phone>

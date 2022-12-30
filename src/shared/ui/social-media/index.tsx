@@ -64,13 +64,16 @@ const Container = styled('ul')(({ theme }) => ({
 const ListItem = styled('li')(({ theme }) => ({
   '&[data-size="small"]': {
     ...getBreakpointsStylesByArray(theme, {
-      width: [32, null, null, null, 40, null, 32],
+      width: [32, null, null, null, 40, null, 32, null, 40],
     }),
   },
   '&[data-size="medium"]': {
     ...getBreakpointsStylesByArray(theme, {
       width: [32, null, null, null, null, null, 56],
     }),
+  },
+  '& a': {
+    color: theme.palette.text.primary,
   },
   svg: {
     width: '100%',

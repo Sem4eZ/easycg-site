@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { Fragment, useRef } from 'react'
+import { Fragment, forwardRef, useRef } from 'react'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
@@ -22,52 +22,48 @@ interface Props {
   content: React.ReactNode
 }
 
-export const FreeRightPartContainer = ({
-  number,
-  section,
-  title,
-  description,
-  content,
-}: Props) => {
-  const titleRef = useRef<HTMLDivElement | null>(null)
-  const descriptionRef = useRef<HTMLDivElement | null>(null)
+export const FreeRightPartContainer = forwardRef<HTMLDivElement, Props>(
+  ({ number, section, title, description, content }: Props, ref) => {
+    const titleRef = useRef<HTMLDivElement | null>(null)
+    const descriptionRef = useRef<HTMLDivElement | null>(null)
 
-  useRevealTextByWord({ ref: titleRef })
-  useRevealBlock({ ref: descriptionRef })
+    useRevealTextByWord({ ref: titleRef })
+    useRevealBlock({ ref: descriptionRef })
 
-  return (
-    <Container>
-      <div>
-        {number && (
-          <NumberOutlinedStyled animate>
-            {number < 10 ? '0' + number : '' + number}
-          </NumberOutlinedStyled>
-        )}
-      </div>
-      <RightPart>
-        <Section variant="h2">{section}</Section>
-        <Title ref={titleRef}>
-          {title.map((line, j) => (
-            <Fragment key={j}>
-              {line.split(' ').map((word, i) => (
-                <span key={i} className={WORD_CLASS}>{`${word} `}</span>
-              ))}
-              <br />
-            </Fragment>
-          ))}
-        </Title>
-        {description && (
-          <Description ref={descriptionRef}>
-            {description.map((line, i) => (
-              <p key={i}>{line}</p>
+    return (
+      <Container ref={ref}>
+        <div>
+          {number && (
+            <NumberOutlinedStyled animate>
+              {number < 10 ? '0' + number : '' + number}
+            </NumberOutlinedStyled>
+          )}
+        </div>
+        <RightPart>
+          <Section variant="h2">{section}</Section>
+          <Title ref={titleRef}>
+            {title.map((line, j) => (
+              <Fragment key={j}>
+                {line.split(' ').map((word, i) => (
+                  <span key={i} className={WORD_CLASS}>{`${word} `}</span>
+                ))}
+                <br />
+              </Fragment>
             ))}
-          </Description>
-        )}
-        <Content>{content} </Content>
-      </RightPart>
-    </Container>
-  )
-}
+          </Title>
+          {description && (
+            <Description ref={descriptionRef}>
+              {description.map((line, i) => (
+                <p key={i}>{line}</p>
+              ))}
+            </Description>
+          )}
+          <Content>{content} </Content>
+        </RightPart>
+      </Container>
+    )
+  },
+)
 
 const Container = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -131,6 +127,7 @@ const NumberOutlinedStyled = styled(NumberOutlined)(({ theme }) => ({
       spaceObj.ip13_horizontal,
       '-5%',
       null,
+      '-18%',
       '-10%',
       '-8%',
     ],
