@@ -77,7 +77,7 @@ const commonTheme = createTheme({
             lineHeight: pxToRem(20),
             fontWeight: 400,
             color: theme.palette.text.primary,
-            [theme.breakpoints.up('laptop')]: {
+            [theme.breakpoints.up('desktop_s')]: {
               fontSize: pxToRem(25),
               lineHeight: pxToRem(30),
             },
@@ -97,7 +97,7 @@ const commonTheme = createTheme({
           fontSize: pxToRem(16),
           lineHeight: pxToRem(20),
           fontWeight: 400,
-          [theme.breakpoints.up('laptop')]: {
+          [theme.breakpoints.up('desktop_s')]: {
             fontSize: pxToRem(25),
             lineHeight: pxToRem(30),
           },
@@ -146,7 +146,7 @@ const commonTheme = createTheme({
               fontSize: pxToRem(25),
               lineHeight: pxToRem(30),
             },
-            [theme.breakpoints.up('laptop')]: {
+            [theme.breakpoints.up('desktop_s')]: {
               fontSize: pxToRem(42),
               lineHeight: pxToRem(51),
             },
@@ -155,7 +155,7 @@ const commonTheme = createTheme({
         endIcon: ({ theme }) => ({
           width: pxToRem(24),
           marginLeft: pxToRem(8),
-          [theme.breakpoints.up('laptop')]: {
+          [theme.breakpoints.up('desktop_s')]: {
             width: pxToRem(48),
             marginLeft: pxToRem(24),
           },
@@ -180,7 +180,7 @@ const commonTheme = createTheme({
             '& svg': {
               width: '100%',
             },
-            [theme.breakpoints.up('laptop')]: {
+            [theme.breakpoints.up('desktop_s')]: {
               width: '28px',
               marginRight: pxToRem(40),
             },
@@ -221,7 +221,7 @@ const commonTheme = createTheme({
             fontSize: pxToRem(25),
             lineHeight: pxToRem(30),
           },
-          [theme.breakpoints.up('laptop')]: {
+          [theme.breakpoints.up('desktop_s')]: {
             fontSize: pxToRem(42),
             lineHeight: pxToRem(51),
             paddingBottom: pxToRem(24),
@@ -255,7 +255,7 @@ const commonTheme = createTheme({
             fontSize: pxToRem(25),
             lineHeight: pxToRem(30),
           },
-          [theme.breakpoints.up('laptop')]: {
+          [theme.breakpoints.up('desktop_s')]: {
             fontSize: pxToRem(42),
             lineHeight: pxToRem(51),
             '&.Mui-focused': { fontSize: pxToRem(25), lineHeight: pxToRem(30) },
@@ -266,7 +266,7 @@ const commonTheme = createTheme({
           fontSize: pxToRem(16),
           lineHeight: pxToRem(20),
           transform: 'translate(0, -9px) scale(0.75)',
-          [theme.breakpoints.up('laptop')]: {
+          [theme.breakpoints.up('desktop_s')]: {
             fontSize: pxToRem(25),
             lineHeight: pxToRem(30),
           },
@@ -285,7 +285,7 @@ const commonTheme = createTheme({
         list: ({ theme }) => ({
           paddingTop: pxToRem(8),
           paddingBottom: pxToRem(20),
-          [theme.breakpoints.up('laptop')]: {
+          [theme.breakpoints.up('desktop_s')]: {
             paddingTop: pxToRem(16),
             paddingBottom: pxToRem(40),
           },
@@ -324,7 +324,7 @@ const commonTheme = createTheme({
             fontSize: pxToRem(25),
             lineHeight: pxToRem(30),
           },
-          [theme.breakpoints.up('laptop')]: {
+          [theme.breakpoints.up('desktop_s')]: {
             fontSize: pxToRem(42),
             lineHeight: pxToRem(51),
             paddingLeft: pxToRem(174),
@@ -345,7 +345,7 @@ const commonTheme = createTheme({
           fontWeight: 700,
           fontSize: pxToRem(16),
           lineHeight: pxToRem(20),
-          [theme.breakpoints.up('laptop')]: {
+          [theme.breakpoints.up('desktop_s')]: {
             marginTop: pxToRem(8),
             fontSize: pxToRem(25),
             lineHeight: pxToRem(30),
