@@ -8,6 +8,7 @@ import { maxWidth, spaceArr } from 'shared/theme'
 import { Link } from '../link'
 import { SocialMedia } from '../social-media'
 import { Decoration } from './ui/decoration'
+import { ScrollDown } from './ui/scroll-down'
 import { ThemeAndLocation } from './ui/theme-and-location'
 
 export const Hero = () => {
@@ -37,42 +38,47 @@ export const Hero = () => {
     isTabletLandscape
 
   return (
-    <Container>
-      <Decoration />
-      <Content>
-        <ContentMain>
-          <Title>
-            {'EASY'.split('').map((letter, i) => (
-              <span key={i}>{letter}</span>
-            ))}
-          </Title>
-          {showMenu && (
-            <Menu>
-              <li>
-                <Link href={`${PAGES.Services}#services_mobile`}>mobile/</Link>
-              </li>
-              <li>
-                <Link href={`${PAGES.Services}#services_web`}>web/</Link>
-              </li>
-              <li>
-                <Link href={`${PAGES.Services}#services_cgi`}>CGI/</Link>
-              </li>
-              <li>
-                <Link href={`${PAGES.Services}#services_vr`}>VR/</Link>
-              </li>
-              <li>
-                <Link href={`${PAGES.Services}#services_ar`}>AR</Link>
-              </li>
-            </Menu>
-          )}
-          {showThemeAndLocationInContentBlock && <ThemeAndLocationStyled />}
-        </ContentMain>
-        <ContentFooter>
-          <SocialMedia size="small" />
-          {!showThemeAndLocationInContentBlock && <ThemeAndLocationStyled />}
-        </ContentFooter>
-      </Content>
-    </Container>
+    <>
+      <Container>
+        <Decoration />
+        <Content>
+          <ContentMain>
+            <Title>
+              {'EASY'.split('').map((letter, i) => (
+                <span key={i}>{letter}</span>
+              ))}
+            </Title>
+            {showMenu && (
+              <Menu>
+                <li>
+                  <Link href={`${PAGES.Services}#services_mobile`}>
+                    mobile/
+                  </Link>
+                </li>
+                <li>
+                  <Link href={`${PAGES.Services}#services_web`}>web/</Link>
+                </li>
+                <li>
+                  <Link href={`${PAGES.Services}#services_cgi`}>CGI/</Link>
+                </li>
+                <li>
+                  <Link href={`${PAGES.Services}#services_vr`}>VR/</Link>
+                </li>
+                <li>
+                  <Link href={`${PAGES.Services}#services_ar`}>AR</Link>
+                </li>
+              </Menu>
+            )}
+            {showThemeAndLocationInContentBlock && <ThemeAndLocationStyled />}
+          </ContentMain>
+          <ContentFooter>
+            <SocialMedia size="small" />
+            {!showThemeAndLocationInContentBlock && <ThemeAndLocationStyled />}
+          </ContentFooter>
+        </Content>
+      </Container>
+      <ScrollDown />
+    </>
   )
 }
 

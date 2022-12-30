@@ -27,7 +27,6 @@ const HomePage = () => {
   return (
     <div>
       <Hero />
-      <Block />
       <FreeRightPartContainer
         number={
           <TextOutlined viewBoxWidth={680} animate>
