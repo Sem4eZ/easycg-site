@@ -35,7 +35,9 @@ const ProjectsPage = () => {
           }
         })
         .map(project => (
-          <div>{project.name + ' ' + project.servicesType.join(' ')}</div>
+          <div key={project.id}>
+            {project.name + ' ' + project.servicesType.join(' ')}
+          </div>
         ))}
     </Page>
   )
