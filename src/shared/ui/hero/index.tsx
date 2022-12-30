@@ -84,7 +84,6 @@ export const Hero = () => {
 
 const Container = styled('div')(({ theme }) => ({
   position: 'relative',
-  overflow: 'hidden',
   ...getBreakpointsStylesByArray(theme, {
     height: [
       'calc(100vh - 150px)',

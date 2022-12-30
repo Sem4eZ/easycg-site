@@ -77,6 +77,9 @@ const commonTheme = createTheme({
             lineHeight: pxToRem(20),
             fontWeight: 400,
             color: theme.palette.text.primary,
+            '& #root': {
+              oveflowX: 'hidden',
+            },
             [theme.breakpoints.up('desktop_s')]: {
               fontSize: pxToRem(25),
               lineHeight: pxToRem(30),
