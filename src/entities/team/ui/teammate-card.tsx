@@ -1,7 +1,6 @@
 import { styled } from '@mui/material/styles'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { pxToRem } from 'shared/lib/px-to-rem'
 import { spaceObj } from 'shared/theme'
 import { PARALLAX_CLASS } from 'shared/ui/horizontal-list/scrollable'
 import { Tags } from 'shared/ui/tags'

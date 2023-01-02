@@ -141,7 +141,7 @@ export const Decoration = () => {
         </path>
       </svg>
       <svg
-        style={{ top: '75%' }}
+        style={{ top: '70%' }}
         width="1729"
         height="369"
         viewBox="0 0 1729 369"
@@ -163,7 +163,7 @@ export const Decoration = () => {
         </path>
       </svg>
       <svg
-        style={{ top: '80%' }}
+        style={{ top: '70%' }}
         width="1730"
         height="400"
         viewBox="0 0 1730 400"
@@ -189,7 +189,8 @@ export const Decoration = () => {
 
 const Container = styled('div')(({ theme }) => ({
   position: 'absolute',
-  height: '100%',
+  height: '125%',
+  top: '-25%',
   width: '100%',
   display: 'flex',
   alignItems: 'center',

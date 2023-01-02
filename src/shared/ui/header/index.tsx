@@ -2,10 +2,11 @@ import { Button } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles'
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { getMenuSchema } from 'entities/menu/data'
 
+import { ArrowThin } from 'shared/icons/arrow-thin'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 import { useGetDevice } from 'shared/lib/use-get-device'
@@ -23,6 +24,7 @@ interface Props {
 
 export const Header = ({ projectsCount }: Props) => {
   const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
   const { pathname } = useLocation()
 
   const openModal = () => {
@@ -36,6 +38,10 @@ export const Header = ({ projectsCount }: Props) => {
   const isCurrentRoute = (route: string) => {
     if (route === '/') return pathname === route ? 1 : 0
     return pathname.includes(route) ? 1 : 0
+  }
+
+  const isMainpageRoute = () => {
+    return pathname === '/'
   }
 
   const MENU = getMenuSchema({ projectsCount })
@@ -68,18 +74,34 @@ export const Header = ({ projectsCount }: Props) => {
   const showBackButton =
     isMobileS || isMobileSLandscape || isMobileLandscape || isMobile
 
+  let headerLeftContent = <div />
+  if (!hideLanguageChanging) {
+    headerLeftContent = <Language />
+  } else if (!isMainpageRoute()) {
+    headerLeftContent = (
+      <HeaderBackButton
+        startIcon={<ArrowThin />}
+        endIcon=""
+        onClick={() => navigate(-1)}>
+        <HeaderBackButtonText>back</HeaderBackButtonText>
+      </HeaderBackButton>
+    )
+  }
+
   return (
     <Container>
-      {!hideLanguageChanging ? <Language /> : <div />}
+      {headerLeftContent}
       <LogoWrapper>
         <Logo />
       </LogoWrapper>
-      <IconButton onClick={openModal} style={{ right: '-8px' }}>
-        <MenuToggler>
-          <div />
-          <div />
-        </MenuToggler>
-      </IconButton>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <IconButton onClick={openModal} style={{ right: '-8px' }}>
+          <MenuToggler>
+            <div />
+            <div />
+          </MenuToggler>
+        </IconButton>
+      </div>
       <ModalStyled
         open={open}
         title="Site navigation"
@@ -108,7 +130,7 @@ export const Header = ({ projectsCount }: Props) => {
           </NavigationList>
         </nav>
 
-        {showBackButton && <BackButton>back</BackButton>}
+        {showBackButton && <MenuBackButton>back</MenuBackButton>}
       </ModalStyled>
     </Container>
   )
@@ -126,9 +148,11 @@ const Container = styled('header')(({ theme }) => ({
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
     gridTemplateColumns: [
-      '48px 1fr auto',
+      '48px 1fr 48px',
       null,
       null,
+      '155px 1fr 155px',
+      '171px 1fr 171px',
       null,
       '55px 1fr auto',
       null,
@@ -249,8 +273,18 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
   },
 }))
 
-const BackButton = styled(FilterLink)(({ theme }) => ({
+const MenuBackButton = styled(FilterLink)(({ theme }) => ({
   fontWeight: 700,
   marginTop: 48,
   color: theme.palette.text.secondary,
+}))
+
+const HeaderBackButton = styled(Button)(() => ({}))
+
+const HeaderBackButtonText = styled('span')(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  ...getBreakpointsStylesByArray(theme, {
+    display: ['none', null, null, 'inline-block'],
+    fontSize: [16, null, null, null, 25],
+  }),
 }))

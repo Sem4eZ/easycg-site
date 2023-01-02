@@ -21,7 +21,7 @@ interface Props {
   content: React.ReactNode
 }
 
-export const FreeRightPartContainer = forwardRef<HTMLDivElement, Props>(
+export const CenterWithSectionNumber = forwardRef<HTMLDivElement, Props>(
   ({ number, section, title, description, content }: Props, ref) => {
     const titleRef = useRef<HTMLDivElement | null>(null)
     const descriptionRef = useRef<HTMLDivElement | null>(null)
@@ -93,20 +93,7 @@ const Container = styled('div')(({ theme }) => ({
 
 const RightPart = styled('div')(({ theme }) => ({
   position: 'relative',
-  ...getBreakpointsStylesByArray(theme, {
-    width: [
-      '100%',
-      null,
-      null,
-      null,
-      '561px',
-      '640px',
-      '864px',
-      null,
-      '1077px',
-      '1087px',
-    ],
-  }),
+  width: '100%',
 }))
 
 const NumberContainer = styled('div')(({ theme }) => ({
@@ -131,28 +118,18 @@ const Section = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
   marginBottom: pxToRem(51),
   ...getBreakpointsStylesByArray(theme, {
+    display: ['block', null, null, null, 'none'],
     marginBottom: [51, null, 35, 36, 20, null, 48, null, 56],
   }),
 }))
 
 const Title = styled(XLFont)(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    textAlign: ['start', null, null, null, 'center'],
+  }),
   '& .word': {
     transition: 'opacity .2s',
   },
-  ...getBreakpointsStylesByArray(theme, {
-    marginRight: [
-      0,
-      0,
-      0,
-      0,
-      spaceObj.tablet,
-      0,
-      spaceObj.desktop_s,
-      spaceObj.laptop,
-      spaceObj.macbook,
-      spaceObj.desktop,
-    ],
-  }),
 }))
 
 const Description = styled('div')(({ theme }) => ({

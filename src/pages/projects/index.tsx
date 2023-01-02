@@ -3,7 +3,7 @@ import { useServicesFilter } from 'features/services/filter'
 import { projects } from 'entities/project/data'
 
 import { HorizontalList } from 'shared/ui/horizontal-list'
-import { NumberOutlined } from 'shared/ui/outlined-text'
+import { TextOutlined } from 'shared/ui/outlined-text'
 import { Page } from 'shared/ui/page-templates'
 
 const ProjectsPage = () => {
@@ -11,7 +11,11 @@ const ProjectsPage = () => {
   return (
     <Page
       title="work"
-      decorationText={<NumberOutlined type="header">01</NumberOutlined>}
+      decorationText={
+        <TextOutlined viewBoxWidth={680} type="header">
+          01
+        </TextOutlined>
+      }
       filter={
         <HorizontalList
           title="our style is"
@@ -31,7 +35,9 @@ const ProjectsPage = () => {
           }
         })
         .map(project => (
-          <div>{project.name + ' ' + project.servicesType.join(' ')}</div>
+          <div key={project.id}>
+            {project.name + ' ' + project.servicesType.join(' ')}
+          </div>
         ))}
     </Page>
   )
