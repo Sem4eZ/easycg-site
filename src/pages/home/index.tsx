@@ -21,6 +21,8 @@ import { HorizontalList, ScrollableList } from 'shared/ui/horizontal-list'
 import { TextOutlined } from 'shared/ui/outlined-text'
 import { XLFont } from 'shared/ui/typography'
 
+import { MainPageServicesMenu } from './components/services-menu'
+
 const topProjects = projects.slice(0, 6)
 
 const HomePage = () => {
@@ -114,6 +116,8 @@ const HomePage = () => {
         title={['how we work']}
         content={<Flow sectionRef={processSectionRef} />}
       />
+
+      <MainPageServicesMenu />
     </div>
   )
 }
