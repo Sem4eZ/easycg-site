@@ -3,6 +3,7 @@ export type ServiceType = 'mobile' | 'web' | 'CGI' | 'AR' | 'VR' | 'UX/UI'
 export interface Service {
   type: string
   name: string
+  shortName: string
   nameExplanation?: string
   description: string
   services: string[]

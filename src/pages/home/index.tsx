@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { projects } from 'entities/project/data'
 import { ProjectCard } from 'entities/project/ui/project-card'
 import { services } from 'entities/services/data'
+import { ServicesHeroMenu } from 'entities/services/ui/services-hero-menu'
 
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
@@ -26,7 +27,8 @@ const HomePage = () => {
   const processSectionRef = useRef<HTMLDivElement | null>(null)
   return (
     <div>
-      <Hero />
+      <Hero menu={<ServicesHeroMenu />} />
+
       <FreeRightPartContainer
         number={
           <TextOutlined viewBoxWidth={680} animate>
@@ -77,6 +79,7 @@ const HomePage = () => {
           />
         }
       />
+
       <HorizontalSliderContainer>
         <XLFont variant="h2" textAlign="center">
           our projects
@@ -111,18 +114,11 @@ const HomePage = () => {
         title={['how we work']}
         content={<Flow sectionRef={processSectionRef} />}
       />
-
-      <Block />
     </div>
   )
 }
 
 export default HomePage
-
-const Block = styled('div')`
-  height: 1000px;
-  background-color: yellow;
-`
 
 const SeeAllProjectsButton = styled(Button)(({ theme }) => ({
   alignSelf: 'flex-start',

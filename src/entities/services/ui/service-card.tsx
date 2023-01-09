@@ -6,12 +6,13 @@ import { XXLFont } from 'shared/ui/typography'
 
 interface Props {
   title: string
+  serviceType: string
   pricesBlock: PricesBlockProps
 }
 
-export const ServiceCard = ({ title, pricesBlock }: Props) => {
+export const ServiceCard = ({ title, serviceType, pricesBlock }: Props) => {
   return (
-    <Container>
+    <Container id={serviceType}>
       <Title variant="h2">{title}</Title>
       <PricesBlock {...pricesBlock} />
     </Container>

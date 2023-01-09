@@ -2,7 +2,6 @@ import { ARIcon } from 'shared/icons/ar'
 import { CGIIcon } from 'shared/icons/cgi'
 import { ComputerIcon } from 'shared/icons/computer'
 import { PhoneIcon } from 'shared/icons/phone'
-import { ServiceSquareIcon } from 'shared/icons/service-square'
 import { UXUIIcon } from 'shared/icons/uxui'
 import { VRIcon } from 'shared/icons/vr'
 
@@ -12,6 +11,7 @@ export const services: Service[] = [
   {
     type: 'mobile',
     name: 'mobile apps',
+    shortName: 'mobile',
     description:
       'native mobile apps for IOS & Android. zero-code solutions for Start Up ',
     services: [
@@ -33,6 +33,7 @@ export const services: Service[] = [
   {
     type: 'web',
     name: 'WEB',
+    shortName: 'web',
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quae veniam quas, labore velit rem minus quasi doloremque eum. Adipisci aliquam laboriosam rerum perspiciatis illo id veniam iste blanditiis ullam.`,
     services: [
       'native apps for ios & android',
@@ -53,6 +54,7 @@ export const services: Service[] = [
   {
     type: 'CGI',
     name: 'CGI',
+    shortName: 'CGI',
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quae veniam quas, labore velit rem minus quasi doloremque eum. Adipisci aliquam laboriosam rerum perspiciatis illo id veniam iste blanditiis ullam.`,
     services: [
       'native apps for ios & android',
@@ -68,11 +70,12 @@ export const services: Service[] = [
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
-    icon: <ServiceSquareIcon />,
+    icon: <CGIIcon />,
   },
   {
     type: 'AR',
     name: 'AR',
+    shortName: 'AR',
     nameExplanation: '(aguamented reality)',
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quae veniam quas, labore velit rem minus quasi doloremque eum. Adipisci aliquam laboriosam rerum perspiciatis illo id veniam iste blanditiis ullam.`,
     services: [
@@ -89,11 +92,12 @@ export const services: Service[] = [
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
-    icon: <ServiceSquareIcon />,
+    icon: <ARIcon />,
   },
   {
     type: 'VR',
     name: 'VR',
+    shortName: 'VR',
     nameExplanation: '(virtual reality)',
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quae veniam quas, labore velit rem minus quasi doloremque eum. Adipisci aliquam laboriosam rerum perspiciatis illo id veniam iste blanditiis ullam.`,
     services: [
@@ -110,11 +114,12 @@ export const services: Service[] = [
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
-    icon: <ServiceSquareIcon />,
+    icon: <VRIcon />,
   },
   {
-    type: 'UX/UI',
+    type: 'UXUI',
     name: 'UX/ UI',
+    shortName: 'UX/UI',
     description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quae veniam quas, labore velit rem minus quasi doloremque eum. Adipisci aliquam laboriosam rerum perspiciatis illo id veniam iste blanditiis ullam.`,
     services: [
       'native apps for ios & android',
@@ -130,7 +135,7 @@ export const services: Service[] = [
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
-    icon: <ServiceSquareIcon />,
+    icon: <UXUIIcon />,
   },
 ]
 
