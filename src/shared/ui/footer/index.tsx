@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles'
 
 import { getMenuSchema } from 'entities/menu/data'
 
+import { COMPANY_EMAIL } from 'shared/config/environment-variables'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { useGetUserTime } from 'shared/lib/use-get-time'
@@ -48,17 +49,17 @@ export const Footer = ({ projectsCount }: Props) => {
           <City>Based in {city}</City>
           <Time>{`${time.getHours()}:${
             time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes()
-          } (GTM ${timezone})  `}</Time>
+          } (GTM ${timezone})`}</Time>
         </div>
         <div>
           <Phone href="tel:+79222222222">+7 922 222 22 22</Phone>
           {!showSeparateEmail && (
-            <Email href="mailto:easy.cg@gmail.com">easy.cg@gmail.com</Email>
+            <Email href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</Email>
           )}
         </div>
         {showSeparateEmail && (
           <div>
-            <Email href="mailto:easy.cg@gmail.com">easy.cg@gmail.com</Email>
+            <Email href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</Email>
           </div>
         )}
       </ContactInfo>
