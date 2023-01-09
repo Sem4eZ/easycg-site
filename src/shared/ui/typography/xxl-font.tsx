@@ -6,7 +6,7 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 export const XXLFont = styled(Typography)<TypographyProps>(({ theme }) => ({
   fontWeight: 700,
   ...getBreakpointsStylesByArray(theme, {
-    fontSize: [42, null, null, null, null, 68, null, null, 100],
+    fontSize: [42, null, null, null, null, 68, null, null, 110],
     lineHeight: [51, null, null, null, null, 83, null, null, 134],
   }),
 }))
