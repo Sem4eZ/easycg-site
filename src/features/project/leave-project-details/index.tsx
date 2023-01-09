@@ -18,7 +18,12 @@ export const LeaveProjectDetails = () => {
     <>
       <Button onClick={openModal}>discuss a project</Button>
 
-      <Modal title="Project details" hideTitle open={open} onClose={closeModal}>
+      <Modal
+        title="Project details"
+        hideTitle
+        open={open}
+        onClose={closeModal}
+        hideLanguage>
         LeaveProjectDetails
       </Modal>
     </>
