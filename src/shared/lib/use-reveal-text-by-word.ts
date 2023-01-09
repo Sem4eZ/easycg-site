@@ -48,4 +48,18 @@ export const useRevealTextByWord = ({ ref }: Props) => {
       window.removeEventListener('scroll', revealText)
     }
   }, [])
+
+  useEffect(() => {
+    const title = ref.current
+    if (!title) return
+
+    const letter = Array.from(
+      title.getElementsByClassName(WORD_CLASS) as HTMLCollectionOf<HTMLElement>,
+    )
+
+    letter.map(l => {
+      l.style.setProperty('transition', 'opacity .2s')
+      l.style.setProperty('opacity', '0.2')
+    })
+  })
 }
