@@ -1,8 +1,6 @@
 import { useTheme } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-
 export const Decoration = () => {
   const theme = useTheme()
   return (
@@ -187,7 +185,7 @@ export const Decoration = () => {
   )
 }
 
-const Container = styled('div')(({ theme }) => ({
+const Container = styled('div')(() => ({
   position: 'absolute',
   height: '125%',
   top: '-25%',
@@ -198,10 +196,7 @@ const Container = styled('div')(({ theme }) => ({
   '& svg': {
     position: 'absolute',
     left: 0,
-    width: '100%',
     height: 'auto',
-    ...getBreakpointsStylesByArray(theme, {
-      width: ['150%', '100%', '150%', '100%'],
-    }),
+    width: '100%',
   },
 }))
