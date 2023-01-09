@@ -32,7 +32,7 @@ export const Page = ({
   }, [])
 
   return (
-    <div style={{ overflow: 'hidden' }}>
+    <div style={{ overflow: 'hidden', paddingTop: '24px' }}>
       back
       <Title variant="h1" ref={titleRef}>
         {decorationText && (
