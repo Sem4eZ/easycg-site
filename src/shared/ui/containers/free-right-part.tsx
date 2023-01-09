@@ -19,10 +19,11 @@ interface Props {
   title: string[]
   description?: Array<React.ReactNode | string>
   content: React.ReactNode
+  footer?: React.ReactNode
 }
 
 export const FreeRightPartContainer = forwardRef<HTMLDivElement, Props>(
-  ({ number, section, title, description, content }: Props, ref) => {
+  ({ number, section, title, description, content, footer }: Props, ref) => {
     const titleRef = useRef<HTMLDivElement | null>(null)
     const descriptionRef = useRef<HTMLDivElement | null>(null)
 
@@ -51,7 +52,8 @@ export const FreeRightPartContainer = forwardRef<HTMLDivElement, Props>(
               ))}
             </Description>
           )}
-          <Content>{content} </Content>
+          <Content>{content}</Content>
+          {footer && <Footer>{footer}</Footer>}
         </RightPart>
       </Container>
     )
@@ -179,5 +181,11 @@ const Description = styled('div')(({ theme }) => ({
 const Content = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     marginTop: [32, null, 40, 32, null, 48, 56, null, 64],
+  }),
+}))
+
+const Footer = styled('div')(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    marginTop: [102],
   }),
 }))

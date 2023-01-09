@@ -22,6 +22,7 @@ import { TextOutlined } from 'shared/ui/outlined-text'
 import { XLFont } from 'shared/ui/typography'
 
 import { MainPageServicesMenu } from './components/services-menu'
+import { MainPageServicesSection } from './components/services-section'
 
 const topProjects = projects.slice(0, 6)
 
@@ -62,25 +63,8 @@ const HomePage = () => {
           />
         }
       />
-      <FreeRightPartContainer
-        number={
-          <TextOutlined viewBoxWidth={800} animate>
-            02
-          </TextOutlined>
-        }
-        section="services"
-        title={['what we DO']}
-        content={
-          <Accordion
-            name="Services"
-            items={services.map(service => ({
-              title: service.name,
-              titleExplanation: service.nameExplanation,
-              content: service.description,
-            }))}
-          />
-        }
-      />
+
+      <MainPageServicesSection />
 
       <HorizontalSliderContainer>
         <XLFont variant="h2" textAlign="center">
