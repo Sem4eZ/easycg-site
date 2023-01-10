@@ -3,13 +3,11 @@ import { useRef } from 'react'
 
 import { projects } from 'entities/project/data'
 import { ProjectCard } from 'entities/project/ui/project-card'
-import { services } from 'entities/services/data'
 import { ServicesHeroMenu } from 'entities/services/ui/services-hero-menu'
 
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { spaceArr } from 'shared/theme'
-import { Accordion } from 'shared/ui/accordion'
 import {
   CenterWithSectionNumber,
   FreeRightPartContainer,
@@ -21,6 +19,7 @@ import { HorizontalList, ScrollableList } from 'shared/ui/horizontal-list'
 import { TextOutlined } from 'shared/ui/outlined-text'
 import { XLFont } from 'shared/ui/typography'
 
+import { MainPageCeoSection } from './components/ceo-section'
 import { MainPageServicesMenu } from './components/services-menu'
 import { MainPageServicesSection } from './components/services-section'
 
@@ -102,6 +101,8 @@ const HomePage = () => {
       />
 
       <MainPageServicesMenu />
+
+      <MainPageCeoSection />
     </div>
   )
 }

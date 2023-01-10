@@ -12,7 +12,7 @@ export const ServicesMenu = () => {
       <List>
         {services.map(service => {
           return (
-            <li>
+            <li key={service.type}>
               <ServiceIcon href={`${PAGES.Services}#${service.type}`}>
                 <Title>{service.name}</Title>
                 {service.icon}

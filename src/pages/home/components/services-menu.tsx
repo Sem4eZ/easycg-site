@@ -8,7 +8,7 @@ import { ServicesMenu } from 'entities/services/ui/services-menu'
 import { COMPANY_EMAIL } from 'shared/config/environment-variables'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
-import { spaceArr } from 'shared/theme'
+import { maxWidth, spaceArr } from 'shared/theme'
 import { visuallyHiddenStyles } from 'shared/ui/accesibility'
 import { XXLFont } from 'shared/ui/typography'
 
@@ -32,6 +32,9 @@ export const MainPageServicesMenu = () => {
 }
 
 const Container = styled('section')(({ theme }) => ({
+  maxWidth: maxWidth,
+  marginLeft: 'auto',
+  marginRight: 'auto',
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,

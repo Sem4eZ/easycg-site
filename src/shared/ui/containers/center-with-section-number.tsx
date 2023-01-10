@@ -127,9 +127,6 @@ const Title = styled(XLFont)(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     textAlign: ['start', null, null, null, 'center'],
   }),
-  '& .word': {
-    transition: 'opacity .2s',
-  },
 }))
 
 const Description = styled('div')(({ theme }) => ({
