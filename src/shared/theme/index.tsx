@@ -132,17 +132,23 @@ const commonTheme = createTheme({
             textTransform: 'none',
             borderRadius: '999px',
             color: theme.palette.text.primary,
-            padding: `${pxToRem(24)} ${pxToRem(32)} ${pxToRem(24)} ${pxToRem(
-              48,
-            )}`,
-            left: `-${pxToRem(48)}`,
+            padding: 0,
             ':disabled': {
               color: theme.palette.text.disabled,
             },
             '&:hover': {
-              backgroundColor: `${theme.palette.inverted}4d`,
+              backgroundColor: 'transparent',
+              '& .MuiTouchRipple-root': {
+                backgroundColor: `${theme.palette.inverted}4d`,
+              },
             },
-            ' .MuiTouchRipple-child': {
+            '& .MuiTouchRipple-root': {
+              width: `calc(100% + ${pxToRem(48 + 32)})`,
+              height: `calc(100% + ${pxToRem(24 * 2)})`,
+              left: `-${pxToRem(48)}`,
+              top: `-${pxToRem(24)}`,
+            },
+            '& .MuiTouchRipple-child': {
               backgroundColor: theme.palette.inverted,
             },
             [theme.breakpoints.up('tablet')]: {

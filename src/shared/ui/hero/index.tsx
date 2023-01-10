@@ -1,17 +1,19 @@
 import { styled } from '@mui/material/styles'
 
-import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { maxWidth, spaceArr } from 'shared/theme'
 
-import { Link } from '../link'
 import { SocialMedia } from '../social-media'
 import { Decoration } from './ui/decoration'
 import { ScrollDown } from './ui/scroll-down'
 import { ThemeAndLocation } from './ui/theme-and-location'
 
-export const Hero = () => {
+interface Props {
+  menu: React.ReactNode
+}
+
+export const Hero = ({ menu }: Props) => {
   const {
     isMobileS,
     isMobileSLandscape,
@@ -48,27 +50,7 @@ export const Hero = () => {
                 <span key={i}>{letter}</span>
               ))}
             </Title>
-            {showMenu && (
-              <Menu>
-                <li>
-                  <Link href={`${PAGES.Services}#services_mobile`}>
-                    mobile/
-                  </Link>
-                </li>
-                <li>
-                  <Link href={`${PAGES.Services}#services_web`}>web/</Link>
-                </li>
-                <li>
-                  <Link href={`${PAGES.Services}#services_cgi`}>CGI/</Link>
-                </li>
-                <li>
-                  <Link href={`${PAGES.Services}#services_vr`}>VR/</Link>
-                </li>
-                <li>
-                  <Link href={`${PAGES.Services}#services_ar`}>AR</Link>
-                </li>
-              </Menu>
-            )}
+            {showMenu && menu}
             {showThemeAndLocationInContentBlock && <ThemeAndLocationStyled />}
           </ContentMain>
           <ContentFooter>
@@ -138,23 +120,6 @@ const Title = styled('div')(({ theme }) => ({
     marginBottom: [16, 0, 83, 46, 32, null, 24, null, null],
     gap: [16, null, null, null, null, null, 56, null, 80],
   }),
-}))
-
-const Menu = styled('ul')(({ theme }) => ({
-  listStyle: 'none',
-  padding: 0,
-  margin: 0,
-  display: 'flex',
-  alignSelf: 'flex-start',
-  justifyContent: 'space-between',
-  ...getBreakpointsStylesByArray(theme, {
-    gap: [0, null, null, null, null, null, 64],
-  }),
-  '& a': {
-    ...getBreakpointsStylesByArray(theme, {
-      fontWeight: [400, null, null, null, null, null, 700, null, 800],
-    }),
-  },
 }))
 
 const ThemeAndLocationStyled = styled(ThemeAndLocation)(() => ({
