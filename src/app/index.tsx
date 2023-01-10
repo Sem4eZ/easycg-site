@@ -18,9 +18,10 @@ function App() {
       <Suspense fallback={<CircularProgress />}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-
           <Header projectsCount={projects.length} />
-          <Pages />
+          <main>
+            <Pages />
+          </main>
           <Footer projectsCount={projects.length} />
         </ThemeProvider>
       </Suspense>

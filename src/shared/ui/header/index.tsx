@@ -137,6 +137,8 @@ export const Header = ({ projectsCount }: Props) => {
 }
 
 const Container = styled('header')(({ theme }) => ({
+  position: 'relative',
+  zIndex: 1,
   display: 'grid',
   alignItems: 'center',
   maxWidth: maxWidth,

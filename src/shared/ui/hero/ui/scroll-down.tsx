@@ -16,7 +16,7 @@ export const ScrollDown = () => {
   const rotate = () => {
     const section = sectionRef.current
     if (!section) return
-    section.style.transform = 'rotate(' + window.pageYOffset / 2 + 'deg)'
+    section.style.transform = 'rotate(' + window.pageYOffset / 4 + 'deg)'
   }
 
   useEffect(() => {
@@ -51,6 +51,7 @@ const Container = styled('div')(({ theme }) => ({
     marginTop: [92, 85, 100, 94, 128, 188, 157, null, 74, 165],
     marginBottom: [41, 10, 6, 55, 25, 152, 154, null, 187, 172],
   }),
+  transition: 'transform .2s',
   '& img': {
     width: '100%',
     height: '100%',

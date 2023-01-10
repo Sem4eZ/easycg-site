@@ -15,6 +15,7 @@ import { Language } from '../language'
 interface Props extends Omit<DialogProps, 'title'> {
   title: React.ReactNode
   hideTitle?: boolean
+  hideLanguage?: boolean
   children: React.ReactNode
   actionsContent?: React.ReactNode
 }
@@ -22,6 +23,7 @@ interface Props extends Omit<DialogProps, 'title'> {
 export const Modal = ({
   title,
   hideTitle = false,
+  hideLanguage = false,
   onClose,
   children,
   actionsContent,
@@ -31,7 +33,8 @@ export const Modal = ({
     useGetDevice()
 
   const showLanguageButton =
-    isMobileS || isMobileLandscape || isMobile || isMobileSLandscape
+    (isMobileS || isMobileLandscape || isMobile || isMobileSLandscape) &&
+    !hideLanguage
 
   return (
     <Dialog aria-labelledby="customized-dialog-title" {...rest}>

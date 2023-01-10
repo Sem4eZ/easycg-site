@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { projects } from 'entities/project/data'
 import { ProjectCard } from 'entities/project/ui/project-card'
 import { services } from 'entities/services/data'
+import { ServicesHeroMenu } from 'entities/services/ui/services-hero-menu'
 
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
@@ -20,13 +21,17 @@ import { HorizontalList, ScrollableList } from 'shared/ui/horizontal-list'
 import { TextOutlined } from 'shared/ui/outlined-text'
 import { XLFont } from 'shared/ui/typography'
 
+import { MainPageServicesMenu } from './components/services-menu'
+import { MainPageServicesSection } from './components/services-section'
+
 const topProjects = projects.slice(0, 6)
 
 const HomePage = () => {
   const processSectionRef = useRef<HTMLDivElement | null>(null)
   return (
     <div>
-      <Hero />
+      <Hero menu={<ServicesHeroMenu />} />
+
       <FreeRightPartContainer
         number={
           <TextOutlined viewBoxWidth={680} animate>
@@ -58,25 +63,9 @@ const HomePage = () => {
           />
         }
       />
-      <FreeRightPartContainer
-        number={
-          <TextOutlined viewBoxWidth={800} animate>
-            02
-          </TextOutlined>
-        }
-        section="services"
-        title={['what we DO']}
-        content={
-          <Accordion
-            name="Services"
-            items={services.map(service => ({
-              title: service.name,
-              titleExplanation: service.nameExplanation,
-              content: service.description,
-            }))}
-          />
-        }
-      />
+
+      <MainPageServicesSection />
+
       <HorizontalSliderContainer>
         <XLFont variant="h2" textAlign="center">
           our projects
@@ -112,17 +101,12 @@ const HomePage = () => {
         content={<Flow sectionRef={processSectionRef} />}
       />
 
-      <Block />
+      <MainPageServicesMenu />
     </div>
   )
 }
 
 export default HomePage
-
-const Block = styled('div')`
-  height: 1000px;
-  background-color: yellow;
-`
 
 const SeeAllProjectsButton = styled(Button)(({ theme }) => ({
   alignSelf: 'flex-start',

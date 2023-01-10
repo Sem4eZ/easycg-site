@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles'
 
 import { getMenuSchema } from 'entities/menu/data'
 
+import { COMPANY_EMAIL } from 'shared/config/environment-variables'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { useGetUserTime } from 'shared/lib/use-get-time'
@@ -44,22 +45,22 @@ export const Footer = ({ projectsCount }: Props) => {
       </nav>
       {!showMobileSocial && <SocialMediaStyled size="medium" />}
       <ContactInfo>
-        <div>
+        <BlockWithCity>
           <City>Based in {city}</City>
           <Time>{`${time.getHours()}:${
             time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes()
-          } (GTM ${timezone})  `}</Time>
-        </div>
-        <div>
+          } (GTM ${timezone})`}</Time>
+        </BlockWithCity>
+        <BlockWithPhone>
           <Phone href="tel:+79222222222">+7 922 222 22 22</Phone>
           {!showSeparateEmail && (
-            <Email href="mailto:easy.cg@gmail.com">easy.cg@gmail.com</Email>
+            <Email href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</Email>
           )}
-        </div>
+        </BlockWithPhone>
         {showSeparateEmail && (
-          <div>
-            <Email href="mailto:easy.cg@gmail.com">easy.cg@gmail.com</Email>
-          </div>
+          <BlockWithEmail>
+            <Email href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</Email>
+          </BlockWithEmail>
         )}
       </ContactInfo>
       {showMobileSocial && <SocialMediaStyled size="medium" />}
@@ -141,7 +142,7 @@ const ContactInfo = styled('div')(({ theme }) => ({
   alignSelf: 'center',
   ...getBreakpointsStylesByArray(theme, {
     flexDirection: ['column', null, 'row', 'column', 'row'],
-    alignItems: ['center', null],
+    alignItems: ['center', null, null, null, null, null, 'flex-start'],
     gap: [40],
     marginTop: [47, 56, null, null, 108, null, 112],
     marginBottom: [59, 50, 54, null, 80, 90, 108],
@@ -180,4 +181,25 @@ const Phone = styled('a')(({ theme }) => ({
     fontWeight: [700, null, null, null, null, null, 400],
     marginBottom: [8, null, null, null, null, null, 16],
   }),
+}))
+
+const InfoBlock = styled('div')(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    width: ['auto', null, null, null, null, null, 270],
+  }),
+}))
+const BlockWithCity = styled(InfoBlock)(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    order: [1, 1, 0, 1, 0],
+  }),
+}))
+const BlockWithPhone = styled(InfoBlock)(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    order: [0, 0, 1, 0, 1],
+  }),
+}))
+const BlockWithEmail = styled(InfoBlock)(() => ({
+  order: 2,
+  display: 'flex',
+  justifyContent: 'flex-end',
 }))
