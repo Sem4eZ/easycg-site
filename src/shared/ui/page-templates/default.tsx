@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowThin } from 'shared/icons/arrow-thin'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
+import { useGetDevice } from 'shared/lib/use-get-device'
 import { spaceArr } from 'shared/theme'
 
 import { XXXLFont } from '../typography'
@@ -27,6 +28,10 @@ export const Page = ({
 }: Props) => {
   const navigate = useNavigate()
 
+  const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
+
+  const showBackButton = isDesktopS || isLaptop || isMacbook || isDesktop
+
   const titleRef = useRef<HTMLSpanElement | null>(null)
   useEffect(() => {
     const title = titleRef.current
@@ -38,12 +43,14 @@ export const Page = ({
 
   return (
     <div style={{ overflow: 'hidden', paddingTop: '24px' }}>
-      <BackButton
-        startIcon={<ArrowThin />}
-        endIcon=""
-        onClick={() => navigate(-1)}>
-        back
-      </BackButton>
+      {showBackButton && (
+        <BackButton
+          startIcon={<ArrowThin />}
+          endIcon=""
+          onClick={() => navigate(-1)}>
+          back
+        </BackButton>
+      )}
       <Title variant="h1" ref={titleRef}>
         {decorationText && (
           <DecorationTextBlock>{decorationText}</DecorationTextBlock>

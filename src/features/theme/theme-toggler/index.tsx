@@ -7,7 +7,7 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 import { darkTheme, lightTheme } from 'shared/theme'
 
 export const useThemeToggler = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   const toggleTheme = () => {
     setTheme(prevState => (prevState === 'light' ? 'dark' : 'light'))

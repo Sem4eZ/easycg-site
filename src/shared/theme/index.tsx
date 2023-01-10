@@ -79,6 +79,10 @@ const commonTheme = createTheme({
             color: theme.palette.text.primary,
             '& #root': {
               overflowX: 'hidden',
+              display: 'grid',
+              gridTemplateRows: 'auto 1fr auto',
+              gridTemplateColumns: '100%',
+              minHeight: '100vh',
             },
             [theme.breakpoints.up('desktop_s')]: {
               fontSize: pxToRem(25),
