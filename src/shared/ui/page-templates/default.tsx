@@ -1,8 +1,12 @@
+import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
+import { ArrowThin } from 'shared/icons/arrow-thin'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
+import { useGetDevice } from 'shared/lib/use-get-device'
 import { spaceArr } from 'shared/theme'
 
 import { XXXLFont } from '../typography'
@@ -22,6 +26,12 @@ export const Page = ({
   decorationText,
   children,
 }: Props) => {
+  const navigate = useNavigate()
+
+  const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
+
+  const showBackButton = isDesktopS || isLaptop || isMacbook || isDesktop
+
   const titleRef = useRef<HTMLSpanElement | null>(null)
   useEffect(() => {
     const title = titleRef.current
@@ -33,7 +43,14 @@ export const Page = ({
 
   return (
     <div style={{ overflow: 'hidden', paddingTop: '24px' }}>
-      back
+      {showBackButton && (
+        <BackButton
+          startIcon={<ArrowThin />}
+          endIcon=""
+          onClick={() => navigate(-1)}>
+          back
+        </BackButton>
+      )}
       <Title variant="h1" ref={titleRef}>
         {decorationText && (
           <DecorationTextBlock>{decorationText}</DecorationTextBlock>
@@ -49,13 +66,21 @@ export const Page = ({
   )
 }
 
+const BackButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  ...getBreakpointsStylesByArray(theme, {
+    marginLeft: spaceArr,
+    marginRight: spaceArr,
+  }),
+}))
+
 const Title = styled(XXXLFont)(({ theme }) => ({
   position: 'relative',
   marginTop: pxToRem(114),
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
-    marginTop: [114, null, null, null, 258, 234, 85, null, 188],
+    marginTop: [45, 103, 56, null, 258, 234, 85, null, 188],
   }),
   '&.animate': {
     '&::before': {
@@ -89,7 +114,7 @@ const DecorationTextBlock = styled('div')(({ theme }) => ({
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
     top: [-130, -130, -141, -141, -196, -196, -266, null, -328],
-    left: [-52, -110, -60, -113, -60, -132, -267, null, -192],
+    left: [-92, -110, -60, -113, -60, -132, -267, null, -192],
   }),
 }))
 
@@ -104,12 +129,14 @@ const SubtitleContentBlock = styled('div')(({ theme }) => ({
 
 const FilterBlock = styled('section')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
-    marginTop: [168, 135, 112, 141, 267, null, 297, null, 288],
+    paddingLeft: spaceArr,
+    paddingRight: spaceArr,
+    marginTop: [136, null, 112, 141, 267, null, 297, null, 288],
   }),
 }))
 
 const ContentBlock = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
-    marginTop: [168, 135, 112, 141, 267, null, 297, null, 288],
+    marginTop: [112, 120, 129, 141, 267, 273, 249, null, 297],
   }),
 }))

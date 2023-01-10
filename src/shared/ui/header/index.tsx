@@ -144,6 +144,7 @@ const Container = styled('header')(({ theme }) => ({
   maxWidth: maxWidth,
   marginLeft: 'auto',
   marginRight: 'auto',
+  width: '100%',
   ...getBreakpointsStylesByArray(theme, {
     paddingTop: [51, 41, 48, null, 32, 24, 58],
     paddingBottom: [51, 41, 48, null, 32, 24, 58],
