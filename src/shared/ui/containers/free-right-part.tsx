@@ -138,9 +138,6 @@ const Section = styled(Typography)(({ theme }) => ({
 }))
 
 const Title = styled(XLFont)(({ theme }) => ({
-  '& .word': {
-    transition: 'opacity .2s',
-  },
   ...getBreakpointsStylesByArray(theme, {
     marginRight: [
       0,
