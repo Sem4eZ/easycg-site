@@ -36,6 +36,7 @@ const FILTER: {
     title: 'VR',
     value: ['VR'],
   },
+  { title: 'UX/ UI', value: ['UXUI'] },
 ]
 
 export const useServicesFilter = () => {

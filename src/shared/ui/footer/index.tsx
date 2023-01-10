@@ -74,6 +74,7 @@ const Container = styled('footer')(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   display: 'flex',
+  width: '100%',
   flexDirection: 'column',
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,

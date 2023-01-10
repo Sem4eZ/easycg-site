@@ -1,4 +1,5 @@
 import { CircularProgress, CssBaseline, ThemeProvider } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import Pages from 'pages'
 import { Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
@@ -15,18 +16,33 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Suspense fallback={<CircularProgress />}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Header projectsCount={projects.length} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Header projectsCount={projects.length} />
+        <Suspense
+          fallback={
+            <LoaderContainer>
+              <CircularProgress />
+            </LoaderContainer>
+          }>
           <main>
             <Pages />
           </main>
-          <Footer projectsCount={projects.length} />
-        </ThemeProvider>
-      </Suspense>
+        </Suspense>
+        <Footer projectsCount={projects.length} />
+      </ThemeProvider>
     </BrowserRouter>
   )
 }
 
 export default App
+
+const LoaderContainer = styled('div')(({ theme }) => ({
+  height: '100vh',
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: '30vh',
+  '& span': {
+    color: theme.palette.accent,
+  },
+}))
