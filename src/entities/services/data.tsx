@@ -155,5 +155,5 @@ export const serviceTypeToIcon: Record<ServiceType, React.ReactNode> = {
   CGI: <CGIIcon />,
   AR: <ARIcon />,
   VR: <VRIcon />,
-  'UX/UI': <UXUIIcon />,
+  UXUI: <UXUIIcon />,
 }

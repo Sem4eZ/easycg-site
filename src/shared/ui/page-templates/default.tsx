@@ -1,6 +1,9 @@
+import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
+import { ArrowThin } from 'shared/icons/arrow-thin'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 import { spaceArr } from 'shared/theme'
@@ -22,6 +25,8 @@ export const Page = ({
   decorationText,
   children,
 }: Props) => {
+  const navigate = useNavigate()
+
   const titleRef = useRef<HTMLSpanElement | null>(null)
   useEffect(() => {
     const title = titleRef.current
@@ -33,7 +38,12 @@ export const Page = ({
 
   return (
     <div style={{ overflow: 'hidden', paddingTop: '24px' }}>
-      back
+      <BackButton
+        startIcon={<ArrowThin />}
+        endIcon=""
+        onClick={() => navigate(-1)}>
+        back
+      </BackButton>
       <Title variant="h1" ref={titleRef}>
         {decorationText && (
           <DecorationTextBlock>{decorationText}</DecorationTextBlock>
@@ -48,6 +58,14 @@ export const Page = ({
     </div>
   )
 }
+
+const BackButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  ...getBreakpointsStylesByArray(theme, {
+    marginLeft: spaceArr,
+    marginRight: spaceArr,
+  }),
+}))
 
 const Title = styled(XXXLFont)(({ theme }) => ({
   position: 'relative',
@@ -104,12 +122,14 @@ const SubtitleContentBlock = styled('div')(({ theme }) => ({
 
 const FilterBlock = styled('section')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
+    paddingLeft: spaceArr,
+    paddingRight: spaceArr,
     marginTop: [168, 135, 112, 141, 267, null, 297, null, 288],
   }),
 }))
 
 const ContentBlock = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
-    marginTop: [168, 135, 112, 141, 267, null, 297, null, 288],
+    marginTop: [136, 168, 112, 141, 267, 273, 249, null, 297],
   }),
 }))
