@@ -3,7 +3,10 @@ import { useState } from 'react'
 
 import { Modal } from 'shared/ui/modal/default'
 
-export const LeaveProjectDetails = () => {
+interface Props {
+  buttonText: string
+}
+export const LeaveProjectDetails = ({ buttonText }: Props) => {
   const [open, setOpen] = useState(false)
 
   const openModal = () => {
@@ -16,7 +19,7 @@ export const LeaveProjectDetails = () => {
 
   return (
     <>
-      <Button onClick={openModal}>discuss a project</Button>
+      <Button onClick={openModal}>{buttonText}</Button>
 
       <Modal
         title="Project details"

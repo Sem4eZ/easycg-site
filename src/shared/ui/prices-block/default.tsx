@@ -10,9 +10,9 @@ export interface Props {
   remark: string
 }
 
-export const PricesBlock = ({ items, services, remark }: Props) => {
+export const PricesBlock = ({ items, services, remark, ...rest }: Props) => {
   return (
-    <div>
+    <div {...rest}>
       <Container>
         {services && (
           <Row>

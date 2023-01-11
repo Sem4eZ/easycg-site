@@ -25,7 +25,7 @@ export const MainPageServicesMenu = () => {
 
       <Footer>
         <Button href={`mailto:${COMPANY_EMAIL}`}>say hello</Button>
-        <LeaveProjectDetails />
+        <LeaveProjectDetails buttonText="discuss a project" />
       </Footer>
     </Container>
   )

@@ -18,7 +18,7 @@ interface Props {
   section: string
   title: string[]
   description?: Array<React.ReactNode | string>
-  content: React.ReactNode
+  content?: React.ReactNode
   footer?: React.ReactNode
 }
 
@@ -52,7 +52,7 @@ export const FreeRightPartContainer = forwardRef<HTMLDivElement, Props>(
               ))}
             </Description>
           )}
-          <Content>{content}</Content>
+          {content && <Content>{content}</Content>}
           {footer && <Footer>{footer}</Footer>}
         </RightPart>
       </Container>

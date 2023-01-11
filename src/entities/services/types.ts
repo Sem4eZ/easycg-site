@@ -1,3 +1,5 @@
+import { Price } from 'entities/price/types'
+
 export type ServiceType = 'mobile' | 'web' | 'CGI' | 'AR' | 'VR' | 'UXUI'
 
 export interface Service {
@@ -7,13 +9,7 @@ export interface Service {
   nameExplanation?: string
   description: string
   services: string[]
-  details: {
-    price: string
-    developmentTime: string
-    rate: string
-    exactPrice: string
-    additionalExpenses: string
-  }
+  details: Price
   remark: string
   icon: React.ReactNode
 }

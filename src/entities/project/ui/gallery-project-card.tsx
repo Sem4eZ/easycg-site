@@ -16,7 +16,6 @@ interface Props
     Project,
     'id' | 'name' | 'image' | 'date' | 'servicesType' | 'type'
   > {
-  order: number
   hide?: boolean
 }
 
@@ -41,7 +40,6 @@ export const GalleryProjectCard = ({
   date,
   servicesType,
   type,
-  order,
   hide = false,
 }: Props) => {
   const containerRef = useRef<HTMLAnchorElement | null>(null)
@@ -79,7 +77,7 @@ export const GalleryProjectCard = ({
       })
     }
     initialPositionRef.current = box
-  }, [order])
+  })
 
   return (
     <Container
@@ -131,6 +129,7 @@ const Container = styled('a')<{ hide: boolean }>(({ theme, hide }) => ({
   width: hide ? '0px !important' : '100%',
   height: hide ? '0px !important' : '100%',
   visibility: hide ? 'hidden' : 'visible',
+  padding: hide ? '0 !important' : '0',
   transition: hide
     ? 'opacity .2s, width .2s, height: .2s, visibility .2s'
     : 'unset',
