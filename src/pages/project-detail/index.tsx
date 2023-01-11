@@ -19,6 +19,8 @@ import { Page } from 'shared/ui/page-templates'
 import { PricesBlock } from 'shared/ui/prices-block'
 import { Tags } from 'shared/ui/tags'
 
+import { ProjectDetailHero } from './components/hero'
+
 const ProjectDetailPage = () => {
   const navigate = useNavigate()
   const { id } = useParams()
@@ -63,6 +65,11 @@ const ProjectDetailPage = () => {
           </ServiceIcons>
         </Information>
       }>
+      <ProjectDetailHero
+        image={project.detailPreviewImage}
+        alt={`${project.name} preview`}
+      />
+
       <FreeRightPartContainer
         number={
           <TextOutlined viewBoxWidth={680} animate>

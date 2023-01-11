@@ -13,4 +13,5 @@ export interface Project {
   details: Price
   detailsRemark: string
   picturesRemark: string[]
+  detailPreviewImage: string
 }

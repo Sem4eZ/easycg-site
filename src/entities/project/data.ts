@@ -26,6 +26,7 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
   },
   {
     id: '2',
@@ -50,6 +51,7 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
   },
   {
     id: '3',
@@ -74,6 +76,7 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
   },
   {
     id: '4',
@@ -98,6 +101,7 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
   },
   {
     id: '5',
@@ -122,6 +126,7 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
   },
   {
     id: '6',
@@ -146,6 +151,7 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
   },
   {
     id: '7',
@@ -169,6 +175,7 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
   },
   {
     id: '8',
@@ -193,6 +200,7 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
   },
   {
     id: '9',
@@ -217,6 +225,7 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
   },
 ]
 
