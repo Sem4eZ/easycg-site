@@ -1,3 +1,4 @@
+import { Price } from 'entities/price/types'
 import { ServiceType } from 'entities/services/types'
 
 export interface Project {
@@ -8,4 +9,8 @@ export interface Project {
   date: Date
   servicesType: ServiceType[]
   type: string
+  about: string
+  details: Price
+  detailsRemark: string
+  picturesRemark: string[]
 }

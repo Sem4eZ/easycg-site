@@ -20,11 +20,11 @@ export const services: Service[] = [
       'crossplatforming solutions on flutter',
     ],
     details: {
-      price: '$830',
+      price: 830,
       developmentTime: 'two weeks',
-      rate: '$37',
-      exactPrice: '$1020',
-      additionalExpenses: '$20',
+      rate: 37,
+      exactPrice: 1020,
+      additionalExpenses: 20,
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
@@ -41,11 +41,11 @@ export const services: Service[] = [
       'crossplatforming solutions on flutter',
     ],
     details: {
-      price: '$830',
+      price: 830,
       developmentTime: 'two weeks',
-      rate: '$37',
-      exactPrice: '$1020',
-      additionalExpenses: '$20',
+      rate: 37,
+      exactPrice: 1020,
+      additionalExpenses: 20,
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
@@ -62,11 +62,11 @@ export const services: Service[] = [
       'crossplatforming solutions on flutter',
     ],
     details: {
-      price: '$830',
+      price: 830,
       developmentTime: 'two weeks',
-      rate: '$37',
-      exactPrice: '$1020',
-      additionalExpenses: '$20',
+      rate: 37,
+      exactPrice: 1020,
+      additionalExpenses: 20,
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
@@ -84,11 +84,11 @@ export const services: Service[] = [
       'crossplatforming solutions on flutter',
     ],
     details: {
-      price: '$830',
+      price: 830,
       developmentTime: 'two weeks',
-      rate: '$37',
-      exactPrice: '$1020',
-      additionalExpenses: '$20',
+      rate: 37,
+      exactPrice: 1020,
+      additionalExpenses: 20,
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
@@ -106,11 +106,11 @@ export const services: Service[] = [
       'crossplatforming solutions on flutter',
     ],
     details: {
-      price: '$830',
+      price: 830,
       developmentTime: 'two weeks',
-      rate: '$37',
-      exactPrice: '$1020',
-      additionalExpenses: '$20',
+      rate: 37,
+      exactPrice: 1020,
+      additionalExpenses: 20,
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
@@ -127,11 +127,11 @@ export const services: Service[] = [
       'crossplatforming solutions on flutter',
     ],
     details: {
-      price: '$830',
+      price: 830,
       developmentTime: 'two weeks',
-      rate: '$37',
-      exactPrice: '$1020',
-      additionalExpenses: '$20',
+      rate: 37,
+      exactPrice: 1020,
+      additionalExpenses: 20,
     },
     remark:
       'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
@@ -142,10 +142,11 @@ export const services: Service[] = [
 export const serviceDetailsToPricesBlockItems = (
   serviceDetails: Service['details'],
 ) => {
+  const money = ['price', 'rate', 'exactPrice', 'additionalExpenses']
   const details = Object.entries(serviceDetails)
   return details.map(detail => ({
     name: detail[0],
-    value: detail[1],
+    value: money.includes(detail[0]) ? `${detail[1]} $` : detail[1],
   }))
 }
 

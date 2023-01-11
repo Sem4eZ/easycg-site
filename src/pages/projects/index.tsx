@@ -64,7 +64,7 @@ const ProjectsPage = () => {
       <Content
         ref={galleryRef}
         data-elements-count={newProjects.filtered.length}>
-        {newProjects.filtered.map((project, i) => (
+        {newProjects.filtered.map(project => (
           <GalleryProjectCard
             key={project.id}
             id={project.id}
@@ -73,10 +73,9 @@ const ProjectsPage = () => {
             date={project.date}
             servicesType={project.servicesType}
             type={project.type}
-            order={i}
           />
         ))}
-        {newProjects.rest.map((project, i) => (
+        {newProjects.rest.map(project => (
           <GalleryProjectCard
             key={project.id}
             id={project.id}
@@ -85,7 +84,6 @@ const ProjectsPage = () => {
             date={project.date}
             servicesType={project.servicesType}
             type={project.type}
-            order={newProjects.filtered.length + i + 1}
             hide={true}
           />
         ))}
