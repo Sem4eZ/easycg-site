@@ -14,4 +14,8 @@ export interface Project {
   detailsRemark: string
   picturesRemark: string[]
   detailPreviewImage: string
+  link: {
+    type: 'app' | 'site' | 'video'
+    url: string
+  }
 }

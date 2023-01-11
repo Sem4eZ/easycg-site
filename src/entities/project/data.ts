@@ -27,6 +27,10 @@ export const projects: Project[] = [
       'before we start we made research',
     ],
     detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'app',
+      url: 'https://play.google.com/store/games',
+    },
   },
   {
     id: '2',
@@ -52,6 +56,10 @@ export const projects: Project[] = [
       'before we start we made research',
     ],
     detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'site',
+      url: 'https://google.com/',
+    },
   },
   {
     id: '3',
@@ -77,6 +85,10 @@ export const projects: Project[] = [
       'before we start we made research',
     ],
     detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'app',
+      url: 'https://play.google.com/store/games',
+    },
   },
   {
     id: '4',
@@ -102,6 +114,10 @@ export const projects: Project[] = [
       'before we start we made research',
     ],
     detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'app',
+      url: 'https://play.google.com/store/games',
+    },
   },
   {
     id: '5',
@@ -127,6 +143,10 @@ export const projects: Project[] = [
       'before we start we made research',
     ],
     detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'app',
+      url: 'https://play.google.com/store/games',
+    },
   },
   {
     id: '6',
@@ -152,6 +172,10 @@ export const projects: Project[] = [
       'before we start we made research',
     ],
     detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'video',
+      url: 'https://www.youtube.com/',
+    },
   },
   {
     id: '7',
@@ -176,6 +200,10 @@ export const projects: Project[] = [
       'before we start we made research',
     ],
     detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'video',
+      url: 'https://www.youtube.com/',
+    },
   },
   {
     id: '8',
@@ -201,6 +229,10 @@ export const projects: Project[] = [
       'before we start we made research',
     ],
     detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'video',
+      url: 'https://www.youtube.com/',
+    },
   },
   {
     id: '9',
@@ -226,6 +258,10 @@ export const projects: Project[] = [
       'before we start we made research',
     ],
     detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'app',
+      url: 'https://play.google.com/store/games',
+    },
   },
 ]
 

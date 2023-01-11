@@ -60,14 +60,16 @@ const ProjectDetailPage = () => {
           />
           <ServiceIcons>
             {project.servicesType.map(serviceType => (
-              <ServiceIcon>{serviceTypeToIcon[serviceType]}</ServiceIcon>
+              <ServiceIcon key={serviceType}>
+                {serviceTypeToIcon[serviceType]}
+              </ServiceIcon>
             ))}
           </ServiceIcons>
         </Information>
       }>
       <ProjectDetailHero
         image={project.detailPreviewImage}
-        alt={`${project.name} preview`}
+        link={project.link}
       />
 
       <FreeRightPartContainer
