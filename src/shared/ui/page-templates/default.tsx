@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { ArrowThin } from 'shared/icons/arrow-thin'
+import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 import { useGetDevice } from 'shared/lib/use-get-device'
@@ -45,7 +45,7 @@ export const Page = ({
     <div style={{ overflow: 'hidden', paddingTop: '24px' }}>
       {showBackButton && (
         <BackButton
-          startIcon={<ArrowThin />}
+          startIcon={<ArrowFatIcon />}
           endIcon=""
           onClick={() => navigate(-1)}>
           back
