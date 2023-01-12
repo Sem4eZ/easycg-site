@@ -1,8 +1,6 @@
 import { styled } from '@mui/material/styles'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { spaceObj } from 'shared/theme'
-import { PARALLAX_CLASS } from 'shared/ui/horizontal-list/scrollable'
 import { Tags } from 'shared/ui/tags'
 import { LFont } from 'shared/ui/typography'
 
@@ -24,7 +22,7 @@ export const TeammateCard = ({
     <Container>
       <article>
         <ImageContainer>
-          <ImagesWrapepr className={PARALLAX_CLASS}>
+          <ImagesWrapepr>
             <img src={image.main} alt={`${name}  employee`} />
             <HiddenImage className="hidden" src={image.hidden} alt="" />
           </ImagesWrapepr>
@@ -52,26 +50,10 @@ export const TeammateCard = ({
   )
 }
 
-const Container = styled('li')(({ theme }) => ({
-  listStyle: 'none',
-  width: '619px',
+const Container = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
-    width: [144, '100%', 163, '100%', 352, 365, 454, 619],
+    width: [144, '100%', 163, '100%', 352, 365, 454, null, 619],
   }),
-  '&:last-child': {
-    ...getBreakpointsStylesByArray(theme, {
-      marginRight: [
-        spaceObj.se,
-        0,
-        spaceObj.ip13,
-        0,
-        spaceObj.tablet,
-        spaceObj.tablet_horizontal,
-        spaceObj.laptop,
-        spaceObj.desktop,
-      ],
-    }),
-  },
 }))
 
 const TagsStyled = styled(Tags)(({ theme }) => ({
@@ -85,13 +67,13 @@ const ImageContainer = styled('div')(({ theme }) => ({
   borderRadius: '10px',
   overflow: 'hidden',
   ...getBreakpointsStylesByArray(theme, {
-    height: [226, null, null, 443, 438, null, 692, 862],
+    height: [226, null, null, 443, 438, null, 692, null, 862],
   }),
   backgroundColor: theme.palette.card.default,
   transition: 'background-color .2s',
   img: {
     ...getBreakpointsStylesByArray(theme, {
-      height: [194, '100%', 194, '100%', 377, null, 596, 742],
+      height: [194, '100%', 194, '100%', 377, null, 596, null, 742],
       objectFit: ['unset', 'contain', 'unset', 'cover', 'unset'],
     }),
   },
@@ -107,7 +89,7 @@ const ImageContainer = styled('div')(({ theme }) => ({
 const Content = styled('div')(({ theme }) => ({
   color: theme.palette.text.primary,
   ...getBreakpointsStylesByArray(theme, {
-    marginTop: [16, null, null, 24, 32, null, null, 48],
+    marginTop: [16, null, null, 24, 32, null, null, null, 48],
   }),
 }))
 
@@ -115,7 +97,7 @@ const Header = styled('header')(({ theme }) => ({
   display: 'grid',
   ...getBreakpointsStylesByArray(theme, {
     gridRowGap: [4, null, null, null, 8],
-    marginBottom: [0, null, null, 24, 32, null, null, 48],
+    marginBottom: [0, null, null, 24, 32, null, null, null, 48],
   }),
 }))
 
