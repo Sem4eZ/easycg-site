@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { getMenuSchema } from 'entities/menu/data'
 
-import { ArrowThin } from 'shared/icons/arrow-thin'
+import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 import { useGetDevice } from 'shared/lib/use-get-device'
@@ -80,7 +80,7 @@ export const Header = ({ projectsCount }: Props) => {
   } else if (!isMainpageRoute()) {
     headerLeftContent = (
       <HeaderBackButton
-        startIcon={<ArrowThin />}
+        startIcon={<ArrowFatIcon />}
         endIcon=""
         onClick={() => navigate(-1)}>
         <HeaderBackButtonText>back</HeaderBackButtonText>

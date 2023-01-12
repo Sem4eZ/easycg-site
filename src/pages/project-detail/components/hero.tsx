@@ -22,6 +22,7 @@ export const ProjectDetailHero = ({ image, link }: Props) => {
   const { isDesktopS, isDesktop, isLaptop, isMacbook } = useGetDevice()
 
   const doParallax = isDesktopS || isDesktop || isLaptop || isMacbook
+  const showDesktopButton = isDesktopS || isDesktop || isLaptop || isMacbook
 
   const parallax = (e: MouseEvent) => {
     const parallaxEl = parallaxRef.current
@@ -61,13 +62,13 @@ export const ProjectDetailHero = ({ image, link }: Props) => {
       button.removeEventListener('mouseover', addAnimtaion)
       button.removeEventListener('mouseleave', removeAnimation)
     }
-  }, [])
+  }, [showDesktopButton])
 
   return (
     <Container>
       <Image ref={parallaxRef} style={{ backgroundImage: `url(${image})` }} />
 
-      {isDesktopS || isDesktop || isLaptop || isMacbook ? (
+      {showDesktopButton ? (
         <LinkButtonDesktop ref={buttonRef} href={link.url}>
           <LinkButtonDesktopAccessibility>
             {getButtonByLinkType(link).desktop}

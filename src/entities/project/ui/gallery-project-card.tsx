@@ -80,11 +80,7 @@ export const GalleryProjectCard = ({
   })
 
   return (
-    <Container
-      ref={containerRef}
-      href={`${PAGES.Projects}/${id}`}
-      data-groups={servicesType.join(',')}
-      hide={hide}>
+    <Container ref={containerRef} href={`${PAGES.Projects}/${id}`} hide={hide}>
       <ImageWrapper>
         <Image src={image} alt={name} />
         <Decorationfilter className="decorationFilter" />

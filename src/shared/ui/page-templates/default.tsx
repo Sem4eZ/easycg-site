@@ -3,11 +3,11 @@ import { styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { ArrowThin } from 'shared/icons/arrow-thin'
+import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 import { useGetDevice } from 'shared/lib/use-get-device'
-import { spaceArr } from 'shared/theme'
+import { maxWidth, spaceArr } from 'shared/theme'
 
 import { XXXLFont } from '../typography'
 
@@ -44,12 +44,14 @@ export const Page = ({
   return (
     <div style={{ overflow: 'hidden', paddingTop: '24px' }}>
       {showBackButton && (
-        <BackButton
-          startIcon={<ArrowThin />}
-          endIcon=""
-          onClick={() => navigate(-1)}>
-          back
-        </BackButton>
+        <BackButtonWrapper>
+          <BackButton
+            startIcon={<ArrowFatIcon />}
+            endIcon=""
+            onClick={() => navigate(-1)}>
+            back
+          </BackButton>
+        </BackButtonWrapper>
       )}
       <Title variant="h1" ref={titleRef}>
         {decorationText && (
@@ -66,6 +68,12 @@ export const Page = ({
   )
 }
 
+const BackButtonWrapper = styled('div')(() => ({
+  maxWidth: maxWidth,
+  marginLeft: 'auto',
+  marginRight: 'auto',
+}))
+
 const BackButton = styled(Button)(({ theme }) => ({
   color: theme.palette.text.secondary,
   ...getBreakpointsStylesByArray(theme, {
@@ -77,6 +85,9 @@ const BackButton = styled(Button)(({ theme }) => ({
 const Title = styled(XXXLFont)(({ theme }) => ({
   position: 'relative',
   marginTop: pxToRem(114),
+  maxWidth: maxWidth,
+  marginLeft: 'auto',
+  marginRight: 'auto',
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
@@ -119,6 +130,9 @@ const DecorationTextBlock = styled('div')(({ theme }) => ({
 }))
 
 const SubtitleContentBlock = styled('div')(({ theme }) => ({
+  maxWidth: maxWidth,
+  marginLeft: 'auto',
+  marginRight: 'auto',
   marginTop: pxToRem(24),
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,

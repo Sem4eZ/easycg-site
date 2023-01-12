@@ -3,6 +3,10 @@ import { styled } from '@mui/material/styles'
 import Pages from 'pages'
 import { Suspense } from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
 
 import { useThemeToggler } from 'features/theme/theme-toggler'
 

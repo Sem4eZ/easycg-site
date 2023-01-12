@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles'
 import { Fragment, useEffect, useRef } from 'react'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { useGetDevice } from 'shared/lib/use-get-device'
 import { useGetSectionScroll } from 'shared/lib/use-get-section-scroll'
 import {
   WORD_CLASS,
@@ -17,6 +18,10 @@ interface Props {
 }
 
 export const SwimOutContentFromRight = ({ title, content }: Props) => {
+  const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
+
+  const doAnimate = isDesktopS || isLaptop || isMacbook || isDesktop
+
   const titleRef = useRef<HTMLParagraphElement | null>(null)
   const contentRef = useRef<HTMLDivElement | null>(null)
   useRevealTextByWord({ ref: titleRef })
@@ -38,6 +43,7 @@ export const SwimOutContentFromRight = ({ title, content }: Props) => {
   }
 
   useEffect(() => {
+    if (!doAnimate) return
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -108,12 +114,13 @@ const Content = styled('div')(() => ({
   overflow: 'hidden',
 }))
 
-const ContentAnimationBlock = styled('div')(() => ({
-  transform: 'translateX(40%)',
-  transition: 'transform 0.5s',
+const ContentAnimationBlock = styled('div')(({ theme }) => ({
   '& img': {
     width: '100%',
     objectFit: 'contain',
     objectPosition: 'bottom',
   },
+  ...getBreakpointsStylesByArray(theme, {
+    transform: ['unset', null, null, null, null, null, 'translateX(40%)'],
+  }),
 }))

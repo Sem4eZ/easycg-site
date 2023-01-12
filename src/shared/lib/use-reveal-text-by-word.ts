@@ -1,11 +1,17 @@
 import React, { useEffect } from 'react'
 
+import { useGetDevice } from './use-get-device'
+
 interface Props {
   ref: React.MutableRefObject<HTMLDivElement | null>
 }
 export const WORD_CLASS = 'word'
 
 export const useRevealTextByWord = ({ ref }: Props) => {
+  const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
+
+  const doAnimation = isDesktopS || isLaptop || isMacbook || isDesktop
+
   function revealText() {
     const title = ref.current
     if (!title) return
@@ -47,7 +53,7 @@ export const useRevealTextByWord = ({ ref }: Props) => {
     return () => {
       window.removeEventListener('scroll', revealText)
     }
-  }, [])
+  }, [doAnimation])
 
   useEffect(() => {
     const title = ref.current
@@ -61,5 +67,5 @@ export const useRevealTextByWord = ({ ref }: Props) => {
       l.style.setProperty('transition', 'opacity .2s')
       l.style.setProperty('opacity', '0.2')
     })
-  })
+  }, [doAnimation])
 }
