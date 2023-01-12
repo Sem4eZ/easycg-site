@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import { PagePagination } from 'pages/project-detail/components/page-pagination'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { LeaveProjectDetails } from 'features/project/leave-project-details'
@@ -14,6 +15,7 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { FreeRightPartContainer } from 'shared/ui/containers'
 import { HorizontalList } from 'shared/ui/horizontal-list'
+import { ScrollableByOneList } from 'shared/ui/horizontal-list/scrollable-by-one'
 import { TextOutlined } from 'shared/ui/outlined-text'
 import { Page } from 'shared/ui/page-templates'
 import { PricesBlock } from 'shared/ui/prices-block'
@@ -121,6 +123,10 @@ const ProjectDetailPage = () => {
         description={project.picturesRemark}
         content=""
       />
+
+      <ScrollableByOneList items={project.carousel} />
+
+      <PagePagination currentProjectId={project.id} />
     </Page>
   )
 }
