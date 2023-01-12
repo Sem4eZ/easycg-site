@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+import { useGetDevice } from './use-get-device'
 import { useGetScrollDirection } from './use-get-scroll-direction'
 
 interface Props {
@@ -8,6 +9,10 @@ interface Props {
 
 export const useRevealBlock = ({ ref }: Props) => {
   const scrollDirectionRef = useGetScrollDirection()
+
+  const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
+
+  const doAnimation = isDesktopS || isLaptop || isMacbook || isDesktop
 
   function revealText() {
     const block = ref.current
@@ -43,9 +48,10 @@ export const useRevealBlock = ({ ref }: Props) => {
   }
 
   useEffect(() => {
+    if (!doAnimation) return
     window.addEventListener('scroll', revealText)
     return () => {
       window.removeEventListener('scroll', revealText)
     }
-  }, [])
+  }, [doAnimation])
 }
