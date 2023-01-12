@@ -26,6 +26,11 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'app',
+      url: 'https://play.google.com/store/games',
+    },
   },
   {
     id: '2',
@@ -50,6 +55,11 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'site',
+      url: 'https://google.com/',
+    },
   },
   {
     id: '3',
@@ -74,6 +84,11 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'app',
+      url: 'https://play.google.com/store/games',
+    },
   },
   {
     id: '4',
@@ -98,6 +113,11 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'app',
+      url: 'https://play.google.com/store/games',
+    },
   },
   {
     id: '5',
@@ -122,6 +142,11 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'app',
+      url: 'https://play.google.com/store/games',
+    },
   },
   {
     id: '6',
@@ -146,6 +171,11 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'video',
+      url: 'https://www.youtube.com/',
+    },
   },
   {
     id: '7',
@@ -169,6 +199,11 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'video',
+      url: 'https://www.youtube.com/',
+    },
   },
   {
     id: '8',
@@ -193,6 +228,11 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'video',
+      url: 'https://www.youtube.com/',
+    },
   },
   {
     id: '9',
@@ -217,36 +257,11 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
-  },
-  {
-    id: '7',
-    name: 'Project5',
-    description:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
-    date: new Date('2021-11-12'),
-    servicesType: ['CGI'],
-    type: 'Mobile delivery app',
-  },
-  {
-    id: '8',
-    name: 'Project6',
-    description:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
-    date: new Date('2021-11-12'),
-    servicesType: ['AR'],
-    type: 'Mobile delivery app',
-  },
-  {
-    id: '9',
-    name: 'Project4',
-    description:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
-    date: new Date('2021-11-12'),
-    servicesType: ['mobile'],
-    type: 'Mobile delivery app',
+    detailPreviewImage: `${IMAGES_PATH}detail_preview.png`,
+    link: {
+      type: 'app',
+      url: 'https://play.google.com/store/games',
+    },
   },
 ]
 
