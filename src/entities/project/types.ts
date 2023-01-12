@@ -18,4 +18,5 @@ export interface Project {
     type: 'app' | 'site' | 'video'
     url: string
   }
+  carousel: string[]
 }

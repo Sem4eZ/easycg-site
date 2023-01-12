@@ -31,6 +31,14 @@ export const projects: Project[] = [
       type: 'app',
       url: 'https://play.google.com/store/games',
     },
+    carousel: [
+      `${IMAGES_PATH}1.png`,
+      `${IMAGES_PATH}2.png`,
+      `${IMAGES_PATH}3.png`,
+      `${IMAGES_PATH}4.png`,
+      `${IMAGES_PATH}5.png`,
+      `${IMAGES_PATH}6.png`,
+    ],
   },
   {
     id: '2',
@@ -60,6 +68,14 @@ export const projects: Project[] = [
       type: 'site',
       url: 'https://google.com/',
     },
+    carousel: [
+      `${IMAGES_PATH}1.png`,
+      `${IMAGES_PATH}2.png`,
+      `${IMAGES_PATH}3.png`,
+      `${IMAGES_PATH}4.png`,
+      `${IMAGES_PATH}5.png`,
+      `${IMAGES_PATH}6.png`,
+    ],
   },
   {
     id: '3',
@@ -89,6 +105,14 @@ export const projects: Project[] = [
       type: 'app',
       url: 'https://play.google.com/store/games',
     },
+    carousel: [
+      `${IMAGES_PATH}1.png`,
+      `${IMAGES_PATH}2.png`,
+      `${IMAGES_PATH}3.png`,
+      `${IMAGES_PATH}4.png`,
+      `${IMAGES_PATH}5.png`,
+      `${IMAGES_PATH}6.png`,
+    ],
   },
   {
     id: '4',
@@ -118,6 +142,14 @@ export const projects: Project[] = [
       type: 'app',
       url: 'https://play.google.com/store/games',
     },
+    carousel: [
+      `${IMAGES_PATH}1.png`,
+      `${IMAGES_PATH}2.png`,
+      `${IMAGES_PATH}3.png`,
+      `${IMAGES_PATH}4.png`,
+      `${IMAGES_PATH}5.png`,
+      `${IMAGES_PATH}6.png`,
+    ],
   },
   {
     id: '5',
@@ -147,6 +179,14 @@ export const projects: Project[] = [
       type: 'app',
       url: 'https://play.google.com/store/games',
     },
+    carousel: [
+      `${IMAGES_PATH}1.png`,
+      `${IMAGES_PATH}2.png`,
+      `${IMAGES_PATH}3.png`,
+      `${IMAGES_PATH}4.png`,
+      `${IMAGES_PATH}5.png`,
+      `${IMAGES_PATH}6.png`,
+    ],
   },
   {
     id: '6',
@@ -176,6 +216,14 @@ export const projects: Project[] = [
       type: 'video',
       url: 'https://www.youtube.com/',
     },
+    carousel: [
+      `${IMAGES_PATH}1.png`,
+      `${IMAGES_PATH}2.png`,
+      `${IMAGES_PATH}3.png`,
+      `${IMAGES_PATH}4.png`,
+      `${IMAGES_PATH}5.png`,
+      `${IMAGES_PATH}6.png`,
+    ],
   },
   {
     id: '7',
@@ -204,6 +252,14 @@ export const projects: Project[] = [
       type: 'video',
       url: 'https://www.youtube.com/',
     },
+    carousel: [
+      `${IMAGES_PATH}1.png`,
+      `${IMAGES_PATH}2.png`,
+      `${IMAGES_PATH}3.png`,
+      `${IMAGES_PATH}4.png`,
+      `${IMAGES_PATH}5.png`,
+      `${IMAGES_PATH}6.png`,
+    ],
   },
   {
     id: '8',
@@ -233,6 +289,14 @@ export const projects: Project[] = [
       type: 'video',
       url: 'https://www.youtube.com/',
     },
+    carousel: [
+      `${IMAGES_PATH}1.png`,
+      `${IMAGES_PATH}2.png`,
+      `${IMAGES_PATH}3.png`,
+      `${IMAGES_PATH}4.png`,
+      `${IMAGES_PATH}5.png`,
+      `${IMAGES_PATH}6.png`,
+    ],
   },
   {
     id: '9',
@@ -262,6 +326,14 @@ export const projects: Project[] = [
       type: 'app',
       url: 'https://play.google.com/store/games',
     },
+    carousel: [
+      `${IMAGES_PATH}1.png`,
+      `${IMAGES_PATH}2.png`,
+      `${IMAGES_PATH}3.png`,
+      `${IMAGES_PATH}4.png`,
+      `${IMAGES_PATH}5.png`,
+      `${IMAGES_PATH}6.png`,
+    ],
   },
 ]
 
