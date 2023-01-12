@@ -347,3 +347,29 @@ export const projectDetailsToPricesBlockItems = (
     value: money.includes(detail[0]) ? `${detail[1]} $` : detail[1],
   }))
 }
+
+export const getPreviousProject = (id: Project['id']): Project => {
+  let currentProjectId = 0
+  for (let i = 0; i < projects.length; i++) {
+    const project = projects[i]
+    if (project.id === id) {
+      currentProjectId = i
+    }
+  }
+
+  if (currentProjectId === 0) return projects[projects.length - 1]
+  return projects[currentProjectId - 1]
+}
+
+export const getNextProject = (id: Project['id']): Project => {
+  let currentProjectId = 0
+  for (let i = 0; i < projects.length; i++) {
+    const project = projects[i]
+    if (project.id === id) {
+      currentProjectId = i
+    }
+  }
+
+  if (currentProjectId === projects.length - 1) return projects[0]
+  return projects[currentProjectId + 1]
+}

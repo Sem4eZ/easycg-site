@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import { PagePagination } from 'pages/project-detail/components/page-pagination'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { LeaveProjectDetails } from 'features/project/leave-project-details'
@@ -124,6 +125,8 @@ const ProjectDetailPage = () => {
       />
 
       <ScrollableByOneList items={project.carousel} />
+
+      <PagePagination currentProjectId={project.id} />
     </Page>
   )
 }
