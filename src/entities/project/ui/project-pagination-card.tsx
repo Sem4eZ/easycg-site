@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import { Link } from 'react-router-dom'
 
 import { serviceTypeToIcon } from 'entities/services/data'
 
@@ -22,7 +23,7 @@ export const ProjectPaginationCard = ({
   image,
 }: Props) => {
   return (
-    <Container href={`${PAGES.Projects}/${id}`}>
+    <Container to={`${PAGES.Projects}/${id}`}>
       <Image src={image} alt={`${name} project`} />
       <Information>
         <div>
@@ -51,7 +52,7 @@ export const ProjectPaginationCard = ({
   )
 }
 
-const Container = styled('a')(({ theme }) => ({
+const Container = styled(Link)(({ theme }) => ({
   display: 'block',
   textDecoration: 'none',
   color: theme.palette.text.primary,

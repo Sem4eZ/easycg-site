@@ -117,9 +117,7 @@ export const Header = ({ projectsCount }: Props) => {
                     ? `0${i + 1}`
                     : ''
                 }>
-                <Link
-                  href={menuItem.path}
-                  active={isCurrentRoute(menuItem.path)}>
+                <Link to={menuItem.path} active={isCurrentRoute(menuItem.path)}>
                   {menuItem.title}
                   {menuItem.resourcesCount && (
                     <ResourcesCount>{menuItem.resourcesCount}</ResourcesCount>

@@ -1,11 +1,27 @@
 import { Link as BaseLink, LinkProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import {
+  Link as ReactRouterLink,
+  LinkProps as ReactRouterLinkProps,
+} from 'react-router-dom'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
-export type Props = Omit<LinkProps, 'active'> & { active?: 1 | 0 }
-export const Link = styled(BaseLink)<Props>(({ theme, active = 0 }) => {
+export type Props = Omit<LinkProps, 'active'> &
+  Omit<ReactRouterLinkProps, 'to'> & {
+    active?: 1 | 0
+    to?: ReactRouterLinkProps['to']
+  }
+export const Link = styled(({ to, ...rest }: Props) => {
+  if (to)
+    return (
+      <ReactRouterLink to={to}>
+        <BaseLink {...rest} />
+      </ReactRouterLink>
+    )
+  return <BaseLink {...rest} />
+})<Props>(({ theme, active = 0 }) => {
   return {
     display: 'inline-block',
     position: 'relative',

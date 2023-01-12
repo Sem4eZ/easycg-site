@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import { Link as ReactRouterDomLink } from 'react-router-dom'
 
 import { serviceTypeToIcon } from 'entities/services/data'
 
@@ -29,7 +30,7 @@ export const ProjectCard = ({
   return (
     <Container>
       <article>
-        <Link href={`${PAGES.Projects}/${id}`}>
+        <Link to={`${PAGES.Projects}/${id}`}>
           <ImageContainer>
             <img
               className={PARALLAX_CLASS}
@@ -130,7 +131,7 @@ const ImageContainer = styled('div')(({ theme }) => ({
   },
 }))
 
-const Link = styled('a')(() => ({
+const Link = styled(ReactRouterDomLink)(() => ({
   display: 'block',
   textDecoration: 'unset',
   color: 'inherit',
