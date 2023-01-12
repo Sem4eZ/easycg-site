@@ -19,6 +19,8 @@ import { Page } from 'shared/ui/page-templates'
 import { PricesBlock } from 'shared/ui/prices-block'
 import { Tags } from 'shared/ui/tags'
 
+import { ProjectDetailHero } from './components/hero'
+
 const ProjectDetailPage = () => {
   const navigate = useNavigate()
   const { id } = useParams()
@@ -58,11 +60,18 @@ const ProjectDetailPage = () => {
           />
           <ServiceIcons>
             {project.servicesType.map(serviceType => (
-              <ServiceIcon>{serviceTypeToIcon[serviceType]}</ServiceIcon>
+              <ServiceIcon key={serviceType}>
+                {serviceTypeToIcon[serviceType]}
+              </ServiceIcon>
             ))}
           </ServiceIcons>
         </Information>
       }>
+      <ProjectDetailHero
+        image={project.detailPreviewImage}
+        link={project.link}
+      />
+
       <FreeRightPartContainer
         number={
           <TextOutlined viewBoxWidth={680} animate>
