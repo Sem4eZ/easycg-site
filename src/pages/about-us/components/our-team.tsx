@@ -17,77 +17,81 @@ export const AboutUsPageOurTeam = () => {
   const showSlider = !isMobileLandscape && !isMobileSLandscape
 
   return (
-    <Container>
-      <SectionNumber
-        viewBoxWidth={340}
-        animate
-        yOffset={isTablet ? 257 : 256}
-        type="sectionSmall">
-        02
-      </SectionNumber>
+    <>
+      <Container>
+        <SectionNumber
+          viewBoxWidth={340}
+          animate
+          yOffset={isTablet ? 257 : 256}
+          type="sectionSmall">
+          02
+        </SectionNumber>
 
-      <Title variant="h2" textAlign="center">
-        our team
-      </Title>
-      {showSlider ? (
-        <Swiper
-          slideToClickedSlide
-          breakpoints={{
-            320: {
-              slidesPerView: 1.8,
-              spaceBetween: 24,
-            },
-            390: {
-              slidesPerView: 2,
-              spaceBetween: 16,
-            },
-            768: {
-              slidesPerView: 1.7,
-              spaceBetween: 48,
-            },
-            924: {
-              slidesPerView: 2,
-              spaceBetween: 56,
-            },
-            1200: {
-              slidesPerView: 2,
-              spaceBetween: 106,
-            },
-            1366: {
-              slidesPerView: 2.3,
-            },
-            1728: {
-              slidesPerView: 2.3,
-            },
-            1920: {
-              slidesPerView: 2.6,
-            },
-          }}
-          mousewheel={{ sensitivity: 1 }}
-          freeMode={{ enabled: true, sticky: true, momentumBounce: true }}
-          modules={[Mousewheel]}
-          onScroll={(swiper, e) => {
-            if (swiper.isEnd || swiper.isBeginning) return
-            e.preventDefault()
-            if (e.deltaY > 0) {
-              swiper.slideTo(swiper.activeIndex + 1)
-            } else {
-              swiper.slideTo(swiper.activeIndex - 1)
-            }
-          }}
-          onTouchEnd={swiper => {
-            const swiperNew = swiper as SwiperRef['swiper'] & {
-              swipeDirection: 'prev' | 'next'
-            }
-            if (swiperNew.swipeDirection === 'next') {
-              swiper.slideTo(swiper.activeIndex + 1)
-            } else {
-              swiper.slideTo(swiper.activeIndex - 1)
-            }
-          }}>
-          {team.map(teammate => {
-            return (
-              <SwiperSlide key={teammate.id}>
+        <Title variant="h2" textAlign="center">
+          our team
+        </Title>
+        {showSlider ? (
+          <Swiper
+            slideToClickedSlide
+            slidesPerView={'auto'}
+            breakpoints={{
+              320: {
+                spaceBetween: 24,
+              },
+              390: {
+                spaceBetween: 16,
+              },
+              768: {
+                spaceBetween: 48,
+              },
+              924: {
+                spaceBetween: 56,
+              },
+              1200: {
+                spaceBetween: 106,
+              },
+            }}
+            mousewheel={{ sensitivity: 1 }}
+            freeMode={{ enabled: true, sticky: true, momentumBounce: true }}
+            modules={[Mousewheel]}
+            onScroll={(swiper, e) => {
+              if (swiper.isEnd || swiper.isBeginning) return
+              e.preventDefault()
+              if (e.deltaY > 0) {
+                swiper.slideTo(swiper.activeIndex + 1)
+              } else {
+                swiper.slideTo(swiper.activeIndex - 1)
+              }
+            }}
+            onTouchEnd={swiper => {
+              const swiperNew = swiper as SwiperRef['swiper'] & {
+                swipeDirection: 'prev' | 'next'
+              }
+              if (swiperNew.swipeDirection === 'next') {
+                swiper.slideTo(swiper.activeIndex + 1)
+              } else {
+                swiper.slideTo(swiper.activeIndex - 1)
+              }
+            }}>
+            {team.map(teammate => {
+              return (
+                <SwiperSlide key={teammate.id} style={{ width: 'auto' }}>
+                  <TeammateCard
+                    key={teammate.id}
+                    name={teammate.name}
+                    date={teammate.date}
+                    description={teammate.description}
+                    image={teammate.image}
+                    position={teammate.position}
+                  />
+                </SwiperSlide>
+              )
+            })}
+          </Swiper>
+        ) : (
+          <TeamList>
+            {team.map(teammate => {
+              return (
                 <TeammateCard
                   key={teammate.id}
                   name={teammate.name}
@@ -96,27 +100,12 @@ export const AboutUsPageOurTeam = () => {
                   image={teammate.image}
                   position={teammate.position}
                 />
-              </SwiperSlide>
-            )
-          })}
-        </Swiper>
-      ) : (
-        <TeamList>
-          {team.map(teammate => {
-            return (
-              <TeammateCard
-                key={teammate.id}
-                name={teammate.name}
-                date={teammate.date}
-                description={teammate.description}
-                image={teammate.image}
-                position={teammate.position}
-              />
-            )
-          })}
-        </TeamList>
-      )}
-    </Container>
+              )
+            })}
+          </TeamList>
+        )}
+      </Container>
+    </>
   )
 }
 
