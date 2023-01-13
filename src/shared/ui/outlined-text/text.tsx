@@ -8,13 +8,15 @@ import { pxToRem } from 'shared/lib/px-to-rem'
 export interface Props {
   children: string
   viewBoxWidth: number
-  type?: 'header' | 'section'
+  yOffset?: number
+  type?: 'header' | 'section' | 'sectionSmall'
   animate?: boolean
 }
 
 export const TextOutlined = ({
   children,
   viewBoxWidth,
+  yOffset = 600,
   type = 'section',
   animate = false,
   ...rest
@@ -63,7 +65,7 @@ export const TextOutlined = ({
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox={`0 0 ${viewBoxWidth} 799`}>
-          <OutlinedText x={0} y="600" data-type={type}>
+          <OutlinedText x={0} y={yOffset} data-type={type}>
             {children}
           </OutlinedText>
         </svg>
@@ -87,6 +89,10 @@ const fonts = (theme: Theme) => ({
       fontSize: [56, null, null, null, 185, null, 534, null, 658],
       lineHeight: [68, null, null, null, 225, null, 650, null, 801],
     }),
+  },
+  '&[data-type="sectionSmall"]': {
+    fontSize: [0, null, null, null, 110, null, 278],
+    lineHeight: [0, null, null, null, 133, null, 338],
   },
 })
 
@@ -123,6 +129,10 @@ const Text = styled('text')(() => ({
   '&[data-type="section"]': {
     fontSize: pxToRem(658),
     lineHeight: pxToRem(801),
+  },
+  '&[data-type="sectionSmall"]': {
+    fontSize: pxToRem(278),
+    lineHeight: pxToRem(338),
   },
 }))
 

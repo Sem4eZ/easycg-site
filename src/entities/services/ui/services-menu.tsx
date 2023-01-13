@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import { Link } from 'react-router-dom'
 
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
@@ -13,7 +14,7 @@ export const ServicesMenu = () => {
         {services.map(service => {
           return (
             <li key={service.type}>
-              <ServiceIcon href={`${PAGES.Services}#${service.type}`}>
+              <ServiceIcon to={`${PAGES.Services}#${service.type}`}>
                 <Title>{service.name}</Title>
                 {service.icon}
               </ServiceIcon>
@@ -33,7 +34,7 @@ const List = styled('ul')(() => ({
   justifyContent: 'space-between',
 }))
 
-const ServiceIcon = styled('a')(({ theme }) => ({
+const ServiceIcon = styled(Link)(({ theme }) => ({
   display: 'block',
   color: theme.palette.text.secondary,
   transition: 'color .2s',

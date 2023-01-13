@@ -12,6 +12,7 @@ import { useThemeToggler } from 'features/theme/theme-toggler'
 
 import { projects } from 'entities/project/data'
 
+import ScrollToTop from 'shared/lib/scroll-to-top'
 import { Footer } from 'shared/ui/footer'
 import { Header } from 'shared/ui/header'
 
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header projectsCount={projects.length} />

@@ -13,7 +13,7 @@ export const ServicesHeroMenu = () => {
         {services.map((service, i) => {
           return (
             <li key={service.type}>
-              <Link href={`${PAGES.Services}#${service.type}`}>
+              <Link to={`${PAGES.Services}#${service.type}`}>
                 {`${service.shortName}${i !== services.length - 1 ? '/' : ''}`}
               </Link>
             </li>

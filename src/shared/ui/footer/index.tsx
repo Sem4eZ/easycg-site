@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import { Link } from 'react-router-dom'
 
 import { getMenuSchema } from 'entities/menu/data'
 
@@ -36,7 +37,7 @@ export const Footer = ({ projectsCount }: Props) => {
         <Menu>
           {MENU.map(menuItem => (
             <MenuItem key={menuItem.title}>
-              <MenuLink href={menuItem.path}>
+              <MenuLink to={menuItem.path}>
                 <LFont>{menuItem.title}</LFont>
               </MenuLink>
             </MenuItem>
@@ -124,7 +125,7 @@ const MenuItem = styled('li')(({ theme }) => ({
   }),
 }))
 
-const MenuLink = styled('a')(() => ({
+const MenuLink = styled(Link)(() => ({
   color: 'inherit',
   textDecoration: 'none',
 }))

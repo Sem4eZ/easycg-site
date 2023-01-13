@@ -1,9 +1,10 @@
 import IconButton from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { MoonIcon } from 'shared/icons/moon'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { useGetUserTime } from 'shared/lib/use-get-time'
 import { darkTheme, lightTheme } from 'shared/theme'
 
 export const useThemeToggler = () => {
@@ -12,6 +13,25 @@ export const useThemeToggler = () => {
   const toggleTheme = () => {
     setTheme(prevState => (prevState === 'light' ? 'dark' : 'light'))
   }
+
+  const { time } = useGetUserTime()
+
+  useEffect(() => {
+    const hours = time.getHours()
+    if (window.matchMedia) {
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', event => {
+          setTheme(event.matches ? 'dark' : 'light')
+        })
+    } else {
+      if (hours > 20 && hours < 8) {
+        setTheme('dark')
+      } else {
+        setTheme('light')
+      }
+    }
+  }, [time])
 
   const toggler = (
     <Button onClick={toggleTheme}>

@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles'
 import { animate } from 'popmotion'
 import { useLayoutEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 import { serviceTypeToIcon } from 'entities/services/data'
 
@@ -80,7 +81,7 @@ export const GalleryProjectCard = ({
   })
 
   return (
-    <Container ref={containerRef} href={`${PAGES.Projects}/${id}`} hide={hide}>
+    <Container ref={containerRef} to={`${PAGES.Projects}/${id}`} hide={hide}>
       <ImageWrapper>
         <Image src={image} alt={name} />
         <Decorationfilter className="decorationFilter" />
@@ -112,7 +113,7 @@ export const GalleryProjectCard = ({
   )
 }
 
-const Container = styled('a')<{ hide: boolean }>(({ theme, hide }) => ({
+const Container = styled(Link)<{ hide: boolean }>(({ theme, hide }) => ({
   display: 'flex',
   position: 'relative',
   overflow: 'hidden',

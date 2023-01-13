@@ -111,9 +111,9 @@ do you have?"
       <Button>Primary button: learn more</Button>
       <Button disabled>Primary button: learn more</Button>
       <div>
-        <Link href="#">Link</Link>
-        <FilterLink href="#">Filter link </FilterLink>
-        <FilterLink href="#" active={1}>
+        <Link to="#">Link</Link>
+        <FilterLink to="#">Filter link </FilterLink>
+        <FilterLink to="#" active={1}>
           Filter link
         </FilterLink>
       </div>
