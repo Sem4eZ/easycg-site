@@ -6,6 +6,7 @@ import {
   CenterWithSectionNumber,
   FreeRightPartContainer,
 } from 'shared/ui/containers'
+import { ParallaxFullWidth } from 'shared/ui/containers/parallax-fullwidth'
 import { Flow } from 'shared/ui/flow'
 import { Hero } from 'shared/ui/hero'
 import { HorizontalList } from 'shared/ui/horizontal-list'
@@ -53,6 +54,8 @@ const HomePage = () => {
           />
         }
       />
+
+      <ParallaxFullWidth />
 
       <MainPageServicesSection />
 
