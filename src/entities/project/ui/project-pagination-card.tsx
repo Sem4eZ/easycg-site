@@ -71,10 +71,11 @@ const Image = styled('img')(({ theme }) => ({
 const Information = styled('div')(({ theme }) => ({
   position: 'relative',
   display: 'flex',
+  alignItems: 'flex-start',
+  justifyContent: 'space-between',
 
   ...getBreakpointsStylesByArray(theme, {
     flexDirection: ['column', 'row', null, 'column', 'row', 'column', 'row'],
-    alignItems: ['flex-start', null, null, null, null, null, 'center'],
     width: ['100%', null, null, null, null, null, 'auto'],
     gap: [16, null, null, null, 24, null, 32],
   }),
