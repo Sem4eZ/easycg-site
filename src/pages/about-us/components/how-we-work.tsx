@@ -2,10 +2,14 @@ import { styled } from '@mui/material/styles'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { SwimOutContentFromRight } from 'shared/ui/containers'
+import { TextOutlined } from 'shared/ui/outlined-text'
 
 export const AboutUsPageHowWeWork = () => {
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
+      <SectionNumber viewBoxWidth={795} animate>
+        03
+      </SectionNumber>
       <SwimOutContentFromRight
         title={['this pucture is about', 'how we work on']}
         content={
@@ -31,4 +35,16 @@ const ContentContainer = styled('div')(({ theme }) => ({
     height: '90%',
     width: '100%%',
   },
+}))
+
+const SectionNumber = styled(TextOutlined)(({ theme }) => ({
+  position: 'absolute',
+  top: '19px',
+  left: '-84px',
+  ...getBreakpointsStylesByArray(theme, {
+    display: ['none', null, null, null, 'block'],
+    top: [null, null, null, null, 88, 43, -104, null, -142],
+    left: [null, null, null, null, -84, null, '-20%', '-16%', '-14%'],
+    transform: [null, null, null, null, 'scale(0.6)', null, 'scale(0.424)'],
+  }),
 }))

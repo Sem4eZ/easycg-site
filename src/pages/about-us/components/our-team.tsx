@@ -12,17 +12,13 @@ import { TextOutlined } from 'shared/ui/outlined-text'
 import { XLFont } from 'shared/ui/typography'
 
 export const AboutUsPageOurTeam = () => {
-  const { isMobileSLandscape, isMobileLandscape, isTablet } = useGetDevice()
+  const { isMobileSLandscape, isMobileLandscape } = useGetDevice()
 
   const showSlider = !isMobileLandscape && !isMobileSLandscape
 
   return (
     <Container>
-      <SectionNumber
-        viewBoxWidth={340}
-        animate
-        yOffset={isTablet ? 257 : 256}
-        type="sectionSmall">
+      <SectionNumber viewBoxWidth={800} animate>
         02
       </SectionNumber>
 
@@ -139,8 +135,12 @@ const Title = styled(XLFont)(({ theme }) => ({
 
 const SectionNumber = styled(TextOutlined)(({ theme }) => ({
   position: 'absolute',
-  top: '-71px',
-  left: '-90px',
+  ...getBreakpointsStylesByArray(theme, {
+    display: ['none', null, null, null, 'block'],
+    top: [null, null, null, null, 88, null, -211],
+    left: [null, null, null, null, -84, null, '-20%', '-16%', '-14%'],
+    transform: [null, null, null, null, 'scale(0.6)', null, 'scale(0.424)'],
+  }),
 }))
 
 const TeamList = styled('div')(({ theme }) => ({
