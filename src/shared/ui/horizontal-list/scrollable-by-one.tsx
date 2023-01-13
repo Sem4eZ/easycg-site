@@ -24,7 +24,26 @@ export const ScrollableByOneList = ({ items }: Props) => {
         freeMode={{ enabled: true, sticky: true, momentumBounce: true }}
         modules={[Mousewheel, Pagination]}
         onScroll={(swiper, e) => {
+          if (swiper.isEnd) {
+            if (e.deltaY < 0) {
+              e.preventDefault()
+
+              swiper.slideTo(swiper.activeIndex - 1)
+              return
+            }
+          }
+
+          if (swiper.isBeginning) {
+            if (e.deltaY > 0) {
+              e.preventDefault()
+
+              swiper.slideTo(swiper.activeIndex + 1)
+              return
+            }
+          }
+
           if (swiper.isEnd || swiper.isBeginning) return
+
           e.preventDefault()
           if (e.deltaY > 0) {
             swiper.slideTo(swiper.activeIndex + 1)
@@ -82,6 +101,9 @@ const Container = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     marginTop: [30, 43, 13, 100, 112, 95, 453, null, 213, 166],
   }),
+  '& .swiper-wrapper': {
+    transitionDelay: '0.5s',
+  },
 }))
 
 const Item = styled('img')(({ theme }) => ({
