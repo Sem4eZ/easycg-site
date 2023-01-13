@@ -1,4 +1,5 @@
 import { Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 import { services } from 'entities/services/data'
 
@@ -9,6 +10,7 @@ import { FreeRightPartContainer } from 'shared/ui/containers'
 import { TextOutlined } from 'shared/ui/outlined-text'
 
 export const MainPageServicesSection = () => {
+  const navigate = useNavigate()
   const { isMacbook, isDesktop } = useGetDevice()
 
   const showFooter = isMacbook || isDesktop
@@ -32,7 +34,11 @@ export const MainPageServicesSection = () => {
           }))}
         />
       }
-      footer={showFooter && <Button href={PAGES.Services}>learn more</Button>}
+      footer={
+        showFooter && (
+          <Button onClick={() => navigate(PAGES.Services)}>learn more</Button>
+        )
+      }
     />
   )
 }

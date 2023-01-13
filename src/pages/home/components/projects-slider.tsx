@@ -1,4 +1,5 @@
 import { Button, styled } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 import { projects } from 'entities/project/data'
 import { ProjectCard } from 'entities/project/ui/project-card'
@@ -14,6 +15,7 @@ import { XLFont } from 'shared/ui/typography'
 const topProjects = projects.slice(0, 6)
 
 export const MainPageProjectsSlider = () => {
+  const navigate = useNavigate()
   const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
 
   const showAllProjectsButton = isDesktopS || isLaptop || isMacbook || isDesktop
@@ -38,7 +40,7 @@ export const MainPageProjectsSlider = () => {
         ))}
       </ScrollableList>
       {showAllProjectsButton && (
-        <SeeAllProjectsButton href={PAGES.Projects}>
+        <SeeAllProjectsButton onClick={() => navigate(PAGES.Projects)}>
           see all projects
         </SeeAllProjectsButton>
       )}

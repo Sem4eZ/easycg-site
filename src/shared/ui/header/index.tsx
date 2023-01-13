@@ -117,7 +117,12 @@ export const Header = ({ projectsCount }: Props) => {
                     ? `0${i + 1}`
                     : ''
                 }>
-                <Link to={menuItem.path} active={isCurrentRoute(menuItem.path)}>
+                <Link
+                  onClick={() => {
+                    closeModal()
+                    navigate(menuItem.path)
+                  }}
+                  active={isCurrentRoute(menuItem.path)}>
                   {menuItem.title}
                   {menuItem.resourcesCount && (
                     <ResourcesCount>{menuItem.resourcesCount}</ResourcesCount>

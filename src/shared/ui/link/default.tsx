@@ -17,7 +17,7 @@ export const Link = styled(({ to, ...rest }: Props) => {
   if (to)
     return (
       <ReactRouterLink to={to}>
-        <BaseLink {...rest} />
+        <BaseLink {...rest} component="span" />
       </ReactRouterLink>
     )
   return <BaseLink {...rest} />
