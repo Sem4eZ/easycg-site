@@ -85,6 +85,7 @@ export const GalleryProjectCard = ({
       <ImageWrapper>
         <Image src={image} alt={name} />
         <Decorationfilter className="decorationFilter" />
+        <Decorationfilter2 className="decorationFilter2" />
       </ImageWrapper>
       <Information className="information">
         <div>
@@ -117,8 +118,13 @@ const Container = styled(Link)<{ hide: boolean }>(({ theme, hide }) => ({
   display: 'flex',
   position: 'relative',
   overflow: 'hidden',
-  '&:hover .decorationFilter': {
-    opacity: 1,
+  '&:hover': {
+    '& .decorationFilter': {
+      opacity: 1,
+    },
+    '& .decorationFilter2': {
+      opacity: 0,
+    },
   },
   textDecoration: 'none',
   color: theme.palette.text.primary,
@@ -162,10 +168,26 @@ const Decorationfilter = styled('div')(({ theme }) => ({
   position: 'absolute',
   top: 0,
   left: 0,
-  opacity: 0,
   height: '100%',
   width: '100%',
+  opacity: 0,
   backgroundColor: theme.palette.mode === 'dark' ? '#6456DD33' : '#BCDB0F33',
+
+  transition: 'opacity .5s',
+  ...getBreakpointsStylesByArray(theme, {
+    display: ['none', null, null, null, null, null, 'block'],
+  }),
+}))
+
+const Decorationfilter2 = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  height: '100%',
+  width: '100%',
+  opacity: 1,
+  backgroundColor: '#00000033',
+
   transition: 'opacity .5s',
   ...getBreakpointsStylesByArray(theme, {
     display: ['none', null, null, null, null, null, 'block'],
