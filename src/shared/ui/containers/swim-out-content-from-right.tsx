@@ -56,7 +56,7 @@ export const SwimOutContentFromRight = ({ title, content }: Props) => {
 
     const content = contentRef.current
     content && observer.observe(content)
-  }, [])
+  }, [doAnimate])
 
   return (
     <Container>
@@ -115,6 +115,7 @@ const Content = styled('div')(() => ({
 }))
 
 const ContentAnimationBlock = styled('div')(({ theme }) => ({
+  transition: 'transform 0.5s',
   '& img': {
     width: '100%',
     objectFit: 'contain',
