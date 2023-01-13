@@ -10,15 +10,19 @@ export const ServicesHeroMenu = () => {
   return (
     <Container>
       <List>
-        {services.map((service, i) => {
-          return (
-            <li key={service.type}>
-              <Link to={`${PAGES.Services}#${service.type}`}>
-                {`${service.shortName}${i !== services.length - 1 ? '/' : ''}`}
-              </Link>
-            </li>
-          )
-        })}
+        {services
+          .filter(service => service.type !== 'UXUI')
+          .map((service, i) => {
+            return (
+              <li key={service.type}>
+                <Link to={`${PAGES.Services}#${service.type}`}>
+                  {`${service.shortName}${
+                    i !== services.length - 1 ? '/' : ''
+                  }`}
+                </Link>
+              </li>
+            )
+          })}
       </List>
     </Container>
   )
