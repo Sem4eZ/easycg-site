@@ -6,28 +6,20 @@ import { SwimOutContentFromRight } from 'shared/ui/containers'
 
 export const MainPageCeoSection = () => {
   return (
-    <div>
-      <SwimOutContentFromRight
-        title={['don’t worry. we’re friendly', 'like this guy']}
-        content={<Content />}
-      />
-    </div>
-  )
-}
-
-const Content = () => {
-  return (
-    <>
-      <figure style={{ margin: 0 }}>
-        <ContentContainer>
-          <img src="/assets/images/ceo.png" alt="ceo" />
-        </ContentContainer>
-        <Caption>
-          <span>By the way, he’s our СEO&nbsp;</span>
-          <span>with his best friend</span>
-        </Caption>
-      </figure>
-    </>
+    <SwimOutContentFromRight
+      title={['don’t worry. we’re friendly', 'like this guy']}
+      content={
+        <figure style={{ margin: 0 }}>
+          <ContentContainer>
+            <img src="/assets/images/ceo.png" alt="ceo" />
+          </ContentContainer>
+          <Caption>
+            <span>By the way, he’s our СEO&nbsp;</span>
+            <span>with his best friend</span>
+          </Caption>
+        </figure>
+      }
+    />
   )
 }
 
