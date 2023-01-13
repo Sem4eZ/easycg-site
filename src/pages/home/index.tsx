@@ -1,29 +1,20 @@
-import { Button, styled } from '@mui/material'
 import { useRef } from 'react'
 
-import { projects } from 'entities/project/data'
-import { ProjectCard } from 'entities/project/ui/project-card'
 import { ServicesHeroMenu } from 'entities/services/ui/services-hero-menu'
 
-import { PAGES } from 'shared/config'
-import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { spaceArr } from 'shared/theme'
 import {
   CenterWithSectionNumber,
   FreeRightPartContainer,
-  HorizontalSliderContainer,
 } from 'shared/ui/containers'
 import { Flow } from 'shared/ui/flow'
 import { Hero } from 'shared/ui/hero'
-import { HorizontalList, ScrollableList } from 'shared/ui/horizontal-list'
+import { HorizontalList } from 'shared/ui/horizontal-list'
 import { TextOutlined } from 'shared/ui/outlined-text'
-import { XLFont } from 'shared/ui/typography'
 
 import { MainPageCeoSection } from './components/ceo-section'
+import { MainPageProjectsSlider } from './components/projects-slider'
 import { MainPageServicesMenu } from './components/services-menu'
 import { MainPageServicesSection } from './components/services-section'
-
-const topProjects = projects.slice(0, 6)
 
 const HomePage = () => {
   const processSectionRef = useRef<HTMLDivElement | null>(null)
@@ -65,28 +56,7 @@ const HomePage = () => {
 
       <MainPageServicesSection />
 
-      <HorizontalSliderContainer>
-        <XLFont variant="h2" textAlign="center">
-          our projects
-        </XLFont>
-        <ScrollableList parallax>
-          {topProjects.map(project => (
-            <ProjectCard
-              key={project.id}
-              id={project.id}
-              name={project.name}
-              date={project.date}
-              description={project.description}
-              image={project.image}
-              type={project.type}
-              servicesType={project.servicesType}
-            />
-          ))}
-        </ScrollableList>
-        <SeeAllProjectsButton href={PAGES.Projects}>
-          see all projects
-        </SeeAllProjectsButton>
-      </HorizontalSliderContainer>
+      <MainPageProjectsSlider />
 
       <CenterWithSectionNumber
         ref={processSectionRef}
@@ -108,11 +78,3 @@ const HomePage = () => {
 }
 
 export default HomePage
-
-const SeeAllProjectsButton = styled(Button)(({ theme }) => ({
-  alignSelf: 'flex-start',
-  ...getBreakpointsStylesByArray(theme, {
-    marginLeft: spaceArr,
-    marginRight: spaceArr,
-  }),
-}))

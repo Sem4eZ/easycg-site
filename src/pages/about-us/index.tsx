@@ -1,29 +1,14 @@
-import { team } from 'entities/team/data'
-import { TeammateCard } from 'entities/team/ui/teammate-card'
-
-import { HorizontalSliderContainer } from 'shared/ui/containers'
-import { ScrollableList } from 'shared/ui/horizontal-list'
-import { XLFont } from 'shared/ui/typography'
+import { AboutUsPageHowWeWork } from './components/how-we-work'
+import { AboutUsPageOurTeam } from './components/our-team'
+import { AboutUsPageProjectInGoodHands } from './components/project-in-good-hands'
 
 const AboutUsPage = () => (
   <div>
-    <HorizontalSliderContainer>
-      <XLFont variant="h2" textAlign="center">
-        our team
-      </XLFont>
-      <ScrollableList>
-        {team.map(teammate => (
-          <TeammateCard
-            key={teammate.id}
-            name={teammate.name}
-            date={teammate.date}
-            description={teammate.description}
-            image={teammate.image}
-            position={teammate.position}
-          />
-        ))}
-      </ScrollableList>
-    </HorizontalSliderContainer>
+    <AboutUsPageOurTeam />
+
+    <AboutUsPageHowWeWork />
+
+    <AboutUsPageProjectInGoodHands />
   </div>
 )
 

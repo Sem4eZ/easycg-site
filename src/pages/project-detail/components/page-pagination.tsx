@@ -93,9 +93,10 @@ const Container = styled('div')(({ theme }) => ({
 }))
 
 const SliderContainer = styled('div')(({ theme }) => ({
-  maxWidth: maxWidth,
+  maxWidth: 1120,
   marginLeft: 'auto',
   marginRight: 'auto',
+  boxSizing: 'content-box',
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,

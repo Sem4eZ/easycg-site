@@ -118,7 +118,10 @@ export const Header = ({ projectsCount }: Props) => {
                     : ''
                 }>
                 <Link
-                  href={menuItem.path}
+                  onClick={() => {
+                    closeModal()
+                    navigate(menuItem.path)
+                  }}
                   active={isCurrentRoute(menuItem.path)}>
                   {menuItem.title}
                   {menuItem.resourcesCount && (

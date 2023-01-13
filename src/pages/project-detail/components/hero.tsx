@@ -2,6 +2,7 @@ import { Button } from '@mui/material'
 import { useTheme } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { Project } from 'entities/project/types'
 
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export const ProjectDetailHero = ({ image, link }: Props) => {
+  const navigate = useNavigate()
   const theme = useTheme()
   const parallaxRef = useRef<HTMLDivElement | null>(null)
   const buttonRef = useRef<HTMLAnchorElement | null>(null)
@@ -80,7 +82,7 @@ export const ProjectDetailHero = ({ image, link }: Props) => {
           />
         </LinkButtonDesktop>
       ) : (
-        <LinkButtonMobile href={link.url}>
+        <LinkButtonMobile onClick={() => navigate(link.url)}>
           {getButtonByLinkType(link).mobile}
         </LinkButtonMobile>
       )}
