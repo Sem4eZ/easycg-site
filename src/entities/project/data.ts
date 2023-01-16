@@ -8,7 +8,7 @@ export const projects: Project[] = [
     name: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: { path: IMAGES_PATH, name: 'card', fileType: 'jpg' },
     date: new Date('2021-11-12'),
     servicesType: ['mobile', 'web'],
     type: 'Mobile delivery app',
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     name: 'Project2',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card2.jpg`,
+    image: { path: IMAGES_PATH, name: 'card2', fileType: 'jpg' },
     date: new Date('2021-11-12'),
     servicesType: ['mobile', 'web'],
     type: 'Mobile delivery app',
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     name: 'Project3',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: { path: IMAGES_PATH, name: 'card', fileType: 'jpg' },
     date: new Date('2021-11-12'),
     servicesType: ['mobile'],
     type: 'Mobile delivery app',
@@ -119,7 +119,7 @@ export const projects: Project[] = [
     name: 'Project4',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: { path: IMAGES_PATH, name: 'card', fileType: 'jpg' },
     date: new Date('2021-11-12'),
     servicesType: ['mobile'],
     type: 'Mobile delivery app',
@@ -156,7 +156,7 @@ export const projects: Project[] = [
     name: 'Project4',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: { path: IMAGES_PATH, name: 'card', fileType: 'jpg' },
     date: new Date('2021-11-12'),
     servicesType: ['mobile'],
     type: 'Mobile delivery app',
@@ -193,7 +193,7 @@ export const projects: Project[] = [
     name: 'Project4',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: { path: IMAGES_PATH, name: 'card', fileType: 'jpg' },
     date: new Date('2021-11-12'),
     servicesType: ['CGI'],
     type: 'Mobile delivery app',
@@ -229,7 +229,7 @@ export const projects: Project[] = [
     id: '7',
     name: 'Project5',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. ',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: { path: IMAGES_PATH, name: 'card', fileType: 'jpg' },
     date: new Date('2021-11-12'),
     servicesType: ['CGI'],
     type: 'Mobile delivery app',
@@ -266,7 +266,7 @@ export const projects: Project[] = [
     name: 'Project6',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: { path: IMAGES_PATH, name: 'card', fileType: 'jpg' },
     date: new Date('2021-11-12'),
     servicesType: ['AR'],
     type: 'Mobile delivery app',
@@ -303,7 +303,7 @@ export const projects: Project[] = [
     name: 'Project4',
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: `${IMAGES_PATH}card.jpg`,
+    image: { path: IMAGES_PATH, name: 'card', fileType: 'jpg' },
     date: new Date('2021-11-12'),
     servicesType: ['mobile'],
     type: 'Mobile delivery app',

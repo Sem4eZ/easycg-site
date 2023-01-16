@@ -3,6 +3,7 @@ import { animate } from 'popmotion'
 import { useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
+import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
 import { serviceTypeToIcon } from 'entities/services/data'
 
 import { PAGES } from 'shared/config'
@@ -80,10 +81,25 @@ export const GalleryProjectCard = ({
     initialPositionRef.current = box
   })
 
+  const imageSrcSet = getImageSrcSetByImageObj(image)
   return (
-    <Container ref={containerRef} to={`${PAGES.Projects}/${id}`} hide={hide}>
+    <Container
+      ref={containerRef}
+      to={`${PAGES.Projects}/${id}`}
+      hide={hide}
+      className="photo-item">
       <ImageWrapper>
-        <Image src={image} alt={name} />
+        <picture>
+          {imageSrcSet.map(imageSrcSetData => {
+            return (
+              <source
+                srcSet={imageSrcSetData.path}
+                media={imageSrcSetData.media}></source>
+            )
+          })}
+
+          <Image src={getImagePath(image, 1920)} alt={`${name} project`} />
+        </picture>
         <Decorationfilter className="decorationFilter" />
         <Decorationfilter2 className="decorationFilter2" />
       </ImageWrapper>

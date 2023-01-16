@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
 
+import { getImagePath } from 'entities/image/types'
 import { serviceTypeToIcon } from 'entities/services/data'
 
 import { PAGES } from 'shared/config'
@@ -24,7 +25,7 @@ export const ProjectPaginationCard = ({
 }: Props) => {
   return (
     <Container to={`${PAGES.Projects}/${id}`}>
-      <Image src={image} alt={`${name} project`} />
+      <Image src={getImagePath(image, 400)} alt={`${name} project`} />
       <Information>
         <div>
           <TagsStyled
