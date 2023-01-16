@@ -28,8 +28,12 @@ export const ServicesHeroMenu = () => {
   )
 }
 
-const Container = styled('nav')(() => ({
+const Container = styled('nav')(({ theme }) => ({
   alignSelf: 'flex-start',
+  ...getBreakpointsStylesByArray(theme, {
+    paddingLeft: [0, null, null, null, null, null, null, null, 11],
+    paddingRight: [0, null, null, null, null, null, null, null, 32],
+  }),
 }))
 
 const List = styled('ul')(({ theme }) => ({
@@ -39,7 +43,7 @@ const List = styled('ul')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   ...getBreakpointsStylesByArray(theme, {
-    gap: [0, null, null, null, null, null, 64],
+    gap: [0, null, null, null, null, null, 50, null, null, 64],
   }),
   '& a': {
     ...getBreakpointsStylesByArray(theme, {
