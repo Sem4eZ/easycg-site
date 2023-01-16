@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { Image, getImagePath } from 'entities/image/types'
 import { Project } from 'entities/project/types'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
@@ -12,7 +13,7 @@ import { maxWidth, spaceArr, spaceObj } from 'shared/theme'
 import { visuallyHiddenStyles } from 'shared/ui/accesibility'
 
 interface Props {
-  image: string
+  image: Image
   link: Project['link']
 }
 
@@ -68,7 +69,10 @@ export const ProjectDetailHero = ({ image, link }: Props) => {
 
   return (
     <Container>
-      <Image ref={parallaxRef} style={{ backgroundImage: `url(${image})` }} />
+      <PreviewImage
+        ref={parallaxRef}
+        style={{ backgroundImage: `url(${getImagePath(image, 1920)})` }}
+      />
 
       {showDesktopButton ? (
         <LinkButtonDesktop ref={buttonRef} href={link.url}>
@@ -110,7 +114,7 @@ const Container = styled('div')(({ theme }) => ({
   }),
 }))
 
-const Image = styled('div')(({ theme }) => ({
+const PreviewImage = styled('div')(({ theme }) => ({
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'contain',

@@ -14,10 +14,10 @@ export interface Project {
   details: Price
   detailsRemark: string
   picturesRemark: string[]
-  detailPreviewImage: string
+  detailPreviewImage: Image
   link: {
     type: 'app' | 'site' | 'video'
     url: string
   }
-  carousel: string[]
+  carousel: Image[]
 }
