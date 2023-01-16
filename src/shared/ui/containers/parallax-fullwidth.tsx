@@ -160,6 +160,8 @@ const Container = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#323545' : '#ced6d9',
   ...getBreakpointsStylesByArray(theme, {
     height: [214, 266, 260, 391, 389, null, 652, null, 825, 925],
+    marginTop: [118, 30, 51, 154, 231, 125, 266, null, 185, 190],
+    marginBottom: [118, 30, 51, 154, 231, 125, 266, null, 185, 190],
   }),
 }))
 
