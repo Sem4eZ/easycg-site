@@ -50,6 +50,8 @@ const ContentContainer = styled('div')(({ theme }) => ({
   }),
 
   '& picture': {
+    display: 'flex',
+    justifyContent: 'center',
     height: '90%',
     width: '100%',
     img: {
