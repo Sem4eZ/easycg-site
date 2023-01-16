@@ -116,11 +116,6 @@ const Content = styled('div')(() => ({
 
 const ContentAnimationBlock = styled('div')(({ theme }) => ({
   transition: 'transform 0.5s',
-  '& img': {
-    width: '100%',
-    objectFit: 'contain',
-    objectPosition: 'bottom',
-  },
   ...getBreakpointsStylesByArray(theme, {
     transform: ['unset', null, null, null, null, null, 'translateX(40%)'],
   }),
