@@ -60,21 +60,19 @@ export const TextOutlined = ({
   }, [])
 
   return (
-    <div ref={intersectionContainerRef}>
-      <Container data-type={type} {...rest}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox={`0 0 ${viewBoxWidth} 799`}
-          data-type={type}>
-          <OutlinedText x={0} y={getYOffset(type)} data-type={type}>
-            {children}
-          </OutlinedText>
-        </svg>
-        <Filler ref={textRef} data-type={type}>
+    <Container ref={intersectionContainerRef} data-type={type} {...rest}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox={`0 0 ${viewBoxWidth} 799`}
+        data-type={type}>
+        <OutlinedText x={0} y={getYOffset(type)} data-type={type}>
           {children}
-        </Filler>
-      </Container>
-    </div>
+        </OutlinedText>
+      </svg>
+      <Filler ref={textRef} data-type={type}>
+        {children}
+      </Filler>
+    </Container>
   )
 }
 
@@ -85,7 +83,7 @@ const getYOffset = (type: TextType) => {
     case 'section':
       return 602
     case 'sectionSmall':
-      return 600
+      return 602
   }
 }
 
@@ -103,8 +101,8 @@ const fonts = (theme: Theme) => ({
     }),
   },
   '&[data-type="sectionSmall"]': {
-    fontSize: [0, null, null, null, 110, null, 278],
-    lineHeight: [0, null, null, null, 133, null, 338],
+    fontSize: [56, null, null, null, 185, null, 534, null, 658],
+    lineHeight: [68, null, null, null, 225, null, 650, null, 801],
   },
 })
 
@@ -153,8 +151,8 @@ const Text = styled('text')(() => ({
     lineHeight: pxToRem(801),
   },
   '&[data-type="sectionSmall"]': {
-    fontSize: pxToRem(278),
-    lineHeight: pxToRem(338),
+    fontSize: pxToRem(658),
+    lineHeight: pxToRem(801),
   },
 }))
 
