@@ -22,9 +22,11 @@ export const HorizontalList = ({ title, items }: Props) => {
       {isTouchableVersion ? <b>{title}</b> : title}
       <List>
         {items.map(item => (
-          <Link key={item} active={isTouchableVersion ? 1 : 0}>
-            {item}
-          </Link>
+          <li>
+            <Link key={item} active={isTouchableVersion ? 1 : 0}>
+              {item}
+            </Link>
+          </li>
         ))}
       </List>
     </Container>
@@ -55,6 +57,8 @@ const List = styled('ul')(({ theme }) => ({
   listStyle: 'none',
   paddingLeft: 0,
   marginBottom: 0,
+  gridColumnGap: 25,
+  gridRowGap: 24,
   ...getBreakpointsStylesByArray(theme, {
     marginTop: [26, 16, null, null, null, null, 8],
   }),
