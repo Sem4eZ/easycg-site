@@ -109,11 +109,15 @@ const Container = styled('div')(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   ...getBreakpointsStylesByArray(theme, {
-    paddingLeft: spaceArr,
     paddingRight: [0, spaceObj.se_horizontal, 0],
     paddingTop: [56, 60, null, 120, 118, null, 111, null, 184, 200],
     paddingBottom: [29, 46, 64, 102, 84, 112, 57, null, 180, 260],
   }),
+  '& .swiper-slide:first-of-type': {
+    ...getBreakpointsStylesByArray(theme, {
+      paddingLeft: spaceArr,
+    }),
+  },
 }))
 
 const Title = styled(XLFont)(({ theme }) => ({

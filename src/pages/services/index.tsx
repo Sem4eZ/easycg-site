@@ -50,7 +50,7 @@ const ServicesPage = () => {
     <Page
       title="services"
       decorationText={
-        <TextOutlined viewBoxWidth={800} type="header" animate>
+        <TextOutlined viewBoxWidth={797} type="header" animate>
           03
         </TextOutlined>
       }

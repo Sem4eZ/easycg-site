@@ -5,18 +5,18 @@ import { useEffect, useRef } from 'react'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
+type TextType = 'header' | 'section' | 'sectionSmall'
+
 export interface Props {
   children: string
   viewBoxWidth: number
-  yOffset?: number
-  type?: 'header' | 'section' | 'sectionSmall'
+  type?: TextType
   animate?: boolean
 }
 
 export const TextOutlined = ({
   children,
   viewBoxWidth,
-  yOffset = 600,
   type = 'section',
   animate = false,
   ...rest
@@ -64,8 +64,9 @@ export const TextOutlined = ({
       <Container data-type={type} {...rest}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox={`0 0 ${viewBoxWidth} 799`}>
-          <OutlinedText x={0} y={yOffset} data-type={type}>
+          viewBox={`0 0 ${viewBoxWidth} 799`}
+          data-type={type}>
+          <OutlinedText x={0} y={getYOffset(type)} data-type={type}>
             {children}
           </OutlinedText>
         </svg>
@@ -75,6 +76,17 @@ export const TextOutlined = ({
       </Container>
     </div>
   )
+}
+
+const getYOffset = (type: TextType) => {
+  switch (type) {
+    case 'header':
+      return 605
+    case 'section':
+      return 602
+    case 'sectionSmall':
+      return 600
+  }
 }
 
 const fonts = (theme: Theme) => ({
@@ -101,10 +113,20 @@ const Container = styled('div')(({ theme }) => ({
   position: 'relative',
   svg: {
     position: 'absolute',
-    ...getBreakpointsStylesByArray(theme, {
-      top: [null, null, null, null, null, null, 4.5],
-    }),
     width: '100%',
+    '&[data-type="header"]': {
+      ...getBreakpointsStylesByArray(theme, {
+        top: [5, null, null, null, 0, null, -5, null, 1],
+      }),
+    },
+    '&[data-type="section"]': {
+      ...getBreakpointsStylesByArray(theme, {
+        top: [0],
+      }),
+    },
+    '&[data-type="sectionSmall"]': {
+      top: [0],
+    },
   },
 }))
 
