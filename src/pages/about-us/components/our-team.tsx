@@ -121,18 +121,35 @@ const Container = styled('div')(({ theme }) => ({
 }))
 
 const Title = styled(XLFont)(({ theme }) => ({
+  marginRight: 0,
+  marginLeft: 'auto',
   ...getBreakpointsStylesByArray(theme, {
     marginBottom: [48, null, null, 64, 72, null, 104, null, 96],
+    paddingLeft: [
+      spaceObj.se,
+      spaceObj.se_horizontal,
+      spaceObj.ip13,
+      spaceObj.ip13_horizontal,
+      0,
+    ],
     paddingRight: [
       spaceObj.se,
-      0,
       spaceObj.se_horizontal,
-      spaceObj.tablet,
-      spaceObj.tablet_horizontal,
-      spaceObj.desktop_s,
-      spaceObj.laptop,
-      spaceObj.macbook,
-      spaceObj.desktop,
+      spaceObj.ip13,
+      spaceObj.ip13_horizontal,
+      0,
+    ],
+    width: [
+      '100%',
+      null,
+      null,
+      null,
+      '561px',
+      '640px',
+      '864px',
+      null,
+      '1077px',
+      '1087px',
     ],
   }),
 }))
