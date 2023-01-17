@@ -9,6 +9,7 @@ import { Page } from 'shared/ui/page-templates'
 import { AboutUsPageHowWeWork } from './components/how-we-work'
 import { AboutUsPageOurTeam } from './components/our-team'
 import { AboutUsPageProjectInGoodHands } from './components/project-in-good-hands'
+import { AboutUsPageValueStystem } from './components/value-system'
 
 const AboutUsPage = () => (
   <Page
@@ -37,6 +38,8 @@ const AboutUsPage = () => (
         />
       }
     />
+
+    <AboutUsPageValueStystem />
 
     <AboutUsPageOurTeam />
 
