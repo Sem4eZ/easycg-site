@@ -151,6 +151,6 @@ const FilterBlock = styled('section')(({ theme }) => ({
 
 const ContentBlock = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
-    marginTop: [68, 76, 113, 95, 136, 273, 249, null, 297],
+    marginTop: [68, 76, 112, 95, 112],
   }),
 }))

@@ -1,5 +1,7 @@
 import { styled } from '@mui/material/styles'
 
+import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
+
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { Tags } from 'shared/ui/tags'
 import { LFont } from 'shared/ui/typography'
@@ -18,13 +20,39 @@ export const TeammateCard = ({
   image,
   position,
 }: Props) => {
+  const imageMainSrcSet = getImageSrcSetByImageObj(image.main)
+  const imageHiddenSrcSet = getImageSrcSetByImageObj(image.hidden)
   return (
     <Container>
       <article>
         <ImageContainer>
           <ImagesWrapepr>
-            <img src={image.main} alt={`${name}  employee`} />
-            <HiddenImage className="hidden" src={image.hidden} alt="" />
+            <Picture>
+              {imageMainSrcSet.map(imageSrcSetData => {
+                return (
+                  <source
+                    srcSet={imageSrcSetData.path}
+                    media={imageSrcSetData.media}></source>
+                )
+              })}
+
+              <img
+                src={getImagePath(image.main, 1920)}
+                alt={`${name}  employee`}
+              />
+            </Picture>
+
+            <HiddenImage className="hidden">
+              {imageHiddenSrcSet.map(imageSrcSetData => {
+                return (
+                  <source
+                    srcSet={imageSrcSetData.path}
+                    media={imageSrcSetData.media}></source>
+                )
+              })}
+
+              <img src={getImagePath(image.hidden, 1920)} alt="" />
+            </HiddenImage>
           </ImagesWrapepr>
         </ImageContainer>
         <Content>
@@ -71,17 +99,11 @@ const ImageContainer = styled('div')(({ theme }) => ({
   }),
   backgroundColor: theme.palette.card.default,
   transition: 'background-color .2s',
-  img: {
-    ...getBreakpointsStylesByArray(theme, {
-      height: [194, '100%', 194, '100%', 377, null, 596, null, 742],
-      objectFit: ['unset', 'contain', 'unset', 'cover', 'unset'],
-    }),
-  },
 
   '&:hover': {
     backgroundColor: theme.palette.card.hover,
     '& .hidden': {
-      display: 'block',
+      display: 'flex',
     },
   },
 }))
@@ -127,10 +149,30 @@ const ImagesWrapepr = styled('div')(() => ({
   height: '100%',
 }))
 
-const HiddenImage = styled('img')(() => ({
+const HiddenImage = styled('picture')(({ theme }) => ({
   position: 'absolute',
   bottom: 0,
   left: '50%',
   display: 'none',
   transform: 'translateX(-50%)',
+  alignItems: 'flex-end',
+  ...getBreakpointsStylesByArray(theme, {
+    height: [194, '100%', 194, '100%', 377, null, 596, null, 742],
+    objectFit: ['unset', 'contain', 'unset', 'cover', 'unset'],
+  }),
+  img: {
+    height: '100%',
+  },
+}))
+
+const Picture = styled('picture')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'flex-end',
+  ...getBreakpointsStylesByArray(theme, {
+    height: [194, '100%', 194, '100%', 377, null, 596, null, 742],
+    objectFit: ['unset', 'contain', 'unset', 'cover', 'unset'],
+  }),
+  img: {
+    height: '100%',
+  },
 }))

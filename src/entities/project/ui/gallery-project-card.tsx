@@ -3,6 +3,7 @@ import { animate } from 'popmotion'
 import { useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
+import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
 import { serviceTypeToIcon } from 'entities/services/data'
 
 import { PAGES } from 'shared/config'
@@ -80,11 +81,27 @@ export const GalleryProjectCard = ({
     initialPositionRef.current = box
   })
 
+  const imageSrcSet = getImageSrcSetByImageObj(image)
   return (
-    <Container ref={containerRef} to={`${PAGES.Projects}/${id}`} hide={hide}>
+    <Container
+      ref={containerRef}
+      to={`${PAGES.Projects}/${id}`}
+      hide={hide}
+      className="photo-item">
       <ImageWrapper>
-        <Image src={image} alt={name} />
+        <picture>
+          {imageSrcSet.map(imageSrcSetData => {
+            return (
+              <source
+                srcSet={imageSrcSetData.path}
+                media={imageSrcSetData.media}></source>
+            )
+          })}
+
+          <Image src={getImagePath(image, 1920)} alt={`${name} project`} />
+        </picture>
         <Decorationfilter className="decorationFilter" />
+        <Decorationfilter2 className="decorationFilter2" />
       </ImageWrapper>
       <Information className="information">
         <div>
@@ -117,8 +134,13 @@ const Container = styled(Link)<{ hide: boolean }>(({ theme, hide }) => ({
   display: 'flex',
   position: 'relative',
   overflow: 'hidden',
-  '&:hover .decorationFilter': {
-    opacity: 1,
+  '&:hover': {
+    '& .decorationFilter': {
+      opacity: 1,
+    },
+    '& .decorationFilter2': {
+      opacity: 0,
+    },
   },
   textDecoration: 'none',
   color: theme.palette.text.primary,
@@ -162,10 +184,26 @@ const Decorationfilter = styled('div')(({ theme }) => ({
   position: 'absolute',
   top: 0,
   left: 0,
-  opacity: 0,
   height: '100%',
   width: '100%',
+  opacity: 0,
   backgroundColor: theme.palette.mode === 'dark' ? '#6456DD33' : '#BCDB0F33',
+
+  transition: 'opacity .5s',
+  ...getBreakpointsStylesByArray(theme, {
+    display: ['none', null, null, null, null, null, 'block'],
+  }),
+}))
+
+const Decorationfilter2 = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  height: '100%',
+  width: '100%',
+  opacity: 1,
+  backgroundColor: '#00000033',
+
   transition: 'opacity .5s',
   ...getBreakpointsStylesByArray(theme, {
     display: ['none', null, null, null, null, null, 'block'],

@@ -1,10 +1,17 @@
 import { styled } from '@mui/material/styles'
 
+import { getImageSrcSetByImageObj } from 'entities/image/types'
+
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { SwimOutContentFromRight } from 'shared/ui/containers'
 import { TextOutlined } from 'shared/ui/outlined-text'
 
 export const AboutUsPageHowWeWork = () => {
+  const imageSrcSet = getImageSrcSetByImageObj({
+    path: '/assets/images/',
+    name: 'How we work',
+    fileType: 'png',
+  })
   return (
     <div style={{ position: 'relative' }}>
       <SectionNumber viewBoxWidth={795} animate>
@@ -14,7 +21,17 @@ export const AboutUsPageHowWeWork = () => {
         title={['this pucture is about', 'how we work on']}
         content={
           <ContentContainer>
-            <img src="/assets/images/How we work.png" alt="" />
+            <picture>
+              {imageSrcSet.map(imageSrcSetData => {
+                return (
+                  <source
+                    srcSet={imageSrcSetData.path}
+                    media={imageSrcSetData.media}></source>
+                )
+              })}
+
+              <img src="/assets/images/How we work-1920w.png" alt="" />
+            </picture>
           </ContentContainer>
         }
       />
@@ -31,9 +48,13 @@ const ContentContainer = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     height: [219, 331, 282, 494, 453, 521, 934, null, 1082, 1134],
   }),
-  '& img': {
+
+  '& picture': {
     height: '90%',
-    width: '100%%',
+    width: '100%',
+    img: {
+      height: '100%',
+    },
   },
 }))
 

@@ -3,12 +3,18 @@ import { useState } from 'react'
 import { Mousewheel, Pagination } from 'swiper'
 import { Swiper, SwiperRef, SwiperSlide, useSwiper } from 'swiper/react'
 
+import {
+  Image,
+  getImagePath,
+  getImageSrcSetByImageObj,
+} from 'entities/image/types'
+
 import { SnowflakeIcon } from 'shared/icons/snowflake'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { maxWidth } from 'shared/theme'
 
 interface Props {
-  items: string[]
+  items: Image[]
 }
 
 export const ScrollableByOneList = ({ items }: Props) => {
@@ -65,9 +71,21 @@ export const ScrollableByOneList = ({ items }: Props) => {
           setActiveIndex(swiper.activeIndex)
         }}>
         {items.map(item => {
+          const imageSrcSet = getImageSrcSetByImageObj(item)
+
           return (
-            <SwiperSlide key={item}>
-              <Item src={item} />
+            <SwiperSlide key={item.name}>
+              <Item>
+                {imageSrcSet.map(imageSrcSetData => {
+                  return (
+                    <source
+                      srcSet={imageSrcSetData.path}
+                      media={imageSrcSetData.media}></source>
+                  )
+                })}
+
+                <img src={getImagePath(item, 1920)} />
+              </Item>
             </SwiperSlide>
           )
         })}
@@ -106,12 +124,16 @@ const Container = styled('div')(({ theme }) => ({
   },
 }))
 
-const Item = styled('img')(({ theme }) => ({
-  objectFit: 'cover',
+const Item = styled('picture')(({ theme }) => ({
   width: '100%',
   ...getBreakpointsStylesByArray(theme, {
     height: [260, null, null, 378, 484, null, 855, null, 1214],
   }),
+  img: {
+    height: '100%',
+    width: '100%',
+    objectFit: 'cover',
+  },
 }))
 
 const PaginationContainer = styled('div')(({ theme }) => ({
