@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles'
 import { Link as ReactRouterDomLink } from 'react-router-dom'
 
+import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
 import { serviceTypeToIcon } from 'entities/services/data'
 
 import { PAGES } from 'shared/config'
@@ -27,16 +28,27 @@ export const ProjectCard = ({
   type,
   servicesType,
 }: Props) => {
+  const imageSrcSet = getImageSrcSetByImageObj(image)
   return (
     <Container>
       <article>
         <Link to={`${PAGES.Projects}/${id}`}>
           <ImageContainer>
-            <img
-              className={PARALLAX_CLASS}
-              src={image}
-              alt={`${name} project`}
-            />
+            <picture>
+              {imageSrcSet.map(imageSrcSetData => {
+                return (
+                  <source
+                    srcSet={imageSrcSetData.path}
+                    media={imageSrcSetData.media}></source>
+                )
+              })}
+
+              <img
+                className={PARALLAX_CLASS}
+                src={getImagePath(image, 1920)}
+                alt={`${name} project`}
+              />
+            </picture>
           </ImageContainer>
           <Content>
             <Header>
