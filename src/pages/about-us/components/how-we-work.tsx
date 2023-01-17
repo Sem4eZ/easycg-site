@@ -56,6 +56,9 @@ const ContentContainer = styled('div')(({ theme }) => ({
     width: '100%',
     img: {
       height: '100%',
+      width: '100%',
+      objectFit: 'contain',
+      objectPosition: 'bottom',
     },
   },
 }))
