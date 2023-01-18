@@ -9,17 +9,18 @@ import { pxToRem } from 'shared/lib/px-to-rem'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { articleSpaceArr, maxWidth, spaceArr } from 'shared/theme'
 
-import { XXXLFont } from '../typography'
+import { XXLFont, XXXLFont } from '../typography'
 
 type PageType = 'default' | 'article'
 
 interface Props {
-  title: string
+  title: string | React.ReactNode
   decorationText?: React.ReactNode
   subtitleContent?: React.ReactNode
   filter?: React.ReactNode
   children: React.ReactNode
   type?: PageType
+  titleSize?: 'small' | 'normal'
 }
 
 export const Page = ({
@@ -29,6 +30,7 @@ export const Page = ({
   decorationText,
   children,
   type = 'default',
+  titleSize = 'normal',
 }: Props) => {
   const navigate = useNavigate()
 
@@ -44,6 +46,8 @@ export const Page = ({
       title.classList.add('animate')
     }, 0)
   }, [])
+
+  const Title = titleSize === 'normal' ? NormalTitle : SmallTitle
 
   return (
     <div style={{ overflow: 'hidden', paddingTop: '24px' }}>
@@ -88,7 +92,41 @@ const BackButton = styled(Button)(({ theme }) => ({
   }),
 }))
 
-const Title = styled(XXXLFont)<{ type: PageType }>(({ theme, type }) => ({
+const SmallTitle = styled(XXLFont)<{ type: PageType }>(({ theme, type }) => ({
+  position: 'relative',
+  marginTop: pxToRem(114),
+  maxWidth: maxWidth,
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  ...getBreakpointsStylesByArray(theme, {
+    paddingLeft: type === 'default' ? spaceArr : articleSpaceArr,
+    paddingRight: type === 'default' ? spaceArr : articleSpaceArr,
+    marginTop: [45, 103, 56, null, 258, 234, 85, null, 188],
+  }),
+  '&.animate': {
+    '&::before': {
+      transform: 'translateX(0)',
+    },
+  },
+  '&::before': {
+    boxSizing: 'border-box',
+    content: "''",
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    height: '2px',
+    width: '100%',
+    backgroundColor: theme.palette.text.disabled,
+    transform: 'translateX(-100%)',
+    transition: 'transform 1s',
+    ...getBreakpointsStylesByArray(theme, {
+      marginLeft: type === 'default' ? spaceArr : articleSpaceArr,
+      display: ['none', null, null, null, null, null, 'block'],
+    }),
+  },
+}))
+
+const NormalTitle = styled(XXXLFont)<{ type: PageType }>(({ theme, type }) => ({
   position: 'relative',
   marginTop: pxToRem(114),
   maxWidth: maxWidth,
