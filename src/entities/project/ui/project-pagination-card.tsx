@@ -25,7 +25,7 @@ export const ProjectPaginationCard = ({
 }: Props) => {
   return (
     <Container to={`${PAGES.Projects}/${id}`}>
-      <Image src={getImagePath(image, 400)} alt={`${name} project`} />
+      <Image src={getImagePath(image, 400)} alt={image.alt} />
       <Information>
         <div>
           <TagsStyled

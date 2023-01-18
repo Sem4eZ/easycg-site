@@ -11,6 +11,7 @@ export const MainPageCeoSection = () => {
     path: '/assets/images/',
     name: 'ceo',
     fileType: 'png',
+    alt: '',
   })
   return (
     <SwimOutContentFromRight

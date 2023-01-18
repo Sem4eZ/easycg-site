@@ -39,7 +39,7 @@ export const ArticleCard = ({
                 )
               })}
 
-              <img src={getImagePath(image, 1920)} alt={`${name}  article`} />
+              <img src={getImagePath(image, 1920)} alt={image.alt} />
             </Picture>
             <Decorationfilter className="decorationFilter" />
           </ImageContainer>

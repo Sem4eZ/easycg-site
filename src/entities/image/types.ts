@@ -2,6 +2,7 @@ export interface Image {
   path: string
   name: string
   fileType: string
+  alt: string
 }
 
 const IMAGE_SIZES = [400, 800, 1200, 1600]

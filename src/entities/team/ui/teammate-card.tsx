@@ -36,10 +36,7 @@ export const TeammateCard = ({
                 )
               })}
 
-              <img
-                src={getImagePath(image.main, 1920)}
-                alt={`${name}  employee`}
-              />
+              <img src={getImagePath(image.main, 1920)} alt={image.main.alt} />
             </Picture>
 
             <HiddenImage className="hidden">

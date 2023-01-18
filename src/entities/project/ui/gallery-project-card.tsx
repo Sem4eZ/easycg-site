@@ -98,7 +98,7 @@ export const GalleryProjectCard = ({
             )
           })}
 
-          <Image src={getImagePath(image, 1920)} alt={`${name} project`} />
+          <Image src={getImagePath(image, 1920)} alt={image.alt} />
         </picture>
         <Decorationfilter className="decorationFilter" />
         <Decorationfilter2 className="decorationFilter2" />

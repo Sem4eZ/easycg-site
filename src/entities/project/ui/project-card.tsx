@@ -46,7 +46,7 @@ export const ProjectCard = ({
               <img
                 className={PARALLAX_CLASS}
                 src={getImagePath(image, 1920)}
-                alt={`${name} project`}
+                alt={image.alt}
               />
             </picture>
           </ImageContainer>
@@ -105,7 +105,6 @@ const Container = styled('li')(({ theme }) => ({
       transition: 'min-width 0.5s',
     },
   },
-
   '&:last-child': {
     ...getBreakpointsStylesByArray(theme, {
       marginRight: [

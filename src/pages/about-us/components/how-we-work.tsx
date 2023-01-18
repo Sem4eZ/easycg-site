@@ -11,6 +11,7 @@ export const AboutUsPageHowWeWork = () => {
     path: '/assets/images/',
     name: 'How we work',
     fileType: 'png',
+    alt: '',
   })
   return (
     <div style={{ position: 'relative' }}>

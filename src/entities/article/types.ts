@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { Image } from 'entities/image/types'
 
 export interface Article {
@@ -9,4 +11,5 @@ export interface Article {
   type: string
   detailPreviewImage: Image
   remark: string[]
+  content: React.ReactNode
 }
