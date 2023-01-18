@@ -7,9 +7,11 @@ import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 import { useGetDevice } from 'shared/lib/use-get-device'
-import { maxWidth, spaceArr } from 'shared/theme'
+import { articleSpaceArr, maxWidth, spaceArr } from 'shared/theme'
 
 import { XXXLFont } from '../typography'
+
+type PageType = 'default' | 'article'
 
 interface Props {
   title: string
@@ -17,6 +19,7 @@ interface Props {
   subtitleContent?: React.ReactNode
   filter?: React.ReactNode
   children: React.ReactNode
+  type?: PageType
 }
 
 export const Page = ({
@@ -25,6 +28,7 @@ export const Page = ({
   filter,
   decorationText,
   children,
+  type = 'default',
 }: Props) => {
   const navigate = useNavigate()
 
@@ -53,16 +57,18 @@ export const Page = ({
           </BackButton>
         </BackButtonWrapper>
       )}
-      <Title variant="h1" ref={titleRef}>
+      <Title type={type} variant="h1" ref={titleRef}>
         {decorationText && (
           <DecorationTextBlock>{decorationText}</DecorationTextBlock>
         )}
         {title}
       </Title>
       {subtitleContent && (
-        <SubtitleContentBlock>{subtitleContent}</SubtitleContentBlock>
+        <SubtitleContentBlock type={type}>
+          {subtitleContent}
+        </SubtitleContentBlock>
       )}
-      {filter && <FilterBlock>{filter}</FilterBlock>}
+      {filter && <FilterBlock type={type}>{filter}</FilterBlock>}
       <ContentBlock>{children}</ContentBlock>
     </div>
   )
@@ -82,15 +88,15 @@ const BackButton = styled(Button)(({ theme }) => ({
   }),
 }))
 
-const Title = styled(XXXLFont)(({ theme }) => ({
+const Title = styled(XXXLFont)<{ type: PageType }>(({ theme, type }) => ({
   position: 'relative',
   marginTop: pxToRem(114),
   maxWidth: maxWidth,
   marginLeft: 'auto',
   marginRight: 'auto',
   ...getBreakpointsStylesByArray(theme, {
-    paddingLeft: spaceArr,
-    paddingRight: spaceArr,
+    paddingLeft: type === 'default' ? spaceArr : articleSpaceArr,
+    paddingRight: type === 'default' ? spaceArr : articleSpaceArr,
     marginTop: [45, 103, 56, null, 258, 234, 85, null, 188],
   }),
   '&.animate': {
@@ -110,7 +116,7 @@ const Title = styled(XXXLFont)(({ theme }) => ({
     transform: 'translateX(-100%)',
     transition: 'transform 1s',
     ...getBreakpointsStylesByArray(theme, {
-      marginLeft: spaceArr,
+      marginLeft: type === 'default' ? spaceArr : articleSpaceArr,
       display: ['none', null, null, null, null, null, 'block'],
     }),
   },
@@ -129,25 +135,29 @@ const DecorationTextBlock = styled('div')(({ theme }) => ({
   }),
 }))
 
-const SubtitleContentBlock = styled('div')(({ theme }) => ({
-  maxWidth: maxWidth,
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  marginTop: pxToRem(24),
-  ...getBreakpointsStylesByArray(theme, {
-    paddingLeft: spaceArr,
-    paddingRight: spaceArr,
-    marginTop: [24, 16, 16, 16, 24, 16, 16, null, 24],
+const SubtitleContentBlock = styled('div')<{ type: PageType }>(
+  ({ theme, type }) => ({
+    maxWidth: maxWidth,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: pxToRem(24),
+    ...getBreakpointsStylesByArray(theme, {
+      paddingLeft: type === 'default' ? spaceArr : articleSpaceArr,
+      paddingRight: type === 'default' ? spaceArr : articleSpaceArr,
+      marginTop: [24, 16, 16, 16, 24, 16, 16, null, 24],
+    }),
   }),
-}))
+)
 
-const FilterBlock = styled('section')(({ theme }) => ({
-  ...getBreakpointsStylesByArray(theme, {
-    paddingLeft: spaceArr,
-    paddingRight: spaceArr,
-    marginTop: [136, null, 112, 141, 267, null, 297, null, 288],
+const FilterBlock = styled('section')<{ type: PageType }>(
+  ({ theme, type }) => ({
+    ...getBreakpointsStylesByArray(theme, {
+      paddingLeft: type === 'default' ? spaceArr : articleSpaceArr,
+      paddingRight: type === 'default' ? spaceArr : articleSpaceArr,
+      marginTop: [136, null, 112, 141, 267, null, 297, null, 288],
+    }),
   }),
-}))
+)
 
 const ContentBlock = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {

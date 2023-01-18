@@ -18,7 +18,22 @@ export const spaceObj = {
   macbook: 112,
   desktop: 112,
 }
+export const articleSpaceObj = {
+  se: 24,
+  se_horizontal: 88,
+  ip13: 28,
+  ip13_horizontal: 88,
+  tablet: 24,
+  tablet_horizontal: 88,
+  desktop_s: 112,
+  laptop: 112,
+  macbook: 256,
+  desktop: 256,
+}
 export const spaceArr = Object.values(spaceObj).map(value => value)
+export const articleSpaceArr = Object.values(articleSpaceObj).map(
+  value => value,
+)
 
 const breakpointsTheme = createTheme({
   breakpoints: {
