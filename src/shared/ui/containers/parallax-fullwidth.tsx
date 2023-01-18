@@ -34,7 +34,7 @@ const BALOONS_INITIAL_TRANSFORM = {
 export const ParallaxFullWidth = () => {
   const theme = useTheme()
   const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
-
+  const doAnimation = isDesktopS || isLaptop || isMacbook || isDesktop
   const containerRef = useRef<HTMLDivElement | null>(null)
   const cloud1Ref = useRef<HTMLImageElement | null>(null)
   const cloud2Ref = useRef<HTMLImageElement | null>(null)
@@ -88,18 +88,18 @@ export const ParallaxFullWidth = () => {
   }
 
   useEffect(() => {
-    if (isDesktopS || isLaptop || isMacbook || isDesktop) {
+    if (doAnimation) {
       window.addEventListener('scroll', doParallax, false)
     }
 
     return () => {
       window.removeEventListener('scroll', doParallax)
     }
-  }, [])
+  }, [doAnimation])
 
   return (
     <Container ref={containerRef}>
-      {isDesktopS || isLaptop || isMacbook || isDesktop ? (
+      {doAnimation ? (
         <ImagesContainer>
           <Baloon1
             ref={baloon1Ref}
