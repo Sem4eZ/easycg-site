@@ -12,6 +12,7 @@ import {
 import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { SnowflakeIcon } from 'shared/icons/snowflake'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { useGetDevice } from 'shared/lib/use-get-device'
 import { spaceArr } from 'shared/theme'
 import { Modal } from 'shared/ui/modal/default'
 
@@ -24,6 +25,9 @@ interface Props {
 
 export const LeaveProjectDetails = ({ buttonText }: Props) => {
   const [open, setOpen] = useState(false)
+
+  const { isMobileS, isMobileLandscape, isMobile, isMobileSLandscape } =
+    useGetDevice()
 
   const openModal = () => {
     setOpen(true)
@@ -128,9 +132,13 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
 
             <Buttons showBackButton={showBackButton}>
               {showNextButton && <Button type="submit">next</Button>}
-              {page === quiz.length - 1 && (
-                <Button onClick={closeModal}>close</Button>
-              )}
+              {page === quiz.length - 1 &&
+                (isMobileS ||
+                  isMobileLandscape ||
+                  isMobile ||
+                  isMobileSLandscape) && (
+                  <Button onClick={closeModal}>close</Button>
+                )}
               <BackButton
                 endIcon=""
                 startIcon={<ArrowFatIcon />}
