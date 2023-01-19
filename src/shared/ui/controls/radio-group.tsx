@@ -85,6 +85,7 @@ const RadioGroupBaseStyled = styled(RadioGroupBase)(({ theme }) => ({
 }))
 
 const RadioStyled = styled(Radio)(({ theme }) => ({
+  display: 'flex',
   padding: pxToRem(4),
   transition: 'color .2s',
   '& .MuiSvgIcon-root': {
@@ -101,7 +102,7 @@ const RadioStyled = styled(Radio)(({ theme }) => ({
     },
   },
   ...getBreakpointsStylesByArray(theme, {
-    margniRight: [40, null, null, null, null, null, 117],
+    marginRight: [40, null, null, null, null, null, 117],
   }),
 }))
 

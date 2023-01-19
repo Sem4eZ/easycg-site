@@ -117,7 +117,7 @@ const CheckboxStyled = styled(Checkbox)(({ theme }) => ({
     },
   },
   ...getBreakpointsStylesByArray(theme, {
-    margniRight: [40, null, null, null, null, null, 117],
+    marginRight: [40, null, null, null, null, null, 117],
   }),
 }))
 
