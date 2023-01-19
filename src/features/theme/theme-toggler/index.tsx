@@ -29,6 +29,10 @@ export const useThemeToggler = () => {
   }, [theme])
 
   useEffect(() => {
+    Cookies.set(THEME_COOKIE_KEY, theme, { expires: 1 })
+  }, [theme])
+
+  useEffect(() => {
     const hours = time.getHours()
     if (window.matchMedia) {
       window
