@@ -1,10 +1,10 @@
+import Checkbox from '@mui/material/Checkbox'
 import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import FormGroup from '@mui/material/FormGroup'
 import FormLabel from '@mui/material/FormLabel'
-import Radio from '@mui/material/Radio'
-import RadioGroupBase from '@mui/material/RadioGroup'
 import { styled } from '@mui/material/styles'
-import { ChangeEvent, forwardRef } from 'react'
+import { ChangeEvent, forwardRef, useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 
 import { CheckIcon } from 'shared/icons/check'
@@ -23,30 +23,46 @@ interface Props {
   }[]
 }
 
-export const RadioGroup = forwardRef(
-  ({ type, label, options, ...rest }: Props, ref) => {
-    const { setValue } = useFormContext()
+const getState = (options: Props['options']) => {
+  const state: { [key: string]: boolean } = {}
+  options.forEach(option => (state[option.value] = false))
+  return state
+}
 
-    const onChange = (e: ChangeEvent<HTMLInputElement>, value: string) => {
-      setValue(type, value)
+export const CheckboxGroup = forwardRef(
+  ({ type, label, options, ...rest }: Props, ref) => {
+    const [state, setState] = useState(getState(options))
+
+    const { setValue, watch } = useFormContext()
+
+    const onChange = (e: ChangeEvent<HTMLInputElement>, checked: boolean) => {
+      setState(prevState => ({ ...prevState, [e.target.value]: checked }))
     }
+
+    useEffect(() => {
+      setValue(
+        type,
+        Object.entries(state)
+          .filter(([key, value]) => value)
+          .map(([key, value]) => key)
+          .join(', '),
+      )
+    }, [state])
 
     return (
       <FormControl>
         <FormLabel id={`${type}-label`}>
           <Label>{label}</Label>
         </FormLabel>
-        <RadioGroupBaseStyled
-          ref={ref}
-          aria-labelledby={`${type}-label`}
-          {...rest}
-          onChange={onChange}>
+        <FormGroupStyled ref={ref} aria-labelledby={`${type}-label`} {...rest}>
           {options.map(option => (
             <FormControlLabel
               key={option.label}
               value={option.value}
+              checked={state[option.value]}
               control={
-                <RadioStyled
+                <CheckboxStyled
+                  onChange={onChange}
                   checkedIcon={
                     <Check>
                       <CheckIcon />
@@ -66,7 +82,7 @@ export const RadioGroup = forwardRef(
               }
             />
           ))}
-        </RadioGroupBaseStyled>
+        </FormGroupStyled>
       </FormControl>
     )
   },
@@ -77,14 +93,14 @@ const Label = styled(XLFont)(({ theme }) => ({
   color: theme.palette.text.primary,
 }))
 
-const RadioGroupBaseStyled = styled(RadioGroupBase)(({ theme }) => ({
+const FormGroupStyled = styled(FormGroup)(({ theme }) => ({
   display: 'grid',
   ...getBreakpointsStylesByArray(theme, {
     gridRowGap: [32, null, null, null, null, null, 48],
   }),
 }))
 
-const RadioStyled = styled(Radio)(({ theme }) => ({
+const CheckboxStyled = styled(Checkbox)(({ theme }) => ({
   padding: pxToRem(4),
   transition: 'color .2s',
   '& .MuiSvgIcon-root': {
