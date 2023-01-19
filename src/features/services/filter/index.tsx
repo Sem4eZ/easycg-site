@@ -70,6 +70,7 @@ export const useServicesFilter = ({ initial }: Props) => {
         <DesktopFiler>
           {FILTER.map(filterData => (
             <FilterLink
+              key={filterData.title}
               active={checkIsActive(filterData.value)}
               onClick={handleClick(filterData.value)}>
               {filterData.title}
@@ -101,6 +102,7 @@ export const useServicesFilter = ({ initial }: Props) => {
               {FILTER.filter(filterData => filterData.title !== 'all').map(
                 filterData => (
                   <MobileFilterLink
+                    key={filterData.title}
                     data-active={checkIsActive(filterData.value)}
                     active={checkIsActive(filterData.value)}
                     onClick={handleClick(filterData.value)}>

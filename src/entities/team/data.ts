@@ -9,8 +9,18 @@ export const team: Teammate[] = [
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
     image: {
-      main: { path: IMAGES_PATH, name: 'teammate', fileType: 'png' },
-      hidden: { path: IMAGES_PATH, name: 'teammate-evil', fileType: 'png' },
+      main: {
+        path: IMAGES_PATH,
+        name: 'teammate',
+        fileType: 'png',
+        alt: 'Our teammate 1',
+      },
+      hidden: {
+        path: IMAGES_PATH,
+        name: 'teammate-evil',
+        fileType: 'png',
+        alt: '',
+      },
     },
     date: new Date('2021-11-12'),
     position: 'seo',
@@ -21,8 +31,18 @@ export const team: Teammate[] = [
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
     image: {
-      main: { path: IMAGES_PATH, name: 'teammate', fileType: 'png' },
-      hidden: { path: IMAGES_PATH, name: 'teammate-evil', fileType: 'png' },
+      main: {
+        path: IMAGES_PATH,
+        name: 'teammate',
+        fileType: 'png',
+        alt: 'Our teammate 2',
+      },
+      hidden: {
+        path: IMAGES_PATH,
+        name: 'teammate-evil',
+        fileType: 'png',
+        alt: '',
+      },
     },
     date: new Date('2021-11-12'),
     position: 'seo',
@@ -33,8 +53,18 @@ export const team: Teammate[] = [
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
     image: {
-      main: { path: IMAGES_PATH, name: 'teammate', fileType: 'png' },
-      hidden: { path: IMAGES_PATH, name: 'teammate-evil', fileType: 'png' },
+      main: {
+        path: IMAGES_PATH,
+        name: 'teammate',
+        fileType: 'png',
+        alt: 'Our teammate 3',
+      },
+      hidden: {
+        path: IMAGES_PATH,
+        name: 'teammate-evil',
+        fileType: 'png',
+        alt: '',
+      },
     },
     date: new Date('2021-11-12'),
     position: 'seo',
@@ -45,8 +75,18 @@ export const team: Teammate[] = [
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
     image: {
-      main: { path: IMAGES_PATH, name: 'teammate', fileType: 'png' },
-      hidden: { path: IMAGES_PATH, name: 'teammate-evil', fileType: 'png' },
+      main: {
+        path: IMAGES_PATH,
+        name: 'teammate',
+        fileType: 'png',
+        alt: 'Our teammate 4',
+      },
+      hidden: {
+        path: IMAGES_PATH,
+        name: 'teammate-evil',
+        fileType: 'png',
+        alt: '',
+      },
     },
     date: new Date('2021-11-12'),
     position: 'seo',
@@ -57,8 +97,18 @@ export const team: Teammate[] = [
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
     image: {
-      main: { path: IMAGES_PATH, name: 'teammate', fileType: 'png' },
-      hidden: { path: IMAGES_PATH, name: 'teammate-evil', fileType: 'png' },
+      main: {
+        path: IMAGES_PATH,
+        name: 'teammate',
+        fileType: 'png',
+        alt: 'Our teammate 4',
+      },
+      hidden: {
+        path: IMAGES_PATH,
+        name: 'teammate-evil',
+        fileType: 'png',
+        alt: '',
+      },
     },
     date: new Date('2021-11-12'),
     position: 'seo',
@@ -69,8 +119,18 @@ export const team: Teammate[] = [
     description:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
     image: {
-      main: { path: IMAGES_PATH, name: 'teammate', fileType: 'png' },
-      hidden: { path: IMAGES_PATH, name: 'teammate-evil', fileType: 'png' },
+      main: {
+        path: IMAGES_PATH,
+        name: 'teammate',
+        fileType: 'png',
+        alt: 'Our teammate 4',
+      },
+      hidden: {
+        path: IMAGES_PATH,
+        name: 'teammate-evil',
+        fileType: 'png',
+        alt: '',
+      },
     },
     date: new Date('2021-11-12'),
     position: 'seo',

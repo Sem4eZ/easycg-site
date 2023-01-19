@@ -31,21 +31,20 @@ export const TeammateCard = ({
               {imageMainSrcSet.map(imageSrcSetData => {
                 return (
                   <source
+                    key={imageSrcSetData.path}
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )
               })}
 
-              <img
-                src={getImagePath(image.main, 1920)}
-                alt={`${name}  employee`}
-              />
+              <img src={getImagePath(image.main, 1920)} alt={image.main.alt} />
             </Picture>
 
             <HiddenImage className="hidden">
               {imageHiddenSrcSet.map(imageSrcSetData => {
                 return (
                   <source
+                    key={imageSrcSetData.path}
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )

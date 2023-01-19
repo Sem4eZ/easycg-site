@@ -2,8 +2,8 @@ import { useTheme } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { useGetUserTime } from 'shared/lib/use-get-time'
 import { useGetUserCity } from 'shared/lib/use-get-user-city'
+import { useGetUserTime } from 'shared/lib/use-get-user-time'
 
 export const ThemeAndLocation = ({ ...rest }) => {
   const { city } = useGetUserCity()

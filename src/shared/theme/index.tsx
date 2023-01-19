@@ -2,6 +2,7 @@ import { createTheme } from '@mui/material'
 
 import { ArrowIcon } from 'shared/icons/arrow'
 import { ArrowFatIcon } from 'shared/icons/arrow-fat'
+import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
 export const maxWidth = '1920px'
@@ -18,7 +19,22 @@ export const spaceObj = {
   macbook: 112,
   desktop: 112,
 }
+export const articleSpaceObj = {
+  se: 24,
+  se_horizontal: 88,
+  ip13: 28,
+  ip13_horizontal: 88,
+  tablet: 24,
+  tablet_horizontal: 88,
+  desktop_s: 112,
+  laptop: 112,
+  macbook: 256,
+  desktop: 256,
+}
 export const spaceArr = Object.values(spaceObj).map(value => value)
+export const articleSpaceArr = Object.values(articleSpaceObj).map(
+  value => value,
+)
 
 const breakpointsTheme = createTheme({
   breakpoints: {
@@ -184,6 +200,9 @@ const commonTheme = createTheme({
       styleOverrides: {
         select: ({ theme }) => ({
           borderBottomColor: theme.palette.accent,
+          '& .CheckIcon': {
+            display: 'none',
+          },
           '&~.toggleIcon': {
             transition: 'transform .2s, color .2s',
             marginRight: pxToRem(22),
@@ -306,14 +325,9 @@ const commonTheme = createTheme({
     MuiMenuItem: {
       styleOverrides: {
         root: ({ theme }) => ({
-          fontSize: pxToRem(16),
-          lineHeight: pxToRem(20),
           fontWeight: 700,
-          paddingLeft: pxToRem(88),
-          paddingTop: pxToRem(24),
-          paddingBottom: pxToRem(24),
           '& .CheckIcon': {
-            display: 'none',
+            opacity: 0,
           },
           '&:hover': {
             backgroundColor: 'transparent',
@@ -322,29 +336,22 @@ const commonTheme = createTheme({
           '&.Mui-selected': {
             backgroundColor: 'transparent',
             color: theme.palette.text.secondary,
-            paddingLeft: pxToRem(48),
             '& .CheckIcon': {
-              display: 'block',
+              opacity: 1,
             },
             '&:hover': {
               backgroundColor: 'transparent',
               color: theme.palette.text.secondary,
             },
           },
-          [theme.breakpoints.up('tablet')]: {
-            fontSize: pxToRem(25),
-            lineHeight: pxToRem(30),
-          },
-          [theme.breakpoints.up('desktop_s')]: {
-            fontSize: pxToRem(42),
-            lineHeight: pxToRem(51),
-            paddingLeft: pxToRem(174),
-            paddingTop: pxToRem(48),
-            paddingBottom: pxToRem(48),
-            '&.Mui-selected': {
-              paddingLeft: pxToRem(96),
-            },
-          },
+          ...getBreakpointsStylesByArray(theme, {
+            fontSize: [16, null, null, null, 25, null, 42],
+            lineHeight: [20, null, null, null, 30, null, 51],
+            paddingTop: [24, null, null, null, null, null, 48],
+            paddingBottom: [24, null, null, null, null, null, 48],
+            paddingLeft: [40, null, null, null, 88, null, 174],
+            paddingRight: [40, null, null, null, 44, null, 87],
+          }),
         }),
       },
     },

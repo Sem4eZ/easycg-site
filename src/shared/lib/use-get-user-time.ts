@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useGetUserTime = () => {
+export const useGetUserTime = (delay = 30000) => {
   const [time, setTime] = useState(new Date())
   const [timezone, setTimezone] = useState(-(time.getTimezoneOffset() / 60))
 
@@ -8,7 +8,7 @@ export const useGetUserTime = () => {
     const interval = setInterval(() => {
       setTime(new Date())
       setTimezone(-(new Date().getTimezoneOffset() / 60))
-    }, 30000)
+    }, delay)
     return () => {
       clearInterval(interval)
     }
