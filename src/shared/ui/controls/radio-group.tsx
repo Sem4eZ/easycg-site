@@ -25,7 +25,8 @@ interface Props {
 
 export const RadioGroup = forwardRef(
   ({ type, label, options, ...rest }: Props, ref) => {
-    const { setValue } = useFormContext()
+    const { watch, setValue } = useFormContext()
+    const value = watch(type)
 
     const onChange = (e: ChangeEvent<HTMLInputElement>, value: string) => {
       setValue(type, value)
@@ -43,6 +44,7 @@ export const RadioGroup = forwardRef(
           onChange={onChange}>
           {options.map(option => (
             <FormControlLabel
+              checked={value === option.value}
               key={option.label}
               value={option.value}
               control={

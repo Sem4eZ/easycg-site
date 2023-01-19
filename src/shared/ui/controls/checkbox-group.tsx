@@ -23,17 +23,20 @@ interface Props {
   }[]
 }
 
-const getState = (options: Props['options']) => {
+const getState = (options: Props['options'], values: string) => {
   const state: { [key: string]: boolean } = {}
-  options.forEach(option => (state[option.value] = false))
+  options.forEach(
+    option => (state[option.value] = values.includes(String(option.value))),
+  )
   return state
 }
 
 export const CheckboxGroup = forwardRef(
   ({ type, label, options, ...rest }: Props, ref) => {
-    const [state, setState] = useState(getState(options))
-
     const { setValue, watch } = useFormContext()
+    const value = watch(type)
+
+    const [state, setState] = useState(getState(options, value))
 
     const onChange = (e: ChangeEvent<HTMLInputElement>, checked: boolean) => {
       setState(prevState => ({ ...prevState, [e.target.value]: checked }))
