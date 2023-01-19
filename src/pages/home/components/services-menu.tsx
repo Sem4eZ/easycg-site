@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-import { LeaveProjectDetails } from 'features/project/leave-project-details'
+import { LeaveProjectDetails } from 'features/project/leave-project-details/quiz'
 
 import { ServicesMenu } from 'entities/services/ui/services-menu'
 
