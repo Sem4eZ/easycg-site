@@ -34,7 +34,7 @@ const BALOONS_INITIAL_TRANSFORM = {
 export const ParallaxFullWidth = () => {
   const theme = useTheme()
   const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
-
+  const doAnimation = isDesktopS || isLaptop || isMacbook || isDesktop
   const containerRef = useRef<HTMLDivElement | null>(null)
   const cloud1Ref = useRef<HTMLImageElement | null>(null)
   const cloud2Ref = useRef<HTMLImageElement | null>(null)
@@ -46,7 +46,12 @@ export const ParallaxFullWidth = () => {
   const baloon3Ref = useRef<HTMLImageElement | null>(null)
   const baloon4Ref = useRef<HTMLImageElement | null>(null)
   const baloon5Ref = useRef<HTMLImageElement | null>(null)
+  const baloon6Ref = useRef<HTMLImageElement | null>(null)
   const baloon7Ref = useRef<HTMLImageElement | null>(null)
+
+  const ellipseRef = useRef<HTMLDivElement | null>(null)
+
+  const mainRef = useRef<HTMLImageElement | null>(null)
 
   const doParallax = () => {
     const container = containerRef.current
@@ -73,7 +78,9 @@ export const ParallaxFullWidth = () => {
       baloon2Ref.current.style.transform = `translateY(-${offset}%) ${BALOONS_INITIAL_TRANSFORM[2]}`
     }
     if (baloon3Ref.current) {
-      baloon3Ref.current.style.transform = `translateY(-${offset}%) ${BALOONS_INITIAL_TRANSFORM[3]}`
+      baloon3Ref.current.style.transform = `translateY(-${offset * 5}%) ${
+        BALOONS_INITIAL_TRANSFORM[3]
+      }`
     }
     if (baloon4Ref.current) {
       baloon4Ref.current.style.transform = `translateY(-${offset}%) ${BALOONS_INITIAL_TRANSFORM[4]}`
@@ -81,25 +88,35 @@ export const ParallaxFullWidth = () => {
     if (baloon5Ref.current) {
       baloon5Ref.current.style.transform = `translateY(-${offset}%) ${BALOONS_INITIAL_TRANSFORM[5]}`
     }
-
+    if (baloon6Ref.current) {
+      baloon6Ref.current.style.transform = `translateY(-${offset}%) ${BALOONS_INITIAL_TRANSFORM[6]}`
+    }
     if (baloon7Ref.current) {
       baloon7Ref.current.style.transform = `translateY(-${offset}%) ${BALOONS_INITIAL_TRANSFORM[7]}`
+    }
+
+    if (ellipseRef.current) {
+      ellipseRef.current.style.transform = `translateY(-${offset}%)`
+    }
+
+    if (mainRef.current) {
+      mainRef.current.style.transform = `translateY(-${offset / 6}%)`
     }
   }
 
   useEffect(() => {
-    if (isDesktopS || isLaptop || isMacbook || isDesktop) {
+    if (doAnimation) {
       window.addEventListener('scroll', doParallax, false)
     }
 
     return () => {
       window.removeEventListener('scroll', doParallax)
     }
-  }, [])
+  }, [doAnimation])
 
   return (
     <Container ref={containerRef}>
-      {isDesktopS || isLaptop || isMacbook || isDesktop ? (
+      {doAnimation ? (
         <ImagesContainer>
           <Baloon1
             ref={baloon1Ref}
@@ -126,16 +143,19 @@ export const ParallaxFullWidth = () => {
             <Circle />
           </CircleContainer>
 
-          <Ellipse />
+          <Ellipse ref={ellipseRef} />
 
           <Baloon5
             ref={baloon5Ref}
             src={getBallAccentPath(theme.palette.mode)}
           />
 
-          <Baloon6 src={getBallAccentPath(theme.palette.mode)} />
+          <Baloon6
+            ref={baloon6Ref}
+            src={getBallAccentPath(theme.palette.mode)}
+          />
 
-          <Main src={`${PATH_TO_PARALLAX}/Main.png`} />
+          <Main ref={mainRef} src={`${PATH_TO_PARALLAX}/Main.png`} />
 
           <Baloon4
             ref={baloon4Ref}

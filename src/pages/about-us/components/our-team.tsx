@@ -22,9 +22,7 @@ export const AboutUsPageOurTeam = () => {
         02
       </SectionNumber>
 
-      <Title variant="h2" textAlign="center">
-        our team
-      </Title>
+      <Title variant="h2">our team</Title>
       {showSlider ? (
         <Swiper
           slideToClickedSlide

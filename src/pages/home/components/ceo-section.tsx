@@ -11,6 +11,7 @@ export const MainPageCeoSection = () => {
     path: '/assets/images/',
     name: 'ceo',
     fileType: 'png',
+    alt: '',
   })
   return (
     <SwimOutContentFromRight
@@ -22,6 +23,7 @@ export const MainPageCeoSection = () => {
               {imageSrcSet.map(imageSrcSetData => {
                 return (
                   <source
+                    key={imageSrcSetData.path}
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )
