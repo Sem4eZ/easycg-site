@@ -325,11 +325,7 @@ const commonTheme = createTheme({
     MuiMenuItem: {
       styleOverrides: {
         root: ({ theme }) => ({
-          fontSize: pxToRem(16),
-          lineHeight: pxToRem(20),
           fontWeight: 700,
-          paddingTop: pxToRem(24),
-          paddingBottom: pxToRem(24),
           '& .CheckIcon': {
             opacity: 0,
           },
@@ -348,18 +344,11 @@ const commonTheme = createTheme({
               color: theme.palette.text.secondary,
             },
           },
-          [theme.breakpoints.up('tablet')]: {
-            fontSize: pxToRem(25),
-            lineHeight: pxToRem(30),
-          },
-          [theme.breakpoints.up('desktop_s')]: {
-            fontSize: pxToRem(42),
-            lineHeight: pxToRem(51),
-            paddingTop: pxToRem(48),
-            paddingBottom: pxToRem(48),
-          },
-
           ...getBreakpointsStylesByArray(theme, {
+            fontSize: [16, null, null, null, 25, null, 42],
+            lineHeight: [20, null, null, null, 30, null, 51],
+            paddingTop: [24, null, null, null, null, null, 48],
+            paddingBottom: [24, null, null, null, null, null, 48],
             paddingLeft: [40, null, null, null, 88, null, 174],
             paddingRight: [40, null, null, null, 44, null, 87],
           }),
