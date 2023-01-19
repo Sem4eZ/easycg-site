@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom'
 
 import { getMenuSchema } from 'entities/menu/data'
 
-import { COMPANY_EMAIL } from 'shared/config/environment-variables'
+import {
+  COMPANY_EMAIL,
+  COMPANY_PHONE,
+} from 'shared/config/environment-variables'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { getPhoneWithoutFormatting } from 'shared/lib/get-phone-without-formatting'
 import { useGetDevice } from 'shared/lib/use-get-device'
-import { useGetUserTime } from 'shared/lib/use-get-time'
 import { useGetUserCity } from 'shared/lib/use-get-user-city'
+import { useGetUserTime } from 'shared/lib/use-get-user-time'
 import { maxWidth, spaceArr } from 'shared/theme'
 
 import { SocialMedia } from '../social-media'
@@ -53,7 +57,9 @@ export const Footer = ({ projectsCount }: Props) => {
           } (GTM ${timezone})`}</Time>
         </BlockWithCity>
         <BlockWithPhone>
-          <Phone href="tel:+79222222222">+7 922 222 22 22</Phone>
+          <Phone href={`tel:${getPhoneWithoutFormatting(COMPANY_PHONE)}`}>
+            {COMPANY_PHONE}
+          </Phone>
           {!showSeparateEmail && (
             <Email href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</Email>
           )}

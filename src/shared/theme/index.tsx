@@ -2,6 +2,7 @@ import { createTheme } from '@mui/material'
 
 import { ArrowIcon } from 'shared/icons/arrow'
 import { ArrowFatIcon } from 'shared/icons/arrow-fat'
+import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
 export const maxWidth = '1920px'
@@ -199,6 +200,9 @@ const commonTheme = createTheme({
       styleOverrides: {
         select: ({ theme }) => ({
           borderBottomColor: theme.palette.accent,
+          '& .CheckIcon': {
+            display: 'none',
+          },
           '&~.toggleIcon': {
             transition: 'transform .2s, color .2s',
             marginRight: pxToRem(22),
@@ -324,11 +328,10 @@ const commonTheme = createTheme({
           fontSize: pxToRem(16),
           lineHeight: pxToRem(20),
           fontWeight: 700,
-          paddingLeft: pxToRem(88),
           paddingTop: pxToRem(24),
           paddingBottom: pxToRem(24),
           '& .CheckIcon': {
-            display: 'none',
+            opacity: 0,
           },
           '&:hover': {
             backgroundColor: 'transparent',
@@ -337,9 +340,8 @@ const commonTheme = createTheme({
           '&.Mui-selected': {
             backgroundColor: 'transparent',
             color: theme.palette.text.secondary,
-            paddingLeft: pxToRem(48),
             '& .CheckIcon': {
-              display: 'block',
+              opacity: 1,
             },
             '&:hover': {
               backgroundColor: 'transparent',
@@ -353,13 +355,14 @@ const commonTheme = createTheme({
           [theme.breakpoints.up('desktop_s')]: {
             fontSize: pxToRem(42),
             lineHeight: pxToRem(51),
-            paddingLeft: pxToRem(174),
             paddingTop: pxToRem(48),
             paddingBottom: pxToRem(48),
-            '&.Mui-selected': {
-              paddingLeft: pxToRem(96),
-            },
           },
+
+          ...getBreakpointsStylesByArray(theme, {
+            paddingLeft: [40, null, null, null, 88, null, 174],
+            paddingRight: [40, null, null, null, 44, null, 87],
+          }),
         }),
       },
     },

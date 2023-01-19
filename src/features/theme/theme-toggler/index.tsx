@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 
 import { MoonIcon } from 'shared/icons/moon'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { useGetUserTime } from 'shared/lib/use-get-time'
+import { useGetUserTime } from 'shared/lib/use-get-user-time'
 import { darkTheme, lightTheme } from 'shared/theme'
 
 type ThemeType = 'light' | 'dark'
@@ -22,7 +22,7 @@ export const useThemeToggler = () => {
     setTheme(prevState => (prevState === 'light' ? 'dark' : 'light'))
   }
 
-  const { time } = useGetUserTime()
+  const { time } = useGetUserTime(300000)
 
   useEffect(() => {
     Cookies.set(THEME_COOKIE_KEY, theme, { expires: 1 })

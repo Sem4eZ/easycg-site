@@ -8,3 +8,4 @@ const checkedEnvVariable = (envVariable: string): string => {
 export const IPINFO_TOKEN = checkedEnvVariable('IPINFO_TOKEN')
 export const IPINFO_URL = checkedEnvVariable('IPINFO_URL')
 export const COMPANY_EMAIL = checkedEnvVariable('COMPANY_EMAIL')
+export const COMPANY_PHONE = checkedEnvVariable('COMPANY_PHONE')

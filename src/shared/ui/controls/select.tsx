@@ -8,6 +8,8 @@ import { styled } from '@mui/material/styles'
 import { CheckIcon } from 'shared/icons/check'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 
+import { ExplanationFont } from '../typography'
+
 interface Props {
   label: string
   explanation?: string
@@ -26,13 +28,21 @@ export const Select = ({
   field,
   options,
   error,
+  ...rest
 }: Props) => {
   return (
     <FormControl fullWidth error={Boolean(error)}>
       <InputLabel id={`${field}-label`}>
-        {label} {explanation && <span>{explanation}</span>}
+        {label}
+        {explanation && (
+          <LabelExplanatoin variant="caption">{explanation}</LabelExplanatoin>
+        )}
       </InputLabel>
-      <BaseSelect labelId={`${field}-label`} id={field} variant="standard">
+      <BaseSelect
+        labelId={`${field}-label`}
+        id={field}
+        variant="standard"
+        {...rest}>
         {options.map(option => (
           <MenuItem key={option.value} value={option.value}>
             <CheckIconWrapper className="CheckIcon">
@@ -40,11 +50,13 @@ export const Select = ({
             </CheckIconWrapper>
 
             {option.label}
-            {option.labelExplanation}
+            <LabelExplanatoin variant="caption">
+              {option.labelExplanation}
+            </LabelExplanatoin>
           </MenuItem>
         ))}
       </BaseSelect>
-      <FormHelperText>Error</FormHelperText>
+      {error && <FormHelperText>Error</FormHelperText>}
     </FormControl>
   )
 }
@@ -58,4 +70,8 @@ export const CheckIconWrapper = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     width: [16, null, null, null, null, null, 22, null, 56],
   }),
+}))
+
+const LabelExplanatoin = styled(ExplanationFont)(({ theme }) => ({
+  color: theme.palette.text.secondary,
 }))
