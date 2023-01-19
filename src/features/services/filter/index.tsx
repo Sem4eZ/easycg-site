@@ -39,9 +39,13 @@ const FILTER: {
   { title: 'UX/ UI', value: ['UXUI'] },
 ]
 
-export const useServicesFilter = () => {
+interface Props {
+  initial?: FilterValue
+}
+
+export const useServicesFilter = ({ initial }: Props) => {
   const [open, setOpen] = useState(false)
-  const [filter, setFilter] = useState<FilterValue>(['all'])
+  const [filter, setFilter] = useState<FilterValue>(initial ? initial : ['all'])
 
   const handleClick = (_filter: FilterValue) => () => {
     setOpen(false)

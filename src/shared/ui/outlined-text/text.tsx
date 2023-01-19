@@ -5,18 +5,18 @@ import { useEffect, useRef } from 'react'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
+type TextType = 'header' | 'section' | 'sectionSmall'
+
 export interface Props {
   children: string
   viewBoxWidth: number
-  yOffset?: number
-  type?: 'header' | 'section' | 'sectionSmall'
+  type?: TextType
   animate?: boolean
 }
 
 export const TextOutlined = ({
   children,
   viewBoxWidth,
-  yOffset = 600,
   type = 'section',
   animate = false,
   ...rest
@@ -60,21 +60,31 @@ export const TextOutlined = ({
   }, [])
 
   return (
-    <div ref={intersectionContainerRef}>
-      <Container data-type={type} {...rest}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox={`0 0 ${viewBoxWidth} 799`}>
-          <OutlinedText x={0} y={yOffset} data-type={type}>
-            {children}
-          </OutlinedText>
-        </svg>
-        <Filler ref={textRef} data-type={type}>
+    <Container ref={intersectionContainerRef} data-type={type} {...rest}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox={`0 0 ${viewBoxWidth} 799`}
+        data-type={type}>
+        <OutlinedText x={0} y={getYOffset(type)} data-type={type}>
           {children}
-        </Filler>
-      </Container>
-    </div>
+        </OutlinedText>
+      </svg>
+      <Filler ref={textRef} data-type={type}>
+        {children}
+      </Filler>
+    </Container>
   )
+}
+
+const getYOffset = (type: TextType) => {
+  switch (type) {
+    case 'header':
+      return 605
+    case 'section':
+      return 602
+    case 'sectionSmall':
+      return 602
+  }
 }
 
 const fonts = (theme: Theme) => ({
@@ -91,8 +101,8 @@ const fonts = (theme: Theme) => ({
     }),
   },
   '&[data-type="sectionSmall"]': {
-    fontSize: [0, null, null, null, 110, null, 278],
-    lineHeight: [0, null, null, null, 133, null, 338],
+    fontSize: [56, null, null, null, 185, null, 534, null, 658],
+    lineHeight: [68, null, null, null, 225, null, 650, null, 801],
   },
 })
 
@@ -101,10 +111,20 @@ const Container = styled('div')(({ theme }) => ({
   position: 'relative',
   svg: {
     position: 'absolute',
-    ...getBreakpointsStylesByArray(theme, {
-      top: [null, null, null, null, null, null, 4.5],
-    }),
     width: '100%',
+    '&[data-type="header"]': {
+      ...getBreakpointsStylesByArray(theme, {
+        top: [5, null, null, null, 0, null, -5, null, 1],
+      }),
+    },
+    '&[data-type="section"]': {
+      ...getBreakpointsStylesByArray(theme, {
+        top: [0],
+      }),
+    },
+    '&[data-type="sectionSmall"]': {
+      top: [0],
+    },
   },
 }))
 
@@ -131,8 +151,8 @@ const Text = styled('text')(() => ({
     lineHeight: pxToRem(801),
   },
   '&[data-type="sectionSmall"]': {
-    fontSize: pxToRem(278),
-    lineHeight: pxToRem(338),
+    fontSize: pxToRem(658),
+    lineHeight: pxToRem(801),
   },
 }))
 

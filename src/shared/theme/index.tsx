@@ -164,11 +164,11 @@ const commonTheme = createTheme({
         }),
         startIcon: ({ theme }) => ({
           width: pxToRem(24),
-          marginLeft: pxToRem(8),
+          marginRight: pxToRem(8),
           transform: 'rotate(180deg)',
           [theme.breakpoints.up('desktop_s')]: {
             width: pxToRem(48),
-            marginLeft: pxToRem(24),
+            marginRight: pxToRem(24),
           },
         }),
       },
