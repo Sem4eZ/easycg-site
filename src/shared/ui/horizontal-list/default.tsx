@@ -22,10 +22,8 @@ export const HorizontalList = ({ title, items }: Props) => {
       {isTouchableVersion ? <b>{title}</b> : title}
       <List>
         {items.map(item => (
-          <li>
-            <Link key={item} active={isTouchableVersion ? 1 : 0}>
-              {item}
-            </Link>
+          <li key={item}>
+            <Link active={isTouchableVersion ? 1 : 0}>{item}</Link>
           </li>
         ))}
       </List>

@@ -41,7 +41,7 @@ export const ContactPageContactInfo = () => {
   return (
     <div>
       {data.map(_data => (
-        <Row>
+        <Row key={_data.label}>
           <RowContent>
             <LFont>{_data.label}</LFont>
             <RightPart>{_data.value}</RightPart>

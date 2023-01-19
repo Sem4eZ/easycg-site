@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles'
 
 import { SnowflakeIcon } from 'shared/icons/snowflake'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { XLFont } from 'shared/ui/typography'
+import { XLFontContent } from 'shared/ui/typography'
 
 interface Props {
   title: string
@@ -11,7 +11,7 @@ interface Props {
 export const ContactPageHeader = ({ title }: Props) => {
   return (
     <Container>
-      <XLFont>{title}</XLFont>
+      <XLFontContent>{title}</XLFontContent>
       <Snowflake>
         <SnowflakeIcon />
       </Snowflake>

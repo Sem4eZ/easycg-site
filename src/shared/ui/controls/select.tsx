@@ -4,6 +4,7 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import BaseSelect from '@mui/material/Select'
 import { styled } from '@mui/material/styles'
+import { forwardRef } from 'react'
 
 import { CheckIcon } from 'shared/icons/check'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
@@ -22,44 +23,40 @@ interface Props {
   error?: string
 }
 
-export const Select = ({
-  label,
-  explanation,
-  field,
-  options,
-  error,
-  ...rest
-}: Props) => {
-  return (
-    <FormControl fullWidth error={Boolean(error)}>
-      <InputLabel id={`${field}-label`}>
-        {label}
-        {explanation && (
-          <LabelExplanatoin variant="caption">{explanation}</LabelExplanatoin>
-        )}
-      </InputLabel>
-      <BaseSelect
-        labelId={`${field}-label`}
-        id={field}
-        variant="standard"
-        {...rest}>
-        {options.map(option => (
-          <MenuItem key={option.value} value={option.value}>
-            <CheckIconWrapper className="CheckIcon">
-              <CheckIcon />
-            </CheckIconWrapper>
+export const Select = forwardRef(
+  ({ label, explanation, field, options, error, ...rest }: Props, ref) => {
+    return (
+      <FormControl fullWidth error={Boolean(error)}>
+        <InputLabel id={`${field}-label`}>
+          {label}
+          {explanation && (
+            <LabelExplanatoin variant="caption">{explanation}</LabelExplanatoin>
+          )}
+        </InputLabel>
+        <BaseSelect
+          ref={ref}
+          labelId={`${field}-label`}
+          id={field}
+          variant="standard"
+          {...rest}>
+          {options.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              <CheckIconWrapper className="CheckIcon">
+                <CheckIcon />
+              </CheckIconWrapper>
 
-            {option.label}
-            <LabelExplanatoin variant="caption">
-              {option.labelExplanation}
-            </LabelExplanatoin>
-          </MenuItem>
-        ))}
-      </BaseSelect>
-      {error && <FormHelperText>Error</FormHelperText>}
-    </FormControl>
-  )
-}
+              {option.label}
+              <LabelExplanatoin variant="caption">
+                {option.labelExplanation}
+              </LabelExplanatoin>
+            </MenuItem>
+          ))}
+        </BaseSelect>
+        {error && <FormHelperText>Error</FormHelperText>}
+      </FormControl>
+    )
+  },
+)
 
 export const CheckIconWrapper = styled('div')(({ theme }) => ({
   width: '16px',

@@ -35,7 +35,7 @@ const PostPage = () => {
       subtitleContent={
         <Remark>
           {article.remark.map(remark => (
-            <p>{remark}</p>
+            <p key={remark}>{remark}</p>
           ))}
         </Remark>
       }

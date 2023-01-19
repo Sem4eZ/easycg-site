@@ -31,6 +31,7 @@ export const TeammateCard = ({
               {imageMainSrcSet.map(imageSrcSetData => {
                 return (
                   <source
+                    key={imageSrcSetData.path}
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )
@@ -43,6 +44,7 @@ export const TeammateCard = ({
               {imageHiddenSrcSet.map(imageSrcSetData => {
                 return (
                   <source
+                    key={imageSrcSetData.path}
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )

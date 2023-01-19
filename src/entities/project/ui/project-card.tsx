@@ -38,6 +38,7 @@ export const ProjectCard = ({
               {imageSrcSet.map(imageSrcSetData => {
                 return (
                   <source
+                    key={imageSrcSetData.path}
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )
@@ -85,15 +86,16 @@ export const ProjectCard = ({
 
 const Container = styled('li')(({ theme }) => ({
   listStyle: 'none',
-  transition: 'min-width 2s',
+  transition: 'max-width 2s',
+  width: '100%',
   ...getBreakpointsStylesByArray(theme, {
-    minWidth: [253, '100%', 253, '100%', 352, null, 454, null, 619],
+    maxWidth: [253, '100%', 253, '100%', 352, null, 454, null, 619],
   }),
 
   [theme.breakpoints.up('desktop_s')]: {
     '&:hover': {
       ...getBreakpointsStylesByArray(theme, {
-        minWidth: [253, '100%', 253, '100%', 352, null, 454 * 2, null, 619 * 2],
+        maxWidth: [253, '100%', 253, '100%', 352, null, 454 * 2, null, 619 * 2],
       }),
       '& .parallax': {
         transform: 'translateX(0) !important',
@@ -102,9 +104,10 @@ const Container = styled('li')(({ theme }) => ({
         width: '100%',
         objectFit: 'cover',
       },
-      transition: 'min-width 0.5s',
+      transition: 'max-width 0.5s',
     },
   },
+
   '&:last-child': {
     ...getBreakpointsStylesByArray(theme, {
       marginRight: [

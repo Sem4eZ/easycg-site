@@ -26,6 +26,7 @@ export const AboutUsPageHowWeWork = () => {
               {imageSrcSet.map(imageSrcSetData => {
                 return (
                   <source
+                    key={imageSrcSetData.path}
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )

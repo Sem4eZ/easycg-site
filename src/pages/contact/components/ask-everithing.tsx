@@ -12,8 +12,8 @@ export const ContactPageAskEverything = () => {
   return (
     <Container ref={containerRef}>
       <Title>
-        <p>don’t worry. you can ask us about everything</p>
-        <p>we sure, that there are not silly questions ever</p>
+        <span>don’t worry. you can ask us about everything</span>
+        <span>we sure, that there are not silly questions ever</span>
       </Title>
       <Remark>
         <p>
