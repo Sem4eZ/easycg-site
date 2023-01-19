@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles'
 import { useMemo, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import { useServicesFilter } from 'features/services/filter'
 
@@ -13,8 +14,11 @@ import { TextOutlined } from 'shared/ui/outlined-text'
 import { Page } from 'shared/ui/page-templates'
 
 const ProjectsPage = () => {
+  const { state } = useLocation()
   const galleryRef = useRef<HTMLElement | null>(null)
-  const { template: filterTemplate, filter } = useServicesFilter()
+  const { template: filterTemplate, filter } = useServicesFilter({
+    initial: state?.filter,
+  })
 
   const newProjects = useMemo(() => {
     const filteredProjects: Project[] = []

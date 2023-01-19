@@ -109,26 +109,47 @@ const Container = styled('div')(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   ...getBreakpointsStylesByArray(theme, {
-    paddingLeft: spaceArr,
     paddingRight: [0, spaceObj.se_horizontal, 0],
     paddingTop: [56, 60, null, 120, 118, null, 111, null, 184, 200],
     paddingBottom: [29, 46, 64, 102, 84, 112, 57, null, 180, 260],
   }),
+  '& .swiper-slide:first-of-type': {
+    ...getBreakpointsStylesByArray(theme, {
+      paddingLeft: spaceArr,
+    }),
+  },
 }))
 
 const Title = styled(XLFont)(({ theme }) => ({
+  marginRight: 0,
+  marginLeft: 'auto',
   ...getBreakpointsStylesByArray(theme, {
     marginBottom: [48, null, null, 64, 72, null, 104, null, 96],
+    paddingLeft: [
+      spaceObj.se,
+      spaceObj.se_horizontal,
+      spaceObj.ip13,
+      spaceObj.ip13_horizontal,
+      0,
+    ],
     paddingRight: [
       spaceObj.se,
-      0,
       spaceObj.se_horizontal,
-      spaceObj.tablet,
-      spaceObj.tablet_horizontal,
-      spaceObj.desktop_s,
-      spaceObj.laptop,
-      spaceObj.macbook,
-      spaceObj.desktop,
+      spaceObj.ip13,
+      spaceObj.ip13_horizontal,
+      0,
+    ],
+    width: [
+      '100%',
+      null,
+      null,
+      null,
+      '561px',
+      '640px',
+      '864px',
+      null,
+      '1077px',
+      '1087px',
     ],
   }),
 }))
