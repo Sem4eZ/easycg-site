@@ -47,7 +47,8 @@ const Content = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
-    marginBottom: [123, 46, 64, 114, 241, 113, 245, null, 6, 235],
+    paddingBottom: [123, 46, 64, 114, 241, 113, 245, null, 6, 235],
+    paddingTop: [85, 51, 34, 122, 32, 38, 88, null, 191, 286],
     gap: [146, 120, 294, 234, 127, 194, 319, null, 360],
   }),
 }))
