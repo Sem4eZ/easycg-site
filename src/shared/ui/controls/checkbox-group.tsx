@@ -53,13 +53,13 @@ export const CheckboxGroup = forwardRef(
     }, [state])
 
     return (
-      <FormControl>
+      <FormControl fullWidth>
         <FormLabel id={`${type}-label`}>
           <Label>{label}</Label>
         </FormLabel>
         <FormGroupStyled ref={ref} aria-labelledby={`${type}-label`} {...rest}>
           {options.map(option => (
-            <FormControlLabel
+            <FormControlLabelStyled
               key={option.label}
               value={option.value}
               checked={state[option.value]}
@@ -100,6 +100,17 @@ const FormGroupStyled = styled(FormGroup)(({ theme }) => ({
   display: 'grid',
   ...getBreakpointsStylesByArray(theme, {
     gridRowGap: [32, null, null, null, null, null, 48],
+  }),
+}))
+
+const FormControlLabelStyled = styled(FormControlLabel)(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    borderBottom: [
+      `1px solid ${theme.palette.text.disabled}`,
+      null,
+      null,
+      'unset',
+    ],
   }),
 }))
 

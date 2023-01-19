@@ -33,7 +33,7 @@ export const RadioGroup = forwardRef(
     }
 
     return (
-      <FormControl>
+      <FormControl fullWidth>
         <FormLabel id={`${type}-label`}>
           <Label>{label}</Label>
         </FormLabel>
@@ -43,7 +43,7 @@ export const RadioGroup = forwardRef(
           {...rest}
           onChange={onChange}>
           {options.map(option => (
-            <FormControlLabel
+            <FormControlLabelStyled
               checked={value === option.value}
               key={option.label}
               value={option.value}
@@ -83,6 +83,17 @@ const RadioGroupBaseStyled = styled(RadioGroupBase)(({ theme }) => ({
   display: 'grid',
   ...getBreakpointsStylesByArray(theme, {
     gridRowGap: [32, null, null, null, null, null, 48],
+  }),
+}))
+
+const FormControlLabelStyled = styled(FormControlLabel)(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    borderBottom: [
+      `1px solid ${theme.palette.text.disabled}`,
+      null,
+      null,
+      'unset',
+    ],
   }),
 }))
 
