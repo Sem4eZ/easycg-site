@@ -42,7 +42,7 @@ const ProjectDetailPage = () => {
     <Page
       title={project.name}
       decorationText={
-        <TextOutlined viewBoxWidth={1470} type="header" animate>
+        <TextOutlined viewBoxWidth={1470} type="header">
           work
         </TextOutlined>
       }
@@ -69,10 +69,7 @@ const ProjectDetailPage = () => {
           </ServiceIcons>
         </Information>
       }>
-      <ProjectDetailHero
-        image={project.detailPreviewImage}
-        link={project.link}
-      />
+      <ProjectDetailHero preview={project.detailPreview} link={project.link} />
 
       <FreeRightPartContainer
         number={

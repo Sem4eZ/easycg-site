@@ -1,6 +1,7 @@
 import { Project } from './types'
 
 const IMAGES_PATH = '/assets/images/projects/'
+const VIDEOS_PATH = '/assets/videos/projects/'
 
 export const projects: Project[] = [
   {
@@ -31,11 +32,14 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
-    detailPreviewImage: {
-      path: IMAGES_PATH,
-      name: 'detail_preview',
-      fileType: 'png',
-      alt: 'mobile delivery app mockup',
+    detailPreview: {
+      type: 'image',
+      image: {
+        path: IMAGES_PATH,
+        name: 'detail_preview',
+        fileType: 'png',
+        alt: 'mobile delivery app mockup',
+      },
     },
     link: {
       type: 'app',
@@ -78,11 +82,14 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
-    detailPreviewImage: {
-      path: IMAGES_PATH,
-      name: 'detail_preview',
-      fileType: 'png',
-      alt: 'mobile delivery app mockup',
+    detailPreview: {
+      type: 'image',
+      image: {
+        path: IMAGES_PATH,
+        name: 'detail_preview',
+        fileType: 'png',
+        alt: 'mobile delivery app mockup',
+      },
     },
     link: {
       type: 'site',
@@ -125,11 +132,14 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
-    detailPreviewImage: {
-      path: IMAGES_PATH,
-      name: 'detail_preview',
-      fileType: 'png',
-      alt: 'mobile delivery app mockup',
+    detailPreview: {
+      type: 'image',
+      image: {
+        path: IMAGES_PATH,
+        name: 'detail_preview',
+        fileType: 'png',
+        alt: 'mobile delivery app mockup',
+      },
     },
     link: {
       type: 'app',
@@ -172,11 +182,14 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
-    detailPreviewImage: {
-      path: IMAGES_PATH,
-      name: 'detail_preview',
-      fileType: 'png',
-      alt: 'mobile delivery app mockup',
+    detailPreview: {
+      type: 'image',
+      image: {
+        path: IMAGES_PATH,
+        name: 'detail_preview',
+        fileType: 'png',
+        alt: 'mobile delivery app mockup',
+      },
     },
     link: {
       type: 'app',
@@ -219,11 +232,14 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
-    detailPreviewImage: {
-      path: IMAGES_PATH,
-      name: 'detail_preview',
-      fileType: 'png',
-      alt: 'mobile delivery app mockup',
+    detailPreview: {
+      type: 'image',
+      image: {
+        path: IMAGES_PATH,
+        name: 'detail_preview',
+        fileType: 'png',
+        alt: 'mobile delivery app mockup',
+      },
     },
     link: {
       type: 'app',
@@ -266,11 +282,9 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
-    detailPreviewImage: {
-      path: IMAGES_PATH,
-      name: 'detail_preview',
-      fileType: 'png',
-      alt: 'mobile delivery app mockup',
+    detailPreview: {
+      type: 'video',
+      url: `${VIDEOS_PATH}/detail_preview.webm`,
     },
     link: {
       type: 'video',
@@ -312,11 +326,9 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
-    detailPreviewImage: {
-      path: IMAGES_PATH,
-      name: 'detail_preview',
-      fileType: 'png',
-      alt: 'mobile delivery app mockup',
+    detailPreview: {
+      type: 'video',
+      url: `${VIDEOS_PATH}/detail_preview.webm`,
     },
     link: {
       type: 'video',
@@ -359,11 +371,9 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
-    detailPreviewImage: {
-      path: IMAGES_PATH,
-      name: 'detail_preview',
-      fileType: 'png',
-      alt: 'mobile delivery app mockup',
+    detailPreview: {
+      type: 'video',
+      url: `${VIDEOS_PATH}/detail_preview.webm`,
     },
     link: {
       type: 'video',
@@ -406,11 +416,9 @@ export const projects: Project[] = [
       'our goal was to create mobile app for delivery. Also it was about branding and positioning.',
       'before we start we made research',
     ],
-    detailPreviewImage: {
-      path: IMAGES_PATH,
-      name: 'detail_preview',
-      fileType: 'png',
-      alt: 'mobile delivery app mockup',
+    detailPreview: {
+      type: 'video',
+      url: `${VIDEOS_PATH}/detail_preview.webm`,
     },
     link: {
       type: 'app',
