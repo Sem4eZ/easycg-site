@@ -20,15 +20,9 @@ const getColors = (
     }
   }
   return {
-    rectFill:
-      theme.palette.mode === 'dark'
-        ? theme.palette.text.primary
-        : 'transparent',
+    rectFill: 'transparent',
     rectStroke: theme.palette.text.primary,
-    textFill:
-      theme.palette.mode === 'dark'
-        ? theme.palette.inverted
-        : theme.palette.text.primary,
+    textFill: theme.palette.text.primary,
   }
 }
 
