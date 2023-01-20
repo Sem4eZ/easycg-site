@@ -133,7 +133,15 @@ export const Header = ({ projectsCount }: Props) => {
           </NavigationList>
         </nav>
 
-        {showBackButton && <MenuBackButton>back</MenuBackButton>}
+        {showBackButton && (
+          <MenuBackButton
+            onClick={() => {
+              closeModal()
+              navigate(-1)
+            }}>
+            back
+          </MenuBackButton>
+        )}
       </ModalStyled>
     </Container>
   )
