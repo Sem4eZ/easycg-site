@@ -89,7 +89,7 @@ const Row = styled('li')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   paddingBottom: '8px',
-  borderBottom: `1px ${theme.palette.text.secondary}`,
+  borderBottom: `1px ${theme.palette.text.disabled}`,
   borderBottomStyle: 'solid',
   ...getBreakpointsStylesByArray(theme, {
     paddingTop: [16, null, null, 20, 24, null, null, null, 64, 32],
