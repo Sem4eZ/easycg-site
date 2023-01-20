@@ -24,7 +24,10 @@ export const MainPageProjectsSlider = () => {
   const showAllProjectsButton = isDesktopS || isLaptop || isMacbook || isDesktop
   const doExpandCards = isDesktopS || isLaptop || isMacbook || isDesktop
 
-  const doParallaxListItemImage = (container: HTMLDivElement) => {
+  const doParallaxListItemImage = (
+    container: HTMLDivElement,
+    progress: number,
+  ) => {
     const cards = Array.from(
       container.getElementsByClassName(
         PARALLAX_CLASS,
@@ -33,7 +36,7 @@ export const MainPageProjectsSlider = () => {
 
     for (let i = 0; i < cards.length; i++) {
       setTimeout(() => {
-        const persentage = (container.scrollLeft * 100) / container.clientWidth
+        const persentage = progress * 100
 
         const element = cards[i]
         element.style.transition = 'transform 1s'
@@ -74,8 +77,10 @@ export const MainPageProjectsSlider = () => {
         freeMode={{ enabled: true, sticky: false, momentumBounce: true }}
         modules={[Mousewheel]}
         onScroll={(swiper, e) => {
+          console.log('e', e)
+          console.log('swiper', swiper)
           if (!containerRef.current) return
-          doParallaxListItemImage(containerRef.current)
+          doParallaxListItemImage(containerRef.current, swiper.progress)
         }}
         onTouchEnd={swiper => {
           const swiperNew = swiper as SwiperRef['swiper'] & {

@@ -34,7 +34,7 @@ export const ProjectCard = ({
       <article>
         <Link to={`${PAGES.Projects}/${id}`}>
           <ImageContainer>
-            <picture>
+            <picture className={PARALLAX_CLASS}>
               {imageSrcSet.map(imageSrcSetData => {
                 return (
                   <source
@@ -44,11 +44,7 @@ export const ProjectCard = ({
                 )
               })}
 
-              <img
-                className={PARALLAX_CLASS}
-                src={getImagePath(image, 1920)}
-                alt={image.alt}
-              />
+              <img src={getImagePath(image, 1920)} alt={image.alt} />
             </picture>
           </ImageContainer>
           <Content>
@@ -84,11 +80,12 @@ export const ProjectCard = ({
   )
 }
 
-const Container = styled('li')(({ theme }) => ({
+const Container = styled('div')(({ theme }) => ({
   listStyle: 'none',
   transition: 'max-width 2s',
-  width: '100%',
+
   ...getBreakpointsStylesByArray(theme, {
+    width: [253, '100%', 253, '100%', 352, null, 454 * 2, null, 619 * 2],
     maxWidth: [253, '100%', 253, '100%', 352, null, 454, null, 619],
   }),
 
@@ -97,12 +94,8 @@ const Container = styled('li')(({ theme }) => ({
       ...getBreakpointsStylesByArray(theme, {
         maxWidth: [253, '100%', 253, '100%', 352, null, 454 * 2, null, 619 * 2],
       }),
-      '& .parallax': {
+      [`& .${PARALLAX_CLASS}`]: {
         transform: 'translateX(0) !important',
-      },
-      img: {
-        width: '100%',
-        objectFit: 'cover',
       },
       transition: 'max-width 0.5s',
     },
@@ -136,12 +129,20 @@ const ImageContainer = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     height: [199, null, null, 370, 438, null, 692, 862],
   }),
-  img: {
+  picture: {
+    display: 'block',
     height: '100%',
     ...getBreakpointsStylesByArray(theme, {
       width: ['100%', '100%', '100%', '100%', 'auto'],
       objectFit: ['cover', 'cover', 'cover', 'cover', 'unset'],
     }),
+    '& img': {
+      height: '100%',
+      ...getBreakpointsStylesByArray(theme, {
+        width: ['100%', '100%', '100%', '100%', 'auto'],
+        objectFit: ['cover', 'cover', 'cover', 'cover', 'unset'],
+      }),
+    },
   },
 }))
 
