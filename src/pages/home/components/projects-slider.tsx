@@ -11,9 +11,9 @@ import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { maxWidth, spaceArr, spaceObj } from 'shared/theme'
-import { PARALLAX_CLASS } from 'shared/ui/horizontal-list/scrollable'
 import { XLFont } from 'shared/ui/typography'
 
+const PARALLAX_CLASS = 'parallax'
 const topProjects = projects.slice(0, 6)
 
 export const MainPageProjectsSlider = () => {
@@ -77,8 +77,6 @@ export const MainPageProjectsSlider = () => {
         freeMode={{ enabled: true, sticky: false, momentumBounce: true }}
         modules={[Mousewheel]}
         onScroll={(swiper, e) => {
-          console.log('e', e)
-          console.log('swiper', swiper)
           if (!containerRef.current) return
           doParallaxListItemImage(containerRef.current, swiper.progress)
         }}
@@ -104,6 +102,7 @@ export const MainPageProjectsSlider = () => {
                 image={project.image}
                 type={project.type}
                 servicesType={project.servicesType}
+                parallaxClass={PARALLAX_CLASS}
               />
             </SwiperSlide>
           )

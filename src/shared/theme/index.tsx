@@ -203,6 +203,9 @@ const commonTheme = createTheme({
           '& .CheckIcon': {
             display: 'none',
           },
+          '& .explanation': {
+            display: 'none',
+          },
           '&~.toggleIcon': {
             transition: 'transform .2s, color .2s',
             marginRight: pxToRem(22),

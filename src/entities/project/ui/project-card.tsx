@@ -7,8 +7,6 @@ import { serviceTypeToIcon } from 'entities/services/data'
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
-import { spaceObj } from 'shared/theme'
-import { PARALLAX_CLASS } from 'shared/ui/horizontal-list/scrollable'
 import { Tags } from 'shared/ui/tags'
 import { LFont } from 'shared/ui/typography'
 
@@ -17,7 +15,9 @@ import { Project } from '../types'
 type Props = Pick<
   Project,
   'id' | 'name' | 'date' | 'description' | 'image' | 'type' | 'servicesType'
->
+> & {
+  parallaxClass?: string
+}
 
 export const ProjectCard = ({
   id,
@@ -27,14 +27,15 @@ export const ProjectCard = ({
   image,
   type,
   servicesType,
+  parallaxClass = '',
 }: Props) => {
   const imageSrcSet = getImageSrcSetByImageObj(image)
   return (
-    <Container>
+    <Container parallaxClass={parallaxClass}>
       <article>
         <Link to={`${PAGES.Projects}/${id}`}>
           <ImageContainer>
-            <picture className={PARALLAX_CLASS}>
+            <picture className={parallaxClass}>
               {imageSrcSet.map(imageSrcSetData => {
                 return (
                   <source
@@ -80,42 +81,39 @@ export const ProjectCard = ({
   )
 }
 
-const Container = styled('div')(({ theme }) => ({
-  listStyle: 'none',
-  transition: 'max-width 2s',
+const Container = styled('div')<{ parallaxClass: string }>(
+  ({ theme, parallaxClass }) => ({
+    listStyle: 'none',
+    transition: 'max-width 2s',
 
-  ...getBreakpointsStylesByArray(theme, {
-    width: [253, '100%', 253, '100%', 352, null, 454 * 2, null, 619 * 2],
-    maxWidth: [253, '100%', 253, '100%', 352, null, 454, null, 619],
-  }),
-
-  [theme.breakpoints.up('desktop_s')]: {
-    '&:hover': {
-      ...getBreakpointsStylesByArray(theme, {
-        maxWidth: [253, '100%', 253, '100%', 352, null, 454 * 2, null, 619 * 2],
-      }),
-      [`& .${PARALLAX_CLASS}`]: {
-        transform: 'translateX(0) !important',
-      },
-      transition: 'max-width 0.5s',
-    },
-  },
-
-  '&:last-child': {
     ...getBreakpointsStylesByArray(theme, {
-      marginRight: [
-        spaceObj.se,
-        0,
-        spaceObj.ip13,
-        0,
-        spaceObj.tablet,
-        spaceObj.tablet_horizontal,
-        spaceObj.laptop,
-        spaceObj.desktop,
-      ],
+      width: [253, '100%', 253, '100%', 352, null, 454 * 2, null, 619 * 2],
+      maxWidth: [253, '100%', 253, '100%', 352, null, 454, null, 619],
     }),
-  },
-}))
+
+    [theme.breakpoints.up('desktop_s')]: {
+      '&:hover': {
+        ...getBreakpointsStylesByArray(theme, {
+          maxWidth: [
+            253,
+            '100%',
+            253,
+            '100%',
+            352,
+            null,
+            454 * 2,
+            null,
+            619 * 2,
+          ],
+        }),
+        [`& .${parallaxClass}`]: {
+          transform: 'translateX(0) !important',
+        },
+        transition: 'max-width 0.5s',
+      },
+    },
+  }),
+)
 
 const TagsStyled = styled(Tags)(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {

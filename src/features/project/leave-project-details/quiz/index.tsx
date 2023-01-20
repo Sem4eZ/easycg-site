@@ -75,8 +75,6 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
   const quiz = getQuiz({ register, errors })
 
   const handleNext = () => {
-    console.log('hanle next')
-
     setPage(prevPage => {
       if (prevPage === quiz.length - 2) {
         if (isValid) {
