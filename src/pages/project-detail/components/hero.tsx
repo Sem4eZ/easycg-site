@@ -4,7 +4,6 @@ import { styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Image, getImagePath } from 'entities/image/types'
 import { Project } from 'entities/project/types'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
@@ -12,12 +11,15 @@ import { useGetDevice } from 'shared/lib/use-get-device'
 import { maxWidth, spaceArr, spaceObj } from 'shared/theme'
 import { visuallyHiddenStyles } from 'shared/ui/accesibility'
 
+import { ImagePreview } from './hero/image-preview'
+import { VideoPreview } from './hero/video-preview'
+
 interface Props {
-  image: Image
+  preview: Project['detailPreview']
   link: Project['link']
 }
 
-export const ProjectDetailHero = ({ image, link }: Props) => {
+export const ProjectDetailHero = ({ preview, link }: Props) => {
   const navigate = useNavigate()
   const theme = useTheme()
   const parallaxRef = useRef<HTMLDivElement | null>(null)
@@ -69,64 +71,70 @@ export const ProjectDetailHero = ({ image, link }: Props) => {
 
   return (
     <Container>
-      <PreviewImage
-        ref={parallaxRef}
-        style={{ backgroundImage: `url(${getImagePath(image, 1920)})` }}
-      />
+      <Preview>
+        {preview.type === 'video' ? (
+          <VideoPreview url={preview.url} />
+        ) : (
+          <ImagePreview image={preview.image} />
+        )}
+        {showDesktopButton ? (
+          <LinkButtonDesktop
+            ref={buttonRef}
+            href={link.url}
+            type={preview.type}>
+            <LinkButtonDesktopAccessibility>
+              {getButtonByLinkType(link).desktop}
+            </LinkButtonDesktopAccessibility>
+            <img
+              src={`/assets/images/${getButtonByLinkType(link).desktop} ${
+                theme.palette.mode
+              }.png`}
+            />
+          </LinkButtonDesktop>
+        ) : (
+          <LinkButtonMobile onClick={() => navigate(link.url)}>
+            {getButtonByLinkType(link).mobile}
+          </LinkButtonMobile>
+        )}
+      </Preview>
 
-      {showDesktopButton ? (
-        <LinkButtonDesktop ref={buttonRef} href={link.url}>
-          <LinkButtonDesktopAccessibility>
-            {getButtonByLinkType(link).desktop}
-          </LinkButtonDesktopAccessibility>
-          <img
-            src={`/assets/images/${getButtonByLinkType(link).desktop} ${
-              theme.palette.mode
-            }.png`}
-          />
-        </LinkButtonDesktop>
-      ) : (
-        <LinkButtonMobile onClick={() => navigate(link.url)}>
-          {getButtonByLinkType(link).mobile}
-        </LinkButtonMobile>
-      )}
-
-      <Remark>
-        *Before we start, you should know one thing. Content that we made can be
-        different from owner’s content. We gave an ideas, clients develop it
-        themselves
-      </Remark>
+      <RemarkContainer>
+        <Remark>
+          *Before we start, you should know one thing. Content that we made can
+          be different from owner’s content. We gave an ideas, clients develop
+          it themselves
+        </Remark>
+      </RemarkContainer>
     </Container>
   )
 }
 
 const Container = styled('div')(({ theme }) => ({
   position: 'relative',
+  ...getBreakpointsStylesByArray(theme, {
+    paddingBottom: [8, 33, 49, 41, 144, 74, 49, null, 14, 131],
+  }),
+}))
+
+const Preview = styled('div')(({ theme }) => ({
+  position: 'relative',
+}))
+
+const RemarkContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   maxWidth: maxWidth,
   marginLeft: 'auto',
   marginRight: 'auto',
+  alignItems: 'end',
   ...getBreakpointsStylesByArray(theme, {
     paddingRight: spaceArr,
     paddingLeft: spaceArr,
-    paddingBottom: [8, 33, 49, 41, 144, 74, 49, null, 14, 131],
-  }),
-}))
-
-const PreviewImage = styled('div')(({ theme }) => ({
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'contain',
-  ...getBreakpointsStylesByArray(theme, {
-    height: [230, 300, 288, 400, 517, null, 891, null, 857, 1017],
   }),
 }))
 
 const Remark = styled('div')(({ theme }) => ({
   color: theme.palette.text.secondary,
-  marginLeft: 'auto',
-  marginRight: 0,
   ...getBreakpointsStylesByArray(theme, {
     fontSize: [10, null, null, null, null, null, 25],
     lineHeight: [12, null, null, null, null, null, 30],
@@ -146,33 +154,51 @@ const Remark = styled('div')(({ theme }) => ({
   }),
 }))
 
-const LinkButtonDesktop = styled('a')(({ theme }) => ({
-  position: 'absolute',
-  display: 'block',
+const LinkButtonDesktop = styled('a')<{ type: 'video' | 'image' }>(
+  ({ theme, type }) => ({
+    position: 'absolute',
+    display: 'block',
 
-  ...getBreakpointsStylesByArray(theme, {
-    right: spaceArr.map(space => space * 2),
-    top: [230, 300, 288, 400, 517, null, 667, null, 745, 688],
-    height: [112, null, null, null, null, null, null, null, 219],
+    ...getBreakpointsStylesByArray(theme, {
+      right: type === 'image' ? spaceArr.map(space => space * 2) : spaceArr,
+      top: [
+        230,
+        300,
+        288,
+        400,
+        517,
+        null,
+        type === 'image' ? 667 : 506,
+        null,
+        type === 'image' ? 745 : 506,
+        type === 'image' ? 688 : 506,
+      ],
+      height: [112, null, null, null, null, null, null, null, 219],
+    }),
+    '&.animate': {
+      transform: 'rotate(360deg)',
+      transition: 'transform .5s',
+    },
+    '& img': {
+      height: '100%',
+      objectFit: 'contain',
+    },
   }),
-  '&.animate': {
-    transform: 'rotate(360deg)',
-    transition: 'transform .5s',
-  },
-  '& img': {
-    height: '100%',
-    objectFit: 'contain',
-  },
-}))
+)
 
 const LinkButtonDesktopAccessibility = styled('span')(
   () => visuallyHiddenStyles,
 )
 
 const LinkButtonMobile = styled(Button)(({ theme }) => ({
+  maxWidth: maxWidth,
+  margniLeft: 'auto',
+  marginRight: 'auto',
   alignSelf: 'flex-end',
   ...getBreakpointsStylesByArray(theme, {
     marginTop: [55, 16, 48, 36],
+    paddingLeft: spaceArr,
+    paddingRight: spaceArr,
   }),
 }))
 

@@ -12,7 +12,7 @@ const BlogPage = () => (
   <Page
     title="blog."
     decorationText={
-      <TextOutlined viewBoxWidth={806} type="header" animate>
+      <TextOutlined viewBoxWidth={806} type="header">
         05
       </TextOutlined>
     }>

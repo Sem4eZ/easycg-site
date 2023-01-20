@@ -14,7 +14,12 @@ export interface Project {
   details: Price
   detailsRemark: string
   picturesRemark: string[]
-  detailPreviewImage: Image
+  detailPreview:
+    | {
+        type: 'image'
+        image: Image
+      }
+    | { type: 'video'; url: string }
   link: {
     type: 'app' | 'site' | 'video'
     url: string

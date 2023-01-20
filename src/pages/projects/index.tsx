@@ -60,7 +60,7 @@ const ProjectsPage = () => {
     <Page
       title="work"
       decorationText={
-        <TextOutlined viewBoxWidth={800} type="header" animate>
+        <TextOutlined viewBoxWidth={800} type="header">
           02
         </TextOutlined>
       }

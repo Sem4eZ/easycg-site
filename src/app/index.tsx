@@ -10,11 +10,7 @@ import 'swiper/css/scrollbar'
 
 import { useThemeToggler } from 'features/theme/theme-toggler'
 
-import { projects } from 'entities/project/data'
-
 import ScrollToTop from 'shared/lib/scroll-to-top'
-import { Footer } from 'shared/ui/footer'
-import { Header } from 'shared/ui/header'
 
 function App() {
   const { theme } = useThemeToggler()
@@ -24,18 +20,15 @@ function App() {
       <ScrollToTop />
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Header projectsCount={projects.length} />
+
         <Suspense
           fallback={
             <LoaderContainer>
               <CircularProgress />
             </LoaderContainer>
           }>
-          <main>
-            <Pages />
-          </main>
+          <Pages />
         </Suspense>
-        <Footer projectsCount={projects.length} />
       </ThemeProvider>
     </BrowserRouter>
   )

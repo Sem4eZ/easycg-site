@@ -28,7 +28,7 @@ const PostPage = () => {
       title={article.name}
       titleSize="small"
       decorationText={
-        <TextOutlined viewBoxWidth={1480} type="header" animate>
+        <TextOutlined viewBoxWidth={1480} type="header">
           blog.
         </TextOutlined>
       }
@@ -127,7 +127,7 @@ const Picture = styled('picture')(({ theme }) => ({
 }))
 
 const Remark = styled('div')(({ theme }) => ({
-  fontWeight: 900,
+  fontWeight: 700,
   ...getBreakpointsStylesByArray(theme, {
     fontSize: [16, null, null, null, null, null, 42],
     lineHeight: [19, null, null, null, null, null, 51],

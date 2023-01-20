@@ -3,11 +3,15 @@ import { styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { projects } from 'entities/project/data'
+
 import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { articleSpaceArr, maxWidth, spaceArr } from 'shared/theme'
+import { Footer } from 'shared/ui/footer'
+import { Header } from 'shared/ui/header'
 
 import { XXLFont, XXXLFont } from '../typography'
 
@@ -50,31 +54,37 @@ export const Page = ({
   const Title = titleSize === 'normal' ? NormalTitle : SmallTitle
 
   return (
-    <div style={{ overflow: 'hidden', paddingTop: '24px' }}>
-      {showBackButton && (
-        <BackButtonWrapper>
-          <BackButton
-            startIcon={<ArrowFatIcon />}
-            endIcon=""
-            onClick={() => navigate(-1)}>
-            back
-          </BackButton>
-        </BackButtonWrapper>
-      )}
-      <Title type={type} variant="h1" ref={titleRef}>
-        {decorationText && (
-          <DecorationTextBlock>{decorationText}</DecorationTextBlock>
-        )}
-        {title}
-      </Title>
-      {subtitleContent && (
-        <SubtitleContentBlock type={type}>
-          {subtitleContent}
-        </SubtitleContentBlock>
-      )}
-      {filter && <FilterBlock type={type}>{filter}</FilterBlock>}
-      <ContentBlock>{children}</ContentBlock>
-    </div>
+    <>
+      <Header projectsCount={projects.length} />
+      <main>
+        <div style={{ overflow: 'hidden', paddingTop: '24px' }}>
+          {showBackButton && (
+            <BackButtonWrapper>
+              <BackButton
+                startIcon={<ArrowFatIcon />}
+                endIcon=""
+                onClick={() => navigate(-1)}>
+                back
+              </BackButton>
+            </BackButtonWrapper>
+          )}
+          <Title type={type} variant="h1" ref={titleRef}>
+            {decorationText && (
+              <DecorationTextBlock>{decorationText}</DecorationTextBlock>
+            )}
+            {title}
+          </Title>
+          {subtitleContent && (
+            <SubtitleContentBlock type={type}>
+              {subtitleContent}
+            </SubtitleContentBlock>
+          )}
+          {filter && <FilterBlock type={type}>{filter}</FilterBlock>}
+          <ContentBlock>{children}</ContentBlock>
+        </div>
+      </main>
+      <Footer projectsCount={projects.length} />
+    </>
   )
 }
 
@@ -189,6 +199,9 @@ const SubtitleContentBlock = styled('div')<{ type: PageType }>(
 
 const FilterBlock = styled('section')<{ type: PageType }>(
   ({ theme, type }) => ({
+    maxWidth: maxWidth,
+    marginLeft: 'auto',
+    marginRight: 'auto',
     ...getBreakpointsStylesByArray(theme, {
       paddingLeft: type === 'default' ? spaceArr : articleSpaceArr,
       paddingRight: type === 'default' ? spaceArr : articleSpaceArr,
