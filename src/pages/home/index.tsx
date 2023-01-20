@@ -7,7 +7,6 @@ import {
   CenterWithSectionNumber,
   FreeRightPartContainer,
 } from 'shared/ui/containers'
-import { ParallaxFullWidth } from 'shared/ui/containers/parallax-fullwidth'
 import { Flow } from 'shared/ui/flow'
 import { Footer } from 'shared/ui/footer'
 import { Header } from 'shared/ui/header'
@@ -16,6 +15,7 @@ import { HorizontalList } from 'shared/ui/horizontal-list'
 import { TextOutlined } from 'shared/ui/outlined-text'
 
 import { MainPageCeoSection } from './components/ceo-section'
+import { ParallaxFullWidth } from './components/parallax-fullwidth'
 import { MainPageProjectsSlider } from './components/projects-slider'
 import { MainPageServicesMenu } from './components/services-menu'
 import { MainPageServicesSection } from './components/services-section'
