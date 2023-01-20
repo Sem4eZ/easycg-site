@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom'
 
-import { LeaveProjectDetails } from 'features/project/leave-project-details'
+import { LeaveProjectDetails } from 'features/project/leave-project-details/quiz'
 
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
@@ -36,7 +36,7 @@ export const ServiceCard = ({ title, serviceType, pricesBlock }: Props) => {
   )
 }
 
-const Container = styled('div')(() => ({
+const Container = styled('article')(() => ({
   position: 'relative',
 }))
 

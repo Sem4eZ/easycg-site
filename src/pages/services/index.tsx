@@ -58,16 +58,17 @@ const ServicesPage = () => {
       <Container>
         {filteredServices.map(service => {
           return (
-            <ServiceCard
-              key={service.name}
-              title={service.name}
-              serviceType={service.type}
-              pricesBlock={{
-                items: serviceDetailsToPricesBlockItems(service.details),
-                services: service.services,
-                remark: service.remark,
-              }}
-            />
+            <li key={service.name}>
+              <ServiceCard
+                title={service.name}
+                serviceType={service.type}
+                pricesBlock={{
+                  items: serviceDetailsToPricesBlockItems(service.details),
+                  services: service.services,
+                  remark: service.remark,
+                }}
+              />
+            </li>
           )
         })}
       </Container>
@@ -77,7 +78,8 @@ const ServicesPage = () => {
 
 export default ServicesPage
 
-const Container = styled('div')(({ theme }) => ({
+const Container = styled('ul')(({ theme }) => ({
+  listStyle: 'none',
   display: 'grid',
   maxWidth: maxWidth,
   marginLeft: 'auto',

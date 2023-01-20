@@ -25,14 +25,15 @@ interface Props {
 
 export const RadioGroup = forwardRef(
   ({ type, label, options, ...rest }: Props, ref) => {
-    const { setValue } = useFormContext()
+    const { watch, setValue } = useFormContext()
+    const value = watch(type)
 
     const onChange = (e: ChangeEvent<HTMLInputElement>, value: string) => {
       setValue(type, value)
     }
 
     return (
-      <FormControl>
+      <FormControl fullWidth>
         <FormLabel id={`${type}-label`}>
           <Label>{label}</Label>
         </FormLabel>
@@ -42,7 +43,8 @@ export const RadioGroup = forwardRef(
           {...rest}
           onChange={onChange}>
           {options.map(option => (
-            <FormControlLabel
+            <FormControlLabelStyled
+              checked={value === option.value}
               key={option.label}
               value={option.value}
               control={
@@ -84,7 +86,19 @@ const RadioGroupBaseStyled = styled(RadioGroupBase)(({ theme }) => ({
   }),
 }))
 
+const FormControlLabelStyled = styled(FormControlLabel)(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    borderBottom: [
+      `1px solid ${theme.palette.text.disabled}`,
+      null,
+      null,
+      'unset',
+    ],
+  }),
+}))
+
 const RadioStyled = styled(Radio)(({ theme }) => ({
+  display: 'flex',
   padding: pxToRem(4),
   transition: 'color .2s',
   '& .MuiSvgIcon-root': {
@@ -101,7 +115,7 @@ const RadioStyled = styled(Radio)(({ theme }) => ({
     },
   },
   ...getBreakpointsStylesByArray(theme, {
-    margniRight: [40, null, null, null, null, null, 117],
+    marginRight: [40, null, null, null, null, null, 117],
   }),
 }))
 

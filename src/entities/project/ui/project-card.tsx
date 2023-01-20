@@ -7,8 +7,6 @@ import { serviceTypeToIcon } from 'entities/services/data'
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
-import { spaceObj } from 'shared/theme'
-import { PARALLAX_CLASS } from 'shared/ui/horizontal-list/scrollable'
 import { Tags } from 'shared/ui/tags'
 import { LFont } from 'shared/ui/typography'
 
@@ -17,7 +15,9 @@ import { Project } from '../types'
 type Props = Pick<
   Project,
   'id' | 'name' | 'date' | 'description' | 'image' | 'type' | 'servicesType'
->
+> & {
+  parallaxClass?: string
+}
 
 export const ProjectCard = ({
   id,
@@ -27,14 +27,15 @@ export const ProjectCard = ({
   image,
   type,
   servicesType,
+  parallaxClass = '',
 }: Props) => {
   const imageSrcSet = getImageSrcSetByImageObj(image)
   return (
-    <Container>
+    <Container parallaxClass={parallaxClass}>
       <article>
         <Link to={`${PAGES.Projects}/${id}`}>
           <ImageContainer>
-            <picture>
+            <picture className={parallaxClass}>
               {imageSrcSet.map(imageSrcSetData => {
                 return (
                   <source
@@ -44,11 +45,7 @@ export const ProjectCard = ({
                 )
               })}
 
-              <img
-                className={PARALLAX_CLASS}
-                src={getImagePath(image, 1920)}
-                alt={image.alt}
-              />
+              <img src={getImagePath(image, 1920)} alt={image.alt} />
             </picture>
           </ImageContainer>
           <Content>
@@ -84,45 +81,39 @@ export const ProjectCard = ({
   )
 }
 
-const Container = styled('li')(({ theme }) => ({
-  listStyle: 'none',
-  transition: 'max-width 2s',
-  width: '100%',
-  ...getBreakpointsStylesByArray(theme, {
-    maxWidth: [253, '100%', 253, '100%', 352, null, 454, null, 619],
-  }),
+const Container = styled('div')<{ parallaxClass: string }>(
+  ({ theme, parallaxClass }) => ({
+    listStyle: 'none',
+    transition: 'max-width 2s',
 
-  [theme.breakpoints.up('desktop_s')]: {
-    '&:hover': {
-      ...getBreakpointsStylesByArray(theme, {
-        maxWidth: [253, '100%', 253, '100%', 352, null, 454 * 2, null, 619 * 2],
-      }),
-      '& .parallax': {
-        transform: 'translateX(0) !important',
-      },
-      img: {
-        width: '100%',
-        objectFit: 'cover',
-      },
-      transition: 'max-width 0.5s',
-    },
-  },
-
-  '&:last-child': {
     ...getBreakpointsStylesByArray(theme, {
-      marginRight: [
-        spaceObj.se,
-        0,
-        spaceObj.ip13,
-        0,
-        spaceObj.tablet,
-        spaceObj.tablet_horizontal,
-        spaceObj.laptop,
-        spaceObj.desktop,
-      ],
+      width: [253, '100%', 253, '100%', 352, null, 454 * 2, null, 619 * 2],
+      maxWidth: [253, '100%', 253, '100%', 352, null, 454, null, 619],
     }),
-  },
-}))
+
+    '&:hover': {
+      [theme.breakpoints.up('desktop_s')]: {
+        ...getBreakpointsStylesByArray(theme, {
+          maxWidth: [
+            253,
+            '100%',
+            253,
+            '100%',
+            352,
+            null,
+            454 * 2,
+            null,
+            619 * 2,
+          ],
+        }),
+        [`& .${parallaxClass}`]: {
+          transform: 'translateX(0) !important',
+        },
+        transition: 'max-width 0.5s',
+      },
+    },
+  }),
+)
 
 const TagsStyled = styled(Tags)(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
@@ -136,12 +127,20 @@ const ImageContainer = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     height: [199, null, null, 370, 438, null, 692, 862],
   }),
-  img: {
+  picture: {
+    display: 'block',
     height: '100%',
     ...getBreakpointsStylesByArray(theme, {
       width: ['100%', '100%', '100%', '100%', 'auto'],
       objectFit: ['cover', 'cover', 'cover', 'cover', 'unset'],
     }),
+    '& img': {
+      height: '100%',
+      ...getBreakpointsStylesByArray(theme, {
+        width: ['100%', '100%', '100%', '100%', 'auto'],
+        objectFit: ['cover', 'cover', 'cover', 'cover', 'unset'],
+      }),
+    },
   },
 }))
 
