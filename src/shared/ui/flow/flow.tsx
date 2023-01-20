@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { useGetDevice } from 'shared/lib/use-get-device'
 import { useGetSectionScroll } from 'shared/lib/use-get-section-scroll'
 
 interface Props {
@@ -9,6 +10,21 @@ interface Props {
 }
 
 export const Flow = ({ sectionRef }: Props) => {
+  const {
+    isTablet,
+    isTabletLandscape,
+    isDesktopS,
+    isLaptop,
+    isMacbook,
+    isDesktop,
+  } = useGetDevice()
+  const doAnimate =
+    isTablet ||
+    isTabletLandscape ||
+    isDesktopS ||
+    isLaptop ||
+    isMacbook ||
+    isDesktop
   const containerRef = useRef<HTMLDivElement>(null)
 
   const reserchRef = useRef<HTMLDivElement>(null)
@@ -77,8 +93,9 @@ export const Flow = ({ sectionRef }: Props) => {
   }
 
   useEffect(() => {
+    if (!doAnimate) return
     doColoring()
-  }, [])
+  }, [doAnimate])
 
   useEffect(() => {
     const progressBar = progressBarRef.current
