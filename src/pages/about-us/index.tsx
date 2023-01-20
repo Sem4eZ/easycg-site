@@ -15,7 +15,7 @@ const AboutUsPage = () => (
   <Page
     title="about us"
     decorationText={
-      <TextOutlined viewBoxWidth={797} type="header" animate>
+      <TextOutlined viewBoxWidth={797} type="header">
         04
       </TextOutlined>
     }>

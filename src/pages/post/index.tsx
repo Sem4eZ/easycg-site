@@ -28,7 +28,7 @@ const PostPage = () => {
       title={article.name}
       titleSize="small"
       decorationText={
-        <TextOutlined viewBoxWidth={1480} type="header" animate>
+        <TextOutlined viewBoxWidth={1480} type="header">
           blog.
         </TextOutlined>
       }

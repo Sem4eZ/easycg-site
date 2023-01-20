@@ -16,7 +16,7 @@ const ContactPage = () => (
     title="lets do something legendary"
     titleSize="small"
     decorationText={
-      <TextOutlined viewBoxWidth={2220} type="header" animate>
+      <TextOutlined viewBoxWidth={2220} type="header">
         contact
       </TextOutlined>
     }>
