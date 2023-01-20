@@ -8,7 +8,6 @@ import { TeammateCard } from 'entities/team/ui/teammate-card'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { maxWidth, spaceArr, spaceObj } from 'shared/theme'
-import { TextOutlined } from 'shared/ui/outlined-text'
 import { XLFont } from 'shared/ui/typography'
 
 export const AboutUsPageOurTeam = () => {
@@ -18,10 +17,6 @@ export const AboutUsPageOurTeam = () => {
 
   return (
     <Container>
-      <SectionNumber viewBoxWidth={800} animate>
-        02
-      </SectionNumber>
-
       <Title variant="h2">our team</Title>
       {showSlider ? (
         <Swiper
@@ -149,16 +144,6 @@ const Title = styled(XLFont)(({ theme }) => ({
       '1077px',
       '1087px',
     ],
-  }),
-}))
-
-const SectionNumber = styled(TextOutlined)(({ theme }) => ({
-  position: 'absolute',
-  ...getBreakpointsStylesByArray(theme, {
-    display: ['none', null, null, null, 'block'],
-    top: [null, null, null, null, 88, null, -211],
-    left: [null, null, null, null, -84, null, '-20%', '-16%', '-14%'],
-    transform: [null, null, null, null, 'scale(0.6)', null, 'scale(0.424)'],
   }),
 }))
 

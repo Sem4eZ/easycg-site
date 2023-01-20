@@ -1,6 +1,3 @@
-import { styled } from '@mui/material/styles'
-
-import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { FreeRightPartContainer } from 'shared/ui/containers'
 import { HorizontalList } from 'shared/ui/horizontal-list'
 import { TextOutlined } from 'shared/ui/outlined-text'
@@ -20,11 +17,6 @@ const AboutUsPage = () => (
       </TextOutlined>
     }>
     <FreeRightPartContainer
-      number={
-        <SectionNumber viewBoxWidth={680} animate>
-          01
-        </SectionNumber>
-      }
       section="beggining"
       title={['just know us better', 'we’re really nice guys']}
       description={[
@@ -50,14 +42,3 @@ const AboutUsPage = () => (
 )
 
 export default AboutUsPage
-
-const SectionNumber = styled(TextOutlined)(({ theme }) => ({
-  position: 'absolute',
-
-  ...getBreakpointsStylesByArray(theme, {
-    display: ['none', null, null, null, 'block'],
-    top: [0, null, null, null, null],
-    left: [null, null, null, null, '-2vw', '-0.1vw', '-0.1vw', '-4vw'],
-    transform: [null, null, null, null, 'scale(0.6)', null, 'scale(0.424)'],
-  }),
-}))
