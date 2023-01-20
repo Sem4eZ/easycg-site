@@ -36,7 +36,7 @@ export const ServiceCard = ({ title, serviceType, pricesBlock }: Props) => {
   )
 }
 
-const Container = styled('div')(() => ({
+const Container = styled('article')(() => ({
   position: 'relative',
 }))
 
