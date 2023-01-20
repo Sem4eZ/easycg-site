@@ -16,7 +16,7 @@ interface LeaveProjectsDetailsInputs {
   name: string
   email: string
   phone: string
-  projectType: string
+  projectType: string[]
   message: string
 }
 
@@ -28,7 +28,7 @@ export const LeaveProjectDetailsPlain = () => {
       name: '',
       email: '',
       phone: '',
-      projectType: '',
+      projectType: [],
       message: '',
     },
   })

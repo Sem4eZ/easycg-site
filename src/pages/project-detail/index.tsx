@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles'
 import { PagePagination } from 'pages/project-detail/components/page-pagination'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { LeaveProjectDetails } from 'features/project/leave-project-details'
+import { LeaveProjectDetails } from 'features/project/leave-project-details/quiz'
 
 import {
   projectDetailsToPricesBlockItems,

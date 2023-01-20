@@ -23,17 +23,20 @@ interface Props {
   }[]
 }
 
-const getState = (options: Props['options']) => {
+const getState = (options: Props['options'], values: string) => {
   const state: { [key: string]: boolean } = {}
-  options.forEach(option => (state[option.value] = false))
+  options.forEach(
+    option => (state[option.value] = values.includes(String(option.value))),
+  )
   return state
 }
 
 export const CheckboxGroup = forwardRef(
   ({ type, label, options, ...rest }: Props, ref) => {
-    const [state, setState] = useState(getState(options))
-
     const { setValue, watch } = useFormContext()
+    const value = watch(type)
+
+    const [state, setState] = useState(getState(options, value))
 
     const onChange = (e: ChangeEvent<HTMLInputElement>, checked: boolean) => {
       setState(prevState => ({ ...prevState, [e.target.value]: checked }))
@@ -50,13 +53,13 @@ export const CheckboxGroup = forwardRef(
     }, [state])
 
     return (
-      <FormControl>
+      <FormControl fullWidth>
         <FormLabel id={`${type}-label`}>
           <Label>{label}</Label>
         </FormLabel>
         <FormGroupStyled ref={ref} aria-labelledby={`${type}-label`} {...rest}>
           {options.map(option => (
-            <FormControlLabel
+            <FormControlLabelStyled
               key={option.label}
               value={option.value}
               checked={state[option.value]}
@@ -100,6 +103,17 @@ const FormGroupStyled = styled(FormGroup)(({ theme }) => ({
   }),
 }))
 
+const FormControlLabelStyled = styled(FormControlLabel)(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    borderBottom: [
+      `1px solid ${theme.palette.text.disabled}`,
+      null,
+      null,
+      'unset',
+    ],
+  }),
+}))
+
 const CheckboxStyled = styled(Checkbox)(({ theme }) => ({
   padding: pxToRem(4),
   transition: 'color .2s',
@@ -117,7 +131,7 @@ const CheckboxStyled = styled(Checkbox)(({ theme }) => ({
     },
   },
   ...getBreakpointsStylesByArray(theme, {
-    margniRight: [40, null, null, null, null, null, 117],
+    marginRight: [40, null, null, null, null, null, 117],
   }),
 }))
 
