@@ -91,8 +91,8 @@ const Container = styled('div')<{ parallaxClass: string }>(
       maxWidth: [253, '100%', 253, '100%', 352, null, 454, null, 619],
     }),
 
-    [theme.breakpoints.up('desktop_s')]: {
-      '&:hover': {
+    '&:hover': {
+      [theme.breakpoints.up('desktop_s')]: {
         ...getBreakpointsStylesByArray(theme, {
           maxWidth: [
             253,

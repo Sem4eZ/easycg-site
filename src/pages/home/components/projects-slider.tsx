@@ -107,9 +107,7 @@ export const MainPageProjectsSlider = () => {
             </SwiperSlide>
           )
         })}
-        {doExpandCards && (
-          <SwiperSlide style={{ opacity: 0, width: '500px' }}></SwiperSlide>
-        )}
+        {doExpandCards && <PlaceholderSwiperSlide></PlaceholderSwiperSlide>}
       </Swiper>
 
       {showAllProjectsButton && (
@@ -161,5 +159,12 @@ const SeeAllProjectsButton = styled(Button)(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     marginLeft: spaceArr,
     marginRight: spaceArr,
+  }),
+}))
+
+const PlaceholderSwiperSlide = styled(SwiperSlide)(({ theme }) => ({
+  opacity: 0,
+  ...getBreakpointsStylesByArray(theme, {
+    width: [253, '100%', 253, '100%', 352, null, 454, null, 619],
   }),
 }))
