@@ -6,7 +6,6 @@ export const Decoration = () => {
   return (
     <Container>
       <svg
-        style={{ top: 0 }}
         width="1723"
         height="641"
         viewBox="0 0 1723 641"
@@ -30,7 +29,6 @@ export const Decoration = () => {
       </svg>
 
       <svg
-        style={{ top: '5%', opacity: 0.1 }}
         width="1722"
         height="474"
         viewBox="0 0 1722 474"
@@ -52,7 +50,6 @@ export const Decoration = () => {
       </svg>
 
       <svg
-        style={{ top: '20%' }}
         width="1721"
         height="491"
         viewBox="0 0 1721 491"
@@ -72,8 +69,8 @@ export const Decoration = () => {
           />
         </path>
       </svg>
+
       <svg
-        style={{ top: '40%' }}
         width="1729"
         height="400"
         viewBox="0 0 1729 400"
@@ -93,8 +90,8 @@ export const Decoration = () => {
           />
         </path>
       </svg>
+
       <svg
-        style={{ top: '50%' }}
         width="1714"
         height="297"
         viewBox="0 0 1714 297"
@@ -116,7 +113,6 @@ export const Decoration = () => {
       </svg>
 
       <svg
-        style={{ top: '55%' }}
         width="1727"
         height="297"
         viewBox="0 0 1727 297"
@@ -139,7 +135,6 @@ export const Decoration = () => {
         </path>
       </svg>
       <svg
-        style={{ top: '70%' }}
         width="1729"
         height="369"
         viewBox="0 0 1729 369"
@@ -161,7 +156,6 @@ export const Decoration = () => {
         </path>
       </svg>
       <svg
-        style={{ top: '70%' }}
         width="1730"
         height="400"
         viewBox="0 0 1730 400"
@@ -198,5 +192,86 @@ const Container = styled('div')(() => ({
     left: 0,
     height: 'auto',
     width: '100%',
+    '&:nth-of-type(1)': {
+      transform: 'translateY(-50%)',
+      '@media (orientation: landscape)': {
+        top: '40%',
+      },
+      '@media (orientation: portrait)': {
+        top: '40%',
+        width: '150%',
+      },
+    },
+    '&:nth-of-type(2)': {
+      transform: 'translateY(-50%)',
+      opacity: 0.1,
+      '@media (orientation: landscape)': {
+        top: '40%',
+      },
+      '@media (orientation: portrait)': {
+        top: '40%',
+        width: '150%',
+      },
+    },
+    '&:nth-of-type(3)': {
+      transform: 'translateY(-50%)',
+      '@media (orientation: landscape)': {
+        top: '42%',
+      },
+      '@media (orientation: portrait)': {
+        top: '42%',
+        width: '150%',
+      },
+    },
+    '&:nth-of-type(4)': {
+      transform: 'translateY(-50%)',
+      '@media (orientation: landscape)': {
+        top: '45%',
+      },
+      '@media (orientation: portrait)': {
+        top: '45%',
+        width: '150%',
+      },
+    },
+    '&:nth-of-type(5)': {
+      transform: 'translateY(-50%)',
+      '@media (orientation: landscape)': {
+        top: '45%',
+      },
+      '@media (orientation: portrait)': {
+        top: '45%',
+        width: '150%',
+      },
+    },
+    '&:nth-of-type(6)': {
+      transform: 'translateY(-50%)',
+      '@media (orientation: landscape)': {
+        top: '46%',
+      },
+      '@media (orientation: portrait)': {
+        top: '46%',
+        width: '150%',
+      },
+    },
+    '&:nth-of-type(7)': {
+      '@media (orientation: landscape)': {
+        top: '54%',
+      },
+      '@media (orientation: portrait)': {
+        transform: 'translateY(-50%)',
+        top: '54%',
+        width: '150%',
+      },
+    },
+    '&:nth-of-type(8)': {
+      '@media (orientation: landscape)': {
+        top: '55%',
+      },
+      '@media (orientation: portrait)': {
+        transform: 'translateY(-50%)',
+        top: '55%',
+        width: '150%',
+      },
+    },
   },
 }))
