@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem'
 import BaseSelect from '@mui/material/Select'
 import { styled } from '@mui/material/styles'
 import { forwardRef } from 'react'
+import { useFormContext } from 'react-hook-form'
 
 import { CheckIcon } from 'shared/icons/check'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
@@ -25,6 +26,9 @@ interface Props {
 
 export const Select = forwardRef(
   ({ label, explanation, field, options, error, ...rest }: Props, ref) => {
+    const { watch } = useFormContext()
+    const value = watch(field)
+
     return (
       <FormControl fullWidth error={Boolean(error)}>
         <InputLabel id={`${field}-label`}>
@@ -38,7 +42,9 @@ export const Select = forwardRef(
           labelId={`${field}-label`}
           id={field}
           variant="standard"
-          {...rest}>
+          value={value}
+          {...rest}
+          multiple>
           {options.map(option => (
             <MenuItem key={option.value} value={option.value}>
               <CheckIconWrapper className="CheckIcon">
@@ -46,7 +52,7 @@ export const Select = forwardRef(
               </CheckIconWrapper>
 
               {option.label}
-              <LabelExplanatoin variant="caption">
+              <LabelExplanatoin variant="caption" className="explanation">
                 {option.labelExplanation}
               </LabelExplanatoin>
             </MenuItem>
