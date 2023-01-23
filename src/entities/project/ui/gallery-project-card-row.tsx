@@ -25,6 +25,7 @@ const Link = styled(ReactRouterDomLink)(({ theme }) => ({
   justifyContent: 'space-between',
   borderBottomStyle: 'solid',
   borderBottomColor: theme.palette.text.disabled,
+  transition: 'color .5s',
   ...getBreakpointsStylesByArray(theme, {
     gap: [16, 47],
     flexDirection: ['column', 'row'],
