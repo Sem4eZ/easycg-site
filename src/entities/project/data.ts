@@ -53,6 +53,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
+    tags: ['web', 'mobile'],
   },
   {
     id: '2',
@@ -103,6 +104,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
+    tags: ['web', 'mobile'],
   },
   {
     id: '3',
@@ -153,6 +155,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
+    tags: ['mobile'],
   },
   {
     id: '4',
@@ -203,6 +206,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
+    tags: ['mobile'],
   },
   {
     id: '5',
@@ -253,6 +257,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
+    tags: ['mobile'],
   },
   {
     id: '6',
@@ -298,6 +303,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
+    tags: ['mobile', 'digital clothes'],
   },
   {
     id: '7',
@@ -342,6 +348,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
+    tags: ['web', 'mobile'],
   },
   {
     id: '8',
@@ -387,6 +394,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
+    tags: ['web', 'digital clothes'],
   },
   {
     id: '9',
@@ -432,6 +440,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
+    tags: ['web', 'presentation'],
   },
 ]
 
