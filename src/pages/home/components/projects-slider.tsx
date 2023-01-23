@@ -29,6 +29,7 @@ export const MainPageProjectsSlider = () => {
   } = useGetDevice()
 
   const showAllProjectsButton = isDesktopS || isLaptop || isMacbook || isDesktop
+  const doParallax = isDesktopS || isLaptop || isMacbook || isDesktop
   const doExpandCards = isDesktopS || isLaptop || isMacbook || isDesktop
   const showSlider = !isMobileSLandscape && !isMobileLandscape
 
@@ -86,7 +87,7 @@ export const MainPageProjectsSlider = () => {
           freeMode={{ enabled: true, sticky: false, momentumBounce: true }}
           modules={[Mousewheel]}
           onScroll={(swiper, e) => {
-            if (!containerRef.current) return
+            if (!containerRef.current || !doParallax) return
             doParallaxListItemImage(containerRef.current, swiper.progress)
           }}
           onTouchEnd={swiper => {
