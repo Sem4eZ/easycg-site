@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
+import { useGetDevice } from 'shared/lib/use-get-device'
 
 type TextType = 'header' | 'headerSmall' | 'section'
 
@@ -25,6 +26,23 @@ export const TextOutlined = ({
   const intersectionContainerRef = useRef<HTMLDivElement | null>(null)
   const textRef = useRef<HTMLDivElement | null>(null)
 
+  const {
+    isTablet,
+    isTabletLandscape,
+    isDesktopS,
+    isLaptop,
+    isMacbook,
+    isDesktop,
+  } = useGetDevice()
+
+  const doAnimate =
+    isTablet ||
+    isTabletLandscape ||
+    isDesktopS ||
+    isLaptop ||
+    isMacbook ||
+    isDesktop
+
   function fillText() {
     const text = textRef.current
     const intersectionContainer = intersectionContainerRef.current
@@ -36,7 +54,7 @@ export const TextOutlined = ({
           const persentage = Math.round(
             ((window.innerHeight -
               text.getBoundingClientRect().top -
-              text.offsetHeight / 2) *
+              (isTablet ? text.offsetHeight * 2 : text.offsetHeight / 2)) *
               100) /
               text.offsetHeight,
           )
@@ -52,12 +70,12 @@ export const TextOutlined = ({
   }
 
   useEffect(() => {
-    if (!animate || window.innerWidth < breakpoints.values.desktop_s) return
+    if (!animate || !doAnimate) return
     window.addEventListener('scroll', fillText)
     return () => {
       window.removeEventListener('scroll', fillText)
     }
-  }, [])
+  }, [doAnimate])
 
   return (
     <Container ref={intersectionContainerRef} data-type={type} {...rest}>
