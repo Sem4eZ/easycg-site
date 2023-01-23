@@ -25,6 +25,7 @@ export const Flow = ({ sectionRef }: Props) => {
     isLaptop ||
     isMacbook ||
     isDesktop
+
   const containerRef = useRef<HTMLDivElement>(null)
 
   const reserchRef = useRef<HTMLDivElement>(null)
@@ -81,9 +82,7 @@ export const Flow = ({ sectionRef }: Props) => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          window.addEventListener('scroll', setProgress)
-        } else {
-          window.removeEventListener('scroll', setProgress)
+          setProgress()
         }
       })
     })
@@ -94,7 +93,10 @@ export const Flow = ({ sectionRef }: Props) => {
 
   useEffect(() => {
     if (!doAnimate) return
-    doColoring()
+    window.addEventListener('scroll', doColoring)
+    return () => {
+      window.removeEventListener('scroll', doColoring)
+    }
   }, [doAnimate])
 
   useEffect(() => {
@@ -300,12 +302,20 @@ const Cycle = styled('div')(({ theme }) => ({
   },
   '& .circle': {
     position: 'absolute',
-    backgroundColor: theme.palette.text.primary,
     zIndex: 1,
     borderRadius: '50%',
     ...getBreakpointsStylesByArray(theme, {
       width: [8, null, null, null, null, null, 10],
       height: [8, null, null, null, null, null, 10],
+      backgroundColor: [
+        theme.palette.accent,
+        null,
+        null,
+        null,
+        null,
+        null,
+        theme.palette.text.primary,
+      ],
     }),
   },
 
@@ -347,7 +357,7 @@ const Cycle = styled('div')(({ theme }) => ({
       transform: 'translateX(-50%)',
       transitionDelay: '0.725s',
       ...getBreakpointsStylesByArray(theme, {
-        bottom: [-2, null, null, null, null, null, 2],
+        bottom: [-2, null, null, null, null, null, -2, null, -3],
       }),
     },
     '& .title': {
