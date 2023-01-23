@@ -69,7 +69,7 @@ const HomePage = () => {
         <CenterWithSectionNumber
           ref={processSectionRef}
           number={
-            <TextOutlined viewBoxWidth={795} animate>
+            <TextOutlined viewBoxWidth={794} animate>
               03
             </TextOutlined>
           }

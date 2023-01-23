@@ -18,7 +18,7 @@ export const MainPageServicesSection = () => {
   return (
     <FreeRightPartContainer
       number={
-        <TextOutlined viewBoxWidth={800} animate>
+        <TextOutlined viewBoxWidth={803} animate>
           02
         </TextOutlined>
       }

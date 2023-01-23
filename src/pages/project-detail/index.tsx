@@ -39,10 +39,11 @@ const ProjectDetailPage = () => {
   }
 
   return (
-    <Page
+    <PageStyled
       title={project.name}
+      titleSize="small"
       decorationText={
-        <TextOutlined viewBoxWidth={1470} type="header">
+        <TextOutlined viewBoxWidth={1470} type="headerSmall">
           work
         </TextOutlined>
       }
@@ -90,7 +91,7 @@ const ProjectDetailPage = () => {
 
       <FreeRightPartContainer
         number={
-          <TextOutlined viewBoxWidth={800} animate>
+          <TextOutlined viewBoxWidth={803} animate>
             02
           </TextOutlined>
         }
@@ -111,7 +112,7 @@ const ProjectDetailPage = () => {
 
       <FreeRightPartContainer
         number={
-          <TextOutlined viewBoxWidth={795} animate>
+          <TextOutlined viewBoxWidth={794} animate>
             03
           </TextOutlined>
         }
@@ -124,7 +125,7 @@ const ProjectDetailPage = () => {
       <ScrollableByOneList items={project.carousel} />
 
       <PagePagination currentProjectId={project.id} />
-    </Page>
+    </PageStyled>
   )
 }
 
@@ -162,4 +163,11 @@ const PricesBlockStyled = styled(PricesBlock)(({ theme }) => ({
       paddingRight: [6, 0, null, null, 29, 0, 135, null, 114, 112],
     }),
   },
+}))
+
+const PageStyled = styled(Page)(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    left: [-184, -250, -198, -160, -150, -220, -300, -260, -420, -140],
+    top: [-146, null, null, -141, -196, -196, -266, null, -380],
+  }),
 }))

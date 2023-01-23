@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
-type TextType = 'header' | 'section' | 'sectionSmall'
+type TextType = 'header' | 'headerSmall' | 'section'
 
 export interface Props {
   children: string
@@ -80,9 +80,9 @@ const getYOffset = (type: TextType) => {
   switch (type) {
     case 'header':
       return 605
+    case 'headerSmall':
+      return 605
     case 'section':
-      return 602
-    case 'sectionSmall':
       return 602
   }
 }
@@ -94,21 +94,39 @@ const fonts = (theme: Theme) => ({
       lineHeight: [323, null, null, null, 438, null, 650, null, 801],
     }),
   },
-  '&[data-type="section"]': {
+  '&[data-type="headerSmall"]': {
     ...getBreakpointsStylesByArray(theme, {
-      fontSize: [56, null, null, null, 185, null, 534, null, 658],
-      lineHeight: [68, null, null, null, 225, null, 650, null, 801],
+      fontSize: [256, null, null, null, 360, null, 543, null, 658],
+      lineHeight: [323, null, null, null, 438, null, 650, null, 801],
     }),
   },
-  '&[data-type="sectionSmall"]': {
-    fontSize: [56, null, null, null, 185, null, 534, null, 658],
-    lineHeight: [68, null, null, null, 225, null, 650, null, 801],
+  '&[data-type="section"]': {
+    ...getBreakpointsStylesByArray(theme, {
+      fontSize: [56, null, null, null, 185, null, null, 534, 658],
+      lineHeight: [68, null, null, null, 225, null, null, 650, 801],
+    }),
   },
 })
 
 const Container = styled('div')(({ theme }) => ({
   display: 'inline-block',
   position: 'relative',
+  '&[data-type="headerSmall"]': {
+    ...getBreakpointsStylesByArray(theme, {
+      transform: [
+        'scale(0.415)',
+        null,
+        null,
+        'scale(1)',
+        'scale(0.776)',
+        null,
+        null,
+        'scale(1)',
+        'scale(0.61)',
+        'scale(1)',
+      ],
+    }),
+  },
   svg: {
     position: 'absolute',
     width: '100%',
@@ -117,13 +135,15 @@ const Container = styled('div')(({ theme }) => ({
         top: [5, null, null, null, 0, null, -5, null, 1],
       }),
     },
-    '&[data-type="section"]': {
+    '&[data-type="headerSmall"]': {
       ...getBreakpointsStylesByArray(theme, {
-        top: [0],
+        top: [5, null, null, null, 0, null, -5, null, 1],
       }),
     },
-    '&[data-type="sectionSmall"]': {
-      top: [0],
+    '&[data-type="section"]': {
+      ...getBreakpointsStylesByArray(theme, {
+        top: [0, null, null, null, null, null, 0.4, null, 1],
+      }),
     },
   },
 }))
@@ -142,18 +162,8 @@ const Text = styled('text')(() => ({
   fontWeight: 700,
   paintOrder: 'stroke',
   strokeLinejoin: 'round',
-  '&[data-type="header"]': {
-    fontSize: pxToRem(658),
-    lineHeight: pxToRem(801),
-  },
-  '&[data-type="section"]': {
-    fontSize: pxToRem(658),
-    lineHeight: pxToRem(801),
-  },
-  '&[data-type="sectionSmall"]': {
-    fontSize: pxToRem(658),
-    lineHeight: pxToRem(801),
-  },
+  fontSize: pxToRem(658),
+  lineHeight: pxToRem(801),
 }))
 
 export const OutlinedText = styled(Text)(({ theme }) => ({
