@@ -2,12 +2,7 @@ import { Image } from 'entities/image/types'
 import { Price } from 'entities/price/types'
 import { ServiceType, serviceType } from 'entities/services/types'
 
-export const projectTags = [
-  ...serviceType,
-  'digital clothes',
-  'digital food',
-  'presentation',
-] as const
+export const projectTags = [...serviceType, 'clothes', 'food'] as const
 
 export type ProjectTags = typeof projectTags[number]
 

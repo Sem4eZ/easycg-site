@@ -155,7 +155,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
-    tags: ['mobile'],
+    tags: ['mobile', 'food'],
   },
   {
     id: '4',
@@ -303,7 +303,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
-    tags: ['mobile', 'digital clothes'],
+    tags: ['mobile', 'clothes'],
   },
   {
     id: '7',
@@ -394,7 +394,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
-    tags: ['web', 'digital clothes'],
+    tags: ['web', 'clothes'],
   },
   {
     id: '9',
@@ -440,7 +440,7 @@ export const projects: Project[] = [
       { path: IMAGES_PATH, name: '5', fileType: 'png', alt: '' },
       { path: IMAGES_PATH, name: '6', fileType: 'png', alt: '' },
     ],
-    tags: ['web', 'presentation'],
+    tags: ['web'],
   },
 ]
 
