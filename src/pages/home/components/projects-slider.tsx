@@ -50,7 +50,7 @@ export const MainPageProjectsSlider = () => {
         const element = cards[i]
         element.style.transition = 'transform 1s'
         element.style.transform = `translate(-${
-          persentage < 45 ? persentage : 45
+          persentage < 30 ? persentage : 30
         }%,0)`
       })
     }

@@ -110,6 +110,10 @@ const Container = styled('div')<{ parallaxClass: string }>(
           transform: 'translateX(0) !important',
         },
         transition: 'max-width 0.5s',
+        '& img': {
+          width: '100%',
+          objectFit: 'cover',
+        },
       },
     },
   }),
@@ -125,7 +129,7 @@ const ImageContainer = styled('div')(({ theme }) => ({
   borderRadius: '10px',
   overflow: 'hidden',
   ...getBreakpointsStylesByArray(theme, {
-    height: [199, null, null, 370, 438, null, 692, 862],
+    height: [199, null, null, 370, 438, null, 553, 689],
   }),
   picture: {
     display: 'block',
