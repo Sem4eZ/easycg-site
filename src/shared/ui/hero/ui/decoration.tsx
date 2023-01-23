@@ -193,63 +193,57 @@ const Container = styled('div')(() => ({
     height: 'auto',
     width: '100%',
     '&:nth-of-type(1)': {
-      transform: 'translateY(-50%)',
       '@media (orientation: landscape)': {
-        top: '40%',
+        top: '20%',
       },
       '@media (orientation: portrait)': {
-        top: '40%',
+        top: '30%',
         width: '150%',
       },
     },
     '&:nth-of-type(2)': {
-      transform: 'translateY(-50%)',
       opacity: 0.1,
       '@media (orientation: landscape)': {
-        top: '40%',
+        top: '20%',
       },
       '@media (orientation: portrait)': {
-        top: '40%',
+        top: '30%',
         width: '150%',
       },
     },
     '&:nth-of-type(3)': {
-      transform: 'translateY(-50%)',
       '@media (orientation: landscape)': {
-        top: '42%',
+        top: '21%',
       },
       '@media (orientation: portrait)': {
-        top: '42%',
+        top: '32%',
         width: '150%',
       },
     },
     '&:nth-of-type(4)': {
-      transform: 'translateY(-50%)',
       '@media (orientation: landscape)': {
-        top: '45%',
+        top: '25%',
       },
       '@media (orientation: portrait)': {
-        top: '45%',
+        top: '36%',
         width: '150%',
       },
     },
     '&:nth-of-type(5)': {
-      transform: 'translateY(-50%)',
       '@media (orientation: landscape)': {
-        top: '45%',
+        top: '32%',
       },
       '@media (orientation: portrait)': {
-        top: '45%',
+        top: '40%',
         width: '150%',
       },
     },
     '&:nth-of-type(6)': {
-      transform: 'translateY(-50%)',
       '@media (orientation: landscape)': {
-        top: '46%',
+        top: '28%',
       },
       '@media (orientation: portrait)': {
-        top: '46%',
+        top: '42%',
         width: '150%',
       },
     },
@@ -258,17 +252,15 @@ const Container = styled('div')(() => ({
         top: '54%',
       },
       '@media (orientation: portrait)': {
-        transform: 'translateY(-50%)',
         top: '54%',
         width: '150%',
       },
     },
     '&:nth-of-type(8)': {
       '@media (orientation: landscape)': {
-        top: '55%',
+        top: '54%',
       },
       '@media (orientation: portrait)': {
-        transform: 'translateY(-50%)',
         top: '55%',
         width: '150%',
       },
