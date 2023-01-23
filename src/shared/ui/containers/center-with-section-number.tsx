@@ -99,7 +99,7 @@ const RightPart = styled('div')(({ theme }) => ({
 const NumberContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
   ...getBreakpointsStylesByArray(theme, {
-    top: [46, 40, 48, 38, '6%', null, '-4%', null, '-1%'],
+    top: [46, 40, 48, 38, '6%', null, '14%', '-4%', '-1%'],
     left: [
       spaceObj.se,
       spaceObj.se_horizontal,
@@ -107,7 +107,8 @@ const NumberContainer = styled('div')(({ theme }) => ({
       spaceObj.ip13_horizontal,
       '-5%',
       null,
-      '-18%',
+      '-4%',
+      '-14%',
       '-10%',
       '-8%',
     ],

@@ -35,6 +35,7 @@ export const Page = ({
   children,
   type = 'default',
   titleSize = 'normal',
+  ...rest
 }: Props) => {
   const navigate = useNavigate()
 
@@ -70,7 +71,9 @@ export const Page = ({
           )}
           <Title type={type} variant="h1" ref={titleRef}>
             {decorationText && (
-              <DecorationTextBlock>{decorationText}</DecorationTextBlock>
+              <DecorationTextBlock {...rest}>
+                {decorationText}
+              </DecorationTextBlock>
             )}
             {title}
           </Title>

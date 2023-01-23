@@ -24,11 +24,11 @@ const PostPage = () => {
   const imageSrcSet = getImageSrcSetByImageObj(article.detailPreviewImage)
 
   return (
-    <Page
+    <PageStyled
       title={article.name}
       titleSize="small"
       decorationText={
-        <TextOutlined viewBoxWidth={1480} type="header">
+        <TextOutlined viewBoxWidth={1480} type="headerSmall">
           blog.
         </TextOutlined>
       }
@@ -57,7 +57,7 @@ const PostPage = () => {
         </Picture>
       </PictureContainer>
       <Content>{article.content}</Content>
-    </Page>
+    </PageStyled>
   )
 }
 
@@ -146,4 +146,11 @@ const Remark = styled('div')(({ theme }) => ({
       marginBottom: [8, null, 0],
     }),
   },
+}))
+
+const PageStyled = styled(Page)(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    left: [-196, -260, -200, -120, -160, -210, -300, -200, -450, -130],
+    top: [-146, -150, -146, -141, -196, -196, -266, null, -380],
+  }),
 }))
