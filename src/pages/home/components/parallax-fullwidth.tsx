@@ -34,7 +34,7 @@ const BALOONS_INITIAL_TRANSFORM = {
 export const ParallaxFullWidth = () => {
   const theme = useTheme()
   const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
-  const doAnimation = isDesktopS || isLaptop || isMacbook || isDesktop
+  const doDesktopAnimation = isDesktopS || isLaptop || isMacbook || isDesktop
   const containerRef = useRef<HTMLDivElement | null>(null)
   const cloud1Ref = useRef<HTMLImageElement | null>(null)
   const cloud2Ref = useRef<HTMLImageElement | null>(null)
@@ -52,6 +52,7 @@ export const ParallaxFullWidth = () => {
   const ellipseRef = useRef<HTMLDivElement | null>(null)
 
   const mainRef = useRef<HTMLImageElement | null>(null)
+  const mainMobileRef = useRef<HTMLImageElement | null>(null)
 
   const doParallax = () => {
     const container = containerRef.current
@@ -104,19 +105,39 @@ export const ParallaxFullWidth = () => {
     }
   }
 
+  const doMobileParallax = () => {
+    const container = containerRef.current
+    if (!container) return
+    const offset =
+      getSectionScroll(container, window.innerHeight / 2, false) * 100
+    if (mainMobileRef.current) {
+      mainMobileRef.current.style.transform = `translateY(-${offset / 6}%)`
+    }
+  }
+
   useEffect(() => {
-    if (doAnimation) {
+    if (doDesktopAnimation) {
       window.addEventListener('scroll', doParallax, false)
     }
 
     return () => {
       window.removeEventListener('scroll', doParallax)
     }
-  }, [doAnimation])
+  }, [doDesktopAnimation])
+
+  useEffect(() => {
+    if (!doDesktopAnimation) {
+      window.addEventListener('scroll', doMobileParallax, false)
+
+      return () => {
+        window.removeEventListener('scroll', doMobileParallax)
+      }
+    }
+  }, [doDesktopAnimation])
 
   return (
     <Container ref={containerRef}>
-      {doAnimation ? (
+      {doDesktopAnimation ? (
         <ImagesContainer>
           <Baloon1
             ref={baloon1Ref}
@@ -168,7 +189,7 @@ export const ParallaxFullWidth = () => {
           />
         </ImagesContainer>
       ) : (
-        <MainMobile />
+        <MainMobile ref={mainMobileRef} />
       )}
     </Container>
   )
@@ -205,7 +226,6 @@ const MainMobile = styled('div')(({ theme }) => {
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% auto',
-    backgroundAttachment: 'fixed',
     ...getBreakpointsStylesByArray(theme, {
       backgroundImage: [
         getImage('mobile vertical'),
