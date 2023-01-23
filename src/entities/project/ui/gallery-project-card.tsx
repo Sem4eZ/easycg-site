@@ -44,27 +44,29 @@ export const GalleryProjectCard = ({
             </picture>
           </ImageContainer>
           <Content>
-            <HeaderLeftPart>
-              <TagsStyled
-                items={[
-                  <time
-                    dateTime={`${date.getFullYear()}-${
-                      date.getMonth() + 1
-                    }-${date.getDate()}`}>
-                    {date.getFullYear()}
-                  </time>,
-                  type,
-                ]}
-              />
-              <Name>{name}</Name>
-            </HeaderLeftPart>
-            <ServiceIcons>
-              {servicesType.map(serviceType => (
-                <ServiceIcon key={serviceType}>
-                  {serviceTypeToIcon[serviceType]}
-                </ServiceIcon>
-              ))}
-            </ServiceIcons>
+            <Header>
+              <HeaderLeftPart>
+                <TagsStyled
+                  items={[
+                    <time
+                      dateTime={`${date.getFullYear()}-${
+                        date.getMonth() + 1
+                      }-${date.getDate()}`}>
+                      {date.getFullYear()}
+                    </time>,
+                    type,
+                  ]}
+                />
+                <Name>{name}</Name>
+              </HeaderLeftPart>
+              <ServiceIcons>
+                {servicesType.map(serviceType => (
+                  <ServiceIcon key={serviceType}>
+                    {serviceTypeToIcon[serviceType]}
+                  </ServiceIcon>
+                ))}
+              </ServiceIcons>
+            </Header>
           </Content>
         </Link>
       </article>
@@ -75,6 +77,7 @@ export const GalleryProjectCard = ({
 const Container = styled('div')(({ theme }) => ({
   listStyle: 'none',
   transition: 'max-width 2s',
+
   ...getBreakpointsStylesByArray(theme, {
     width: ['100%', null, 253, '100%', null, null, 447, null, 608, 612],
   }),
@@ -120,12 +123,28 @@ const Link = styled(ReactRouterDomLink)(() => ({
 }))
 
 const Content = styled('div')(({ theme }) => ({
-  display: 'grid',
-  gridColumnGap: pxToRem(20),
-  gridTemplateColumns: ['1fr auto'],
   color: theme.palette.text.primary,
   ...getBreakpointsStylesByArray(theme, {
     marginTop: [16, null, null, 24, 32, null, null, 48],
+  }),
+}))
+
+const Header = styled('header')(({ theme }) => ({
+  display: 'grid',
+  gridColumnGap: pxToRem(20),
+  ...getBreakpointsStylesByArray(theme, {
+    marginBottom: [16, null, null, 24, 32, null, null, 48],
+    gridTemplateColumns: [
+      'auto',
+      '1fr auto',
+      null,
+      'auto',
+      '1fr auto',
+      'auto',
+      null,
+      null,
+      '1fr auto',
+    ],
   }),
 }))
 
@@ -150,9 +169,12 @@ const ServiceIcon = styled('div')(({ theme }) => ({
   }),
 }))
 
-const Name = styled(LFont)(() => ({
+const Name = styled(LFont)(({ theme }) => ({
   maxWidth: '100%',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  ...getBreakpointsStylesByArray(theme, {
+    marginBottom: [16, 0, null, 16, 0, 24, 32, null, 0],
+  }),
 }))
