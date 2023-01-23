@@ -159,7 +159,7 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
     paddingLeft: 0,
     paddingRight: 0,
     ...getBreakpointsStylesByArray(theme, {
-      paddingBottom: [27],
+      paddingBottom: [27, null, null, null, null, null, 10],
       height: ['100%', null, null, null, null, null, 1117],
       width: ['100%', null, null, null, null, null, 871],
       maxHeight: ['unset', null, null, null, null, null, '98vh'],

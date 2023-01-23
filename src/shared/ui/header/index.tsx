@@ -3,9 +3,11 @@ import IconButton from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles'
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { Link as ReactRouterDomLink } from 'react-router-dom'
 
 import { getMenuSchema } from 'entities/menu/data'
 
+import { PAGES } from 'shared/config'
 import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
@@ -91,7 +93,7 @@ export const Header = ({ projectsCount }: Props) => {
   return (
     <Container>
       {headerLeftContent}
-      <LogoWrapper>
+      <LogoWrapper to={PAGES.HomePage}>
         <Logo />
       </LogoWrapper>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -175,9 +177,11 @@ const Container = styled('header')(({ theme }) => ({
   }),
 }))
 
-const LogoWrapper = styled('div')(() => ({
+const LogoWrapper = styled(ReactRouterDomLink)(() => ({
   display: 'flex',
   justifyContent: 'center',
+  textDecoration: 'none',
+  color: 'inherit',
 }))
 
 const MenuToggler = styled('div')(({ theme }) => ({

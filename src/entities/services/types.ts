@@ -1,6 +1,8 @@
 import { Price } from 'entities/price/types'
 
-export type ServiceType = 'mobile' | 'web' | 'CGI' | 'AR' | 'VR' | 'UXUI'
+export const serviceType = ['mobile', 'web', 'CGI', 'AR', 'VR', 'UXUI'] as const
+
+export type ServiceType = typeof serviceType[number]
 
 export interface Service {
   type: ServiceType

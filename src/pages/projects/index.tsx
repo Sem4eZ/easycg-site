@@ -1,34 +1,38 @@
 import { styled } from '@mui/material/styles'
 import { useMemo, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
+import { Mousewheel } from 'swiper'
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 
-import { useServicesFilter } from 'features/services/filter'
+import { useProjectsFilter } from 'features/project/filter'
 
 import { projects } from 'entities/project/data'
 import { Project } from 'entities/project/types'
 import { GalleryProjectCard } from 'entities/project/ui/gallery-project-card'
+import { GalleryProjectCardRow } from 'entities/project/ui/gallery-project-card-row'
+import { useProjectViewPicker } from 'entities/project/ui/use-project-view-picker'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { useGetDevice } from 'shared/lib/use-get-device'
 import { spaceArr } from 'shared/theme'
 import { TextOutlined } from 'shared/ui/outlined-text'
 import { Page } from 'shared/ui/page-templates'
 
 const ProjectsPage = () => {
   const { state } = useLocation()
-  const galleryRef = useRef<HTMLElement | null>(null)
-  const { template: filterTemplate, filter } = useServicesFilter({
+  const { isMobile, isDesktopS, isLaptop, isMacbook, isDesktop } =
+    useGetDevice()
+
+  const { template: filterTemplate, filter } = useProjectsFilter({
     initial: state?.filter,
   })
+  const { template: viewTemplate, view } = useProjectViewPicker()
 
-  const newProjects = useMemo(() => {
+  const filteredProjects = useMemo(() => {
     const filteredProjects: Project[] = []
-    const restProjects: Project[] = []
 
-    if (filter.includes('all')) {
-      return {
-        filtered: projects.sort(() => Math.random() - 0.5),
-        rest: restProjects,
-      }
+    if (filter.length === 0) {
+      return projects
     }
 
     for (let i = 0; i < projects.length; i++) {
@@ -43,18 +47,14 @@ const ProjectsPage = () => {
 
       if (inFilter) {
         filteredProjects.push(project)
-      } else {
-        restProjects.push(project)
       }
     }
-    filteredProjects.sort(() => Math.random() - 0.5)
-    restProjects.sort(() => Math.random() - 0.5)
 
-    return {
-      filtered: filteredProjects,
-      rest: restProjects,
-    }
+    return filteredProjects
   }, [filter])
+
+  const showSlider =
+    isMobile || isDesktopS || isLaptop || isMacbook || isDesktop
 
   return (
     <Page
@@ -64,33 +64,112 @@ const ProjectsPage = () => {
           02
         </TextOutlined>
       }
-      filter={filterTemplate}>
-      <Content
-        ref={galleryRef}
-        data-elements-count={newProjects.filtered.length}>
-        {newProjects.filtered.map(project => (
-          <GalleryProjectCard
-            key={project.id}
-            id={project.id}
-            name={project.name}
-            image={project.image}
-            date={project.date}
-            servicesType={project.servicesType}
-            type={project.type}
-          />
-        ))}
-        {newProjects.rest.map(project => (
-          <GalleryProjectCard
-            key={project.id}
-            id={project.id}
-            name={project.name}
-            image={project.image}
-            date={project.date}
-            servicesType={project.servicesType}
-            type={project.type}
-            hide={true}
-          />
-        ))}
+      filter={
+        <FilterArea>
+          <FilterButton style={{ gridArea: 'filter' }}>
+            {filterTemplate}
+          </FilterButton>
+          <div style={{ gridArea: 'view' }}>{viewTemplate}</div>
+          <ProjectsCount style={{ gridArea: 'projects-count' }}>
+            {projects.length} projects
+          </ProjectsCount>
+        </FilterArea>
+      }>
+      <Content>
+        {showSlider && view === 'carousel' && (
+          <Swiper
+            slideToClickedSlide
+            slidesPerView={'auto'}
+            breakpoints={{
+              320: {
+                spaceBetween: 16,
+              },
+              390: {
+                spaceBetween: 56,
+              },
+              768: {
+                spaceBetween: 48,
+              },
+              924: {
+                spaceBetween: 96,
+              },
+              1200: {
+                spaceBetween: 112,
+              },
+              1728: {
+                spaceBetween: 80,
+              },
+              1920: {
+                spaceBetween: 112,
+              },
+            }}
+            mousewheel={{ sensitivity: 1 }}
+            freeMode={{ enabled: true, sticky: false, momentumBounce: true }}
+            modules={[Mousewheel]}
+            onTouchEnd={swiper => {
+              const swiperNew = swiper as SwiperRef['swiper'] & {
+                swipeDirection: 'prev' | 'next'
+              }
+              if (swiperNew.swipeDirection === 'next') {
+                swiper.slideTo(swiper.activeIndex + 1)
+              } else {
+                swiper.slideTo(swiper.activeIndex - 1)
+              }
+            }}>
+            {filteredProjects.map(project => {
+              return (
+                <SwiperSlide key={project.id} style={{ width: 'auto' }}>
+                  <GalleryProjectCard
+                    key={project.id}
+                    id={project.id}
+                    name={project.name}
+                    date={project.date}
+                    image={project.image}
+                    type={project.type}
+                    servicesType={project.servicesType}
+                  />
+                </SwiperSlide>
+              )
+            })}
+          </Swiper>
+        )}
+
+        {!showSlider && view === 'carousel' && (
+          <List>
+            {filteredProjects.map(project => {
+              return (
+                <li>
+                  <GalleryProjectCard
+                    key={project.id}
+                    id={project.id}
+                    name={project.name}
+                    date={project.date}
+                    image={project.image}
+                    type={project.type}
+                    servicesType={project.servicesType}
+                  />
+                </li>
+              )
+            })}
+          </List>
+        )}
+
+        {view === 'list' && (
+          <RowList>
+            {filteredProjects.map(project => {
+              return (
+                <li>
+                  <GalleryProjectCardRow
+                    key={project.id}
+                    id={project.id}
+                    name={project.name}
+                    tags={project.tags}
+                  />
+                </li>
+              )
+            })}
+          </RowList>
+        )}
       </Content>
     </Page>
   )
@@ -110,78 +189,59 @@ const Content = styled('section')(({ theme }) => ({
     gap: [112, 104, 128, 166, 256, null, 32],
     paddingBottom: [189, 127, 50, 82, 108, 223, 75, null, 0, 171],
   }),
+}))
 
-  '&[data-elements-count="1"]': {
-    '& > a:nth-of-type(5n + 1)': {
-      width: '100%',
-    },
-  },
+const FilterArea = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+}))
 
-  '&[data-elements-count="2"]': {
-    '& > a:nth-of-type(5n + 1)': {
-      ...getBreakpointsStylesByArray(theme, {
-        width: ['100%', null, null, null, null, null, 'calc(50% - 16px)'],
-      }),
-    },
-    '& > a:nth-of-type(5n + 2)': {
-      ...getBreakpointsStylesByArray(theme, {
-        width: ['100%', null, null, null, null, null, 'calc(50% - 16px)'],
-      }),
-    },
-  },
+const FilterButton = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  ...getBreakpointsStylesByArray(theme, {
+    width: ['100%', null, null, null, 'auto'],
+    marginBottom: [56, null, null, 70, 0],
+  }),
+}))
 
-  '& > a:nth-of-type(5n + 1)': {
-    justifyContent: 'flex-start',
-    ...getBreakpointsStylesByArray(theme, {
-      width: ['100%', null, null, null, null, null, 'calc(66% - 16px)'],
-    }),
+const ProjectsCount = styled('div')(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    display: ['block', null, null, null, 'none'],
+  }),
+}))
+
+const List = styled('ul')(({ theme }) => ({
+  listStyle: 'none',
+  padding: 0,
+  margin: 0,
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  ...getBreakpointsStylesByArray(theme, {
+    gap: [112, 104, null, 166, 256],
+  }),
+}))
+
+const RowList = styled('ul')(({ theme }) => ({
+  listStyle: 'none',
+  padding: 0,
+  margin: 0,
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  '& li:first-of-type a': {
+    paddingTop: 0,
   },
-  '& > a:nth-of-type(5n + 2)': {
-    ...getBreakpointsStylesByArray(theme, {
-      width: ['100%', null, null, null, null, null, 'calc(34% - 16px)'],
-      justifyContent: ['flex-start', null, null, null, null, null, 'flex-end'],
-    }),
-    '& .information': {
-      ...getBreakpointsStylesByArray(theme, {
-        flexDirection: [
-          'column',
-          'row',
-          null,
-          'column',
-          'row',
-          'column',
-          'row-reverse',
-        ],
-      }),
+  '&:hover': {
+    '& a': {
+      borderBottomColor: theme.palette.text.disabled,
+      color: theme.palette.text.disabled,
     },
   },
-  '& > a:nth-of-type(5n + 3)': {
-    ...getBreakpointsStylesByArray(theme, {
-      width: ['100%', null, null, null, null, null, 'calc(50% - 16px)'],
-    }),
-    justifyContent: 'flex-start',
-  },
-  '& > a:nth-of-type(5n + 4)': {
-    ...getBreakpointsStylesByArray(theme, {
-      width: ['100%', null, null, null, null, null, 'calc(50% - 16px)'],
-      justifyContent: ['flex-start', null, null, null, null, null, 'flex-end'],
-    }),
-    '& .information': {
-      ...getBreakpointsStylesByArray(theme, {
-        flexDirection: [
-          'column',
-          'row',
-          null,
-          'column',
-          'row',
-          'column',
-          'row-reverse',
-        ],
-      }),
-    },
-  },
-  '& > a:nth-of-type(5n)': {
-    width: '100%',
-    justifyContent: 'flex-start',
+  '& li:hover a': {
+    borderBottomColor: theme.palette.accent,
+    color: theme.palette.text.primary,
   },
 }))

@@ -36,13 +36,21 @@ const List = styled('ul')(() => ({
 
 const ServiceIcon = styled(Link)(({ theme }) => ({
   display: 'block',
-  color: theme.palette.text.secondary,
   transition: 'color .2s',
   '&:hover': {
     color: theme.palette.accent,
   },
   ...getBreakpointsStylesByArray(theme, {
     height: [32, null, null, 48, null, null, 134],
+    color: [
+      theme.palette.accent,
+      null,
+      null,
+      null,
+      null,
+      null,
+      theme.palette.text.secondary,
+    ],
   }),
   '& svg': {
     height: '100%',

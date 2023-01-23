@@ -1,270 +1,180 @@
 import { styled } from '@mui/material/styles'
-import { animate } from 'popmotion'
-import { useLayoutEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link as ReactRouterDomLink } from 'react-router-dom'
 
 import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
 import { serviceTypeToIcon } from 'entities/services/data'
 
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { useGetDevice } from 'shared/lib/use-get-device'
+import { pxToRem } from 'shared/lib/px-to-rem'
 import { Tags } from 'shared/ui/tags'
+import { LFont } from 'shared/ui/typography'
 
 import { Project } from '../types'
 
-interface Props
-  extends Pick<
-    Project,
-    'id' | 'name' | 'image' | 'date' | 'servicesType' | 'type'
-  > {
-  hide?: boolean
-}
-
-interface Coordinates {
-  x: number
-  y: number
-}
-
-const moved = (initialBox: Coordinates, finalBox: Coordinates): boolean => {
-  if (!initialBox || !finalBox) return false
-
-  const xMoved = initialBox.x !== finalBox.x
-  const yMoved = initialBox.y !== finalBox.y
-
-  return xMoved || yMoved
-}
-
+type Props = Pick<
+  Project,
+  'id' | 'name' | 'date' | 'image' | 'type' | 'servicesType'
+>
 export const GalleryProjectCard = ({
   id,
   name,
-  image,
   date,
-  servicesType,
+  image,
   type,
-  hide = false,
+  servicesType,
 }: Props) => {
-  const containerRef = useRef<HTMLAnchorElement | null>(null)
-  const initialPositionRef = useRef<Coordinates>({
-    x: 0,
-    y: 0,
-  })
-
-  const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
-
-  const doAnimate = isDesktopS || isLaptop || isMacbook || isDesktop
-
-  useLayoutEffect(() => {
-    if (!doAnimate) return
-
-    const container = containerRef.current
-    if (!container) return
-
-    const box = container.getBoundingClientRect()
-    if (moved(initialPositionRef.current, box)) {
-      const deltaX = initialPositionRef.current.x - box.x
-      const deltaY = initialPositionRef.current.y - box.y
-
-      container.style.transform = `translate(${deltaX}px, ${deltaY}px)`
-
-      animate({
-        from: 1,
-        to: 0,
-        duration: 2000,
-        onUpdate: progress => {
-          container.style.transform = `translate(${deltaX * progress}px, ${
-            deltaY * progress
-          }px)`
-        },
-      })
-    }
-    initialPositionRef.current = box
-  })
-
   const imageSrcSet = getImageSrcSetByImageObj(image)
   return (
-    <Container
-      ref={containerRef}
-      to={`${PAGES.Projects}/${id}`}
-      hide={hide}
-      className="photo-item">
-      <ImageWrapper>
-        <picture>
-          {imageSrcSet.map(imageSrcSetData => {
-            return (
-              <source
-                key={imageSrcSetData.path}
-                srcSet={imageSrcSetData.path}
-                media={imageSrcSetData.media}></source>
-            )
-          })}
+    <Container>
+      <article>
+        <Link to={`${PAGES.Projects}/${id}`}>
+          <ImageContainer>
+            <picture>
+              {imageSrcSet.map(imageSrcSetData => {
+                return (
+                  <source
+                    key={imageSrcSetData.path}
+                    srcSet={imageSrcSetData.path}
+                    media={imageSrcSetData.media}></source>
+                )
+              })}
 
-          <Image src={getImagePath(image, 1920)} alt={image.alt} />
-        </picture>
-        <Decorationfilter className="decorationFilter" />
-        <Decorationfilter2 className="decorationFilter2" />
-      </ImageWrapper>
-      <Information className="information">
-        <div>
-          <TagsStyled
-            items={[
-              <time
-                dateTime={`${date.getFullYear()}-${
-                  date.getMonth() + 1
-                }-${date.getDate()}`}>
-                {date.getFullYear()}
-              </time>,
-              type,
-            ]}
-          />
-          <Title>{name}</Title>
-        </div>
-        <ServiceIcons>
-          {servicesType.map(serviceType => (
-            <ServiceIcon key={serviceType}>
-              {serviceTypeToIcon[serviceType]}
-            </ServiceIcon>
-          ))}
-        </ServiceIcons>
-      </Information>
+              <img src={getImagePath(image, 1920)} alt={image.alt} />
+            </picture>
+          </ImageContainer>
+          <Content>
+            <Header>
+              <HeaderLeftPart>
+                <TagsStyled
+                  items={[
+                    <time
+                      dateTime={`${date.getFullYear()}-${
+                        date.getMonth() + 1
+                      }-${date.getDate()}`}>
+                      {date.getFullYear()}
+                    </time>,
+                    type,
+                  ]}
+                />
+                <Name>{name}</Name>
+              </HeaderLeftPart>
+              <ServiceIcons>
+                {servicesType.map(serviceType => (
+                  <ServiceIcon key={serviceType}>
+                    {serviceTypeToIcon[serviceType]}
+                  </ServiceIcon>
+                ))}
+              </ServiceIcons>
+            </Header>
+          </Content>
+        </Link>
+      </article>
     </Container>
   )
 }
 
-const Container = styled(Link)<{ hide: boolean }>(({ theme, hide }) => ({
-  display: 'flex',
-  position: 'relative',
-  overflow: 'hidden',
-  '&:hover': {
-    '& .decorationFilter': {
-      opacity: 1,
-    },
-    '& .decorationFilter2': {
-      opacity: 0,
-    },
-  },
-  textDecoration: 'none',
-  color: theme.palette.text.primary,
-  opacity: hide ? 0 : 1,
-  width: hide ? '0px !important' : '100%',
-  height: hide ? '0px !important' : '100%',
-  visibility: hide ? 'hidden' : 'visible',
-  padding: hide ? '0 !important' : '0',
-  transition: hide
-    ? 'opacity .2s, width .2s, height: .2s, visibility .2s'
-    : 'unset',
-  ...getBreakpointsStylesByArray(theme, {
-    padding: [0, null, null, null, null, null, 64, null, 72],
-    flexDirection: ['column', null, null, null, null, null, 'row'],
-    alignItems: ['flex-start', null, null, null, null, null, 'flex-end'],
-    height: ['auto', null, null, null, null, null, 641, null, 787],
-    borderRadius: [0, null, null, null, null, null, '10px'],
-  }),
-}))
-
-const ImageWrapper = styled('div')(({ theme }) => ({
-  borderRadius: '10px',
-  overflow: 'hidden',
-  width: '100%',
-  top: 0,
-  left: 0,
-  ...getBreakpointsStylesByArray(theme, {
-    position: ['static', null, null, null, null, null, 'absolute'],
-    height: [270, 212, 212, 370, 405, null, 641, null, '100%'],
-    marginBottom: [17, null, null, 28, 32, null, 0],
-  }),
-}))
-
-const Image = styled('img')(() => ({
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-}))
-
-const Decorationfilter = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  height: '100%',
-  width: '100%',
-  opacity: 0,
-  backgroundColor: theme.palette.mode === 'dark' ? '#6456DD33' : '#BCDB0F33',
-
-  transition: 'opacity .5s',
-  ...getBreakpointsStylesByArray(theme, {
-    display: ['none', null, null, null, null, null, 'block'],
-  }),
-}))
-
-const Decorationfilter2 = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  height: '100%',
-  width: '100%',
-  opacity: 1,
-  backgroundColor: '#00000033',
-
-  transition: 'opacity .5s',
-  ...getBreakpointsStylesByArray(theme, {
-    display: ['none', null, null, null, null, null, 'block'],
-  }),
-}))
-
-const Information = styled('div')(({ theme }) => ({
-  position: 'relative',
-  display: 'flex',
+const Container = styled('div')(({ theme }) => ({
+  listStyle: 'none',
+  transition: 'max-width 2s',
 
   ...getBreakpointsStylesByArray(theme, {
-    justifyContent: ['space-between'],
-    flexDirection: ['column', 'row', null, 'column', 'row', 'column', 'row'],
-    alignItems: ['flex-start', null, null, null, null, null, 'center'],
-    width: ['100%', null, null, null, null, null, 'auto'],
-    gap: [16, null, null, null, 24, null, 32],
+    width: ['100%', null, 253, '100%', null, null, 447, null, 608, 612],
   }),
 }))
 
 const TagsStyled = styled(Tags)(({ theme }) => ({
-  marginBottom: 8,
-  '& > li': {
-    color: theme.palette.text.primary,
+  ...getBreakpointsStylesByArray(theme, {
+    magrinBottom: [4, null, null, null, 8],
+  }),
+}))
+
+const ImageContainer = styled('div')(({ theme }) => ({
+  borderRadius: '10px',
+  overflow: 'hidden',
+  ...getBreakpointsStylesByArray(theme, {
+    height: [212, null, 353, 370, 405, null, 692, null, 834, 862],
+  }),
+  picture: {
+    display: 'block',
+    height: '100%',
+    transition: 'transform .5s',
     ...getBreakpointsStylesByArray(theme, {
-      fontSize: [10, null, null, 16],
-      lineHeight: [12, null, null, 19],
+      width: ['100%', '100%', '100%', '100%', 'auto'],
+      objectFit: ['cover', 'cover', 'cover', 'cover', 'unset'],
     }),
+    '& img': {
+      height: '100%',
+      width: '100%',
+      objectFit: 'cover',
+    },
+  },
+  '&:hover': {
+    picture: {
+      transform: 'scale(1.3)',
+    },
   },
 }))
 
-const ServiceIcons = styled('div')(() => ({
+const Link = styled(ReactRouterDomLink)(() => ({
+  display: 'block',
+  textDecoration: 'unset',
+  color: 'inherit',
+}))
+
+const Content = styled('div')(({ theme }) => ({
+  color: theme.palette.text.primary,
+  ...getBreakpointsStylesByArray(theme, {
+    marginTop: [16, null, null, 24, 32, null, null, 48],
+  }),
+}))
+
+const Header = styled('header')(({ theme }) => ({
+  display: 'grid',
+  gridColumnGap: pxToRem(20),
+  ...getBreakpointsStylesByArray(theme, {
+    marginBottom: [16, null, null, 24, 32, null, null, 48],
+    gridTemplateColumns: [
+      'auto',
+      '1fr auto',
+      null,
+      'auto',
+      '1fr auto',
+      'auto',
+      null,
+      null,
+      '1fr auto',
+    ],
+  }),
+}))
+
+const HeaderLeftPart = styled('div')(() => ({
+  overflow: 'hidden',
+}))
+
+const ServiceIcons = styled('div')(({ theme }) => ({
   display: 'flex',
-  gap: 8,
+  ...getBreakpointsStylesByArray(theme, {
+    gap: [8, null, null, null, 12],
+  }),
 }))
 
 const ServiceIcon = styled('div')(({ theme }) => ({
-  height: 32,
-  ...getBreakpointsStylesByArray(theme, {
-    color: [
-      theme.palette.text.primary,
-      null,
-      null,
-      null,
-      null,
-      null,
-      theme.palette.mode === 'dark'
-        ? theme.palette.text.primary
-        : theme.palette.inverted,
-    ],
-  }),
-  svg: {
+  '& svg': {
     height: '100%',
     width: 'auto',
   },
+  ...getBreakpointsStylesByArray(theme, {
+    height: [24, null, null, null, 46],
+  }),
 }))
 
-const Title = styled('span')(({ theme }) => ({
-  fontWeight: 700,
+const Name = styled(LFont)(({ theme }) => ({
+  maxWidth: '100%',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   ...getBreakpointsStylesByArray(theme, {
-    fontSize: [25],
-    lineHeight: [30],
+    marginBottom: [16, 0, null, 16, 0, 24, 32, null, 0],
   }),
 }))

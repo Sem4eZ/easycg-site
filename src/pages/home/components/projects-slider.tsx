@@ -19,10 +19,19 @@ const topProjects = projects.slice(0, 6)
 export const MainPageProjectsSlider = () => {
   const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement | null>(null)
-  const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
+  const {
+    isMobileSLandscape,
+    isMobileLandscape,
+    isDesktopS,
+    isLaptop,
+    isMacbook,
+    isDesktop,
+  } = useGetDevice()
 
   const showAllProjectsButton = isDesktopS || isLaptop || isMacbook || isDesktop
+  const doParallax = isDesktopS || isLaptop || isMacbook || isDesktop
   const doExpandCards = isDesktopS || isLaptop || isMacbook || isDesktop
+  const showSlider = !isMobileSLandscape && !isMobileLandscape
 
   const doParallaxListItemImage = (
     container: HTMLDivElement,
@@ -41,7 +50,7 @@ export const MainPageProjectsSlider = () => {
         const element = cards[i]
         element.style.transition = 'transform 1s'
         element.style.transform = `translate(-${
-          persentage < 45 ? persentage : 45
+          persentage < 30 ? persentage : 30
         }%,0)`
       })
     }
@@ -53,46 +62,69 @@ export const MainPageProjectsSlider = () => {
         our projects
       </Title>
 
-      <Swiper
-        slideToClickedSlide
-        slidesPerView={'auto'}
-        breakpoints={{
-          320: {
-            spaceBetween: 16,
-          },
-          390: {
-            spaceBetween: 16,
-          },
-          768: {
-            spaceBetween: 48,
-          },
-          924: {
-            spaceBetween: 96,
-          },
-          1200: {
-            spaceBetween: 114,
-          },
-        }}
-        mousewheel={{ sensitivity: 1 }}
-        freeMode={{ enabled: true, sticky: false, momentumBounce: true }}
-        modules={[Mousewheel]}
-        onScroll={(swiper, e) => {
-          if (!containerRef.current) return
-          doParallaxListItemImage(containerRef.current, swiper.progress)
-        }}
-        onTouchEnd={swiper => {
-          const swiperNew = swiper as SwiperRef['swiper'] & {
-            swipeDirection: 'prev' | 'next'
-          }
-          if (swiperNew.swipeDirection === 'next') {
-            swiper.slideTo(swiper.activeIndex + 1)
-          } else {
-            swiper.slideTo(swiper.activeIndex - 1)
-          }
-        }}>
-        {topProjects.map(project => {
-          return (
-            <SwiperSlide key={project.id} style={{ width: 'auto' }}>
+      {showSlider && (
+        <Swiper
+          slideToClickedSlide
+          slidesPerView={'auto'}
+          breakpoints={{
+            320: {
+              spaceBetween: 16,
+            },
+            390: {
+              spaceBetween: 16,
+            },
+            768: {
+              spaceBetween: 48,
+            },
+            924: {
+              spaceBetween: 96,
+            },
+            1200: {
+              spaceBetween: 114,
+            },
+          }}
+          mousewheel={{ sensitivity: 1 }}
+          freeMode={{ enabled: true, sticky: false, momentumBounce: true }}
+          modules={[Mousewheel]}
+          onScroll={(swiper, e) => {
+            if (!containerRef.current || !doParallax) return
+            doParallaxListItemImage(containerRef.current, swiper.progress)
+          }}
+          onTouchEnd={swiper => {
+            const swiperNew = swiper as SwiperRef['swiper'] & {
+              swipeDirection: 'prev' | 'next'
+            }
+            if (swiperNew.swipeDirection === 'next') {
+              swiper.slideTo(swiper.activeIndex + 1)
+            } else {
+              swiper.slideTo(swiper.activeIndex - 1)
+            }
+          }}>
+          {topProjects.map(project => {
+            return (
+              <SwiperSlide key={project.id} style={{ width: 'auto' }}>
+                <ProjectCard
+                  key={project.id}
+                  id={project.id}
+                  name={project.name}
+                  date={project.date}
+                  description={project.description}
+                  image={project.image}
+                  type={project.type}
+                  servicesType={project.servicesType}
+                  parallaxClass={PARALLAX_CLASS}
+                />
+              </SwiperSlide>
+            )
+          })}
+          {doExpandCards && <PlaceholderSwiperSlide></PlaceholderSwiperSlide>}
+        </Swiper>
+      )}
+
+      {!showSlider && (
+        <List>
+          {topProjects.map(project => {
+            return (
               <ProjectCard
                 key={project.id}
                 id={project.id}
@@ -102,13 +134,11 @@ export const MainPageProjectsSlider = () => {
                 image={project.image}
                 type={project.type}
                 servicesType={project.servicesType}
-                parallaxClass={PARALLAX_CLASS}
               />
-            </SwiperSlide>
-          )
-        })}
-        {doExpandCards && <PlaceholderSwiperSlide></PlaceholderSwiperSlide>}
-      </Swiper>
+            )
+          })}
+        </List>
+      )}
 
       {showAllProjectsButton && (
         <SeeAllProjectsButton onClick={() => navigate(PAGES.Projects)}>
@@ -125,15 +155,24 @@ const Container = styled('div')(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   ...getBreakpointsStylesByArray(theme, {
-    paddingRight: [0, spaceObj.se_horizontal, 0],
+    paddingRight: [0, spaceObj.se_horizontal, 0, spaceObj.ip13_horizontal, 0],
     paddingTop: [56, 60, null, 120, 118, null, 111, null, 184, 200],
     paddingBottom: [29, 46, 64, 102, 84, 112, 57, null, 180, 260],
+    paddingLeft: [0, spaceObj.se_horizontal, 0, spaceObj.ip13_horizontal, 0],
   }),
   '& .swiper-slide:first-of-type': {
     ...getBreakpointsStylesByArray(theme, {
       paddingLeft: spaceArr,
     }),
   },
+}))
+
+const List = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  ...getBreakpointsStylesByArray(theme, {
+    gap: [0, 48, 0, 121],
+  }),
 }))
 
 const Title = styled(XLFont)(({ theme }) => ({
