@@ -2,20 +2,19 @@ import { useTheme } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { useGetUserCity } from 'shared/lib/use-get-user-city'
-import { useGetUserTime } from 'shared/lib/use-get-user-time'
+import { useGetTime } from 'shared/lib/use-get-time'
 
 export const ThemeAndLocation = ({ ...rest }) => {
-  const { city } = useGetUserCity()
-  const { time, timezone } = useGetUserTime()
+  const { time } = useGetTime(8)
   const { toggler } = useTheme()
 
   return (
     <Container {...rest}>
-      {toggler} <Divider>/</Divider> Based in {city} <br />
+      {toggler} <Divider>/</Divider> Based in Indonesia
+      <br />
       {`${time.getHours()}:${
         time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes()
-      } (GTM ${timezone})  `}
+      } (GTM +8)  `}
     </Container>
   )
 }

@@ -10,8 +10,7 @@ import {
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { getPhoneWithoutFormatting } from 'shared/lib/get-phone-without-formatting'
 import { useGetDevice } from 'shared/lib/use-get-device'
-import { useGetUserCity } from 'shared/lib/use-get-user-city'
-import { useGetUserTime } from 'shared/lib/use-get-user-time'
+import { useGetTime } from 'shared/lib/use-get-time'
 import { maxWidth, spaceArr } from 'shared/theme'
 
 import { SocialMedia } from '../social-media'
@@ -31,8 +30,7 @@ export const Footer = ({ projectsCount }: Props) => {
 
   const showSeparateEmail = isDesktopS || isLaptop || isMacbook || isDesktop
 
-  const { time, timezone } = useGetUserTime()
-  const { city } = useGetUserCity()
+  const { time } = useGetTime(8)
 
   return (
     <Container>
@@ -51,10 +49,10 @@ export const Footer = ({ projectsCount }: Props) => {
       {!showMobileSocial && <SocialMediaStyled size="medium" />}
       <ContactInfo>
         <BlockWithCity>
-          <City>Based in {city}</City>
+          <City>Based in Indonesia</City>
           <Time>{`${time.getHours()}:${
             time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes()
-          } (GTM ${timezone})`}</Time>
+          } (GTM +8)`}</Time>
         </BlockWithCity>
         <BlockWithPhone>
           <Phone href={`tel:${getPhoneWithoutFormatting(COMPANY_PHONE)}`}>

@@ -2,12 +2,12 @@ import { styled } from '@mui/material/styles'
 
 import { SnowflakeIcon } from 'shared/icons/snowflake'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { useGetTime } from 'shared/lib/use-get-time.ts'
+import { useGetTime } from 'shared/lib/use-get-time'
 import { useGetUserTime } from 'shared/lib/use-get-user-time'
 
 export const TimeRemark = () => {
   const { timezone, time } = useGetUserTime()
-  const { time: ourTime } = useGetTime(6)
+  const { time: ourTime } = useGetTime(8)
 
   return (
     <Container>
@@ -18,7 +18,7 @@ export const TimeRemark = () => {
           </Icon>
           our current time:
         </Label>
-        <Time>{`${ourTime.getHours()}:${ourTime.getMinutes()} (+6 GTM)`}</Time>
+        <Time>{`${ourTime.getHours()}:${ourTime.getMinutes()} (+8 GTM)`}</Time>
       </Item>
 
       <Item>
