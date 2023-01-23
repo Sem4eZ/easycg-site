@@ -69,7 +69,8 @@ export const useProjectsFilter = ({ initial }: Props) => {
           title="Projects filter"
           hideTitle
           open={open}
-          onClose={closeModal}>
+          onClose={closeModal}
+          keepMounted={true}>
           <Header>
             <LFont>chose tags</LFont>
             {!showClearAllInFooter && (
@@ -114,6 +115,21 @@ const Tags = styled('div')(({ theme }) => ({
 }))
 
 const ModalStyled = styled(Modal)(({ theme }) => ({
+  '&[aria-hidden="true"]': {
+    '& .MuiDialog-container': {
+      ...getBreakpointsStylesByArray(theme, {
+        transform: [
+          'translateX(0)',
+          null,
+          null,
+          null,
+          null,
+          null,
+          'translateX(-100vw)',
+        ],
+      }),
+    },
+  },
   '& .MuiDialog-paper': {
     margin: 0,
     width: '100%',
@@ -123,7 +139,23 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
       height: ['100%', null, null, null, null, 1117],
       maxHeight: ['100%', null, null, null, null, '98vh'],
       width: ['100%', null, null, null, null, null, 871],
-      paddingBottom: [8, null, null, null, null, null, 88],
+      paddingBottom: [8, null, null, null, null, null, 50],
+      paddingTop: [8, null, null, null, null, null, 50],
+    }),
+  },
+  '& .MuiDialog-container': {
+    transform: 'translateX(0)',
+    ...getBreakpointsStylesByArray(theme, {
+      transition: [
+        'unset',
+        null,
+        null,
+        null,
+        null,
+        null,
+        'transform 1s !important',
+      ],
+      justifyContent: ['center', null, null, null, null, null, 'flex-start'],
     }),
   },
   '& .MuiDialogContent-root': {
