@@ -55,17 +55,15 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
     setError,
     register,
     watch,
+    trigger,
     reset,
+
     formState: { isValid, errors }, //errors need for autocomplete validation
   } = formMethods
+  const values = watch()
 
   const onSubmit: SubmitHandler<LeaveProjectsDetailsInputs> = async data => {
-    handleNext()
     alert(`Отправка данных на сервер: ${JSON.stringify(data, null, 2)}`)
-  }
-
-  const onErrors: SubmitErrorHandler<LeaveProjectsDetailsInputs> = () => {
-    handleNext()
   }
 
   const [page, setPage] = useState(0)
@@ -74,7 +72,11 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
 
   const quiz = getQuiz({ register, errors })
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    if (page === quiz.length - 2) {
+      await trigger('email')
+    }
+
     setPage(prevPage => {
       if (prevPage === quiz.length - 2) {
         if (isValid) {
@@ -85,6 +87,12 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
       return prevPage + 1
     })
   }
+
+  useEffect(() => {
+    if (page === quiz.length - 1) {
+      onSubmit(values)
+    }
+  }, [page])
 
   const handleBack = () => {
     if (page === 0) return
@@ -117,7 +125,7 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
         onClose={closeModal}
         hideLanguage>
         <FormProvider {...formMethods}>
-          <FormStyled onSubmit={handleSubmit(onSubmit, onErrors)}>
+          <FormStyled>
             <Stepper show={showStepper}>
               {quiz.slice(1, quiz.length - 1).map((_page, i) => (
                 <Icon key={i} active={i <= page - 1}>
@@ -129,7 +137,7 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
             <Question ref={questionRef}>{quiz[page]}</Question>
 
             <Buttons showBackButton={showBackButton}>
-              {showNextButton && <Button type="submit">next</Button>}
+              {showNextButton && <Button onClick={handleNext}>next</Button>}
               {page === quiz.length - 1 &&
                 (isMobileS ||
                   isMobileLandscape ||
