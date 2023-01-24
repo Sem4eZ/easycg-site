@@ -211,7 +211,7 @@ const NavigationList = styled('ul')(({ theme }) => ({
   padding: 0,
   display: 'grid',
   ...getBreakpointsStylesByArray(theme, {
-    gridRowGap: [24, null, null, null, 32, null, 44],
+    gridRowGap: [24, null, null, null, 32, null, 22],
   }),
 }))
 
@@ -287,7 +287,7 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
         240,
         400,
       ],
-      paddingBottom: [32, null, null, null, 83, 98],
+      paddingBottom: [32],
     }),
   },
 }))
