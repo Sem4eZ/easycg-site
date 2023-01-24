@@ -139,8 +139,6 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
       height: ['100%', null, null, null, null, 1117],
       maxHeight: ['100%', null, null, null, null, '98vh'],
       width: ['100%', null, null, null, null, null, 871],
-      paddingBottom: [8, null, null, null, null, null, 50],
-      paddingTop: [8, null, null, null, null, null, 50],
     }),
   },
   '& .MuiDialog-container': {
@@ -172,7 +170,7 @@ const Header = styled('div')(({ theme }) => ({
   alignItems: 'center',
   paddingTop: 24,
   ...getBreakpointsStylesByArray(theme, {
-    marginBottom: [40, 32, 40, null, 64, null, 56],
+    marginBottom: [40, 32, 40, null, 64, null, 40],
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
   }),
@@ -180,12 +178,12 @@ const Header = styled('div')(({ theme }) => ({
 
 const Footer = styled('div')(({ theme }) => ({
   display: 'flex',
-  marginTop: 96,
   paddingBottom: 24,
   ...getBreakpointsStylesByArray(theme, {
     justifyContent: ['flex-end', null, null, null, null, null, 'space-between'],
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
+    marginTop: [96, 20, 96, 20, 96, null, 40],
   }),
 }))
 

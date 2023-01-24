@@ -11,6 +11,7 @@ import {
 
 import { SnowflakeIcon } from 'shared/icons/snowflake'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { useDisabelSliderOnHighDistance } from 'shared/lib/use-disable-slider-on-high-distance'
 import { maxWidth } from 'shared/theme'
 
 interface Props {
@@ -20,9 +21,12 @@ interface Props {
 export const ScrollableByOneList = ({ items }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0)
 
+  const swiperRef = useDisabelSliderOnHighDistance()
+
   return (
     <Container>
       <Swiper
+        ref={swiperRef}
         slideToClickedSlide
         spaceBetween={0}
         slidesPerView={1}
