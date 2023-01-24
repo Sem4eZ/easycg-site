@@ -7,6 +7,7 @@ import { services } from 'entities/services/data'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { RadioGroup } from 'shared/ui/controls'
 import { CheckboxGroup } from 'shared/ui/controls/checkbox-group'
+import { PhoneInput } from 'shared/ui/controls/phone-input'
 
 import { Announcement } from './ui/announcement'
 import { InputQuestion } from './ui/input-question'
@@ -123,13 +124,9 @@ export const getQuiz = ({ register, errors }: Props) => {
               </InputError>
             )}
           </label>
-          <Input
-            id="name"
-            type="tel"
-            label="phone number"
-            variant="standard"
-            {...register('phone')}
-          />
+
+          <PhoneInputStyled name="phone" />
+
           <Input
             id="name"
             label="company’s name"
@@ -152,6 +149,22 @@ const GetInTouchQuestions = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     gap: [40, null, null, null, null, null, 18],
   }),
+}))
+
+const PhoneInputStyled = styled(PhoneInput)(({ theme }) => ({
+  '& .MuiInputLabel-root': {
+    ...getBreakpointsStylesByArray(theme, {
+      fontSize: [16, null, null, null, 25],
+      lineHeight: [19, null, null, null, 30],
+    }),
+  },
+  '& .MuiInput-input': {
+    ...getBreakpointsStylesByArray(theme, {
+      fontSize: [16, null, null, null, 25],
+      lineHeight: [19, null, null, null, 30],
+      paddingBottom: [8, null, null, null, 16],
+    }),
+  },
 }))
 
 const Input = styled(TextField)(({ theme }) => ({
