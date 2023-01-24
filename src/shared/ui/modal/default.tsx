@@ -37,8 +37,8 @@ export const Modal = ({
     !hideLanguage
 
   return (
-    <Dialog aria-labelledby="customized-dialog-title" {...rest}>
-      <DialogTitle id="customized-dialog-title">
+    <DialogStyled aria-labelledby="customized-dialog-title" {...rest}>
+      <DialogTitleStyled id="customized-dialog-title">
         {showLanguageButton && (
           <LanguageButton>
             <Language type="modal" />
@@ -51,15 +51,27 @@ export const Modal = ({
             <CloseIcon />
           </CloseButton>
         )}
-      </DialogTitle>
+      </DialogTitleStyled>
       <DialogContent dividers>{children}</DialogContent>
       {actionsContent && (
         <DialogActionStyled>{actionsContent}</DialogActionStyled>
       )}
-    </Dialog>
+    </DialogStyled>
   )
 }
 
+const DialogStyled = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialog-paper': {
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+}))
+
+const DialogTitleStyled = styled(DialogTitle)(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    minHeight: [112],
+  }),
+}))
 const CloseButton = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
   top: '64px',
