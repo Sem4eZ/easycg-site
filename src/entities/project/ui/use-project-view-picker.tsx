@@ -21,7 +21,7 @@ export const useProjectViewPicker = () => {
     template: (
       <Container>
         <Link
-          style={{ fontWeight: 700 }}
+          style={{ fontWeight: 700, cursor: 'pointer' }}
           active={view === 'carousel' ? 1 : 0}
           onClick={() => setView('carousel')}>
           {isMobileS ||
@@ -33,7 +33,7 @@ export const useProjectViewPicker = () => {
             : 'carousel'}
         </Link>
         <Link
-          style={{ fontWeight: 700 }}
+          style={{ fontWeight: 700, cursor: 'pointer' }}
           active={view === 'list' ? 1 : 0}
           onClick={() => setView('list')}>
           list

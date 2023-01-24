@@ -72,7 +72,8 @@ export const useServicesFilter = ({ initial }: Props) => {
             <FilterLink
               key={filterData.title}
               active={checkIsActive(filterData.value)}
-              onClick={handleClick(filterData.value)}>
+              onClick={handleClick(filterData.value)}
+              style={{ cursor: 'pointer' }}>
               {filterData.title}
             </FilterLink>
           ))}
