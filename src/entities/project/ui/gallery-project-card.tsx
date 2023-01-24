@@ -76,10 +76,8 @@ export const GalleryProjectCard = ({
 
 const Container = styled('div')(({ theme }) => ({
   listStyle: 'none',
-  transition: 'max-width 2s',
-
   ...getBreakpointsStylesByArray(theme, {
-    width: ['100%', null, 253, '100%', null, null, 447, null, 608, 612],
+    width: ['100%', null, 253, '100%', null, null, 317, null, 433, 428],
   }),
 }))
 
@@ -93,16 +91,14 @@ const ImageContainer = styled('div')(({ theme }) => ({
   borderRadius: '10px',
   overflow: 'hidden',
   ...getBreakpointsStylesByArray(theme, {
-    height: [212, null, 353, 370, 405, null, 553, null, 667, 689],
+    height: [212, null, 353, 370, 405, null, 484, null, 590, 603],
   }),
   picture: {
     display: 'block',
     height: '100%',
+    width: '100%',
+    objectFit: 'cover',
     transition: 'transform .5s',
-    ...getBreakpointsStylesByArray(theme, {
-      width: ['100%', '100%', '100%', '100%', 'auto'],
-      objectFit: ['cover', 'cover', 'cover', 'cover', 'unset'],
-    }),
     '& img': {
       height: '100%',
       width: '100%',
