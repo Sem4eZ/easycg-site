@@ -38,7 +38,7 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
   }
 
   const formMethods = useForm<LeaveProjectsDetailsInputs>({
-    mode: 'onChange',
+    mode: 'all',
     resolver: yupResolver(leaveProjectDetailsSchema),
     defaultValues: {
       name: '',
@@ -159,11 +159,15 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
     paddingLeft: 0,
     paddingRight: 0,
     ...getBreakpointsStylesByArray(theme, {
-      paddingBottom: [27, null, null, null, null, null, 10],
+      paddingTop: [8, null, null, null, null, null, 40],
+      paddingBottom: [27, null, null, null, null, null, 0],
       height: ['100%', null, null, null, null, null, 1117],
       width: ['100%', null, null, null, null, null, 871],
       maxHeight: ['unset', null, null, null, null, null, '98vh'],
     }),
+  },
+  '& .MuiDialogTitle-root': {
+    minHeight: 120,
   },
   '& .MuiDialogContent-root': {
     padding: 0,
@@ -173,7 +177,7 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
 const Stepper = styled('div')<{ show: boolean }>(({ theme, show }) => ({
   display: 'flex',
   ...getBreakpointsStylesByArray(theme, {
-    marginBottom: [16, null, 40, null, 64, null, 80],
+    marginBottom: [16, null, 40, null, 64, null, 40],
     gap: [56, null, null, null, 80, null, 156],
     display: [show ? 'flex' : 'none', null, null, null, 'flex'],
     paddingLeft: spaceArr,
@@ -208,7 +212,7 @@ const Buttons = styled('div')<{ showBackButton: boolean }>(
     display: 'flex',
     maxWidth: '100%',
     overflowX: 'hidden',
-    paddingTop: 40,
+    paddingTop: 24,
     paddingBottom: 24,
     gap: 24,
     ...getBreakpointsStylesByArray(theme, {

@@ -150,6 +150,6 @@ const GetInTouchQuestions = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   ...getBreakpointsStylesByArray(theme, {
-    gap: [40, null, null, null, null, null, 48],
+    gap: [40, null, null, null, null, null, 20],
   }),
 }))
