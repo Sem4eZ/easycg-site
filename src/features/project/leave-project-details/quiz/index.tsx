@@ -12,6 +12,7 @@ import {
 import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { SnowflakeIcon } from 'shared/icons/snowflake'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { pxToRem } from 'shared/lib/px-to-rem'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { spaceArr } from 'shared/theme'
 import { Modal } from 'shared/ui/modal/default'
@@ -167,10 +168,8 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
     paddingLeft: 0,
     paddingRight: 0,
     ...getBreakpointsStylesByArray(theme, {
-      paddingTop: [8, null, null, null, null, null, 40],
-      paddingBottom: [27, null, null, null, null, null, 0],
-      height: ['100%', null, null, null, null, null, 1117],
-      width: ['100%', null, null, null, null, null, 871],
+      height: ['100%', null, null, null, null, null, 820],
+      width: ['100%', null, null, null, null, null, 860],
       maxHeight: ['unset', null, null, null, null, null, '98vh'],
     }),
   },
@@ -230,6 +229,20 @@ const Buttons = styled('div')<{ showBackButton: boolean }>(
       paddingLeft: spaceArr,
       paddingRight: spaceArr,
     }),
+    '& button': {
+      ...getBreakpointsStylesByArray(theme, {
+        fontSize: [16, null, null, null, null, null, 25],
+        lineHeight: [20, null, null, null, null, null, 30],
+      }),
+      '& .MuiButton-endIcon': {
+        width: pxToRem(24),
+        marginLeft: pxToRem(8),
+      },
+      '& .MuiButton-startIcon': {
+        width: pxToRem(24),
+        marginRight: pxToRem(8),
+      },
+    },
   }),
 )
 

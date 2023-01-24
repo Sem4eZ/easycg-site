@@ -139,8 +139,6 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
       height: ['100%', null, null, null, null, 1117],
       maxHeight: ['100%', null, null, null, null, '98vh'],
       width: ['100%', null, null, null, null, null, 871],
-      paddingBottom: [8, null, null, null, null, null, 50],
-      paddingTop: [8, null, null, null, null, null, 50],
     }),
   },
   '& .MuiDialog-container': {

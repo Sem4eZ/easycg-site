@@ -1,4 +1,4 @@
-import { FormHelperText, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form'
 
@@ -51,7 +51,7 @@ export const getQuiz = ({ register, errors }: Props) => {
         </>
       }
       content={
-        <TextField
+        <Input
           fullWidth
           id="name"
           label="type your name"
@@ -108,7 +108,7 @@ export const getQuiz = ({ register, errors }: Props) => {
       content={
         <GetInTouchQuestions>
           <label style={{ display: 'block' }}>
-            <TextField
+            <Input
               fullWidth
               id="name"
               type="email"
@@ -118,19 +118,19 @@ export const getQuiz = ({ register, errors }: Props) => {
               error={Boolean(errors?.email)}
             />
             {Boolean(errors?.email) && (
-              <FormHelperText className="Mui-error">
+              <InputError className="Mui-error">
                 {errors?.email?.message}
-              </FormHelperText>
+              </InputError>
             )}
           </label>
-          <TextField
+          <Input
             id="name"
             type="tel"
             label="phone number"
             variant="standard"
             {...register('phone')}
           />
-          <TextField
+          <Input
             id="name"
             label="company’s name"
             variant="standard"
@@ -150,6 +150,29 @@ const GetInTouchQuestions = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   ...getBreakpointsStylesByArray(theme, {
-    gap: [40, null, null, null, null, null, 20],
+    gap: [40, null, null, null, null, null, 18],
   }),
+}))
+
+const Input = styled(TextField)(({ theme }) => ({
+  '& .MuiInputLabel-root': {
+    ...getBreakpointsStylesByArray(theme, {
+      fontSize: [16, null, null, null, 25],
+      lineHeight: [19, null, null, null, 30],
+    }),
+  },
+  '& .MuiInput-input': {
+    ...getBreakpointsStylesByArray(theme, {
+      fontSize: [16, null, null, null, 25],
+      lineHeight: [19, null, null, null, 30],
+      paddingBottom: [8, null, null, null, 16],
+    }),
+  },
+}))
+
+const InputError = styled('div')(({ theme }) => ({
+  color: theme.palette.error.main,
+  fontSize: 16,
+  lineHeight: '19px',
+  marginTop: 8,
 }))

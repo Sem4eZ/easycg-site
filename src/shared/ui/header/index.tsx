@@ -287,7 +287,6 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
         240,
         400,
       ],
-      paddingBottom: [32],
     }),
   },
 }))
