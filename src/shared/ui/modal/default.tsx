@@ -37,8 +37,8 @@ export const Modal = ({
     !hideLanguage
 
   return (
-    <Dialog aria-labelledby="customized-dialog-title" {...rest}>
-      <DialogTitle id="customized-dialog-title">
+    <DialogStyled aria-labelledby="customized-dialog-title" {...rest}>
+      <DialogTitleStyled id="customized-dialog-title">
         {showLanguageButton && (
           <LanguageButton>
             <Language type="modal" />
@@ -51,15 +51,27 @@ export const Modal = ({
             <CloseIcon />
           </CloseButton>
         )}
-      </DialogTitle>
+      </DialogTitleStyled>
       <DialogContent dividers>{children}</DialogContent>
       {actionsContent && (
         <DialogActionStyled>{actionsContent}</DialogActionStyled>
       )}
-    </Dialog>
+    </DialogStyled>
   )
 }
 
+const DialogStyled = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialog-paper': {
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+}))
+
+const DialogTitleStyled = styled(DialogTitle)(({ theme }) => ({
+  ...getBreakpointsStylesByArray(theme, {
+    minHeight: [100, 70, 100, 70, 100],
+  }),
+}))
 const CloseButton = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
   top: '64px',
@@ -71,13 +83,13 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
   },
   ...getBreakpointsStylesByArray(theme, {
     right: spaceArr.map(space => space - 16),
-    top: [40, 64, 48, 64, 72, 56, 62, null, 110],
+    top: [20, null, null, null, 72, 56, 62],
   }),
 }))
 
 const LanguageButton = styled('div')(({ theme }) => ({
   position: 'absolute',
-  top: '64px',
+
   padding: '14px 8px 14px 0',
   svg: {
     ...getBreakpointsStylesByArray(theme, {
@@ -87,7 +99,7 @@ const LanguageButton = styled('div')(({ theme }) => ({
   },
   ...getBreakpointsStylesByArray(theme, {
     left: spaceArr,
-    top: [40, 64, 48, 64, 72, 56, 62, null, 110],
+    top: [20, null, null, null, 72, 56, 62, null, 110],
   }),
 }))
 

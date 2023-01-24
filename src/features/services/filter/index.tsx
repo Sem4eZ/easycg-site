@@ -143,7 +143,7 @@ const MobileFilter = styled('div')(({ theme }) => ({
 const MobileFilterContainer = styled('section')(({ theme }) => ({
   display: 'grid',
   ...getBreakpointsStylesByArray(theme, {
-    gridRowGap: [32, null, null, 40, 48],
+    gridRowGap: [32, 5, 32, 10, 40, 48],
   }),
 }))
 

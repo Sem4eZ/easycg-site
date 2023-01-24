@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles'
 
 import { SnowflakeIcon } from 'shared/icons/snowflake'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { LFont, XLFont } from 'shared/ui/typography'
+import { ModalTitle } from 'shared/ui/typography'
 
 interface Props {
   title: React.ReactNode
@@ -12,11 +12,11 @@ interface Props {
 export const Announcement = ({ title, description }: Props) => {
   return (
     <Container>
-      <XLFont>{title}</XLFont>
+      <ModalTitle>{title}</ModalTitle>
       <Icon>
         <SnowflakeIcon />
       </Icon>
-      <LFont>{description}</LFont>
+      <b>{description}</b>
     </Container>
   )
 }
@@ -25,7 +25,7 @@ const Container = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   ...getBreakpointsStylesByArray(theme, {
-    gap: [32, null, 56, null, null, null, 64],
+    gap: [32, null, 56, null, null, null, 44],
   }),
 }))
 

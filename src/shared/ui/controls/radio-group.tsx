@@ -11,7 +11,7 @@ import { CheckIcon } from 'shared/icons/check'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 
-import { ExplanationFont, XLFont } from '../typography'
+import { ExplanationFont, ModalTitle } from '../typography'
 
 interface Props {
   type: string
@@ -74,19 +74,14 @@ export const RadioGroup = forwardRef(
   },
 )
 
-const Label = styled(XLFont)(({ theme }) => ({
-  marginBottom: pxToRem(40),
+const Label = styled(ModalTitle)(({ theme }) => ({
   color: theme.palette.text.primary,
-  [theme.breakpoints.up('desktop_s')]: {
-    fontSize: 58,
-    lineHeight: '60px',
-  },
 }))
 
 const RadioGroupBaseStyled = styled(RadioGroupBase)(({ theme }) => ({
   display: 'grid',
   ...getBreakpointsStylesByArray(theme, {
-    gridRowGap: [32, null, null, null, null, null, 30],
+    gridRowGap: [32, 18, 32, 18, 32, null, 18, null, null, 32],
   }),
 }))
 

@@ -119,6 +119,7 @@ const Title = styled('div')(({ theme }) => ({
     lineHeight: [83, null, 134, null, null, null, null, null, 216],
     marginBottom: [16, 0, 83, 46, 32, null, 24, null, null],
     gap: [16, null, null, null, null, null, 56, null, 80],
+    width: ['auto', null, null, null, null, null, 468, null, 'auto'],
   }),
 }))
 

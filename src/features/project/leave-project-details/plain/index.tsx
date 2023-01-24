@@ -9,6 +9,7 @@ import { services } from 'entities/services/data'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { Select } from 'shared/ui/controls'
+import { PhoneInput } from 'shared/ui/controls/phone-input'
 
 import { leaveProjectDetailsSchema } from './schema'
 
@@ -22,7 +23,7 @@ interface LeaveProjectsDetailsInputs {
 
 export const LeaveProjectDetailsPlain = () => {
   const formMethods = useForm<LeaveProjectsDetailsInputs>({
-    mode: 'onChange',
+    mode: 'all',
     resolver: yupResolver(leaveProjectDetailsSchema),
     defaultValues: {
       name: '',
@@ -38,6 +39,7 @@ export const LeaveProjectDetailsPlain = () => {
     setError,
     register,
     formState: { isValid, errors }, //errors need for autocomplete validation
+    control,
   } = formMethods
 
   const onSubmit: SubmitHandler<LeaveProjectsDetailsInputs> = async data => {
@@ -75,19 +77,7 @@ export const LeaveProjectDetailsPlain = () => {
             )}
           </label>
 
-          <label>
-            <TextField
-              id="phone"
-              type="tel"
-              label="phone number"
-              variant="standard"
-              {...register('phone')}
-              error={Boolean(errors?.phone)}
-            />
-            {Boolean(errors?.phone) && (
-              <FormHelperText>{errors.phone?.message}</FormHelperText>
-            )}
-          </label>
+          <PhoneInput name="phone" />
 
           <Select
             label="select type of project"
