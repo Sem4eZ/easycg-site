@@ -9,11 +9,11 @@ import { ProjectCard } from 'entities/project/ui/project-card'
 
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { useDisabelSliderOnHighDistance } from 'shared/lib/use-disable-slider-on-high-distance'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { maxWidth, spaceArr, spaceObj } from 'shared/theme'
 import { XLFont } from 'shared/ui/typography'
 
-const PARALLAX_CLASS = 'parallax'
 const topProjects = projects.slice(0, 6)
 
 export const MainPageProjectsSlider = () => {
@@ -29,32 +29,9 @@ export const MainPageProjectsSlider = () => {
   } = useGetDevice()
 
   const showAllProjectsButton = isDesktopS || isLaptop || isMacbook || isDesktop
-  const doParallax = isDesktopS || isLaptop || isMacbook || isDesktop
-  const doExpandCards = isDesktopS || isLaptop || isMacbook || isDesktop
   const showSlider = !isMobileSLandscape && !isMobileLandscape
 
-  const doParallaxListItemImage = (
-    container: HTMLDivElement,
-    progress: number,
-  ) => {
-    const cards = Array.from(
-      container.getElementsByClassName(
-        PARALLAX_CLASS,
-      ) as HTMLCollectionOf<HTMLElement>,
-    )
-
-    for (let i = 0; i < cards.length; i++) {
-      setTimeout(() => {
-        const persentage = progress * 100
-
-        const element = cards[i]
-        element.style.transition = 'transform 1s'
-        element.style.transform = `translate(-${
-          persentage < 30 ? persentage : 30
-        }%,0)`
-      })
-    }
-  }
+  const swiperRef = useDisabelSliderOnHighDistance()
 
   return (
     <Container ref={containerRef}>
@@ -64,6 +41,7 @@ export const MainPageProjectsSlider = () => {
 
       {showSlider && (
         <Swiper
+          ref={swiperRef}
           slideToClickedSlide
           slidesPerView={'auto'}
           breakpoints={{
@@ -86,10 +64,6 @@ export const MainPageProjectsSlider = () => {
           mousewheel={{ sensitivity: 1 }}
           freeMode={{ enabled: true, sticky: false, momentumBounce: true }}
           modules={[Mousewheel]}
-          onScroll={(swiper, e) => {
-            if (!containerRef.current || !doParallax) return
-            doParallaxListItemImage(containerRef.current, swiper.progress)
-          }}
           onTouchEnd={swiper => {
             const swiperNew = swiper as SwiperRef['swiper'] & {
               swipeDirection: 'prev' | 'next'
@@ -112,12 +86,10 @@ export const MainPageProjectsSlider = () => {
                   image={project.image}
                   type={project.type}
                   servicesType={project.servicesType}
-                  parallaxClass={PARALLAX_CLASS}
                 />
               </SwiperSlide>
             )
           })}
-          {doExpandCards && <PlaceholderSwiperSlide></PlaceholderSwiperSlide>}
         </Swiper>
       )}
 
@@ -198,12 +170,5 @@ const SeeAllProjectsButton = styled(Button)(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     marginLeft: spaceArr,
     marginRight: spaceArr,
-  }),
-}))
-
-const PlaceholderSwiperSlide = styled(SwiperSlide)(({ theme }) => ({
-  opacity: 0,
-  ...getBreakpointsStylesByArray(theme, {
-    width: [253, '100%', 253, '100%', 352, null, 454, null, 619],
   }),
 }))
