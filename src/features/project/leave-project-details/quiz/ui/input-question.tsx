@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles'
 
-import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { pxToRem } from 'shared/lib/px-to-rem'
 import { XLFont } from 'shared/ui/typography'
 
 interface Props {
@@ -17,7 +17,9 @@ export const InputQuestion = ({ title, content }: Props) => {
   )
 }
 const Title = styled(XLFont)(({ theme }) => ({
-  ...getBreakpointsStylesByArray(theme, {
-    marginBottom: [48, null, 72, null, null, null, 104],
-  }),
+  marginBottom: pxToRem(40),
+  [theme.breakpoints.up('desktop_s')]: {
+    fontSize: 58,
+    lineHeight: '60px',
+  },
 }))

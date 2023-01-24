@@ -93,7 +93,7 @@ const ImageContainer = styled('div')(({ theme }) => ({
   borderRadius: '10px',
   overflow: 'hidden',
   ...getBreakpointsStylesByArray(theme, {
-    height: [212, null, 353, 370, 405, null, 692, null, 834, 862],
+    height: [212, null, 353, 370, 405, null, 553, null, 667, 689],
   }),
   picture: {
     display: 'block',

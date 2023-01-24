@@ -75,14 +75,18 @@ export const RadioGroup = forwardRef(
 )
 
 const Label = styled(XLFont)(({ theme }) => ({
-  marginBottom: pxToRem(64),
+  marginBottom: pxToRem(40),
   color: theme.palette.text.primary,
+  [theme.breakpoints.up('desktop_s')]: {
+    fontSize: 58,
+    lineHeight: '60px',
+  },
 }))
 
 const RadioGroupBaseStyled = styled(RadioGroupBase)(({ theme }) => ({
   display: 'grid',
   ...getBreakpointsStylesByArray(theme, {
-    gridRowGap: [32, null, null, null, null, null, 48],
+    gridRowGap: [32, null, null, null, null, null, 30],
   }),
 }))
 

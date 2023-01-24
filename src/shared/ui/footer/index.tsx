@@ -84,7 +84,7 @@ const Container = styled('footer')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
-    paddingBottom: [32, 140, 72, 112, 165, 138, null, 213, 64],
+    paddingBottom: [32, 140, 72, 112],
     paddingTop: [50, 74, 56, 140, 150, 112, 165, null, 208, 176],
   }),
   '& a': {

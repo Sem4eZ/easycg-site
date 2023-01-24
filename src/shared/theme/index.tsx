@@ -401,7 +401,7 @@ const commonTheme = createTheme({
             left: 0,
             height: '1px',
             width: '100%',
-            backgroundColor: theme.palette.text.secondary,
+            backgroundColor: theme.palette.text.disabled,
           },
           '&::after': {
             content: "''",

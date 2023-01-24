@@ -38,7 +38,7 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
   }
 
   const formMethods = useForm<LeaveProjectsDetailsInputs>({
-    mode: 'onChange',
+    mode: 'all',
     resolver: yupResolver(leaveProjectDetailsSchema),
     defaultValues: {
       name: '',
@@ -55,17 +55,15 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
     setError,
     register,
     watch,
+    trigger,
     reset,
+
     formState: { isValid, errors }, //errors need for autocomplete validation
   } = formMethods
+  const values = watch()
 
   const onSubmit: SubmitHandler<LeaveProjectsDetailsInputs> = async data => {
-    handleNext()
     alert(`Отправка данных на сервер: ${JSON.stringify(data, null, 2)}`)
-  }
-
-  const onErrors: SubmitErrorHandler<LeaveProjectsDetailsInputs> = () => {
-    handleNext()
   }
 
   const [page, setPage] = useState(0)
@@ -74,7 +72,11 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
 
   const quiz = getQuiz({ register, errors })
 
-  const handleNext = () => {
+  const handleNext = async () => {
+    if (page === quiz.length - 2) {
+      await trigger('email')
+    }
+
     setPage(prevPage => {
       if (prevPage === quiz.length - 2) {
         if (isValid) {
@@ -85,6 +87,12 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
       return prevPage + 1
     })
   }
+
+  useEffect(() => {
+    if (page === quiz.length - 1) {
+      onSubmit(values)
+    }
+  }, [page])
 
   const handleBack = () => {
     if (page === 0) return
@@ -117,7 +125,7 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
         onClose={closeModal}
         hideLanguage>
         <FormProvider {...formMethods}>
-          <FormStyled onSubmit={handleSubmit(onSubmit, onErrors)}>
+          <FormStyled>
             <Stepper show={showStepper}>
               {quiz.slice(1, quiz.length - 1).map((_page, i) => (
                 <Icon key={i} active={i <= page - 1}>
@@ -129,7 +137,7 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
             <Question ref={questionRef}>{quiz[page]}</Question>
 
             <Buttons showBackButton={showBackButton}>
-              {showNextButton && <Button type="submit">next</Button>}
+              {showNextButton && <Button onClick={handleNext}>next</Button>}
               {page === quiz.length - 1 &&
                 (isMobileS ||
                   isMobileLandscape ||
@@ -159,11 +167,15 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
     paddingLeft: 0,
     paddingRight: 0,
     ...getBreakpointsStylesByArray(theme, {
-      paddingBottom: [27, null, null, null, null, null, 10],
+      paddingTop: [8, null, null, null, null, null, 40],
+      paddingBottom: [27, null, null, null, null, null, 0],
       height: ['100%', null, null, null, null, null, 1117],
       width: ['100%', null, null, null, null, null, 871],
       maxHeight: ['unset', null, null, null, null, null, '98vh'],
     }),
+  },
+  '& .MuiDialogTitle-root': {
+    minHeight: 120,
   },
   '& .MuiDialogContent-root': {
     padding: 0,
@@ -173,7 +185,7 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
 const Stepper = styled('div')<{ show: boolean }>(({ theme, show }) => ({
   display: 'flex',
   ...getBreakpointsStylesByArray(theme, {
-    marginBottom: [16, null, 40, null, 64, null, 80],
+    marginBottom: [16, null, 40, null, 64, null, 40],
     gap: [56, null, null, null, 80, null, 156],
     display: [show ? 'flex' : 'none', null, null, null, 'flex'],
     paddingLeft: spaceArr,
@@ -208,7 +220,7 @@ const Buttons = styled('div')<{ showBackButton: boolean }>(
     display: 'flex',
     maxWidth: '100%',
     overflowX: 'hidden',
-    paddingTop: 40,
+    paddingTop: 24,
     paddingBottom: 24,
     gap: 24,
     ...getBreakpointsStylesByArray(theme, {

@@ -242,6 +242,7 @@ const MenuItem = styled('li')<{ indicator: string }>(
 const Link = styled(FilterLink)(({ theme }) => ({
   display: 'inline-block',
   fontWeight: 700,
+  cursor: 'pointer',
 }))
 
 const ResourcesCount = styled(ExplanationFont)(({ theme }) => ({
