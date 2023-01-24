@@ -15,9 +15,7 @@ import { Project } from '../types'
 type Props = Pick<
   Project,
   'id' | 'name' | 'date' | 'description' | 'image' | 'type' | 'servicesType'
-> & {
-  parallaxClass?: string
-}
+>
 
 export const ProjectCard = ({
   id,
@@ -27,15 +25,14 @@ export const ProjectCard = ({
   image,
   type,
   servicesType,
-  parallaxClass = '',
 }: Props) => {
   const imageSrcSet = getImageSrcSetByImageObj(image)
   return (
-    <Container parallaxClass={parallaxClass}>
+    <Container>
       <article>
         <Link to={`${PAGES.Projects}/${id}`}>
           <ImageContainer>
-            <picture className={parallaxClass}>
+            <picture>
               {imageSrcSet.map(imageSrcSetData => {
                 return (
                   <source
@@ -81,43 +78,12 @@ export const ProjectCard = ({
   )
 }
 
-const Container = styled('div')<{ parallaxClass: string }>(
-  ({ theme, parallaxClass }) => ({
-    listStyle: 'none',
-    transition: 'max-width 2s',
-
-    ...getBreakpointsStylesByArray(theme, {
-      width: [253, '100%', 253, '100%', 352, null, 454 * 2, null, 619 * 2],
-      maxWidth: [253, '100%', 253, '100%', 352, null, 454, null, 619],
-    }),
-
-    '&:hover': {
-      [theme.breakpoints.up('desktop_s')]: {
-        ...getBreakpointsStylesByArray(theme, {
-          maxWidth: [
-            253,
-            '100%',
-            253,
-            '100%',
-            352,
-            null,
-            454 * 2,
-            null,
-            619 * 2,
-          ],
-        }),
-        [`& .${parallaxClass}`]: {
-          transform: 'translateX(0) !important',
-        },
-        transition: 'max-width 0.5s',
-        '& img': {
-          width: '100%',
-          objectFit: 'cover',
-        },
-      },
-    },
+const Container = styled('div')(({ theme }) => ({
+  listStyle: 'none',
+  ...getBreakpointsStylesByArray(theme, {
+    width: [253, '100%', 253, '100%', 352, null, 317, null, 433],
   }),
-)
+}))
 
 const TagsStyled = styled(Tags)(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
@@ -129,21 +95,23 @@ const ImageContainer = styled('div')(({ theme }) => ({
   borderRadius: '10px',
   overflow: 'hidden',
   ...getBreakpointsStylesByArray(theme, {
-    height: [199, null, null, 370, 438, null, 553, 689],
+    height: [199, null, null, 370, 438, null, 484, null, 603],
   }),
   picture: {
     display: 'block',
     height: '100%',
-    ...getBreakpointsStylesByArray(theme, {
-      width: ['100%', '100%', '100%', '100%', 'auto'],
-      objectFit: ['cover', 'cover', 'cover', 'cover', 'unset'],
-    }),
+    width: '100%',
+    objectFit: 'cover',
+    transition: 'transform .5s',
     '& img': {
       height: '100%',
-      ...getBreakpointsStylesByArray(theme, {
-        width: ['100%', '100%', '100%', '100%', 'auto'],
-        objectFit: ['cover', 'cover', 'cover', 'cover', 'unset'],
-      }),
+      width: '100%',
+      objectFit: 'cover',
+    },
+  },
+  '&:hover': {
+    picture: {
+      transform: 'scale(1.3)',
     },
   },
 }))
