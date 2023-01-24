@@ -173,9 +173,6 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
       maxHeight: ['unset', null, null, null, null, null, '98vh'],
     }),
   },
-  '& .MuiDialogTitle-root': {
-    minHeight: 120,
-  },
   '& .MuiDialogContent-root': {
     padding: 0,
   },

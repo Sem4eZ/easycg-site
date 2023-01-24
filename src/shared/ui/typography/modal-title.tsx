@@ -5,9 +5,9 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 
 export const ModalTitle = styled(Typography)<TypographyProps>(({ theme }) => ({
   fontWeight: 700,
-  marginBottom: 40,
   ...getBreakpointsStylesByArray(theme, {
     fontSize: [25, null, null, null, null, null, 38],
     lineHeight: [30, null, null, null, null, null, 44],
+    marginBottom: [40, 20, 40, 20, 40],
   }),
 }))

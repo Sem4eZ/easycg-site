@@ -183,7 +183,7 @@ const Footer = styled('div')(({ theme }) => ({
     justifyContent: ['flex-end', null, null, null, null, null, 'space-between'],
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
-    marginTop: [96, 40, 96, 40, 96, null, 40],
+    marginTop: [96, 20, 96, 20, 96, null, 40],
   }),
 }))
 

@@ -69,7 +69,7 @@ const DialogStyled = styled(Dialog)(({ theme }) => ({
 
 const DialogTitleStyled = styled(DialogTitle)(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
-    minHeight: [112],
+    minHeight: [100, 70, 100, 70, 100],
   }),
 }))
 const CloseButton = styled(IconButton)(({ theme }) => ({
@@ -83,13 +83,13 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
   },
   ...getBreakpointsStylesByArray(theme, {
     right: spaceArr.map(space => space - 16),
-    top: [40, 64, 48, 64, 72, 56, 62],
+    top: [20, null, null, null, 72, 56, 62],
   }),
 }))
 
 const LanguageButton = styled('div')(({ theme }) => ({
   position: 'absolute',
-  top: '64px',
+
   padding: '14px 8px 14px 0',
   svg: {
     ...getBreakpointsStylesByArray(theme, {
@@ -99,7 +99,7 @@ const LanguageButton = styled('div')(({ theme }) => ({
   },
   ...getBreakpointsStylesByArray(theme, {
     left: spaceArr,
-    top: [40, 64, 48, 64, 72, 56, 62, null, 110],
+    top: [20, null, null, null, 72, 56, 62, null, 110],
   }),
 }))
 
