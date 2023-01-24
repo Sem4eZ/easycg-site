@@ -173,7 +173,9 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
 const MobileFilterLink = styled(FilterLink)(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
-  paddingBottom: pxToRem(8),
+  paddingBottom: `${pxToRem(8)} !important`,
+  fontWeight: 700,
+  color: theme.palette.text.primary,
   '&:after': {
     height: 1,
   },
@@ -181,4 +183,7 @@ const MobileFilterLink = styled(FilterLink)(({ theme }) => ({
     left: 0,
     backgroundColor: theme.palette.text.disabled,
   },
+  ...getBreakpointsStylesByArray(theme, {
+    paddingRight: [12, null, 0, null, 83],
+  }),
 }))
