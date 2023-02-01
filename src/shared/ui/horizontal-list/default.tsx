@@ -62,4 +62,10 @@ const List = styled('ul')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     marginTop: [26, 16, null, null, null, null, 8],
   }),
+  ' a': {
+    marginRight: 3,
+    '&:hover': {
+      marginRight: 0,
+    },
+  },
 }))
