@@ -116,6 +116,7 @@ const FormControlLabelStyled = styled(FormControlLabel)(({ theme }) => ({
 const CheckboxStyled = styled(Checkbox)(({ theme }) => ({
   padding: pxToRem(4),
   transition: 'color .2s',
+  height: 28,
   '& .MuiSvgIcon-root': {
     opacity: 0,
   },
