@@ -93,9 +93,11 @@ export const Header = ({ projectsCount }: Props) => {
   return (
     <Container>
       {headerLeftContent}
-      <LogoWrapper to={PAGES.HomePage}>
-        <Logo />
-      </LogoWrapper>
+      <CenterPart>
+        <LogoWrapper to={PAGES.HomePage}>
+          <Logo />
+        </LogoWrapper>
+      </CenterPart>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <IconButton onClick={openModal} style={{ right: '-8px' }}>
           <MenuToggler>
@@ -175,6 +177,11 @@ const Container = styled('header')(({ theme }) => ({
       '50px 1fr auto',
     ],
   }),
+}))
+
+const CenterPart = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'center',
 }))
 
 const LogoWrapper = styled(ReactRouterDomLink)(() => ({
