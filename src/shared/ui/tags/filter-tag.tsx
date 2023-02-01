@@ -25,7 +25,7 @@ const Container = styled(Button)<{ active: 0 | 1 }>(({ theme, active }) => ({
     fontSize: [16, null, 25, null, null, 42],
     lineHeight: [19, null, 30, null, null, 51],
     paddingTop: [10, null, null, null, null, 18],
-    paddingBottom: [10, null, null, null, null, 16],
+    paddingBottom: [10, null, null, null, null, 18],
     paddingLeft: [24, null, null, null, null, 48],
     paddingRight: [24, null, null, null, null, 48],
     marginRight: [8, null, null, null, null, null, 16],
