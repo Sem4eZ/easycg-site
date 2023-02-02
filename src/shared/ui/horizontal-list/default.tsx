@@ -32,6 +32,7 @@ export const HorizontalList = ({ title, items }: Props) => {
 }
 
 const Container = styled('div')(({ theme }) => ({
+  color: theme.palette.text.secondary,
   ...getBreakpointsStylesByArray(theme, {
     marginRight: [
       0,
@@ -57,7 +58,14 @@ const List = styled('ul')(({ theme }) => ({
   marginBottom: 0,
   gridColumnGap: 25,
   gridRowGap: 24,
+
   ...getBreakpointsStylesByArray(theme, {
     marginTop: [26, 16, null, null, null, null, 8],
   }),
+  ' a': {
+    marginRight: 3,
+    '&:hover': {
+      marginRight: 0,
+    },
+  },
 }))

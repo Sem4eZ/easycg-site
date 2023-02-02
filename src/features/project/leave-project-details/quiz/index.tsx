@@ -246,6 +246,9 @@ const Buttons = styled('div')<{ showBackButton: boolean }>(
 const BackButton = styled(Button)<{ show: boolean }>(({ theme, show }) => ({
   color: theme.palette.text.secondary,
   opacity: show ? 1 : 0,
+  ...getBreakpointsStylesByArray(theme, {
+    marginRight: [24],
+  }),
 }))
 
 const FormStyled = styled('form')(({ theme }) => ({

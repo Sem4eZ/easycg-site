@@ -5,7 +5,18 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 import { Link } from 'shared/ui/link'
 
 import { services } from '../data'
+import { Service } from '../types'
 
+const getWidthByServiceType = (type: Service['type']) => {
+  switch (type) {
+    case 'mobile':
+      return 87
+    case 'web':
+      return 60
+    default:
+      return 50
+  }
+}
 export const ServicesHeroMenu = () => {
   return (
     <Container>
@@ -14,7 +25,11 @@ export const ServicesHeroMenu = () => {
           .filter(service => service.type !== 'UXUI')
           .map((service, i) => {
             return (
-              <li key={service.type}>
+              <li
+                key={service.type}
+                style={{
+                  minWidth: `${getWidthByServiceType(service.type)}px`,
+                }}>
                 <Link to={`${PAGES.Services}#${service.type}`}>
                   {`${service.shortName}${
                     i !== services.length - 1 ? '/' : ''

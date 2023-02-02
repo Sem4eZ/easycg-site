@@ -168,8 +168,9 @@ const City = styled('span')(({ theme }) => ({
   }),
 }))
 
-const Time = styled('span')(() => ({
+const Time = styled('span')(({ theme }) => ({
   display: 'block',
+  color: theme.palette.text.secondary,
 }))
 
 const Email = styled('a')(({ theme }) => ({
