@@ -29,6 +29,7 @@ export const Link = styled(({ to, ...rest }: Props) => {
     fontWeight: active ? 700 : 400,
     textDecoration: 'none',
     overflow: 'hidden',
+    margin: '0px !important',
     '&:after': {
       content: "''",
       position: 'absolute',

@@ -1,7 +1,6 @@
 import { styled } from '@mui/material/styles'
 import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Mousewheel } from 'swiper'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 
 import { useProjectsFilter } from 'features/project/filter'
@@ -13,7 +12,6 @@ import { GalleryProjectCardRow } from 'entities/project/ui/gallery-project-card-
 import { useProjectViewPicker } from 'entities/project/ui/use-project-view-picker'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { useDisabelSliderOnHighDistance } from 'shared/lib/use-disable-slider-on-high-distance'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { spaceArr } from 'shared/theme'
 import { TextOutlined } from 'shared/ui/outlined-text'
@@ -57,8 +55,6 @@ const ProjectsPage = () => {
   const showSlider =
     isMobile || isDesktopS || isLaptop || isMacbook || isDesktop
 
-  const swiperRef = useDisabelSliderOnHighDistance()
-
   return (
     <Page
       title="work"
@@ -81,7 +77,6 @@ const ProjectsPage = () => {
       <Content>
         {showSlider && view === 'carousel' && (
           <Swiper
-            ref={swiperRef}
             slideToClickedSlide
             slidesPerView={'auto'}
             breakpoints={{
@@ -107,9 +102,7 @@ const ProjectsPage = () => {
                 spaceBetween: 112,
               },
             }}
-            mousewheel={{ sensitivity: 1 }}
             freeMode={{ enabled: true, sticky: false, momentumBounce: true }}
-            modules={[Mousewheel]}
             onTouchEnd={swiper => {
               const swiperNew = swiper as SwiperRef['swiper'] & {
                 swipeDirection: 'prev' | 'next'
@@ -195,7 +188,7 @@ const Content = styled('section')(({ theme }) => ({
   }),
 }))
 
-const FilterArea = styled('div')(({ theme }) => ({
+const FilterArea = styled('div')(() => ({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'space-between',

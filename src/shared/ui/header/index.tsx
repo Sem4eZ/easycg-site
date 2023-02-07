@@ -99,7 +99,7 @@ export const Header = ({ projectsCount }: Props) => {
         </LogoWrapper>
       </CenterPart>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <IconButton onClick={openModal} style={{ right: '-8px' }}>
+        <IconButton onClick={openModal}>
           <MenuToggler>
             <div />
             <div />

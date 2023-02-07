@@ -6,11 +6,12 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 interface Props {
   items: Array<React.ReactNode | string>
   type?: 'wide' | 'narrow'
+  onClick?: () => void
 }
 
-export const Tags = ({ items, type = 'narrow', ...rest }: Props) => {
+export const Tags = ({ items, type = 'narrow', onClick, ...rest }: Props) => {
   return (
-    <List data-type={type} {...rest}>
+    <List data-type={type} onClick={onClick} {...rest}>
       {items.map((item, i) => {
         return (
           <Fragment key={i}>

@@ -68,13 +68,13 @@ export const Flow = ({ sectionRef }: Props) => {
       container.classList.remove('completed')
     }
 
-    activateElement(reserchRef, 0.3)
-    activateElement(brainstormRef, 0.4)
+    activateElement(reserchRef, 0.2)
+    activateElement(brainstormRef, 0.35)
     activateElement(designRef, 0.5)
 
-    activateElement(cycleRef, 0.7)
-    activateElement(progressBarRef, 0.7)
-    activateElement(developmentRef, 0.8)
+    activateElement(cycleRef, 0.6)
+    activateElement(progressBarRef, 0.6)
+    activateElement(developmentRef, 0.75)
     activateElement(readyRef, 0.9)
   }
 
@@ -194,7 +194,7 @@ const Container = styled('div')(({ theme }) => ({
     alignItems: 'flex-end',
     position: 'relative',
     overflow: 'hidden',
-    transition: 'font-size .5s, transform .5s, left .5s, right .5s',
+    transition: 'font-size 1s, transform 1s, left 1s, right 1s',
     textAlign: 'center',
     ...getBreakpointsStylesByArray(theme, {
       fontSize: [16, null, null, null, null, null, 25],
