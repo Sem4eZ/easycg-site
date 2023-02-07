@@ -1,7 +1,6 @@
 import { Button, styled } from '@mui/material'
 import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Mousewheel } from 'swiper'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 
 import { projects } from 'entities/project/data'
@@ -9,7 +8,6 @@ import { ProjectCard } from 'entities/project/ui/project-card'
 
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { useDisabelSliderOnHighDistance } from 'shared/lib/use-disable-slider-on-high-distance'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { maxWidth, spaceArr, spaceObj } from 'shared/theme'
 import { XLFont } from 'shared/ui/typography'
@@ -31,8 +29,6 @@ export const MainPageProjectsSlider = () => {
   const showAllProjectsButton = isDesktopS || isLaptop || isMacbook || isDesktop
   const showSlider = !isMobileSLandscape && !isMobileLandscape
 
-  const swiperRef = useDisabelSliderOnHighDistance()
-
   return (
     <Container ref={containerRef}>
       <Title variant="h2" textAlign="center">
@@ -41,7 +37,6 @@ export const MainPageProjectsSlider = () => {
 
       {showSlider && (
         <Swiper
-          ref={swiperRef}
           slideToClickedSlide
           slidesPerView={'auto'}
           breakpoints={{
@@ -61,9 +56,7 @@ export const MainPageProjectsSlider = () => {
               spaceBetween: 114,
             },
           }}
-          mousewheel={{ sensitivity: 1 }}
           freeMode={{ enabled: true, sticky: false, momentumBounce: true }}
-          modules={[Mousewheel]}
           onTouchEnd={swiper => {
             const swiperNew = swiper as SwiperRef['swiper'] & {
               swipeDirection: 'prev' | 'next'

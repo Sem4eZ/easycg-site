@@ -12,6 +12,7 @@ import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { maxWidth } from 'shared/theme'
 import { Header } from 'shared/ui/header'
+import { Link as LineLink } from 'shared/ui/link'
 import { LFont, XXXLFont } from 'shared/ui/typography'
 
 const image: Image = {
@@ -44,7 +45,9 @@ const Error404Page = () => {
           <XXXLFont>404</XXXLFont>
           <LinkStyled to={PAGES.HomePage}>
             <ComeBackText>come back</ComeBackText>&nbsp;
-            <HomeText>home</HomeText>
+            <LineLink>
+              <HomeText>home</HomeText>
+            </LineLink>
           </LinkStyled>
         </Container>
       </main>

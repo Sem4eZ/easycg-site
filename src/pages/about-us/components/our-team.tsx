@@ -1,12 +1,10 @@
 import { styled } from '@mui/material/styles'
-import { Mousewheel } from 'swiper'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 
 import { team } from 'entities/team/data'
 import { TeammateCard } from 'entities/team/ui/teammate-card'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { useDisabelSliderOnHighDistance } from 'shared/lib/use-disable-slider-on-high-distance'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { maxWidth, spaceArr, spaceObj } from 'shared/theme'
 import { XLFont } from 'shared/ui/typography'
@@ -15,14 +13,12 @@ export const AboutUsPageOurTeam = () => {
   const { isMobileSLandscape, isMobileLandscape } = useGetDevice()
 
   const showSlider = !isMobileLandscape && !isMobileSLandscape
-  const swiperRef = useDisabelSliderOnHighDistance()
 
   return (
     <Container>
       <Title variant="h2">our team</Title>
       {showSlider ? (
         <Swiper
-          ref={swiperRef}
           slideToClickedSlide
           slidesPerView={'auto'}
           breakpoints={{
@@ -42,9 +38,7 @@ export const AboutUsPageOurTeam = () => {
               spaceBetween: 106,
             },
           }}
-          mousewheel={{ sensitivity: 1 }}
           freeMode={{ enabled: true, sticky: true, momentumBounce: true }}
-          modules={[Mousewheel]}
           onScroll={(swiper, e) => {
             if (swiper.isEnd || swiper.isBeginning) return
             e.preventDefault()

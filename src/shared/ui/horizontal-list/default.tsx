@@ -1,5 +1,5 @@
 import { styled } from '@mui/material'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { useGetIsTouchableVersion } from 'shared/lib/use-get-is-touchable-version'
@@ -12,18 +12,62 @@ interface Props {
   title: string
   items: string[]
 }
+
+const getZeroObject = (items: string[]) => {
+  const obj: { [x: string]: 0 | 1 } = {}
+  items.forEach(item => {
+    obj[item] = 0
+  })
+
+  return obj
+}
+
 export const HorizontalList = ({ title, items }: Props) => {
   const isTouchableVersion = useGetIsTouchableVersion()
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const listContainerRef = useRef<HTMLUListElement | null>(null)
   useRevealBlock({ ref: containerRef })
+
+  const [activatedItems, setActivatedItems] = useState(getZeroObject(items))
+
+  const activateText = () => {
+    const listContainer = listContainerRef.current
+    if (!listContainer) return
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return
+
+        let time = 600
+        items.forEach(item => {
+          setTimeout(() => {
+            setActivatedItems(value => ({ ...value, [item]: 1 }))
+          }, time)
+
+          time += 300
+        })
+      })
+    })
+
+    observer.observe(listContainer)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', activateText)
+    return () => {
+      window.removeEventListener('scroll', activateText)
+    }
+  }, [])
 
   return (
     <Container ref={containerRef}>
       {isTouchableVersion ? <b>{title}</b> : title}
-      <List>
+      <List ref={listContainerRef}>
         {items.map(item => (
           <li key={item}>
-            <Link active={isTouchableVersion ? 1 : 0}>{item}</Link>
+            <Link active={isTouchableVersion ? 1 : activatedItems[item]}>
+              {item}
+            </Link>
           </li>
         ))}
       </List>

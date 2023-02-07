@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material'
+import { createTheme, keyframes } from '@mui/material'
 
 import { ArrowIcon } from 'shared/icons/arrow'
 import { ArrowFatIcon } from 'shared/icons/arrow-fat'
@@ -35,6 +35,17 @@ export const spaceArr = Object.values(spaceObj).map(value => value)
 export const articleSpaceArr = Object.values(articleSpaceObj).map(
   value => value,
 )
+
+const enterKeyframe = keyframes`
+  0% {
+    transform: scale(0);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+`
 
 const breakpointsTheme = createTheme({
   breakpoints: {
@@ -100,6 +111,8 @@ const commonTheme = createTheme({
               gridTemplateRows: 'auto 1fr auto',
               gridTemplateColumns: '100%',
               minHeight: '100vh',
+              background:
+                'fixed url(./assets/images/noise.png) center no-repeat',
             },
             [theme.breakpoints.up('desktop_s')]: {
               fontSize: pxToRem(25),
@@ -133,7 +146,7 @@ const commonTheme = createTheme({
         endIcon: <ArrowFatIcon />,
       },
       styleOverrides: {
-        root: ({ theme }) => {
+        root: ({ theme, ownerState }) => {
           return {
             fontSize: pxToRem(16),
             lineHeight: pxToRem(20),
@@ -151,12 +164,6 @@ const commonTheme = createTheme({
                 backgroundColor: `${theme.palette.inverted}4d`,
               },
             },
-            '& .MuiTouchRipple-root': {
-              width: `calc(100% + ${pxToRem(48 + 32)})`,
-              height: `calc(100% + ${pxToRem(24 * 2)})`,
-              left: `-${pxToRem(48)}`,
-              top: `-${pxToRem(24)}`,
-            },
             '& .MuiTouchRipple-child': {
               backgroundColor: theme.palette.inverted,
             },
@@ -168,6 +175,35 @@ const commonTheme = createTheme({
               fontSize: pxToRem(42),
               lineHeight: pxToRem(51),
             },
+            ...(ownerState.variant === 'contained' && {
+              position: 'relative',
+              padding: '12px 48px',
+              top: -12,
+              boxShadow: 'none',
+              background: theme.palette.text.primary,
+              color: theme.palette.inverted,
+              '&:hover': {
+                boxShadow: 'none',
+                background: theme.palette.accent,
+                color: theme.palette.text.primary,
+              },
+              '&& .MuiTouchRipple-child': {
+                backgroundColor: theme.palette.inverted,
+              },
+              '&& .MuiTouchRipple-rippleVisible': {
+                opacity: 1,
+                animationName: enterKeyframe,
+                animationDuration: 550,
+              },
+            }),
+            ...(ownerState.variant === 'text' && {
+              '& .MuiTouchRipple-root': {
+                width: `calc(100% + ${pxToRem(48 + 32)})`,
+                height: `calc(100% + ${pxToRem(24 * 2)})`,
+                left: `-${pxToRem(48)}`,
+                top: `-${pxToRem(24)}`,
+              },
+            }),
           }
         },
         endIcon: ({ theme }) => ({
@@ -376,7 +412,7 @@ const commonTheme = createTheme({
     },
     MuiAccordion: {
       styleOverrides: {
-        root: ({ theme }) => ({
+        root: () => ({
           backgroundColor: 'transparent',
           backgroundImage: 'unset',
           boxShadow: 'unset',
@@ -499,7 +535,8 @@ export const darkTheme = createTheme({
     inverted: '#323545',
     accent: '#6456DD',
     background: {
-      default: 'linear-gradient(247.32deg, #20222E 0%, #1E1C1B 100%)',
+      default:
+        'fixed url(./assets/images/noise.png) center no-repeat, linear-gradient(247.32deg, #20222E 0%, #1E1C1B 100%)',
     },
     card: {
       default: '#CFD6D9',
