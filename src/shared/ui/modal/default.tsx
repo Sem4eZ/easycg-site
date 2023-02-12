@@ -82,8 +82,8 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
     }),
   },
   ...getBreakpointsStylesByArray(theme, {
-    right: spaceArr.map(space => space - 16),
-    top: [20, null, null, null, 72, 56, 62],
+    right: spaceArr,
+    top: [51, 41, 48, null, 32, 24, 58],
   }),
 }))
 

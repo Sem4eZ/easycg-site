@@ -1,5 +1,4 @@
 import { styled } from '@mui/material/styles'
-import { Link } from 'react-router-dom'
 
 import { getMenuSchema } from 'entities/menu/data'
 
@@ -13,6 +12,7 @@ import { useGetDevice } from 'shared/lib/use-get-device'
 import { useGetTime } from 'shared/lib/use-get-time'
 import { maxWidth, spaceArr } from 'shared/theme'
 
+import { Link } from '../link'
 import { SocialMedia } from '../social-media'
 import { Tags } from '../tags'
 import { LFont } from '../typography'
@@ -34,7 +34,11 @@ export const Footer = ({ projectsCount }: Props) => {
 
   return (
     <Container>
-      <TagsStyled type="wide" items={['EASY', 'CG workshop']} />
+      <TagsStyled
+        type="wide"
+        items={['EASY', 'CG workshop']}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      />
       <nav>
         <Menu>
           {MENU.map(menuItem => (
@@ -95,6 +99,7 @@ const Container = styled('footer')(({ theme }) => ({
 const TagsStyled = styled(Tags)(({ theme }) => ({
   alignSelf: 'center',
   fontWeight: 700,
+  cursor: 'pointer',
   '& li': {
     color: theme.palette.accent,
   },
@@ -130,7 +135,6 @@ const MenuItem = styled('li')(({ theme }) => ({
 }))
 
 const MenuLink = styled(Link)(() => ({
-  color: 'inherit',
   textDecoration: 'none',
 }))
 

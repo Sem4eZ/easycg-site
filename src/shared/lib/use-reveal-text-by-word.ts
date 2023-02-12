@@ -64,7 +64,7 @@ export const useRevealTextByWord = ({ ref }: Props) => {
     )
 
     letter.map(l => {
-      l.style.setProperty('transition', 'opacity .2s')
+      l.style.setProperty('transition', 'opacity 0.8s')
       l.style.setProperty('opacity', '0.2')
     })
   }, [doAnimation])

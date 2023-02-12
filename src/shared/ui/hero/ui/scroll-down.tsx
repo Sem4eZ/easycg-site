@@ -16,7 +16,13 @@ export const ScrollDown = () => {
   const rotate = () => {
     const section = sectionRef.current
     if (!section) return
-    section.style.transform = 'rotate(' + window.pageYOffset / 4 + 'deg)'
+
+    const rotate =
+      window.scrollY < 280
+        ? 'rotate(0deg)'
+        : 'rotate(' + (window.scrollY - 200) / 4 + 'deg)'
+
+    section.style.transform = rotate
   }
 
   useEffect(() => {

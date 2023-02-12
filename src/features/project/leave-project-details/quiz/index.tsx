@@ -45,8 +45,8 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
       name: '',
       email: '',
       phone: '',
-      projectType: '',
-      budget: '',
+      projectType: 'mobile',
+      budget: 'less than 500$',
       companyName: '',
     },
   })
@@ -117,7 +117,9 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
 
   return (
     <>
-      <Button onClick={openModal}>{buttonText}</Button>
+      <Button onClick={openModal} variant="contained">
+        <ButtonText>{buttonText}</ButtonText>
+      </Button>
 
       <ModalStyled
         title="Project details"
@@ -162,14 +164,18 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
   )
 }
 
+const ButtonText = styled('span')(() => ({
+  zIndex: 1,
+}))
+
 const ModalStyled = styled(Modal)(({ theme }) => ({
   '& .MuiDialog-paper': {
     margin: 0,
     paddingLeft: 0,
     paddingRight: 0,
     ...getBreakpointsStylesByArray(theme, {
-      height: ['100%', null, null, null, null, null, 820],
-      width: ['100%', null, null, null, null, null, 860],
+      height: ['100%', null, null, null, null, null, 1117],
+      width: ['100%', null, null, null, null, null, 871],
       maxHeight: ['unset', null, null, null, null, null, '98vh'],
     }),
   },
