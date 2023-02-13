@@ -26,6 +26,7 @@ export const HorizontalList = ({ title, items }: Props) => {
   const isTouchableVersion = useGetIsTouchableVersion()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const listContainerRef = useRef<HTMLUListElement | null>(null)
+  const timeoutsRef = useRef<NodeJS.Timeout[]>([])
   useRevealBlock({ ref: containerRef })
 
   const [activatedItems, setActivatedItems] = useState(getZeroObject(items))
@@ -36,13 +37,23 @@ export const HorizontalList = ({ title, items }: Props) => {
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (!entry.isIntersecting) return
+        if (!entry.isIntersecting) {
+          while (timeoutsRef.current.length) {
+            clearTimeout(timeoutsRef.current.pop())
+          }
+
+          setActivatedItems(getZeroObject(items))
+
+          return
+        }
 
         let time = 600
+
         items.forEach(item => {
-          setTimeout(() => {
+          const index = setTimeout(() => {
             setActivatedItems(value => ({ ...value, [item]: 1 }))
           }, time)
+          timeoutsRef.current.push(index)
 
           time += 300
         })

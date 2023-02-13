@@ -2,12 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Button } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useEffect, useRef, useState } from 'react'
-import {
-  FormProvider,
-  SubmitErrorHandler,
-  SubmitHandler,
-  useForm,
-} from 'react-hook-form'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 
 import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { SnowflakeIcon } from 'shared/icons/snowflake'
@@ -22,9 +17,10 @@ import { leaveProjectDetailsSchema } from './schema'
 
 interface Props {
   buttonText: string
+  buttonVariant?: 'text' | 'contained' | 'outlined'
 }
 
-export const LeaveProjectDetails = ({ buttonText }: Props) => {
+export const LeaveProjectDetails = ({ buttonText, buttonVariant }: Props) => {
   const [open, setOpen] = useState(false)
 
   const { isMobileS, isMobileLandscape, isMobile, isMobileSLandscape } =
@@ -117,7 +113,7 @@ export const LeaveProjectDetails = ({ buttonText }: Props) => {
 
   return (
     <>
-      <Button onClick={openModal} variant="contained">
+      <Button onClick={openModal} variant={buttonVariant}>
         <ButtonText>{buttonText}</ButtonText>
       </Button>
 

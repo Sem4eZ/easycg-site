@@ -20,7 +20,7 @@ export const ScrollDown = () => {
     const rotate =
       window.scrollY < 280
         ? 'rotate(0deg)'
-        : 'rotate(' + (window.scrollY - 200) / 4 + 'deg)'
+        : 'rotate(' + (window.scrollY - 350) / 4 + 'deg)'
 
     section.style.transform = rotate
   }
