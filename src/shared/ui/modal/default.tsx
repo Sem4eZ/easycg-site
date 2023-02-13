@@ -72,6 +72,7 @@ const DialogTitleStyled = styled(DialogTitle)(({ theme }) => ({
     minHeight: [100, 70, 100, 70, 100],
   }),
 }))
+
 const CloseButton = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
   top: '64px',
@@ -85,6 +86,10 @@ const CloseButton = styled(IconButton)(({ theme }) => ({
     right: spaceArr,
     top: [51, 41, 48, null, 32, 24, 58],
   }),
+
+  ['@media (min-width: 1920px) ']: {
+    right: `calc((100% - 1920px) / 2 + 112px)`,
+  },
 }))
 
 const LanguageButton = styled('div')(({ theme }) => ({

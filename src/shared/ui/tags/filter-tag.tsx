@@ -32,15 +32,8 @@ const Container = styled(Button)<{ active: 0 | 1 }>(({ theme, active }) => ({
     marginBottom: [16, null, 24, null, null, null, 32],
   }),
   '&:hover': {
-    border: `4px solid ${theme.palette.text.primary}`,
     backgroundColor: active ? theme.palette.text.primary : 'transparent',
     color: active ? theme.palette.inverted : theme.palette.text.primary,
-    ...getBreakpointsStylesByArray(theme, {
-      paddingTop: [8, null, null, null, null, 16],
-      paddingBottom: [8, null, null, null, null, 16],
-      paddingLeft: [22, null, null, null, null, 46],
-      paddingRight: [22, null, null, null, null, 46],
-    }),
   },
   '& .MuiTouchRipple-root': {
     width: active ? 'calc(100% + 8px)' : 'calc(100% + 2px)',
