@@ -103,8 +103,11 @@ export const LeaveProjectDetailsPlain = () => {
           </label>
         </FieldsContainer>
 
-        <Button style={{ justifySelf: 'start' }} type="submit">
-          send
+        <Button
+          style={{ justifySelf: 'start' }}
+          type="submit"
+          variant="contained">
+          <span>send</span>
         </Button>
       </Form>
     </FormProvider>

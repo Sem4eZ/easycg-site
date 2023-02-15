@@ -187,21 +187,41 @@ const commonTheme = createTheme({
                 background: theme.palette.accent,
                 color: theme.palette.text.primary,
               },
+              '&:active': {
+                color: theme.palette.text.disabled,
+              },
               '&& .MuiTouchRipple-child': {
-                backgroundColor: theme.palette.inverted,
+                backgroundColor: '#F9F9FB',
               },
               '&& .MuiTouchRipple-rippleVisible': {
                 opacity: 1,
                 animationName: enterKeyframe,
                 animationDuration: 550,
               },
+              '& > span:first-of-type': {
+                zIndex: 1,
+              },
             }),
             ...(ownerState.variant === 'text' && {
+              // '& .MuiTouchRipple-root': {
+              //   width: `calc(100% + ${pxToRem(48 + 32)})`,
+              //   height: `calc(100% + ${pxToRem(24 * 2)})`,
+              //   left: `-${pxToRem(48)}`,
+              //   top: `-${pxToRem(24)}`,
+              // },
+
               '& .MuiTouchRipple-root': {
-                width: `calc(100% + ${pxToRem(48 + 32)})`,
-                height: `calc(100% + ${pxToRem(24 * 2)})`,
-                left: `-${pxToRem(48)}`,
-                top: `-${pxToRem(24)}`,
+                display: 'none',
+              },
+
+              '&:active': {
+                color: theme.palette.card.hover,
+              },
+
+              '&:hover > .MuiButton-endIcon': {
+                transition: '0.2s',
+                transform:
+                  ownerState.variant === 'text' ? 'translateX(20px)' : '',
               },
             }),
           }
