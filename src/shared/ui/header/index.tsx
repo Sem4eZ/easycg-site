@@ -296,6 +296,12 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
       ],
     }),
   },
+
+  '& .MuiIconButton-root': {
+    ['@media (min-width: 1920px) ']: {
+      right: `calc((100% - 1920px) / 2 + 112px)`,
+    },
+  },
 }))
 
 const MenuBackButton = styled(FilterLink)(({ theme }) => ({

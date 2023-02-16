@@ -1,4 +1,4 @@
-import { Button, styled } from '@mui/material'
+import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 import { services } from 'entities/services/data'
@@ -32,13 +32,9 @@ export const MainPageServicesSection = () => {
       }
       footer={
         <Button variant="contained" onClick={() => navigate(PAGES.Services)}>
-          <ButtonText>learn more</ButtonText>
+          <span>learn more</span>
         </Button>
       }
     />
   )
 }
-
-const ButtonText = styled('span')(() => ({
-  zIndex: 1,
-}))

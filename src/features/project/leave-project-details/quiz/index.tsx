@@ -114,7 +114,7 @@ export const LeaveProjectDetails = ({ buttonText, buttonVariant }: Props) => {
   return (
     <>
       <Button onClick={openModal} variant={buttonVariant}>
-        <ButtonText>{buttonText}</ButtonText>
+        <span>{buttonText}</span>
       </Button>
 
       <ModalStyled
@@ -159,10 +159,6 @@ export const LeaveProjectDetails = ({ buttonText, buttonVariant }: Props) => {
     </>
   )
 }
-
-const ButtonText = styled('span')(() => ({
-  zIndex: 1,
-}))
 
 const ModalStyled = styled(Modal)(({ theme }) => ({
   '& .MuiDialog-paper': {

@@ -105,7 +105,10 @@ const ProjectDetailPage = () => {
         }
         footer={
           showDescriptionFooter && (
-            <LeaveProjectDetails buttonText="i want the same" />
+            <LeaveProjectDetails
+              buttonText="i want the same"
+              buttonVariant="contained"
+            />
           )
         }
       />
