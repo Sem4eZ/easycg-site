@@ -184,14 +184,20 @@ const commonTheme = createTheme({
               color: theme.palette.inverted,
               '&:hover': {
                 boxShadow: 'none',
-                background: theme.palette.accent,
+                background: theme.palette.text.primary,
                 color: theme.palette.text.primary,
               },
               '&:active': {
-                color: theme.palette.text.disabled,
+                color: theme.palette.text.secondary,
+              },
+              '& > .MuiTouchRipple-root > * > .MuiTouchRipple-child': {
+                transition: '0.2s',
+              },
+              '&:active > .MuiTouchRipple-root > * > .MuiTouchRipple-child': {
+                backgroundColor: '#F9F9FB',
               },
               '&& .MuiTouchRipple-child': {
-                backgroundColor: '#F9F9FB',
+                backgroundColor: theme.palette.accent,
               },
               '&& .MuiTouchRipple-rippleVisible': {
                 opacity: 1,
@@ -222,6 +228,13 @@ const commonTheme = createTheme({
                 transition: '0.2s',
                 transform:
                   ownerState.variant === 'text' ? 'translateX(20px)' : '',
+              },
+              '&:hover > .MuiButton-startIcon': {
+                transition: '0.2s',
+                transform:
+                  ownerState.variant === 'text'
+                    ? 'rotate(180deg) translateX(20px)'
+                    : '',
               },
             }),
           }

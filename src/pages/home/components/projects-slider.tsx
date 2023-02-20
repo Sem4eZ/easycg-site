@@ -39,6 +39,7 @@ export const MainPageProjectsSlider = () => {
         <Swiper
           slideToClickedSlide
           slidesPerView={'auto'}
+          speed={1200}
           breakpoints={{
             320: {
               spaceBetween: 16,
@@ -55,17 +56,6 @@ export const MainPageProjectsSlider = () => {
             1200: {
               spaceBetween: 114,
             },
-          }}
-          freeMode={{ enabled: true, sticky: false, momentumBounce: true }}
-          onTouchEnd={swiper => {
-            const swiperNew = swiper as SwiperRef['swiper'] & {
-              swipeDirection: 'prev' | 'next'
-            }
-            if (swiperNew.swipeDirection === 'next') {
-              swiper.slideTo(swiper.activeIndex + 1)
-            } else {
-              swiper.slideTo(swiper.activeIndex - 1)
-            }
           }}>
           {topProjects.map(project => {
             return (

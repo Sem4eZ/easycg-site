@@ -18,9 +18,9 @@ export const ScrollDown = () => {
     if (!section) return
 
     const rotate =
-      window.scrollY < 280
+      window.scrollY < 450
         ? 'rotate(0deg)'
-        : 'rotate(' + (window.scrollY - 350) / 4 + 'deg)'
+        : 'rotate(' + (window.scrollY - 450) / 4 + 'deg)'
 
     section.style.transform = rotate
   }

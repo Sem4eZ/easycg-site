@@ -1,10 +1,10 @@
-import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 import { services } from 'entities/services/data'
 
 import { PAGES } from 'shared/config'
 import { Accordion } from 'shared/ui/accordion'
+import { ButtonRipple } from 'shared/ui/button-ripple'
 import { FreeRightPartContainer } from 'shared/ui/containers'
 import { TextOutlined } from 'shared/ui/outlined-text'
 
@@ -31,9 +31,11 @@ export const MainPageServicesSection = () => {
         />
       }
       footer={
-        <Button variant="contained" onClick={() => navigate(PAGES.Services)}>
-          <span>learn more</span>
-        </Button>
+        <ButtonRipple
+          variant="contained"
+          onClick={() => navigate(PAGES.Services)}>
+          learn more
+        </ButtonRipple>
       }
     />
   )
