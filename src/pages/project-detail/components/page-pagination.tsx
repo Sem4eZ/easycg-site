@@ -69,12 +69,12 @@ const ListNavigation = () => {
   return (
     <SliderNavigationButtons>
       <PreviousSliderNavigationButton>
-        <Button
+        <PreviousButton
           endIcon=""
           startIcon={<ArrowFatIcon />}
           onClick={() => swiper.slidePrev()}>
           previous project
-        </Button>
+        </PreviousButton>
       </PreviousSliderNavigationButton>
       <SliderNavigationButton>
         <Button onClick={() => swiper.slideNext()}>next project</Button>
@@ -144,4 +144,11 @@ const SliderNavigationButton = styled('div')(({ theme }) => ({
 const PreviousSliderNavigationButton = styled(SliderNavigationButton)(() => ({
   display: 'flex',
   justifyContent: 'flex-end',
+}))
+
+const PreviousButton = styled(Button)(() => ({
+  color: '#797F9A',
+  '&:active': {
+    color: '#CFD6D9',
+  },
 }))

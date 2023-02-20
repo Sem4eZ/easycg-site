@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { FormHelperText } from '@mui/material'
-import Button from '@mui/material/Button/Button'
 import TextField from '@mui/material/TextField'
 import { styled } from '@mui/material/styles'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
@@ -8,6 +7,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { services } from 'entities/services/data'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
+import { ButtonRipple } from 'shared/ui/button-ripple'
 import { Select } from 'shared/ui/controls'
 import { PhoneInput } from 'shared/ui/controls/phone-input'
 
@@ -103,12 +103,12 @@ export const LeaveProjectDetailsPlain = () => {
           </label>
         </FieldsContainer>
 
-        <Button
+        <ButtonRipple
           style={{ justifySelf: 'start' }}
           type="submit"
           variant="contained">
-          <span>send</span>
-        </Button>
+          send
+        </ButtonRipple>
       </Form>
     </FormProvider>
   )

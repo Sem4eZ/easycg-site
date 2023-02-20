@@ -10,6 +10,7 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 import { pxToRem } from 'shared/lib/px-to-rem'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { spaceArr } from 'shared/theme'
+import { ButtonRipple } from 'shared/ui/button-ripple'
 import { Modal } from 'shared/ui/modal/default'
 
 import { LeaveProjectsDetailsInputs, getQuiz } from './quiz'
@@ -113,9 +114,9 @@ export const LeaveProjectDetails = ({ buttonText, buttonVariant }: Props) => {
 
   return (
     <>
-      <Button onClick={openModal} variant={buttonVariant}>
-        <span>{buttonText}</span>
-      </Button>
+      <ButtonRipple onClick={openModal} variant={buttonVariant}>
+        {buttonText}
+      </ButtonRipple>
 
       <ModalStyled
         title="Project details"

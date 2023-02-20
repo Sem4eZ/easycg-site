@@ -99,6 +99,9 @@ const BackButtonWrapper = styled('div')(() => ({
 
 const BackButton = styled(Button)(({ theme }) => ({
   color: theme.palette.text.secondary,
+  '&:active': {
+    color: theme.palette.text.disabled,
+  },
   ...getBreakpointsStylesByArray(theme, {
     marginLeft: spaceArr,
     marginRight: spaceArr,

@@ -189,6 +189,9 @@ const Footer = styled('div')(({ theme }) => ({
 
 const ClearButton = styled(Button)(({ theme }) => ({
   color: theme.palette.text.secondary,
+  '&:hover': {
+    color: theme.palette.text.disabled,
+  },
   ...getBreakpointsStylesByArray(theme, {
     fontSize: [16, null, null, null, 25, null, 42],
     lineHeight: [19, null, null, null, 30, null, 51],
