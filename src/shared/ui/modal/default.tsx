@@ -39,11 +39,11 @@ export const Modal = ({
   return (
     <DialogStyled aria-labelledby="customized-dialog-title" {...rest}>
       <DialogTitleStyled id="customized-dialog-title">
-        {showLanguageButton && (
+        {/* {showLanguageButton && (
           <LanguageButton>
             <Language type="modal" />
           </LanguageButton>
-        )}
+        )} */}
 
         <Title data-hidden={hideTitle}>{title}</Title>
         {onClose && (

@@ -172,13 +172,13 @@ const commonTheme = createTheme({
               lineHeight: pxToRem(30),
             },
             [theme.breakpoints.up('desktop_s')]: {
-              fontSize: pxToRem(42),
-              lineHeight: pxToRem(51),
+              fontSize: ownerState.size === 'small' ? pxToRem(25) : pxToRem(42),
+              lineHeight:
+                ownerState.size === 'small' ? pxToRem(30) : pxToRem(51),
             },
             ...(ownerState.variant === 'contained' && {
               position: 'relative',
               padding: '12px 48px',
-              top: -12,
               boxShadow: 'none',
               background: theme.palette.text.primary,
               color: theme.palette.inverted,

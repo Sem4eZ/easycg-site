@@ -107,7 +107,7 @@ const ProjectDetailPage = () => {
           showDescriptionFooter && (
             <LeaveProjectDetails
               buttonText="i want the same"
-              buttonVariant="contained"
+              variant="contained"
             />
           )
         }

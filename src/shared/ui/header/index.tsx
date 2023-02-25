@@ -1,24 +1,23 @@
 import { Button } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Link as ReactRouterDomLink } from 'react-router-dom'
 
-import { getMenuSchema } from 'entities/menu/data'
+import { LeaveProjectDetails } from 'features/project/leave-project-details/quiz'
 
 import { PAGES } from 'shared/config'
 import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { pxToRem } from 'shared/lib/px-to-rem'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { maxWidth, spaceArr, spaceObj } from 'shared/theme'
 
 import { Language } from '../language'
-import { FilterLink } from '../link'
 import { Logo } from '../logo'
 import { Modal } from '../modal/default'
-import { ExplanationFont } from '../typography'
+import { ModalContent } from './modal-content'
 
 interface Props {
   projectsCount: number
@@ -28,6 +27,8 @@ export const Header = ({ projectsCount }: Props) => {
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
   const { pathname } = useLocation()
+  const [isHeaderBlur, setIsHeaderBlue] = useState(false)
+  const headerRef = useRef<HTMLDivElement | null>(null)
 
   const openModal = () => {
     setOpen(true)
@@ -37,16 +38,9 @@ export const Header = ({ projectsCount }: Props) => {
     setOpen(false)
   }
 
-  const isCurrentRoute = (route: string) => {
-    if (route === '/') return pathname === route ? 1 : 0
-    return pathname.includes(route) ? 1 : 0
-  }
-
   const isMainpageRoute = () => {
     return pathname === '/'
   }
-
-  const MENU = getMenuSchema({ projectsCount })
 
   const {
     isMobileS,
@@ -57,14 +51,6 @@ export const Header = ({ projectsCount }: Props) => {
     isTabletLandscape,
   } = useGetDevice()
 
-  const hideMenuItemIndicator =
-    isMobileS ||
-    isMobileSLandscape ||
-    isMobileLandscape ||
-    isMobile ||
-    isTablet ||
-    isTabletLandscape
-
   const hideLanguageChanging =
     isMobileS ||
     isMobileSLandscape ||
@@ -73,13 +59,19 @@ export const Header = ({ projectsCount }: Props) => {
     isTablet ||
     isTabletLandscape
 
-  const showBackButton =
-    isMobileS || isMobileSLandscape || isMobileLandscape || isMobile
+  const hideDiscussHeaderButton =
+    isMobileS ||
+    isMobileSLandscape ||
+    isMobileLandscape ||
+    isMobile ||
+    isTablet ||
+    isTabletLandscape
 
   let headerLeftContent = <div />
-  if (!hideLanguageChanging) {
-    headerLeftContent = <Language />
-  } else if (!isMainpageRoute()) {
+  // if (!hideLanguageChanging) {
+  //   headerLeftContent = <Language />
+  // } else if (!isMainpageRoute()) {
+  if (!isMainpageRoute()) {
     headerLeftContent = (
       <HeaderBackButton
         startIcon={<ArrowFatIcon />}
@@ -90,70 +82,57 @@ export const Header = ({ projectsCount }: Props) => {
     )
   }
 
-  return (
-    <Container>
-      {headerLeftContent}
+  const onScroll = () => setIsHeaderBlue(window.scrollY >= 150)
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll)
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [])
+
+  return createPortal(
+    <Container active={isHeaderBlur} ref={headerRef}>
+      {hideLanguageChanging && headerLeftContent}
       <CenterPart>
         <LogoWrapper to={PAGES.HomePage}>
           <Logo />
         </LogoWrapper>
       </CenterPart>
       <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <IconButton onClick={openModal}>
+        {!hideDiscussHeaderButton && (
+          <LeaveProjectDetails
+            buttonText="discuss a project"
+            variant="contained"
+            size="small"
+            endIcon=""
+          />
+        )}
+        <StyledIconButton onClick={openModal}>
           <MenuToggler>
             <div />
             <div />
           </MenuToggler>
-        </IconButton>
+        </StyledIconButton>
       </div>
       <ModalStyled
         open={open}
         title="Site navigation"
         hideTitle={true}
         onClose={closeModal}>
-        <nav>
-          <NavigationList>
-            {MENU.map((menuItem, i) => (
-              <MenuItem
-                key={menuItem.title}
-                indicator={
-                  isCurrentRoute(menuItem.path) && !hideMenuItemIndicator
-                    ? `0${i + 1}`
-                    : ''
-                }>
-                <Link
-                  onClick={() => {
-                    closeModal()
-                    navigate(menuItem.path)
-                  }}
-                  active={isCurrentRoute(menuItem.path)}>
-                  {menuItem.title}
-                  {menuItem.resourcesCount && (
-                    <ResourcesCount>{menuItem.resourcesCount}</ResourcesCount>
-                  )}
-                </Link>
-              </MenuItem>
-            ))}
-          </NavigationList>
-        </nav>
-
-        {showBackButton && (
-          <MenuBackButton
-            onClick={() => {
-              closeModal()
-              navigate(-1)
-            }}>
-            back
-          </MenuBackButton>
-        )}
+        <ModalContent
+          projectsCount={projectsCount}
+          closeModal={closeModal}
+          hideDiscussHeaderButton={hideDiscussHeaderButton}
+        />
       </ModalStyled>
-    </Container>
+    </Container>,
+    document.getElementById('header') ?? document.body,
   )
 }
 
-const Container = styled('header')(({ theme }) => ({
-  position: 'relative',
-  zIndex: 1,
+const Container = styled('div')<{ active: boolean }>(({ theme, active }) => ({
   display: 'grid',
   alignItems: 'center',
   maxWidth: maxWidth,
@@ -177,6 +156,18 @@ const Container = styled('header')(({ theme }) => ({
       '50px 1fr auto',
     ],
   }),
+  transition: '0.5s',
+  background: active
+    ? theme.palette.mode === 'light'
+      ? 'linear-gradient(247.32deg, rgba(250, 250, 255, 0.2) 10.17%, rgba(236, 236, 236, 0.2) 110.17%)'
+      : 'linear-gradient(247.32deg, rgba(32, 34, 46, 0.2) 0%, rgba(30, 28, 27, 0.2) 100%)'
+    : undefined,
+  backdropFilter: active ? 'blur(2px)' : undefined,
+  borderBottom: active
+    ? theme.palette.mode === 'light'
+      ? `1px solid ${theme.palette.text.secondary}`
+      : `1px solid ${theme.palette.inverted}`
+    : undefined,
 }))
 
 const CenterPart = styled('div')(() => ({
@@ -189,6 +180,10 @@ const LogoWrapper = styled(ReactRouterDomLink)(() => ({
   justifyContent: 'center',
   textDecoration: 'none',
   color: 'inherit',
+}))
+
+const StyledIconButton = styled(IconButton)(() => ({
+  marginLeft: 48,
 }))
 
 const MenuToggler = styled('div')(({ theme }) => ({
@@ -211,54 +206,6 @@ const MenuToggler = styled('div')(({ theme }) => ({
       }),
     },
   },
-}))
-
-const NavigationList = styled('ul')(({ theme }) => ({
-  listStyle: 'none',
-  padding: 0,
-  display: 'grid',
-  ...getBreakpointsStylesByArray(theme, {
-    gridRowGap: [24, 5, 24, 5, 32, null, 22],
-  }),
-}))
-
-const MenuItem = styled('li')<{ indicator: string }>(
-  ({ theme, indicator }) => ({
-    position: 'relative',
-    '&:before': {
-      content: `"${indicator}"`,
-      position: 'absolute',
-      top: '50%',
-      left: '0',
-      color: theme.palette.text.secondary,
-      fontSize: pxToRem(16),
-      lineHeight: pxToRem(20),
-      fontWeight: 400,
-      transform: 'translateY(-50%)',
-      ...getBreakpointsStylesByArray(theme, {
-        fontSize: [16, null, null, null, 25],
-        lineHeight: [20, null, null, null, 30],
-      }),
-    },
-    ...getBreakpointsStylesByArray(theme, {
-      paddingLeft: [0, null, null, null, null, null, 40],
-    }),
-  }),
-)
-
-const Link = styled(FilterLink)(({ theme }) => ({
-  display: 'inline-block',
-  fontWeight: 700,
-  cursor: 'pointer',
-}))
-
-const ResourcesCount = styled(ExplanationFont)(({ theme }) => ({
-  display: 'inline-block',
-  marginLeft: pxToRem(6),
-  position: 'relative',
-  ...getBreakpointsStylesByArray(theme, {
-    top: [-9, null, null, null, null, null, -12],
-  }),
 }))
 
 const ModalStyled = styled(Modal)(({ theme }) => ({
@@ -302,14 +249,6 @@ const ModalStyled = styled(Modal)(({ theme }) => ({
       right: `calc((100% - 1920px) / 2 + 112px)`,
     },
   },
-}))
-
-const MenuBackButton = styled(FilterLink)(({ theme }) => ({
-  fontWeight: 700,
-  color: theme.palette.text.secondary,
-  ...getBreakpointsStylesByArray(theme, {
-    marginTop: [40, 10, 40, 10, 40],
-  }),
 }))
 
 const HeaderBackButton = styled(Button)(() => ({}))
