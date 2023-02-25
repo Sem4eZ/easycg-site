@@ -16,6 +16,7 @@ import { Link } from '../link'
 import { SocialMedia } from '../social-media'
 import { Tags } from '../tags'
 import { LFont } from '../typography'
+import { StartProjectForm } from './start-project-form'
 
 interface Props {
   projectsCount: number
@@ -34,6 +35,7 @@ export const Footer = ({ projectsCount }: Props) => {
 
   return (
     <Container>
+      <StartProjectForm />
       <TagsStyled
         type="wide"
         items={['EASY', 'CG workshop']}

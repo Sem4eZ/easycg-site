@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import { styled } from '@mui/material/styles'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Link as ReactRouterDomLink } from 'react-router-dom'
@@ -28,10 +28,9 @@ export const Header = ({ projectsCount }: Props) => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const [isHeaderBlur, setIsHeaderBlue] = useState(false)
-  const headerRef = useRef<HTMLDivElement | null>(null)
 
-  const openModal = () => {
-    setOpen(true)
+  const switchModal = () => {
+    setOpen(value => !value)
   }
 
   const closeModal = () => {
@@ -93,82 +92,108 @@ export const Header = ({ projectsCount }: Props) => {
   }, [])
 
   return createPortal(
-    <Container active={isHeaderBlur} ref={headerRef}>
-      {hideLanguageChanging && headerLeftContent}
-      <CenterPart>
-        <LogoWrapper to={PAGES.HomePage}>
-          <Logo />
-        </LogoWrapper>
-      </CenterPart>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        {!hideDiscussHeaderButton && (
-          <LeaveProjectDetails
-            buttonText="discuss a project"
-            variant="contained"
-            size="small"
-            endIcon=""
-          />
+    <BlurContainer isActive={isHeaderBlur && !open}>
+      <Container isActive={open}>
+        {!open && (
+          <>
+            {hideLanguageChanging && headerLeftContent}
+            <CenterPart>
+              <LogoWrapper to={PAGES.HomePage}>
+                <Logo />
+              </LogoWrapper>
+            </CenterPart>
+            {!hideDiscussHeaderButton && (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'flex-end',
+                  marginRight: 48,
+                }}>
+                <LeaveProjectDetails
+                  buttonText="discuss a project"
+                  variant="contained"
+                  size="small"
+                  endIcon=""
+                />
+              </div>
+            )}
+          </>
         )}
-        <StyledIconButton onClick={openModal}>
-          <MenuToggler>
+
+        <StyledIconButton onClick={switchModal} isActive={open}>
+          <MenuToggler isActive={open}>
             <div />
             <div />
           </MenuToggler>
         </StyledIconButton>
-      </div>
-      <ModalStyled
-        open={open}
-        title="Site navigation"
-        hideTitle={true}
-        onClose={closeModal}>
-        <ModalContent
-          projectsCount={projectsCount}
-          closeModal={closeModal}
-          hideDiscussHeaderButton={hideDiscussHeaderButton}
-        />
-      </ModalStyled>
-    </Container>,
+        <ModalStyled open={open} title="Site navigation" hideTitle={true}>
+          <ModalContent
+            projectsCount={projectsCount}
+            closeModal={closeModal}
+            hideDiscussHeaderButton={hideDiscussHeaderButton}
+          />
+        </ModalStyled>
+      </Container>
+    </BlurContainer>,
     document.getElementById('header') ?? document.body,
   )
 }
 
-const Container = styled('div')<{ active: boolean }>(({ theme, active }) => ({
-  display: 'grid',
-  alignItems: 'center',
-  maxWidth: maxWidth,
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  width: '100%',
-  ...getBreakpointsStylesByArray(theme, {
-    paddingTop: [51, 41, 48, null, 32, 24, 58],
-    paddingBottom: [51, 41, 48, null, 32, 24, 58],
-    paddingLeft: spaceArr,
-    paddingRight: spaceArr,
-    gridTemplateColumns: [
-      '48px 1fr 48px',
-      null,
-      null,
-      '155px 1fr 155px',
-      '171px 1fr 171px',
-      null,
-      '55px 1fr auto',
-      null,
-      '50px 1fr auto',
-    ],
+const BlurContainer = styled('div')<{ isActive: boolean }>(
+  ({ theme, isActive }) => ({
+    background: isActive
+      ? theme.palette.mode === 'light'
+        ? 'linear-gradient(247.32deg, rgba(250, 250, 255, 0.2) 10.17%, rgba(236, 236, 236, 0.2) 110.17%)'
+        : 'linear-gradient(247.32deg, rgba(32, 34, 46, 0.2) 0%, rgba(30, 28, 27, 0.2) 100%)'
+      : undefined,
+    backdropFilter: isActive ? 'blur(2px)' : undefined,
+    borderBottom: isActive
+      ? theme.palette.mode === 'light'
+        ? `1px solid ${theme.palette.text.secondary}`
+        : `1px solid ${theme.palette.inverted}`
+      : undefined,
   }),
-  transition: '0.5s',
-  background: active
-    ? theme.palette.mode === 'light'
-      ? 'linear-gradient(247.32deg, rgba(250, 250, 255, 0.2) 10.17%, rgba(236, 236, 236, 0.2) 110.17%)'
-      : 'linear-gradient(247.32deg, rgba(32, 34, 46, 0.2) 0%, rgba(30, 28, 27, 0.2) 100%)'
-    : undefined,
-  backdropFilter: active ? 'blur(2px)' : undefined,
-  borderBottom: active
-    ? theme.palette.mode === 'light'
-      ? `1px solid ${theme.palette.text.secondary}`
-      : `1px solid ${theme.palette.inverted}`
-    : undefined,
-}))
+)
+
+const Container = styled('div')<{ isActive: boolean }>(
+  ({ theme, isActive }) => {
+    const display = isActive
+      ? {
+          display: 'flex',
+          justifyContent: 'end',
+        }
+      : {
+          display: 'grid',
+          alignItems: 'center',
+        }
+
+    return {
+      ...display,
+      maxWidth: maxWidth,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100%',
+      ...getBreakpointsStylesByArray(theme, {
+        paddingTop: [51, 41, 48, null, 32, 24, 58],
+        paddingBottom: [51, 41, 48, null, 32, 24, 58],
+        paddingLeft: spaceArr,
+        paddingRight: spaceArr,
+        gridTemplateColumns: [
+          '48px 1fr 48px',
+          null,
+          null,
+          '48px 1fr 48px',
+          '48px 1fr 48px',
+          null,
+          '55px 1fr auto',
+          null,
+          '50px 1fr auto',
+        ],
+      }),
+      transition: '0.5s',
+    }
+  },
+)
 
 const CenterPart = styled('div')(() => ({
   display: 'flex',
@@ -182,31 +207,43 @@ const LogoWrapper = styled(ReactRouterDomLink)(() => ({
   color: 'inherit',
 }))
 
-const StyledIconButton = styled(IconButton)(() => ({
-  marginLeft: 48,
-}))
-
-const MenuToggler = styled('div')(({ theme }) => ({
-  position: 'relative',
-  ...getBreakpointsStylesByArray(theme, {
-    width: [32, null, null, null, 39, null, 44],
-    height: [32, null, null, null, 39, null, 44],
+const StyledIconButton = styled(IconButton)<{ isActive: boolean }>(
+  ({ isActive }) => ({
+    position: isActive ? 'fixed' : 'relative',
+    zIndex: 2000,
   }),
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  '& div': {
-    width: '100%',
-    height: '4px',
-    backgroundColor: theme.palette.text.primary,
-    '&:first-of-type': {
-      ...getBreakpointsStylesByArray(theme, {
-        marginBottom: [4, null, null, null, 6],
-      }),
+)
+
+const MenuToggler = styled('div')<{ isActive: boolean }>(
+  ({ theme, isActive }) => ({
+    position: 'relative',
+    ...getBreakpointsStylesByArray(theme, {
+      width: [32, null, null, null, 39, null, 44],
+      height: [32, null, null, null, 39, null, 44],
+    }),
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    '& div': {
+      width: '100%',
+      height: '4px',
+      backgroundColor: theme.palette.text.primary,
+      transition: '0.2s',
+
+      '&:first-of-type': {
+        ...getBreakpointsStylesByArray(theme, {
+          marginBottom: [4, null, null, null, 6],
+        }),
+        transform: isActive ? 'rotate(45deg)translateY(7px)' : undefined,
+      },
+      '&:last-of-type': {
+        transform: isActive ? 'rotate(-45deg)translateY(-7px)' : undefined,
+      },
     },
-  },
-}))
+  }),
+)
 
 const ModalStyled = styled(Modal)(({ theme }) => ({
   '& .MuiDialogContent-root': {

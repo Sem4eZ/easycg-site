@@ -306,7 +306,7 @@ const commonTheme = createTheme({
             },
           },
         }),
-        input: ({ theme }) => ({
+        input: ({ theme, ownerState }) => ({
           caretColor: theme.palette.accent,
           fontSize: pxToRem(16),
           lineHeight: pxToRem(20),
@@ -326,11 +326,13 @@ const commonTheme = createTheme({
           [theme.breakpoints.up('desktop_s')]: {
             fontSize: pxToRem(42),
             lineHeight: pxToRem(51),
-            paddingBottom: pxToRem(24),
+            paddingBottom:
+              ownerState.size === 'medium' ? pxToRem(24) : pxToRem(16),
           },
           [theme.breakpoints.up('desktop')]: {
             paddingTop: pxToRem(8),
-            paddingBottom: pxToRem(32),
+            paddingBottom:
+              ownerState.size === 'medium' ? pxToRem(32) : pxToRem(16),
           },
         }),
         underline: ({ theme }) => ({
