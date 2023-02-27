@@ -246,6 +246,7 @@ const MenuToggler = styled('div')<{ isActive: boolean }>(
 )
 
 const ModalStyled = styled(Modal)(({ theme }) => ({
+  zIndex: 1299,
   '& .MuiDialogContent-root': {
     padding: 0,
   },
