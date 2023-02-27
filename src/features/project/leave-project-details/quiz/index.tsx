@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Button } from '@mui/material'
+import { Button, ButtonProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { useEffect, useRef, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
@@ -16,12 +16,11 @@ import { Modal } from 'shared/ui/modal/default'
 import { LeaveProjectsDetailsInputs, getQuiz } from './quiz'
 import { leaveProjectDetailsSchema } from './schema'
 
-interface Props {
+interface Props extends ButtonProps {
   buttonText: string
-  buttonVariant?: 'text' | 'contained' | 'outlined'
 }
 
-export const LeaveProjectDetails = ({ buttonText, buttonVariant }: Props) => {
+export const LeaveProjectDetails = ({ buttonText, ...rest }: Props) => {
   const [open, setOpen] = useState(false)
 
   const { isMobileS, isMobileLandscape, isMobile, isMobileSLandscape } =
@@ -114,7 +113,7 @@ export const LeaveProjectDetails = ({ buttonText, buttonVariant }: Props) => {
 
   return (
     <>
-      <ButtonRipple onClick={openModal} variant={buttonVariant}>
+      <ButtonRipple onClick={openModal} {...rest}>
         {buttonText}
       </ButtonRipple>
 

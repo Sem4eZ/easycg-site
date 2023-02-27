@@ -24,10 +24,10 @@ export const MainPageServicesMenu = () => {
       <ServicesMenu />
 
       <Footer>
-        <Button href={`mailto:${COMPANY_EMAIL}`}>say hello</Button>
+        <ButtonLink href={`mailto:${COMPANY_EMAIL}`}>say hello</ButtonLink>
         <LeaveProjectDetails
           buttonText="discuss a project"
-          buttonVariant="contained"
+          variant="contained"
         />
       </Footer>
     </Container>
@@ -72,4 +72,8 @@ const Footer = styled('footer')(({ theme }) => ({
     gap: [48, 20, null, 247, 80, null, 275, 460, 275],
     justifyContent: ['space-between', null, null, 'flex-start'],
   }),
+}))
+
+const ButtonLink = styled(Button)(() => ({
+  top: 12,
 }))
