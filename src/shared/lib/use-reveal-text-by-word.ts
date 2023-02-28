@@ -31,7 +31,8 @@ export const useRevealTextByWord = ({ ref }: Props) => {
 
           setTimeout(() => {
             letter.forEach(function (l, i) {
-              if (persentage - i * 0.1 > 1) l.style.setProperty('opacity', '1')
+              if (persentage - i * 0.1 > 0.7)
+                l.style.setProperty('opacity', '1')
               else if (persentage - i < 0.2)
                 l.style.setProperty('opacity', '0.2')
               else

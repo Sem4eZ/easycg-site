@@ -10,6 +10,8 @@ import { spaceArr } from 'shared/theme'
 import { FilterLink } from 'shared/ui/link'
 import { Modal } from 'shared/ui/modal/default'
 
+import { FilterLinkWrapper } from '../filter-link-wrapper'
+
 type FilterValue = Array<ServiceType | 'all'>
 
 const FILTER: {
@@ -36,7 +38,7 @@ const FILTER: {
     title: 'VR',
     value: ['VR'],
   },
-  { title: 'UX/ UI', value: ['UXUI'] },
+  { title: 'UX/UI', value: ['UXUI'] },
 ]
 
 interface Props {
@@ -69,13 +71,13 @@ export const useServicesFilter = ({ initial }: Props) => {
       <section>
         <DesktopFiler>
           {FILTER.map(filterData => (
-            <FilterLink
+            <FilterLinkWrapper
               key={filterData.title}
               active={checkIsActive(filterData.value)}
               onClick={handleClick(filterData.value)}
               style={{ cursor: 'pointer' }}>
               {filterData.title}
-            </FilterLink>
+            </FilterLinkWrapper>
           ))}
         </DesktopFiler>
 
