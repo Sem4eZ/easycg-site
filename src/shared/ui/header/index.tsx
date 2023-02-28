@@ -50,6 +50,8 @@ export const Header = ({ projectsCount }: Props) => {
     isTabletLandscape,
   } = useGetDevice()
 
+  const fixCloseIcon = isMobileLandscape || isMobile || isMobileS
+
   const hideLanguageChanging =
     isMobileS ||
     isMobileSLandscape ||
@@ -121,7 +123,7 @@ export const Header = ({ projectsCount }: Props) => {
         )}
 
         <StyledIconButton onClick={switchModal} isActive={open}>
-          <MenuToggler isActive={open}>
+          <MenuToggler isActive={open} fixCloseIcon={fixCloseIcon}>
             <div />
             <div />
           </MenuToggler>
@@ -214,8 +216,8 @@ const StyledIconButton = styled(IconButton)<{ isActive: boolean }>(
   }),
 )
 
-const MenuToggler = styled('div')<{ isActive: boolean }>(
-  ({ theme, isActive }) => ({
+const MenuToggler = styled('div')<{ isActive: boolean; fixCloseIcon: boolean }>(
+  ({ theme, isActive, fixCloseIcon }) => ({
     position: 'relative',
     ...getBreakpointsStylesByArray(theme, {
       width: [32, null, null, null, 39, null, 44],
@@ -236,10 +238,14 @@ const MenuToggler = styled('div')<{ isActive: boolean }>(
         ...getBreakpointsStylesByArray(theme, {
           marginBottom: [4, null, null, null, 6],
         }),
-        transform: isActive ? 'rotate(45deg)translateY(7px)' : undefined,
+        transform: isActive
+          ? fixCloseIcon
+            ? 'rotate(45deg) translate(3px, 3px)'
+            : 'rotate(45deg) translate(4px, 4px)'
+          : undefined,
       },
       '&:last-of-type': {
-        transform: isActive ? 'rotate(-45deg)translateY(-7px)' : undefined,
+        transform: isActive ? 'rotate(-45deg) translate(3px, -3px)' : undefined,
       },
     },
   }),
