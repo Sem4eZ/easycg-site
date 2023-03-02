@@ -46,8 +46,15 @@ const ListItem = styled('li')(({ theme }) => ({
   position: 'relative',
   listStyle: 'none',
   color: theme.palette.text.secondary,
+
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+
   ...getBreakpointsStylesByArray(theme, {
     fontSize: [10, null, null, 16, null, null, 25],
+
+    minWidth: [null, null, null, null, null, null, 54],
   }),
 }))
 
