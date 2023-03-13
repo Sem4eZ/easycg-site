@@ -50,6 +50,7 @@ const Title = styled(XXLFont)(({ theme }) => ({
 const Footer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'space-between',
+  rowGap: 40,
   ...getBreakpointsStylesByArray(theme, {
     marginTop: [56, null, 96, 64, 104, null, 211, null, 258, 132],
     marginBottom: [24],
@@ -59,6 +60,7 @@ const Footer = styled('div')(({ theme }) => ({
       'space-between',
       'flex-start',
     ],
-    gap: [71, 194, 131, 247, 220, 236, 104, null, 244, 79],
+    columnGap: [71, 194, 54, 247, 220, 236, 104, null, 244, 79],
+    flexDirection: ['column', 'column', 'row'],
   }),
 }))
