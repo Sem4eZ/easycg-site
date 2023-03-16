@@ -77,6 +77,7 @@ const ProjectsPage = () => {
       <Content>
         {showSlider && view === 'carousel' && (
           <Swiper
+            style={{ marginLeft: 0, marginRight: 0 }}
             slideToClickedSlide
             slidesPerView={'auto'}
             breakpoints={{
