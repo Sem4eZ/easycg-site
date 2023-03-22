@@ -42,7 +42,7 @@ const StyledText = styled(XXLFont)<{ isMobile: boolean }>(
   ({ theme, isMobile }) => ({
     ...getBreakpointsStylesByArray(theme, {
       marginBottom: isMobile
-        ? [null]
+        ? [24]
         : [null, null, null, null, null, 156, null, 121, null],
     }),
   }),
