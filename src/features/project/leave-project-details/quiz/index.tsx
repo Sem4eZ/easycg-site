@@ -4,6 +4,7 @@ import { styled } from '@mui/material/styles'
 import { useEffect, useRef, useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 
+import { confirmApplication } from 'shared/api/application'
 import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { SnowflakeIcon } from 'shared/icons/snowflake'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
@@ -59,8 +60,11 @@ export const LeaveProjectDetails = ({ buttonText, ...rest }: Props) => {
   } = formMethods
   const values = watch()
 
-  const onSubmit: SubmitHandler<LeaveProjectsDetailsInputs> = async data => {
-    alert(`Отправка данных на сервер: ${JSON.stringify(data, null, 2)}`)
+  const onSubmit: SubmitHandler<LeaveProjectsDetailsInputs> = async ({
+    companyName,
+    ...data
+  }) => {
+    confirmApplication({ ...data, company: companyName })
   }
 
   const [page, setPage] = useState(0)

@@ -2,12 +2,15 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { FormHelperText } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import { styled } from '@mui/material/styles'
+import { useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 
 import { services } from 'entities/services/data'
 
+import { confirmApplication } from 'shared/api/application'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { ButtonRipple } from 'shared/ui/button-ripple'
+import { ConfirmingApplicationModal } from 'shared/ui/confirming-application-modal'
 import { Select } from 'shared/ui/controls'
 import { PhoneInput } from 'shared/ui/controls/phone-input'
 
@@ -21,29 +24,49 @@ interface LeaveProjectsDetailsInputs {
   message: string
 }
 
+const defaultValues: LeaveProjectsDetailsInputs = {
+  name: '',
+  email: '',
+  phone: '',
+  projectType: [],
+  message: '',
+}
+
 export const LeaveProjectDetailsPlain = () => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const openModal = () => setIsOpen(true)
+
+  const closeModal = () => setIsOpen(false)
+
   const formMethods = useForm<LeaveProjectsDetailsInputs>({
     mode: 'all',
     resolver: yupResolver(leaveProjectDetailsSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      projectType: [],
-      message: '',
-    },
+    defaultValues,
   })
 
   const {
     handleSubmit,
     setError,
     register,
+    reset,
     formState: { isValid, errors }, //errors need for autocomplete validation
     control,
   } = formMethods
 
-  const onSubmit: SubmitHandler<LeaveProjectsDetailsInputs> = async data => {
-    alert(`Отправка данных на сервер: ${JSON.stringify(data, null, 2)}`)
+  const onSubmit: SubmitHandler<LeaveProjectsDetailsInputs> = async ({
+    message,
+    projectType,
+    ...data
+  }) => {
+    confirmApplication({
+      ...data,
+      projectType: projectType.toString(),
+      comment: message,
+    })
+
+    openModal()
+    reset(defaultValues)
   }
 
   return (
@@ -110,6 +133,8 @@ export const LeaveProjectDetailsPlain = () => {
           send
         </ButtonRipple>
       </Form>
+
+      <ConfirmingApplicationModal open={isOpen} onClose={closeModal} />
     </FormProvider>
   )
 }

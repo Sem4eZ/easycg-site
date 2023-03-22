@@ -2,11 +2,14 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { FormHelperText } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import { styled } from '@mui/material/styles'
+import { useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 
+import { confirmApplication } from 'shared/api/application'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { ButtonRipple } from 'shared/ui/button-ripple'
+import { ConfirmingApplicationModal } from 'shared/ui/confirming-application-modal'
 import { PhoneInput } from 'shared/ui/controls/phone-input'
 
 import { ProjectFormSchema } from './schema'
@@ -19,30 +22,42 @@ interface ProjectFormInputs {
   comment: string
 }
 
+const defaultValues: ProjectFormInputs = {
+  name: '',
+  company: '',
+  phone: '',
+  email: '',
+  comment: '',
+}
+
 export const ProjectForm = () => {
   const { isMobileS } = useGetDevice()
   const formMethods = useForm<ProjectFormInputs>({
     mode: 'all',
     resolver: yupResolver(ProjectFormSchema),
-    defaultValues: {
-      name: '',
-      company: '',
-      phone: '',
-      email: '',
-      comment: '',
-    },
+    defaultValues,
   })
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const openModal = () => setIsOpen(true)
+
+  const closeModal = () => setIsOpen(false)
 
   const {
     handleSubmit,
     setError,
     register,
+    reset,
     formState: { isValid, errors }, //errors need for autocomplete validation
     control,
   } = formMethods
 
   const onSubmit: SubmitHandler<ProjectFormInputs> = async data => {
-    alert(`Отправка данных на сервер: ${JSON.stringify(data, null, 2)}`)
+    confirmApplication(data)
+
+    openModal()
+    reset(defaultValues)
   }
 
   return (
@@ -110,6 +125,8 @@ export const ProjectForm = () => {
           Sent us a message
         </ButtonRipple>
       </Form>
+
+      <ConfirmingApplicationModal open={isOpen} onClose={closeModal} />
     </FormProvider>
   )
 }
