@@ -1,6 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { FormHelperText } from '@mui/material'
-import TextField from '@mui/material/TextField'
 import { styled } from '@mui/material/styles'
 import { useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
@@ -10,6 +8,7 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { ButtonRipple } from 'shared/ui/button-ripple'
 import { ConfirmingApplicationModal } from 'shared/ui/confirming-application-modal'
+import { Input } from 'shared/ui/controls'
 import { PhoneInput } from 'shared/ui/controls/phone-input'
 
 import { ProjectFormSchema } from './schema'
@@ -47,7 +46,6 @@ export const ProjectForm = () => {
   const {
     handleSubmit,
     setError,
-    register,
     reset,
     formState: { isValid, errors }, //errors need for autocomplete validation
     control,
@@ -64,57 +62,15 @@ export const ProjectForm = () => {
     <FormProvider {...formMethods}>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FieldsContainer>
-          <label>
-            <TextField
-              id="name"
-              label="What’s your name?"
-              variant="standard"
-              {...register('name')}
-              error={Boolean(errors?.name)}
-            />
-            {Boolean(errors?.name) && (
-              <FormHelperText>{errors.name?.message}</FormHelperText>
-            )}
-          </label>
+          <Input id="name" label="What’s your name?" name="name" />
 
-          <label>
-            <TextField
-              id="company"
-              label="Company’s name"
-              variant="standard"
-              {...register('company')}
-              error={Boolean(errors?.company)}
-            />
-            {Boolean(errors?.company) && (
-              <FormHelperText>{errors.company?.message}</FormHelperText>
-            )}
-          </label>
+          <Input id="company" label="Company’s name" name="company" />
 
           <PhoneInput name="phone" />
 
-          <label>
-            <TextField
-              id="email"
-              type="email"
-              label="E-mail"
-              variant="standard"
-              {...register('email')}
-              error={Boolean(errors?.email)}
-            />
-            {Boolean(errors?.email) && (
-              <FormHelperText>{errors.email?.message}</FormHelperText>
-            )}
-          </label>
+          <Input id="email" type="email" label="E-mail" name="email" />
 
-          <label>
-            <TextField
-              id="comment"
-              label="Comment (Optional)"
-              variant="standard"
-              {...register('comment')}
-              error={Boolean(errors?.comment)}
-            />
-          </label>
+          <Input id="comment" label="Comment (Optional)" name="comment" />
         </FieldsContainer>
 
         <ButtonRipple

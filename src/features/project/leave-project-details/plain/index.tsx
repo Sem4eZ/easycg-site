@@ -1,6 +1,4 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { FormHelperText } from '@mui/material'
-import TextField from '@mui/material/TextField'
 import { styled } from '@mui/material/styles'
 import { useState } from 'react'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
@@ -11,7 +9,7 @@ import { confirmApplication } from 'shared/api/application'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { ButtonRipple } from 'shared/ui/button-ripple'
 import { ConfirmingApplicationModal } from 'shared/ui/confirming-application-modal'
-import { Select } from 'shared/ui/controls'
+import { Input, Select } from 'shared/ui/controls'
 import { PhoneInput } from 'shared/ui/controls/phone-input'
 
 import { leaveProjectDetailsSchema } from './schema'
@@ -73,32 +71,9 @@ export const LeaveProjectDetailsPlain = () => {
     <FormProvider {...formMethods}>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FieldsContainer>
-          <label>
-            <TextField
-              id="name"
-              label="your name*"
-              variant="standard"
-              {...register('name')}
-              error={Boolean(errors?.name)}
-            />
-            {Boolean(errors?.name) && (
-              <FormHelperText>{errors.name?.message}</FormHelperText>
-            )}
-          </label>
+          <Input id="name" label="your name*" name="name" />
 
-          <label>
-            <TextField
-              id="email"
-              type="email"
-              label="e-mail*"
-              variant="standard"
-              {...register('email')}
-              error={Boolean(errors?.email)}
-            />
-            {Boolean(errors?.email) && (
-              <FormHelperText>{errors.email?.message}</FormHelperText>
-            )}
-          </label>
+          <Input id="email" type="email" label="e-mail*" name="email" />
 
           <PhoneInput name="phone" />
 
@@ -115,15 +90,7 @@ export const LeaveProjectDetailsPlain = () => {
             error={errors?.projectType?.message}
           />
 
-          <label>
-            <TextField
-              id="message"
-              label="write us a message"
-              variant="standard"
-              {...register('message')}
-              error={Boolean(errors?.message)}
-            />
-          </label>
+          <Input id="message" label="write us a message" name="message" />
         </FieldsContainer>
 
         <ButtonRipple
