@@ -34,15 +34,19 @@ const StyledModal = styled(Modal)(({ theme }) => ({
   },
   '& .MuiDialogContent-root': {
     padding: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   '& .MuiDialog-paper': {
     margin: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
     ...getBreakpointsStylesByArray(theme, {
-      paddingTop: [82, null, 120, null, 184, null, 196],
-      paddingBottom: [82, null, 120, null, 184, null, 196],
+      height: [390, null, 500, null, 703, null, 776],
       paddingLeft: [50, null, 98, null, 112, null, null],
       paddingRight: [50, null, 98, null, 112, null, null],
-      width: ['100%', null, null, null, '64%', null, null],
+      width: ['100%', null, null, '100%', '64%', null, null],
     }),
   },
 }))
