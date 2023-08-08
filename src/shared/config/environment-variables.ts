@@ -6,5 +6,5 @@ const checkedEnvVariable = (envVariable: string): string => {
 }
 
 export const COMPANY_EMAIL = checkedEnvVariable('COMPANY_EMAIL')
-export const COMPANY_PHONE = checkedEnvVariable('COMPANY_PHONE')
+export const COMPANY_TG = checkedEnvVariable('COMPANY_TG')
 export const API_URL = checkedEnvVariable('API_URL')

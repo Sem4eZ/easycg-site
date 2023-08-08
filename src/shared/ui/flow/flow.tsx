@@ -114,7 +114,7 @@ export const Flow = ({ sectionRef }: Props) => {
     <Container ref={containerRef}>
       <ReserchBrainstormContainer>
         <Step ref={reserchRef} className="reserch">
-          <div className="title">reserch</div>
+          <div className="title">research</div>
           <Arrow />
         </Step>
 

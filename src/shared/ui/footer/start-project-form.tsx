@@ -27,7 +27,7 @@ export const StartProjectForm: FC = ({}) => {
 
   return (
     <Container isMobile={isMobileWidth}>
-      <ContactHeader title="lets start a project" isMobile={isMobileWidth} />
+      <ContactHeader title="let's start a project" isMobile={isMobileWidth} />
       <ProjectForm />
     </Container>
   )

@@ -33,8 +33,8 @@ export const MainPageCeoSection = () => {
             </picture>
           </ContentContainer>
           <Caption>
-            <span>By the way, he’s our СEO&nbsp;</span>
-            <span>with his best friend</span>
+            <span>By the way, he's our CEO,&nbsp;</span>
+            <span> and his best friend works here too</span>
           </Caption>
         </figure>
       }
@@ -51,7 +51,7 @@ const ContentContainer = styled('div')(({ theme }) => ({
       ? theme.palette.inverted
       : theme.palette.text.disabled,
   ...getBreakpointsStylesByArray(theme, {
-    height: [260, null, 269, 359, 406, null, 990, null, 833, 990],
+    height: [260, null, 269, 359, 406, null, 900, null, 833, 900],
     marginBottom: [24, 32, null, null, null, null, 72, null, 48, 64],
   }),
   '& picture': {

@@ -57,12 +57,10 @@ export const AboutUsPageProjectInGoodHands = () => {
 
   return (
     <Container>
-      <XXLFont gridArea="first-sentense">
-        your projects {!showIsInSeparate && 'is'}
-      </XXLFont>
-      {showIsInSeparate && <XXLFont gridArea="second-sentense">is in</XXLFont>}
+      <XXLFont gridArea="first-sentense">your projects</XXLFont>
+      {showIsInSeparate && <XXLFont gridArea="second-sentense">are in</XXLFont>}
       <XXLFont gridArea="third-sentense">
-        {!showIsInSeparate && 'in'} good hands
+        {!showIsInSeparate && 'are in'} good hands
       </XXLFont>
 
       <Icon style={{ gridArea: 'icon' }} ref={iconRef}>
