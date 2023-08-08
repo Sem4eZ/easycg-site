@@ -1,11 +1,7 @@
 import { styled } from '@mui/material/styles'
 
-import {
-  COMPANY_EMAIL,
-  COMPANY_PHONE,
-} from 'shared/config/environment-variables'
+import { COMPANY_EMAIL, COMPANY_TG } from 'shared/config/environment-variables'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { getPhoneWithoutFormatting } from 'shared/lib/get-phone-without-formatting'
 import { LFont } from 'shared/ui/typography'
 
 import { TimeRemark } from './time-remark'
@@ -20,19 +16,15 @@ const data: {
     value: <a href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</a>,
   },
   {
-    label: 'phone-number',
-    value: (
-      <a href={`tel:${getPhoneWithoutFormatting(COMPANY_PHONE)}`}>
-        {COMPANY_PHONE}
-      </a>
-    ),
+    label: 'tg',
+    value: <a href={COMPANY_TG}>tg: @workshop_easy</a>,
     remark:
-      'now we based in Almaty (Kazahstan) and takes project all over the world',
+      'now we are based in Bali (Indonesia) and take projects all over the world',
   },
   { label: 'location*', value: 'worldwide' },
   {
     label: 'work time*',
-    value: 'depends',
+    value: '10 am to 7 pm',
     remark: <TimeRemark />,
   },
 ]

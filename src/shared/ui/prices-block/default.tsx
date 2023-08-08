@@ -26,16 +26,8 @@ export const PricesBlock = ({ items, services, remark, ...rest }: Props) => {
             </ServicesList>
           </Row>
         )}
-        {items.map(item => {
-          return (
-            <Row key={item.value}>
-              <Name>{item.name}</Name>
-              <LFont>{item.value}</LFont>
-            </Row>
-          )
-        })}
       </Container>
-      <Remark>{remark}</Remark>
+      {/* <Remark>{remark}</Remark> */}
     </div>
   )
 }

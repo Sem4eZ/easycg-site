@@ -12,11 +12,10 @@ export const services: Service[] = [
     type: 'mobile',
     name: 'mobile apps',
     shortName: 'mobile',
-    description:
-      'native mobile apps for IOS & Android. zero-code solutions for Start Up ',
+    description: `stay connected to your customers and employees with a customized mobile app. whether it's a store, service, or entertainment app, you choose the features and we make it happen`,
     services: [
       'native apps for ios & android',
-      'zero code solutions for a start ups',
+      'zero code solutions for startups',
       'crossplatforming solutions on flutter',
     ],
     details: {
@@ -34,11 +33,11 @@ export const services: Service[] = [
     type: 'web',
     name: 'WEB',
     shortName: 'web',
-    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quae veniam quas, labore velit rem minus quasi doloremque eum. Adipisci aliquam laboriosam rerum perspiciatis illo id veniam iste blanditiis ullam.`,
+    description: `looking to establish a strong online presence? our web development services can help you create a website that stands out, with intuitive navigation, responsive design, and seamless functionality`,
     services: [
-      'native apps for ios & android',
-      'zero code solutions for a start ups',
-      'crossplatforming solutions on flutter',
+      'high-traffic website or service from scratch',
+      'website with mobile app advantages',
+      'zero-code solutions for startups',
     ],
     details: {
       price: 830,
@@ -55,11 +54,11 @@ export const services: Service[] = [
     type: 'CGI',
     name: 'CGI',
     shortName: 'CGI',
-    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quae veniam quas, labore velit rem minus quasi doloremque eum. Adipisci aliquam laboriosam rerum perspiciatis illo id veniam iste blanditiis ullam.`,
+    description: `We specialize in creating captivating CGI content that brings ideas to life, from stunning movie visual effects to immersive video game experiences`,
     services: [
-      'native apps for ios & android',
-      'zero code solutions for a start ups',
-      'crossplatforming solutions on flutter',
+      '3D computer graphics and animation',
+      'VFX',
+      'preparation of 2D and 3D assets',
     ],
     details: {
       price: 830,
@@ -77,11 +76,11 @@ export const services: Service[] = [
     name: 'AR',
     shortName: 'AR',
     nameExplanation: '(aguamented reality)',
-    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quae veniam quas, labore velit rem minus quasi doloremque eum. Adipisci aliquam laboriosam rerum perspiciatis illo id veniam iste blanditiis ullam.`,
+    description: `We create custom AR solutions that captivate audiences, bring products to life, and drive sales. Elevate your brand with our cutting-edge technology`,
     services: [
-      'native apps for ios & android',
-      'zero code solutions for a start ups',
-      'crossplatforming solutions on flutter',
+      `we develop AR of any complexity: from image 
+      and object tracking to gesture recognition and 
+      terrain navigator`,
     ],
     details: {
       price: 830,
@@ -99,11 +98,11 @@ export const services: Service[] = [
     name: 'VR',
     shortName: 'VR',
     nameExplanation: '(virtual reality)',
-    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quae veniam quas, labore velit rem minus quasi doloremque eum. Adipisci aliquam laboriosam rerum perspiciatis illo id veniam iste blanditiis ullam.`,
+    description: `experience a new level of immersion with our VR services. From training simulations to engaging entertainment, we create customized VR solutions that engage and delight users`,
     services: [
-      'native apps for ios & android',
-      'zero code solutions for a start ups',
-      'crossplatforming solutions on flutter',
+      'virtual tour or interactive VR',
+      'training simulator (rehabilitation systems)',
+      'VR Showcase // NFT Gallery',
     ],
     details: {
       price: 830,
@@ -118,13 +117,14 @@ export const services: Service[] = [
   },
   {
     type: 'UXUI',
-    name: 'UX/ UI',
+    name: 'UX/UI',
     shortName: 'UX/UI',
-    description: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam quae veniam quas, labore velit rem minus quasi doloremque eum. Adipisci aliquam laboriosam rerum perspiciatis illo id veniam iste blanditiis ullam.`,
+    description: `we specialize in crafting intuitive and visually appealing interfaces that enhance user experience. Let us help you create a seamless and engaging digital experience that keeps your customers coming back for more`,
     services: [
-      'native apps for ios & android',
-      'zero code solutions for a start ups',
-      'crossplatforming solutions on flutter',
+      `interface design development for 
+      mobile and web application`,
+      `redesign and improve the user 
+      experience of your current sites`,
     ],
     details: {
       price: 830,

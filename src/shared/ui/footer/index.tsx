@@ -2,12 +2,8 @@ import { styled } from '@mui/material/styles'
 
 import { getMenuSchema } from 'entities/menu/data'
 
-import {
-  COMPANY_EMAIL,
-  COMPANY_PHONE,
-} from 'shared/config/environment-variables'
+import { COMPANY_EMAIL, COMPANY_TG } from 'shared/config/environment-variables'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
-import { getPhoneWithoutFormatting } from 'shared/lib/get-phone-without-formatting'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { useGetTime } from 'shared/lib/use-get-time'
 import { maxWidth, spaceArr } from 'shared/theme'
@@ -61,9 +57,7 @@ export const Footer = ({ projectsCount }: Props) => {
           } (GTM +8)`}</Time>
         </BlockWithCity>
         <BlockWithPhone>
-          <Phone href={`tel:${getPhoneWithoutFormatting(COMPANY_PHONE)}`}>
-            {COMPANY_PHONE}
-          </Phone>
+          <Phone href={COMPANY_TG}>tg: @workshop_easy</Phone>
           {!showSeparateEmail && (
             <Email href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</Email>
           )}
@@ -75,7 +69,7 @@ export const Footer = ({ projectsCount }: Props) => {
         )}
       </ContactInfo>
       {showMobileSocial && <SocialMediaStyled size="medium" />}
-      <Copyright>Copyright © 2022 . made by EASY.cg</Copyright>
+      <Copyright>copyright © 2018-2022 . made by EASY</Copyright>
     </Container>
   )
 }

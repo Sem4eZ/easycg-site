@@ -42,14 +42,15 @@ const HomePage = () => {
           ]}
           description={[
             <>
-              let us quess! are you looking for a mobile app or website?
+              let us guess! are you looking for a mobile app or website?&nbsp;
               <b>it’s for us</b>
             </>,
             <>
-              AR/VR? wait for it... <b>we can do it, too</b>
+              AR/VR? wait for it... <b>we can do that too</b>
             </>,
             <>
-              we create <b>simple solutions</b> for serious buisness since 2018
+              we create <b>simple solutions</b> for serious businesses since
+              2018
             </>,
           ]}
           content={

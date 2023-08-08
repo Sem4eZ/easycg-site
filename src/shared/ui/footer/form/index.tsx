@@ -78,7 +78,7 @@ export const ProjectForm = () => {
           style={{ justifySelf: 'start' }}
           type="submit"
           variant="contained">
-          Sent us a message
+          Send us a message
         </ButtonRipple>
       </Form>
 

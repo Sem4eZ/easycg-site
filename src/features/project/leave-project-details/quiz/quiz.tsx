@@ -33,7 +33,7 @@ export const getQuiz = ({ register, errors }: Props) => {
     <Announcement
       title={
         <>
-          hi there! <br /> lets talk?
+          hi there! <br /> let's talk?
         </>
       }
       description={

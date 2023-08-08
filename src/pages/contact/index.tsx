@@ -15,7 +15,7 @@ const ContactPage = () => (
   <PageStyled
     title={
       <>
-        lets do something
+        let's do something
         <br />
         legendary
       </>
