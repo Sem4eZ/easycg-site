@@ -51,7 +51,7 @@ export const ArticleCard = ({
                     dateTime={`${date.getFullYear()}-${
                       date.getMonth() + 1
                     }-${date.getDate()}`}>
-                    {date.getFullYear()}
+                    {date.getMonth() + 1}-{date.getFullYear()}
                   </time>,
                   type,
                 ]}

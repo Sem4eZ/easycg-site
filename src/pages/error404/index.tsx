@@ -42,7 +42,7 @@ const Error404Page = () => {
           <img src={getImagePath(image, 1920)} alt={image.alt} />
         </Picture>
         <Container>
-          <XXXLFont>404</XXXLFont>
+          <XXXLFont>opps, 404</XXXLFont>
           <LinkStyled to={PAGES.HomePage}>
             <ComeBackText>come back</ComeBackText>&nbsp;
             <LineLink>

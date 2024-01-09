@@ -3,6 +3,10 @@ import { Route, Routes } from 'react-router'
 
 import { PAGES } from 'shared/config'
 
+import AdminLoginPage from './admin/login'
+import Dashboard from './admin/posts'
+import Projects from './admin/projects'
+
 const HomePage = lazy(() => import('./home'))
 
 const ProjectsPage = lazy(() => import('./projects'))
@@ -38,6 +42,9 @@ const Pages = () => (
     <Route path={PAGES.Contact} element={<ContactPage />} />
 
     <Route path={PAGES.Components} element={<ComponentsPage />} />
+    <Route path={PAGES.AdminLogin} element={<AdminLoginPage />} />
+    <Route path={PAGES.AdminProjects} element={<Projects />} />
+    <Route path={PAGES.Dashboard} element={<Dashboard />} />
 
     <Route path="*" element={<Error404Page />} />
   </Routes>

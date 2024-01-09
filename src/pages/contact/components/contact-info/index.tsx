@@ -17,11 +17,11 @@ const data: {
   },
   {
     label: 'tg',
-    value: <a href={COMPANY_TG}>tg: @workshop_easy</a>,
-    remark:
-      'now we are based in Bali (Indonesia) and take projects all over the world',
+    value: <a href={COMPANY_TG}>@workshop_easy</a>,
+    // remark:
+    //   'now we are based in Bali (Indonesia) and take projects all over the world',
   },
-  { label: 'location*', value: 'worldwide' },
+  // { label: 'location*', value: 'worldwide' },
   {
     label: 'work time*',
     value: '10 am to 7 pm',

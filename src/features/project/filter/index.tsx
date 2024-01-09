@@ -84,6 +84,7 @@ export const useProjectsFilter = ({ initial }: Props) => {
             {projectTags.map(projectTag => {
               return (
                 <FilterTag
+                  key={projectTag}
                   active={checkIsActive(projectTag)}
                   onClick={handleClick(projectTag)}>
                   {projectTag}

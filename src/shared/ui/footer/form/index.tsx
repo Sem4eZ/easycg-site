@@ -62,15 +62,15 @@ export const ProjectForm = () => {
     <FormProvider {...formMethods}>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FieldsContainer>
-          <Input id="name" label="What’s your name?" name="name" />
+          <Input id="name" label="what’s your name?" name="name" />
 
-          <Input id="company" label="Company’s name" name="company" />
+          <Input id="company" label="company’s name" name="company" />
 
           <PhoneInput name="phone" />
 
-          <Input id="email" type="email" label="E-mail" name="email" />
+          <Input id="email" type="email" label="e-mail" name="email" />
 
-          <Input id="comment" label="Comment (Optional)" name="comment" />
+          <Input id="comment" label="comment" name="comment" />
         </FieldsContainer>
 
         <ButtonRipple

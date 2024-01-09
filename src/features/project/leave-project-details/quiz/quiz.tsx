@@ -55,7 +55,7 @@ export const getQuiz = ({ register, errors }: Props) => {
         <Input
           fullWidth
           id="name"
-          label="type your name"
+          label="your name"
           variant="standard"
           {...register('name')}
         />

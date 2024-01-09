@@ -38,7 +38,10 @@ const FILTER: {
     title: 'VR',
     value: ['VR'],
   },
-  { title: 'UX/UI', value: ['UXUI'] },
+  {
+    title: 'UX/UI',
+    value: ['UXUI'],
+  },
 ]
 
 interface Props {

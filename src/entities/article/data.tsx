@@ -5,12 +5,12 @@ const IMAGES_PATH = '/assets/images/articles/'
 export const articles: Article[] = [
   {
     id: '1',
-    name: '10 UI/UX trends',
+    name: '11 UI/UX trends',
     description:
       '*name* likes playing XBOX and read digital news, just see, what’s a beautiful face',
     image: {
       path: IMAGES_PATH,
-      name: 'article-1',
+      name: 'article-1-detail-preview',
       fileType: 'jpg',
       alt: 'abstract man',
     },
@@ -18,7 +18,7 @@ export const articles: Article[] = [
     type: 'UI/UX design',
     detailPreviewImage: {
       path: IMAGES_PATH,
-      name: 'article-1-detail-preview',
+      name: 'article-1',
       fileType: 'jpg',
       alt: 'Brand Guideline book',
     },
@@ -37,7 +37,7 @@ export const articles: Article[] = [
             work of the designer is centered around the “users — product”
             interaction. It means we should understand if our key audience is
             satisfied with the product&nbsp;
-            <a href="#section2">Section 2</a>
+            <a href="#section2">Section 222</a>
           </p>
           <p>
             The needs of real users matter, not what you think about it. You may
@@ -84,7 +84,7 @@ export const articles: Article[] = [
       fileType: 'jpg',
       alt: 'abstract man',
     },
-    date: new Date('2021-11-12'),
+    date: new Date('2020-04-12'),
     type: 'UI/UX design',
     detailPreviewImage: {
       path: IMAGES_PATH,

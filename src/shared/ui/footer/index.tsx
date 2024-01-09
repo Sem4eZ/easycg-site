@@ -57,7 +57,7 @@ export const Footer = ({ projectsCount }: Props) => {
           } (GTM +8)`}</Time>
         </BlockWithCity>
         <BlockWithPhone>
-          <Phone href={COMPANY_TG}>tg: @workshop_easy</Phone>
+          <Phone href={COMPANY_TG}>@workshop_easy</Phone>
           {!showSeparateEmail && (
             <Email href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</Email>
           )}
@@ -69,7 +69,7 @@ export const Footer = ({ projectsCount }: Props) => {
         )}
       </ContactInfo>
       {showMobileSocial && <SocialMediaStyled size="medium" />}
-      <Copyright>copyright © 2018-2022 . made by EASY</Copyright>
+      <Copyright>copyright © 2018-2023 . made by EASY</Copyright>
     </Container>
   )
 }

@@ -6,13 +6,12 @@ const VIDEOS_PATH = '/assets/videos/projects/'
 export const projects: Project[] = [
   {
     id: '1',
-    name: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit.',
-    description:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
+    name: '1 проект',
+    description: 'описание нашего проекта 1',
     image: {
       path: IMAGES_PATH,
-      name: 'card',
-      fileType: 'jpg',
+      name: '1',
+      fileType: 'png',
       alt: 'smartphone on table',
     },
     date: new Date('2021-11-12'),
@@ -59,7 +58,7 @@ export const projects: Project[] = [
     id: '2',
     name: 'Project2',
     description:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
+      'описание нашего проекта 2 длинное описание капец какое длинное очень',
     image: {
       path: IMAGES_PATH,
       name: 'card2',

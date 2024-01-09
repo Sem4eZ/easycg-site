@@ -8,29 +8,31 @@ import { maxWidth, spaceArr } from 'shared/theme'
 import { TextOutlined } from 'shared/ui/outlined-text'
 import { Page } from 'shared/ui/page-templates'
 
-const BlogPage = () => (
-  <Page
-    title="blog."
-    decorationText={
-      <TextOutlined viewBoxWidth={806} type="header">
-        05
-      </TextOutlined>
-    }>
-    <Content>
-      {articles.map(article => (
-        <ArticleCard
-          key={article.id}
-          id={article.id}
-          name={article.name}
-          image={article.image}
-          date={article.date}
-          description={article.description}
-          type={article.type}
-        />
-      ))}
-    </Content>
-  </Page>
-)
+const BlogPage = () => {
+  return (
+    <Page
+      title="blog."
+      decorationText={
+        <TextOutlined viewBoxWidth={806} type="header">
+          05
+        </TextOutlined>
+      }>
+      <Content>
+        {articles.map(post => (
+          <ArticleCard
+            key={post.id}
+            id={post.id}
+            name={post.name}
+            image={post.image}
+            date={post.date}
+            description={post.description}
+            type={post.type}
+          />
+        ))}
+      </Content>
+    </Page>
+  )
+}
 
 export default BlogPage
 
