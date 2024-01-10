@@ -1,7 +1,9 @@
 import { styled } from '@mui/material/styles'
+import { doc, getDoc } from 'firebase/firestore'
+import moment from 'moment'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { articles } from 'entities/article/data'
 import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
 
 import { PAGES } from 'shared/config'
@@ -10,22 +12,52 @@ import { articleSpaceArr, maxWidth, spaceArr } from 'shared/theme'
 import { TextOutlined } from 'shared/ui/outlined-text'
 import { Page } from 'shared/ui/page-templates'
 
+import { db } from '../../shared/firebase'
+
 const PostPage = () => {
   const navigate = useNavigate()
   const { id } = useParams()
 
-  const article = articles.find(article => article.id === id)
+  const [article, setArticle] = useState<any>(null)
+
+  useEffect(() => {
+    const fetchArticle = async () => {
+      try {
+        if (!id) {
+          console.error('ID is undefined')
+          navigate(PAGES.NotFoundPage)
+          return
+        }
+
+        const postDoc = await getDoc(doc(db, 'posts', id))
+        console.log('Post Doc:', postDoc.data())
+
+        if (postDoc.exists()) {
+          setArticle({ id: postDoc.id, ...postDoc.data() })
+        } else {
+          navigate(PAGES.NotFoundPage)
+        }
+      } catch (error) {
+        console.error('Error fetching article:', error)
+      }
+    }
+
+    fetchArticle()
+  }, [id, navigate])
 
   if (!article) {
-    navigate(PAGES.NotFoundPage)
-    return <></>
+    return <div>Loading...</div>
   }
 
-  const imageSrcSet = getImageSrcSetByImageObj(article.detailPreviewImage)
+  console.log('Article:', article)
+
+  const imageSrcSet = getImageSrcSetByImageObj(
+    article?.detailPreviewImage || {},
+  )
 
   return (
     <PageStyled
-      title={article.name}
+      title={article?.name || ''}
       titleSize="small"
       decorationText={
         <TextOutlined viewBoxWidth={1480} type="headerSmall">
@@ -34,35 +66,31 @@ const PostPage = () => {
       }
       subtitleContent={
         <Remark>
-          {article.remark.map(remark => (
-            <p key={remark}>{remark}</p>
-          ))}
+          <>{article?.remark}</>
         </Remark>
       }
       type="article">
       <PictureContainer>
         <Picture>
-          {imageSrcSet.map(imageSrcSetData => {
-            return (
-              <source
-                key={imageSrcSetData.path}
-                srcSet={imageSrcSetData.path}
-                media={imageSrcSetData.media}></source>
-            )
-          })}
+          {imageSrcSet.map((imageSrcSetData: any) => (
+            <source
+              key={imageSrcSetData.path}
+              srcSet={imageSrcSetData.path}
+              media={imageSrcSetData.media}></source>
+          ))}
           <img
-            src={getImagePath(article.detailPreviewImage, 1920)}
-            alt={article.detailPreviewImage.alt}
+            src={getImagePath(article?.detailPreviewImage || {}, 1920)}
+            alt={article?.detailPreviewImage?.alt || ''}
           />
         </Picture>
       </PictureContainer>
-      <Content>{article.content}</Content>
+
+      <Content>{article?.content}</Content>
     </PageStyled>
   )
 }
 
 export default PostPage
-
 const Content = styled('article')(({ theme }) => ({
   maxWidth: maxWidth,
   marginLeft: 'auto',

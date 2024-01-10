@@ -7,7 +7,7 @@ export interface Image {
 
 const IMAGE_SIZES = [400, 800, 1200, 1600]
 
-export const getImageSrcSetByImageObj = (image: Image) => {
+export const getImageSrcSetByImageObj = (image: any) => {
   return IMAGE_SIZES.map(size => {
     return {
       path: getImagePath(image, size),
@@ -16,6 +16,8 @@ export const getImageSrcSetByImageObj = (image: Image) => {
   })
 }
 
-export const getImagePath = (image: Image, size: number) => {
-  return `${image.path}${image.name}-${size}w.${image.fileType}`
+export const getImagePath = (image: any, size: number) => {
+  return image?.path
+    ? `${image.path}${image.name}-${size}w.${image.fileType}`
+    : image
 }

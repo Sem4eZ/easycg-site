@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import moment from 'moment'
 import { Link } from 'react-router-dom'
 
 import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
@@ -14,7 +15,6 @@ type Props = Pick<
   Article,
   'id' | 'name' | 'date' | 'description' | 'image' | 'type'
 >
-
 export const ArticleCard = ({
   id,
   name,
@@ -26,7 +26,7 @@ export const ArticleCard = ({
   const imageSrcSet = getImageSrcSetByImageObj(image)
   return (
     <li>
-      <Container to={`${PAGES.Blog}/${id}`}>
+      <Container to={`/blog/${id}`}>
         <article>
           <ImageContainer>
             <Picture>
@@ -38,7 +38,6 @@ export const ArticleCard = ({
                     media={imageSrcSetData.media}></source>
                 )
               })}
-
               <img src={getImagePath(image, 1920)} alt={image.alt} />
             </Picture>
             <Decorationfilter className="decorationFilter" />
@@ -47,11 +46,8 @@ export const ArticleCard = ({
             <Header>
               <TagsStyled
                 items={[
-                  <time
-                    dateTime={`${date.getFullYear()}-${
-                      date.getMonth() + 1
-                    }-${date.getDate()}`}>
-                    {date.getMonth() + 1}-{date.getFullYear()}
+                  <time dateTime={moment(date).format('YYYY-MM-DD')}>
+                    {moment(date).format('YYYY-MM-DD')}
                   </time>,
                   type,
                 ]}

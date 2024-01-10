@@ -1,6 +1,14 @@
 import { styled } from '@mui/material/styles'
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  updateDoc,
+} from 'firebase/firestore'
+import { useEffect, useState } from 'react'
 
-import { articles } from 'entities/article/data'
 import { ArticleCard } from 'entities/article/ui/article-card'
 
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
@@ -8,7 +16,25 @@ import { maxWidth, spaceArr } from 'shared/theme'
 import { TextOutlined } from 'shared/ui/outlined-text'
 import { Page } from 'shared/ui/page-templates'
 
+import { db } from '../../shared/firebase'
+
 const BlogPage = () => {
+  const [posts, setPosts] = useState([])
+
+  const fetchData = async () => {
+    const snapshot = await getDocs(collection(db, 'posts'))
+    const postsData = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    }))
+    console.log(postsData)
+    setPosts(postsData as any)
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
   return (
     <Page
       title="blog."
@@ -18,15 +44,15 @@ const BlogPage = () => {
         </TextOutlined>
       }>
       <Content>
-        {articles.map(post => (
+        {posts.map((article: any) => (
           <ArticleCard
-            key={post.id}
-            id={post.id}
-            name={post.name}
-            image={post.image}
-            date={post.date}
-            description={post.description}
-            type={post.type}
+            key={article.id}
+            id={article.id}
+            name={article.name}
+            image={article.image}
+            date={article.date}
+            description={article.description}
+            type={article.type}
           />
         ))}
       </Content>
