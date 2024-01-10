@@ -68,7 +68,6 @@ function Projects() {
       id: doc.id,
       ...doc.data(),
     }))
-    console.log(postsData)
     setPosts(postsData as any)
   }
 
@@ -79,7 +78,6 @@ function Projects() {
   React.useEffect(() => {
     if (quill) {
       quill.on('text-change', (delta: any, oldDelta: any, source: any) => {
-        console.log('Text change!')
         setContent(quill.root.innerHTML)
       })
     }
@@ -88,7 +86,6 @@ function Projects() {
   React.useEffect(() => {
     if (newQuill) {
       newQuill.on('text-change', (delta: any, oldDelta: any, source: any) => {
-        console.log('Text change!')
         setNewContent(newQuill.root.innerHTML)
       })
     }
@@ -135,7 +132,6 @@ function Projects() {
     await updateDoc(doc(db, 'posts', id), newPostData)
     await fetchData()
   }
-  console.log(setPosts)
 
   return (
     <Container maxWidth={'md' as any} style={{ marginTop: 20 }}>

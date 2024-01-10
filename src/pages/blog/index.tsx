@@ -27,7 +27,6 @@ const BlogPage = () => {
       id: doc.id,
       ...doc.data(),
     }))
-    console.log(postsData)
     setPosts(postsData as any)
   }
 

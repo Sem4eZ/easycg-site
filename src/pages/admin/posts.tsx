@@ -68,7 +68,6 @@ function Posts() {
       ...doc.data(),
     }))
     setPosts(postsData as any)
-    console.log(postsData)
   }
 
   useEffect(() => {
@@ -94,7 +93,20 @@ function Posts() {
   const handleClose = () => {
     setCreatePostModalOpen(false)
   }
+
   const handleCreatePost = async (newPost: any) => {
+    if (
+      !newPost.name ||
+      !newPost.description ||
+      !newPost.image ||
+      !newPost.type ||
+      !newPost.detailPreviewImage ||
+      !newPost.remark
+    ) {
+      alert('Все поля должны быть заполнены')
+      return
+    }
+
     const sanitizedContent = DOMPurify.sanitize(newPost.content)
 
     await addDoc(collection(db, 'posts'), {
@@ -104,7 +116,7 @@ function Posts() {
     })
     await fetchData()
 
-    // Reset form fields
+    // Сброс значений полей формы
     setContent('')
     setName('')
     setDescription('')
@@ -113,7 +125,7 @@ function Posts() {
     setDetailPreviewImage('')
     setRemark('')
 
-    // Close the modal
+    // Закрытие модального окна
     handleClose()
   }
 
@@ -163,7 +175,7 @@ function Posts() {
           <Modal.Title>Новый пост</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label htmlFor="name">Name</Form.Label>
+          <Form.Label htmlFor="name">Title</Form.Label>
           <Form.Control
             className="mb-3"
             type="text"
@@ -173,6 +185,7 @@ function Posts() {
             onInput={event => {
               setName((event.target as any).value!)
             }}
+            required
           />
 
           <Form.Label htmlFor="description">Description</Form.Label>
@@ -185,6 +198,7 @@ function Posts() {
             onInput={event => {
               setDescription((event.target as any).value!)
             }}
+            required
           />
 
           <Form.Label htmlFor="img">Image</Form.Label>
@@ -197,6 +211,7 @@ function Posts() {
             onInput={event => {
               setImage((event.target as any).value!)
             }}
+            required
           />
 
           <Form.Label htmlFor="type">Type</Form.Label>
@@ -209,6 +224,7 @@ function Posts() {
             onInput={event => {
               setType((event.target as any).value!)
             }}
+            required
           />
 
           <Form.Label htmlFor="detail preview image">
@@ -223,6 +239,7 @@ function Posts() {
             onInput={event => {
               setDetailPreviewImage((event.target as any).value!)
             }}
+            required
           />
 
           <Form.Label htmlFor="remark">Remark</Form.Label>
@@ -235,6 +252,7 @@ function Posts() {
             onInput={event => {
               setRemark((event.target as any).value!)
             }}
+            required
           />
 
           <div ref={quillRef} />
