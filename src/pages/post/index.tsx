@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import DOMPurify from 'dompurify'
 import { doc, getDoc } from 'firebase/firestore'
 import moment from 'moment'
 import { useEffect, useState } from 'react'
@@ -24,13 +25,11 @@ const PostPage = () => {
     const fetchArticle = async () => {
       try {
         if (!id) {
-          console.error('ID is undefined')
           navigate(PAGES.NotFoundPage)
           return
         }
 
         const postDoc = await getDoc(doc(db, 'posts', id))
-        console.log('Post Doc:', postDoc.data())
 
         if (postDoc.exists()) {
           setArticle({ id: postDoc.id, ...postDoc.data() })
@@ -48,8 +47,6 @@ const PostPage = () => {
   if (!article) {
     return <div>Loading...</div>
   }
-
-  console.log('Article:', article)
 
   const imageSrcSet = getImageSrcSetByImageObj(
     article?.detailPreviewImage || {},
@@ -74,7 +71,7 @@ const PostPage = () => {
         <Picture>
           {imageSrcSet.map((imageSrcSetData: any) => (
             <source
-              key={imageSrcSetData.path}
+              key={`${imageSrcSetData.path}_${id}`}
               srcSet={imageSrcSetData.path}
               media={imageSrcSetData.media}></source>
           ))}
@@ -85,7 +82,14 @@ const PostPage = () => {
         </Picture>
       </PictureContainer>
 
-      <Content>{article?.content}</Content>
+      <Content style={{ marginTop: 50 }}>
+        {/* Use dangerouslySetInnerHTML to render sanitized HTML content */}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(article?.content || ''),
+          }}
+        />
+      </Content>
     </PageStyled>
   )
 }
@@ -105,7 +109,7 @@ const Content = styled('article')(({ theme }) => ({
   '& h2': {
     fontWeight: 700,
     ...getBreakpointsStylesByArray(theme, {
-      fontSize: [25, null, null, null, null, null, 42, null, 68],
+      fontSize: [25, null, null, null, null, null, 38, null, 68],
       lineHeight: [30, null, null, null, null, null, 51, null, 83],
       marginTop: [36, null, 40, null, 56, null, 72],
       marginBottom: [36, null, 40, null, 56, null, 72],
@@ -130,34 +134,33 @@ const Content = styled('article')(({ theme }) => ({
 }))
 
 const PictureContainer = styled('div')(({ theme }) => ({
-  backgroundColor: '#cccccc',
-  ...getBreakpointsStylesByArray(theme, {
-    height: [270, null, null, 474, 499, null, 1029],
-  }),
+  width: '100wh',
+  display: 'flex',
+  justifyContent: 'center', // Центрируем содержимое по горизонтали
+  alignItems: 'center', // Центрируем содержимое по вертикали
+  height: '100vh', // Высота экрана
+  overflow: 'hidden', // Обрезаем избыточное содержимое
 }))
 
 const Picture = styled('picture')(({ theme }) => ({
-  maxWidth: maxWidth,
+  maxWidth: '100%',
   marginLeft: 'auto',
   marginRight: 'auto',
   height: '100%',
   width: '100%',
-  objectFit: 'contain',
+  objectFit: 'cover',
   '& img': {
     height: '100%',
     width: '100%',
-    objectFit: 'contain',
+    objectFit: 'cover',
   },
-  ...getBreakpointsStylesByArray(theme, {
-    paddingLeft: spaceArr,
-    paddingRight: spaceArr,
-  }),
+  ...getBreakpointsStylesByArray(theme, {}),
 }))
 
 const Remark = styled('div')(({ theme }) => ({
   fontWeight: 700,
   ...getBreakpointsStylesByArray(theme, {
-    fontSize: [16, null, null, null, null, null, 42],
+    fontSize: [16, null, null, null, null, null, 32],
     lineHeight: [19, null, null, null, null, null, 51],
     marginTop: [8, 0, null, 8, 0, null, 64, null, 24, 56],
     color: [

@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/material'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import DOMPurify from 'dompurify'
 import {
   addDoc,
   collection,
@@ -94,12 +95,16 @@ function Posts() {
     setCreatePostModalOpen(false)
   }
   const handleCreatePost = async (newPost: any) => {
+    const sanitizedContent = DOMPurify.sanitize(newPost.content)
+
     await addDoc(collection(db, 'posts'), {
       ...newPost,
+      content: sanitizedContent,
       date: new Date().toISOString(),
     })
     await fetchData()
 
+    // Reset form fields
     setContent('')
     setName('')
     setDescription('')
@@ -107,6 +112,9 @@ function Posts() {
     setType('')
     setDetailPreviewImage('')
     setRemark('')
+
+    // Close the modal
+    handleClose()
   }
 
   const onNewPost = async () => {
