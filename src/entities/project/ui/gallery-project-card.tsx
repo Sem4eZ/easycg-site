@@ -28,7 +28,6 @@ export const GalleryProjectCard = ({
 }: Props) => {
   const servicesTypeArray = [...servicesType].join('')
   const imageSrcSet = getImageSrcSetByImageObj(image)
-  console.log('servicesTypeArray:', servicesTypeArray) // Добавим вывод в консоль
 
   return (
     <Container>

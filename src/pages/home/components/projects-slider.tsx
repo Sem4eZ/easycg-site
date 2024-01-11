@@ -1,18 +1,20 @@
 import { Button, styled } from '@mui/material'
-import { useRef } from 'react'
+import { collection, getDocs } from 'firebase/firestore'
+import { useEffect, useRef } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 
 import { projects } from 'entities/project/data'
+import { Project } from 'entities/project/types'
 import { ProjectCard } from 'entities/project/ui/project-card'
 
 import { PAGES } from 'shared/config'
+import { db } from 'shared/firebase'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { maxWidth, spaceArr, spaceObj } from 'shared/theme'
 import { XLFont } from 'shared/ui/typography'
-
-const topProjects = projects.slice(0, 6)
 
 export const MainPageProjectsSlider = () => {
   const navigate = useNavigate()
@@ -28,6 +30,23 @@ export const MainPageProjectsSlider = () => {
 
   const showAllProjectsButton = isDesktopS || isLaptop || isMacbook || isDesktop
   const showSlider = !isMobileSLandscape && !isMobileLandscape
+
+  const [projects, setProjects] = React.useState<Project[]>([]) // Состояние для хранения данных проектов
+
+  const fetchData = async () => {
+    const snapshot = await getDocs(collection(db, 'projects')) // Получаем данные из коллекции 'projects'
+    const projectsData = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    }))
+    setProjects(projectsData as Project[])
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const topProjects = projects.slice(0, 6)
 
   return (
     <Container ref={containerRef}>

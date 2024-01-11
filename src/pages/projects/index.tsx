@@ -162,7 +162,7 @@ const ProjectsPage = () => {
                   key={project.id}
                   id={project.id}
                   name={project.name}
-                  tags={project.tags}
+                  servicesType={project.servicesType}
                 />
               </li>
             ))}

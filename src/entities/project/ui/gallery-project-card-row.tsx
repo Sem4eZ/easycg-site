@@ -7,13 +7,13 @@ import { LFont, XLFont } from 'shared/ui/typography'
 
 import { Project } from '../types'
 
-type Props = Pick<Project, 'id' | 'name' | 'tags'>
+type Props = Pick<Project, 'id' | 'name' | 'servicesType'>
 
-export const GalleryProjectCardRow = ({ id, name, tags }: Props) => {
+export const GalleryProjectCardRow = ({ id, name, servicesType }: Props) => {
   return (
     <Link to={`${PAGES.Projects}/${id}`}>
       <Name>{name}</Name>
-      <Tags>{tags.join('/ ')}</Tags>
+      <Tags>{servicesType}</Tags>
     </Link>
   )
 }

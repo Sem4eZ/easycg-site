@@ -4,10 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { LeaveProjectDetails } from 'features/project/leave-project-details/quiz'
 
-import {
-  projectDetailsToPricesBlockItems,
-  projects,
-} from 'entities/project/data'
+import { projects } from 'entities/project/data'
 import { serviceTypeToIcon } from 'entities/services/data'
 
 import { PAGES } from 'shared/config'

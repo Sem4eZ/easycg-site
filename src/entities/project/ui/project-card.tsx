@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import moment from 'moment'
 import { Link as ReactRouterDomLink } from 'react-router-dom'
 
 import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
@@ -27,6 +28,7 @@ export const ProjectCard = ({
   servicesType,
 }: Props) => {
   const imageSrcSet = getImageSrcSetByImageObj(image)
+  const servicesTypeArray = [...servicesType].join('')
   return (
     <Container>
       <article>
@@ -50,11 +52,8 @@ export const ProjectCard = ({
               <HeaderLeftPart>
                 <TagsStyled
                   items={[
-                    <time
-                      dateTime={`${date.getFullYear()}-${
-                        date.getMonth() + 1
-                      }-${date.getDate()}`}>
-                      {date.getFullYear()}
+                    <time dateTime={moment(date).format('YYYY-MM-DD')}>
+                      {moment(date).format('YYYY-MM')}
                     </time>,
                     type,
                   ]}
@@ -62,11 +61,14 @@ export const ProjectCard = ({
                 <Name>{name}</Name>
               </HeaderLeftPart>
               <ServiceIcons>
-                {servicesType.map(serviceType => (
-                  <ServiceIcon key={serviceType}>
-                    {serviceTypeToIcon[serviceType]}
-                  </ServiceIcon>
-                ))}
+                <ServiceIcon
+                  key={servicesTypeArray as keyof typeof serviceTypeToIcon}>
+                  {
+                    serviceTypeToIcon[
+                      servicesTypeArray as keyof typeof serviceTypeToIcon
+                    ]
+                  }
+                </ServiceIcon>
               </ServiceIcons>
             </Header>
 

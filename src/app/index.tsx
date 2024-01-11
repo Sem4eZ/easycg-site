@@ -1,4 +1,9 @@
-import { CircularProgress, CssBaseline, ThemeProvider } from '@mui/material'
+import {
+  Box,
+  CircularProgress,
+  CssBaseline,
+  ThemeProvider,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Pages from 'pages'
 import { Suspense } from 'react'
@@ -24,7 +29,9 @@ function App() {
         <Suspense
           fallback={
             <LoaderContainer>
-              <CircularProgress />
+              <Box sx={{ display: 'flex' }}>
+                <CircularProgress />
+              </Box>
             </LoaderContainer>
           }>
           <Pages />

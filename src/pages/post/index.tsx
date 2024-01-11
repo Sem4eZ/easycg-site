@@ -1,8 +1,9 @@
+import { Box, CircularProgress } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import DOMPurify from 'dompurify'
 import { doc, getDoc } from 'firebase/firestore'
 import moment from 'moment'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
@@ -45,7 +46,13 @@ const PostPage = () => {
   }, [id, navigate])
 
   if (!article) {
-    return <div>Loading...</div>
+    return (
+      <div>
+        <LoaderContainer>
+          <CircularProgress />
+        </LoaderContainer>
+      </div>
+    )
   }
 
   const imageSrcSet = getImageSrcSetByImageObj(
@@ -95,6 +102,17 @@ const PostPage = () => {
 }
 
 export default PostPage
+
+const LoaderContainer = styled('div')(({ theme }) => ({
+  height: '100vh',
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: '30vh',
+  '& span': {
+    color: theme.palette.accent,
+  },
+}))
+
 const Content = styled('article')(({ theme }) => ({
   maxWidth: maxWidth,
   marginLeft: 'auto',

@@ -17,7 +17,7 @@ export const getMenuSchema = ({ projectsCount }: GetMenuSchema): MenuItem[] => {
       path: PAGES.HomePage,
     },
     {
-      title: 'work',
+      title: 'projects',
       path: PAGES.Projects,
       resourcesCount: projectsCount,
     },
