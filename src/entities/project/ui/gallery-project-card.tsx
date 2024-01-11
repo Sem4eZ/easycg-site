@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import moment from 'moment'
 import { Link as ReactRouterDomLink } from 'react-router-dom'
 
 import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
@@ -16,6 +17,7 @@ type Props = Pick<
   Project,
   'id' | 'name' | 'date' | 'image' | 'type' | 'servicesType'
 >
+
 export const GalleryProjectCard = ({
   id,
   name,
@@ -24,7 +26,10 @@ export const GalleryProjectCard = ({
   type,
   servicesType,
 }: Props) => {
+  const servicesTypeArray = [...servicesType].join('')
   const imageSrcSet = getImageSrcSetByImageObj(image)
+  console.log('servicesTypeArray:', servicesTypeArray) // Добавим вывод в консоль
+
   return (
     <Container>
       <article>
@@ -48,11 +53,8 @@ export const GalleryProjectCard = ({
               <HeaderLeftPart>
                 <TagsStyled
                   items={[
-                    <time
-                      dateTime={`${date.getFullYear()}-${
-                        date.getMonth() + 1
-                      }-${date.getDate()}`}>
-                      {date.getFullYear()}
+                    <time dateTime={moment(date).format('YYYY-MM-DD')}>
+                      {moment(date).format('YYYY-MM')}
                     </time>,
                     type,
                   ]}
@@ -60,11 +62,14 @@ export const GalleryProjectCard = ({
                 <Name>{name}</Name>
               </HeaderLeftPart>
               <ServiceIcons>
-                {servicesType.map(serviceType => (
-                  <ServiceIcon key={serviceType}>
-                    {serviceTypeToIcon[serviceType]}
-                  </ServiceIcon>
-                ))}
+                <ServiceIcon
+                  key={servicesTypeArray as keyof typeof serviceTypeToIcon}>
+                  {
+                    serviceTypeToIcon[
+                      servicesTypeArray as keyof typeof serviceTypeToIcon
+                    ]
+                  }
+                </ServiceIcon>
               </ServiceIcons>
             </Header>
           </Content>

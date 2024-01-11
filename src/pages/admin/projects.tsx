@@ -169,7 +169,7 @@ function Projects() {
           <Modal.Title>Новый проект</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label htmlFor="name">Title</Form.Label>
+          <Form.Label htmlFor="name">Name</Form.Label>
           <Form.Control
             className="mb-3"
             type="text"
@@ -268,7 +268,7 @@ function Projects() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label htmlFor="title">Title</Form.Label>
+          <Form.Label htmlFor="title">Name</Form.Label>
           <Form.Control
             className="mb-3"
             type="text"

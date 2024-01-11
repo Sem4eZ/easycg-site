@@ -1,11 +1,13 @@
 import { styled } from '@mui/material/styles'
-import { useMemo } from 'react'
+// Подключаем базу данных Firebase
+import { collection, getDocs } from 'firebase/firestore'
+import { useEffect, useMemo } from 'react'
+import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 
 import { useProjectsFilter } from 'features/project/filter'
 
-import { projects } from 'entities/project/data'
 import { Project } from 'entities/project/types'
 import { GalleryProjectCard } from 'entities/project/ui/gallery-project-card'
 import { GalleryProjectCardRow } from 'entities/project/ui/gallery-project-card-row'
@@ -17,6 +19,8 @@ import { spaceArr } from 'shared/theme'
 import { TextOutlined } from 'shared/ui/outlined-text'
 import { Page } from 'shared/ui/page-templates'
 
+import { db } from '../../shared/firebase'
+
 const ProjectsPage = () => {
   const { state } = useLocation()
   const { isMobile, isDesktopS, isLaptop, isMacbook, isDesktop } =
@@ -25,7 +29,23 @@ const ProjectsPage = () => {
   const { template: filterTemplate, filter } = useProjectsFilter({
     initial: state?.filter,
   })
+
   const { template: viewTemplate, view } = useProjectViewPicker()
+
+  const [projects, setProjects] = React.useState<Project[]>([]) // Состояние для хранения данных проектов
+
+  const fetchData = async () => {
+    const snapshot = await getDocs(collection(db, 'projects')) // Получаем данные из коллекции 'projects'
+    const projectsData = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    }))
+    setProjects(projectsData as Project[])
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   const filteredProjects = useMemo(() => {
     const filteredProjects: Project[] = []
@@ -50,7 +70,7 @@ const ProjectsPage = () => {
     }
 
     return filteredProjects
-  }, [filter])
+  }, [filter, projects])
 
   const showSlider =
     isMobile || isDesktopS || isLaptop || isMacbook || isDesktop
@@ -81,27 +101,13 @@ const ProjectsPage = () => {
             slideToClickedSlide
             slidesPerView={'auto'}
             breakpoints={{
-              320: {
-                spaceBetween: 16,
-              },
-              390: {
-                spaceBetween: 56,
-              },
-              768: {
-                spaceBetween: 48,
-              },
-              924: {
-                spaceBetween: 96,
-              },
-              1200: {
-                spaceBetween: 112,
-              },
-              1728: {
-                spaceBetween: 80,
-              },
-              1920: {
-                spaceBetween: 112,
-              },
+              320: { spaceBetween: 16 },
+              390: { spaceBetween: 56 },
+              768: { spaceBetween: 48 },
+              924: { spaceBetween: 96 },
+              1200: { spaceBetween: 112 },
+              1728: { spaceBetween: 80 },
+              1920: { spaceBetween: 112 },
             }}
             freeMode={{ enabled: true, sticky: false, momentumBounce: true }}
             onTouchEnd={swiper => {
@@ -114,58 +120,52 @@ const ProjectsPage = () => {
                 swiper.slideTo(swiper.activeIndex - 1)
               }
             }}>
-            {filteredProjects.map(project => {
-              return (
-                <SwiperSlide key={project.id} style={{ width: 'auto' }}>
-                  <GalleryProjectCard
-                    key={project.id}
-                    id={project.id}
-                    name={project.name}
-                    date={project.date}
-                    image={project.image}
-                    type={project.type}
-                    servicesType={project.servicesType}
-                  />
-                </SwiperSlide>
-              )
-            })}
+            {filteredProjects.map(project => (
+              <SwiperSlide key={project.id} style={{ width: 'auto' }}>
+                <GalleryProjectCard
+                  key={project.id}
+                  id={project.id}
+                  name={project.name}
+                  date={project.date}
+                  image={project.image}
+                  type={project.type}
+                  servicesType={project.servicesType}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
         )}
 
         {!showSlider && view === 'carousel' && (
           <List>
-            {filteredProjects.map(project => {
-              return (
-                <li>
-                  <GalleryProjectCard
-                    key={project.id}
-                    id={project.id}
-                    name={project.name}
-                    date={project.date}
-                    image={project.image}
-                    type={project.type}
-                    servicesType={project.servicesType}
-                  />
-                </li>
-              )
-            })}
+            {filteredProjects.map(project => (
+              <li key={project.id}>
+                <GalleryProjectCard
+                  key={project.id}
+                  id={project.id}
+                  name={project.name}
+                  date={project.date}
+                  image={project.image}
+                  type={project.type}
+                  servicesType={project.servicesType}
+                />
+              </li>
+            ))}
           </List>
         )}
 
         {view === 'list' && (
           <RowList>
-            {filteredProjects.map(project => {
-              return (
-                <li>
-                  <GalleryProjectCardRow
-                    key={project.id}
-                    id={project.id}
-                    name={project.name}
-                    tags={project.tags}
-                  />
-                </li>
-              )
-            })}
+            {filteredProjects.map(project => (
+              <li key={project.id}>
+                <GalleryProjectCardRow
+                  key={project.id}
+                  id={project.id}
+                  name={project.name}
+                  tags={project.tags}
+                />
+              </li>
+            ))}
           </RowList>
         )}
       </Content>
