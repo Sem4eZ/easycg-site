@@ -15,7 +15,6 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { FreeRightPartContainer } from 'shared/ui/containers'
 import { HorizontalList } from 'shared/ui/horizontal-list'
-import { ScrollableByOneList } from 'shared/ui/horizontal-list/scrollable-by-one'
 import { TextOutlined } from 'shared/ui/outlined-text'
 import { Page } from 'shared/ui/page-templates'
 import { PricesBlock } from 'shared/ui/prices-block'
@@ -79,8 +78,8 @@ const ProjectDetailPage = () => {
           </TextOutlined>
         }
         section="introduction"
-        title={[project.name, project.about]}
-        description={[<>{project.description}</>]}
+        title={[project.name]}
+        description={[<>{project.about}</>]}
         content={
           <HorizontalList
             title="we decided it will be"
@@ -97,12 +96,7 @@ const ProjectDetailPage = () => {
         }
         section="description"
         title={['native mobile apps for IOS & Android']}
-        content={
-          <PricesBlockStyled
-            items={projectDetailsToPricesBlockItems(project.details)}
-            remark={project.detailsRemark}
-          />
-        }
+        description={[<>{project.description}</>]}
         footer={
           showDescriptionFooter && (
             <LeaveProjectDetails
@@ -112,20 +106,6 @@ const ProjectDetailPage = () => {
           )
         }
       />
-
-      <FreeRightPartContainer
-        number={
-          <TextOutlined viewBoxWidth={794} animate>
-            03
-          </TextOutlined>
-        }
-        section="wait for it...photos!"
-        title={['here’s some pictures', `how locanic, isn't it?`]}
-        description={project.picturesRemark}
-        content=""
-      />
-
-      <ScrollableByOneList items={project.carousel} />
 
       <PagePagination currentProjectId={project.id} />
     </PageStyled>
