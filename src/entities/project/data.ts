@@ -109,7 +109,7 @@ export const projects: Project[] = [
     id: '3',
     name: 'Project3',
     description:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
+      'ЛОрем ипсум описание amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
     image: {
       path: IMAGES_PATH,
       name: 'card',
@@ -262,7 +262,7 @@ export const projects: Project[] = [
     id: '6',
     name: 'Project4',
     description:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
+      'ЛОрем ипсум описание amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
     image: {
       path: IMAGES_PATH,
       name: 'card',

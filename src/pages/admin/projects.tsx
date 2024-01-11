@@ -1,3 +1,4 @@
+// App.js
 import {
   Container,
   List,
@@ -7,7 +8,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import DOMPurify from 'dompurify'
 import {
   addDoc,
   collection,
@@ -17,7 +18,7 @@ import {
   updateDoc,
 } from 'firebase/firestore'
 import moment from 'moment'
-import 'quill/dist/quill.snow.css'
+// projects.tsx
 import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -28,8 +29,6 @@ import { NavLink } from 'react-router-dom'
 
 import { db } from '../../shared/firebase'
 
-NavLink
-
 export function truncateString(inputString: string, maxLength: number) {
   if (inputString.length > maxLength) {
     return inputString.substring(0, maxLength) + '...'
@@ -38,9 +37,7 @@ export function truncateString(inputString: string, maxLength: number) {
 }
 
 function Projects() {
-  const [posts, setPosts] = useState([])
-
-  // create post
+  const [projects, setProjects] = useState([])
   const [name, setName] = useState('')
   const [content, setContent] = useState('')
   const [description, setDescription] = useState('')
@@ -48,7 +45,6 @@ function Projects() {
   const [type, setType] = useState('')
   const [detailPreviewImage, setDetailPreviewImage] = useState('')
   const [remark, setRemark] = useState('')
-
   const [newName, setNewName] = useState('')
   const [newContent, setNewContent] = useState('')
   const [newDescription, setNewDescription] = useState('')
@@ -56,19 +52,18 @@ function Projects() {
   const [newType, setNewType] = useState('')
   const [newDetailPreviewImage, setNewDetailPreviewImage] = useState('')
   const [newRemark, setNewRemark] = useState('')
-  const [createPostModalOpen, setCreatePostModalOpen] = useState(false)
+  const [createProjectModalOpen, setCreateProjectModalOpen] = useState(false)
   const { quill, quillRef } = useQuill()
   const { quill: newQuill, quillRef: newContentQuillRef } = useQuill()
-
-  const [selectedPost, setSelectedPost] = useState<any>(null)
+  const [selectedProject, setSelectedProject] = useState<any>(null)
 
   const fetchData = async () => {
-    const snapshot = await getDocs(collection(db, 'posts'))
-    const postsData = snapshot.docs.map(doc => ({
+    const snapshot = await getDocs(collection(db, 'projects'))
+    const projectsData = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
     }))
-    setPosts(postsData as any)
+    setProjects(projectsData as any)
   }
 
   useEffect(() => {
@@ -92,11 +87,27 @@ function Projects() {
   }, [newQuill])
 
   const handleClose = () => {
-    setCreatePostModalOpen(false)
+    setCreateProjectModalOpen(false)
   }
-  const handleCreatePost = async (newPost: any) => {
-    await addDoc(collection(db, 'posts'), {
-      ...newPost,
+
+  const handleCreateProject = async (newProject: any) => {
+    if (
+      !newProject.name ||
+      !newProject.description ||
+      !newProject.image ||
+      !newProject.type ||
+      !newProject.detailPreviewImage ||
+      !newProject.remark
+    ) {
+      alert('Все поля должны быть заполнены')
+      return
+    }
+
+    const sanitizedContent = DOMPurify.sanitize(newProject.content)
+
+    await addDoc(collection(db, 'projects'), {
+      ...newProject,
+      content: sanitizedContent,
       date: new Date().toISOString(),
     })
     await fetchData()
@@ -108,10 +119,12 @@ function Projects() {
     setType('')
     setDetailPreviewImage('')
     setRemark('')
+
+    handleClose()
   }
 
-  const onNewPost = async () => {
-    await handleCreatePost({
+  const onNewProject = async () => {
+    await handleCreateProject({
       content: content,
       name: name,
       image,
@@ -123,13 +136,13 @@ function Projects() {
     handleClose()
   }
 
-  const deletePost = async (id: string) => {
-    await deleteDoc(doc(db, 'posts', id))
+  const deleteProject = async (id: string) => {
+    await deleteDoc(doc(db, 'projects', id))
     await fetchData()
   }
 
-  const updatePost = async (id: string, newPostData: any) => {
-    await updateDoc(doc(db, 'posts', id), newPostData)
+  const updateProject = async (id: string, newProjectData: any) => {
+    await updateDoc(doc(db, 'projects', id), newProjectData)
     await fetchData()
   }
 
@@ -147,16 +160,16 @@ function Projects() {
       <Button
         variant="primary"
         style={{ margin: 20 }}
-        onClick={() => setCreatePostModalOpen(true)}>
+        onClick={() => setCreateProjectModalOpen(true)}>
         Создать проект
       </Button>
 
-      <Modal show={createPostModalOpen} onHide={handleClose}>
+      <Modal show={createProjectModalOpen} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Новый пост</Modal.Title>
+          <Modal.Title>Новый проект</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label htmlFor="name">Name</Form.Label>
+          <Form.Label htmlFor="name">Title</Form.Label>
           <Form.Control
             className="mb-3"
             type="text"
@@ -166,6 +179,7 @@ function Projects() {
             onInput={event => {
               setName((event.target as any).value!)
             }}
+            required
           />
 
           <Form.Label htmlFor="description">Description</Form.Label>
@@ -178,6 +192,7 @@ function Projects() {
             onInput={event => {
               setDescription((event.target as any).value!)
             }}
+            required
           />
 
           <Form.Label htmlFor="img">Image</Form.Label>
@@ -190,6 +205,7 @@ function Projects() {
             onInput={event => {
               setImage((event.target as any).value!)
             }}
+            required
           />
 
           <Form.Label htmlFor="type">Type</Form.Label>
@@ -202,6 +218,7 @@ function Projects() {
             onInput={event => {
               setType((event.target as any).value!)
             }}
+            required
           />
 
           <Form.Label htmlFor="detail preview image">
@@ -216,6 +233,7 @@ function Projects() {
             onInput={event => {
               setDetailPreviewImage((event.target as any).value!)
             }}
+            required
           />
 
           <Form.Label htmlFor="remark">Remark</Form.Label>
@@ -228,6 +246,7 @@ function Projects() {
             onInput={event => {
               setRemark((event.target as any).value!)
             }}
+            required
           />
 
           <div ref={quillRef} />
@@ -236,15 +255,17 @@ function Projects() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={onNewPost}>
+          <Button variant="primary" onClick={onNewProject}>
             Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
 
-      <Modal show={!!selectedPost} onHide={() => setSelectedPost(null)}>
+      <Modal show={!!selectedProject} onHide={() => setSelectedProject(null)}>
         <Modal.Header closeButton>
-          <Modal.Title>{selectedPost ? selectedPost.title : ''}</Modal.Title>
+          <Modal.Title>
+            {selectedProject ? selectedProject.title : ''}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Label htmlFor="title">Title</Form.Label>
@@ -330,17 +351,18 @@ function Projects() {
           <Button
             variant="primary"
             onClick={async () => {
-              await updatePost(selectedPost?.id, {
-                content: newContent || selectedPost?.content,
-                name: newName || selectedPost?.name,
-                description: newDescription || selectedPost?.description,
-                image: newImage || selectedPost?.image,
-                type: newType || selectedPost?.type,
+              await updateProject(selectedProject?.id, {
+                content: newContent || selectedProject?.content,
+                name: newName || selectedProject?.name,
+                description: newDescription || selectedProject?.description,
+                image: newImage || selectedProject?.image,
+                type: newType || selectedProject?.type,
                 detailPreviewImage:
-                  newDetailPreviewImage || selectedPost?.newDetailPreviewImage,
-                remark: newRemark || selectedPost?.remark,
+                  newDetailPreviewImage ||
+                  selectedProject?.newDetailPreviewImage,
+                remark: newRemark || selectedProject?.remark,
               })
-              setSelectedPost(null)
+              setSelectedProject(null)
               await fetchData()
             }}>
             Save Changes
@@ -351,10 +373,10 @@ function Projects() {
       <Table responsive striped bordered hover>
         <thead>
           <tr>
-            <th># Поста</th>
+            <th># Проекта</th>
             <th>Name</th>
             <th>type</th>
-            <th>Превью картинка поста</th>
+            <th>Превью картинка проекта</th>
             <th>Картинка</th>
             <th>Date</th>
 
@@ -363,28 +385,31 @@ function Projects() {
           </tr>
         </thead>
         <tbody>
-          {posts.map((post: any, index: number) => (
-            <tr key={post.id}>
+          {projects.map((project: any, index: number) => (
+            <tr key={project.id}>
               <td>{index + 1}</td>
-              <td>{post.name}</td>
-              <td>{post.type}</td>
-              <td>{truncateString(post.detailPreviewImage, 30)}</td>
-              <td>{truncateString(post.image, 30)}</td>
-              <td>{moment(post.date).format('YYYY-MM-DD')}</td>
+              <td>{project.name}</td>
+              <td>{project.type}</td>
+              <td>
+                {project.detailPreviewImage &&
+                  truncateString(project.detailPreviewImage, 30)}
+              </td>
+              <td>{project.image && truncateString(project.image, 30)}</td>
+              <td>{moment(project.date).format('YYYY-MM-DD')}</td>
 
               <td>
                 <Button
                   variant="primary"
                   onClick={() => {
-                    setNewName(post.name)
-                    setNewContent(post.content)
-                    setNewDescription(post.description)
-                    setNewImage(post.image)
-                    setNewType(post.type)
-                    setNewRemark(post.remark)
+                    setNewName(project.name)
+                    setNewContent(project.content)
+                    setNewDescription(project.description)
+                    setNewImage(project.image)
+                    setNewType(project.type)
+                    setNewRemark(project.remark)
 
-                    setSelectedPost(post)
-                    newQuill.setContent(post.content)
+                    setSelectedProject(project)
+                    newQuill.setContent(project.content)
                   }}>
                   Edit
                 </Button>
@@ -393,7 +418,7 @@ function Projects() {
                 <Button
                   variant="danger"
                   onClick={async () => {
-                    await deletePost(post.id)
+                    await deleteProject(project.id)
                     await fetchData()
                   }}>
                   Delete
