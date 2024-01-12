@@ -5,7 +5,6 @@ import { Link as ReactRouterDomLink } from 'react-router-dom'
 import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
 import { serviceTypeToIcon } from 'entities/services/data'
 
-import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 import { Tags } from 'shared/ui/tags'
@@ -32,13 +31,13 @@ export const ProjectCard = ({
   return (
     <Container>
       <article>
-        <Link to={`${PAGES.Projects}/${id}`}>
+        <Link to={`projects/${id}`}>
           <ImageContainer>
             <picture>
               {imageSrcSet.map(imageSrcSetData => {
                 return (
                   <source
-                    key={imageSrcSetData.path}
+                    key={imageSrcSetData.media}
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )
@@ -53,7 +52,7 @@ export const ProjectCard = ({
                 <TagsStyled
                   items={[
                     <time dateTime={moment(date).format('YYYY-MM-DD')}>
-                      {moment(date).format('YYYY-MM')}
+                      {moment(date).format('YYYY-MM-DD')}
                     </time>,
                     type,
                   ]}

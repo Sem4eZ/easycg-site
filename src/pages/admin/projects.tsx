@@ -1,4 +1,5 @@
 // App.js
+import { Description } from '@mui/icons-material'
 import {
   Container,
   List,
@@ -57,6 +58,18 @@ function Projects() {
   const { quill: newQuill, quillRef: newContentQuillRef } = useQuill()
   const [selectedProject, setSelectedProject] = useState<any>(null)
 
+  const [servicesType, setServicesType] = useState('')
+  const [newServicesType, setNewServicesType] = useState('')
+
+  const [about, setAbout] = useState('')
+  const [newAbout, setNewAbout] = useState('')
+
+  const [titleDescription, setTitleDescription] = useState('')
+  const [newTitleDescription, setNewTitleDescription] = useState('')
+
+  const [titleAbout, setTitleAbout] = useState('')
+  const [newTitleAbout, setNewTitleAbout] = useState('')
+
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, 'projects'))
     const projectsData = snapshot.docs.map(doc => ({
@@ -97,7 +110,12 @@ function Projects() {
       !newProject.image ||
       !newProject.type ||
       !newProject.detailPreviewImage ||
-      !newProject.remark
+      !newProject.remark ||
+      !newProject.servicesType ||
+      !newProject.content ||
+      !newProject.about ||
+      !newProject.titleDescription || // Новое поле для создания проекта
+      !newProject.titleAbout // Новое поле для создания проекта
     ) {
       alert('Все поля должны быть заполнены')
       return
@@ -110,6 +128,7 @@ function Projects() {
       content: sanitizedContent,
       date: new Date().toISOString(),
     })
+
     await fetchData()
 
     setContent('')
@@ -119,6 +138,10 @@ function Projects() {
     setType('')
     setDetailPreviewImage('')
     setRemark('')
+    setServicesType('')
+    setAbout('')
+    setTitleDescription('') // Сброс нового поля
+    setTitleAbout('') // Сброс нового поля
 
     handleClose()
   }
@@ -132,6 +155,10 @@ function Projects() {
       description,
       type,
       detailPreviewImage,
+      servicesType,
+      about,
+      titleAbout,
+      titleDescription,
     })
     handleClose()
   }
@@ -142,7 +169,14 @@ function Projects() {
   }
 
   const updateProject = async (id: string, newProjectData: any) => {
-    await updateDoc(doc(db, 'projects', id), newProjectData)
+    await updateDoc(doc(db, 'projects', id), {
+      ...newProjectData,
+      servicesType: newServicesType || selectedProject?.servicesType,
+      about: newAbout || selectedProject?.about, // Добавлено поле about для обновления
+      titleDescription:
+        newTitleDescription || selectedProject?.titleDescription, // Новое поле для обновления
+      titleAbout: newTitleAbout || selectedProject?.titleAbout, // Новое поле для обновления
+    })
     await fetchData()
   }
 
@@ -178,6 +212,44 @@ function Projects() {
             value={name}
             onInput={event => {
               setName((event.target as any).value!)
+            }}
+            required
+          />
+          <Form.Label htmlFor="titleAbout">Title About</Form.Label>
+          <Form.Control
+            className="my-2"
+            type="text"
+            id="titleAbout"
+            aria-describedby="titleAbout"
+            value={titleAbout}
+            onInput={event => {
+              setTitleAbout((event.target as any).value!)
+            }}
+            required
+          />
+
+          <Form.Label htmlFor="about">About</Form.Label>
+          <Form.Control
+            className="my-2"
+            type="text"
+            id="about"
+            aria-describedby="about"
+            value={about}
+            onInput={event => {
+              setAbout((event.target as any).value!)
+            }}
+            required
+          />
+
+          <Form.Label htmlFor="titleDescription">Title Description</Form.Label>
+          <Form.Control
+            className="my-2"
+            type="text"
+            id="titleDescription"
+            aria-describedby="titleDescription"
+            value={titleDescription}
+            onInput={event => {
+              setTitleDescription((event.target as any).value!)
             }}
             required
           />
@@ -249,6 +321,18 @@ function Projects() {
             required
           />
 
+          <Form.Label htmlFor="servicesType">Services Type</Form.Label>
+          <Form.Control
+            className="my-2"
+            type="text"
+            id="servicesType"
+            aria-describedby="servicesType"
+            value={servicesType}
+            onInput={event => {
+              setServicesType((event.target as any).value!)
+            }}
+          />
+
           <div ref={quillRef} />
         </Modal.Body>
         <Modal.Footer>
@@ -278,6 +362,46 @@ function Projects() {
             onInput={event => {
               setNewName((event.target as any).value!)
             }}
+          />
+          <Form.Label htmlFor="newTitleAbout">New Title About</Form.Label>
+          <Form.Control
+            className="my-2"
+            type="text"
+            id="newTitleAbout"
+            aria-describedby="newTitleAbout"
+            value={newTitleAbout}
+            onInput={event => {
+              setNewTitleAbout((event.target as any).value!)
+            }}
+            required
+          />
+
+          <Form.Label htmlFor="about">About</Form.Label>
+          <Form.Control
+            className="my-2"
+            type="text"
+            id="about"
+            aria-describedby="about"
+            value={about}
+            onInput={event => {
+              setNewAbout((event.target as any).value!)
+            }}
+            required
+          />
+
+          <Form.Label htmlFor="newTitleDescription">
+            New Title Description
+          </Form.Label>
+          <Form.Control
+            className="my-2"
+            type="text"
+            id="newTitleDescription"
+            aria-describedby="newTitleDescription"
+            value={newTitleDescription}
+            onInput={event => {
+              setNewTitleDescription((event.target as any).value!)
+            }}
+            required
           />
 
           <Form.Label htmlFor="desc">Description</Form.Label>
@@ -339,6 +463,18 @@ function Projects() {
             value={newRemark}
             onInput={event => {
               setNewRemark((event.target as any).value!)
+            }}
+          />
+
+          <Form.Label htmlFor="newServicesType">New Services Type</Form.Label>
+          <Form.Control
+            className="my-3"
+            type="text"
+            id="newServicesType"
+            aria-describedby="newServicesType"
+            value={newServicesType}
+            onInput={event => {
+              setNewServicesType((event.target as any).value!)
             }}
           />
 

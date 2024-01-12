@@ -38,9 +38,12 @@ export const FreeRightPartContainer = forwardRef<HTMLDivElement, Props>(
           <Title ref={titleRef}>
             {title.map((line, j) => (
               <Fragment key={j}>
-                {line.split(' ').map((word, i) => (
-                  <span key={i} className={WORD_CLASS}>{`${word} `}</span>
-                ))}
+                {line &&
+                  line.split(' ').map((word, i) => (
+                    <span key={i} className={WORD_CLASS}>
+                      {`${word} `}
+                    </span>
+                  ))}
                 <br />
               </Fragment>
             ))}

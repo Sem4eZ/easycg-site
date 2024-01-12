@@ -1,10 +1,13 @@
 import { styled } from '@mui/material/styles'
+import { collection, getDocs } from 'firebase/firestore'
+import moment from 'moment'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { getImagePath } from 'entities/image/types'
 import { serviceTypeToIcon } from 'entities/services/data'
 
-import { PAGES } from 'shared/config'
+import { db } from 'shared/firebase'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { Tags } from 'shared/ui/tags'
 
@@ -23,18 +26,17 @@ export const ProjectPaginationCard = ({
   servicesType,
   image,
 }: Props) => {
+  const servicesTypeArray = [...servicesType].join('')
+
   return (
-    <Container to={`${PAGES.Projects}/${id}`}>
+    <Container to={`/projects/${id}`}>
       <Image src={getImagePath(image, 400)} alt={image.alt} />
       <Information>
         <div>
           <TagsStyled
             items={[
-              <time
-                dateTime={`${date.getFullYear()}-${
-                  date.getMonth() + 1
-                }-${date.getDate()}`}>
-                {date.getFullYear()}
+              <time dateTime={moment(date).format('YYYY-MM-DD')}>
+                {moment(date).format('YYYY-MM-DD')}
               </time>,
               type,
             ]}
@@ -42,11 +44,14 @@ export const ProjectPaginationCard = ({
           <Name>{name}</Name>
         </div>
         <ServiceIcons>
-          {servicesType.map(serviceType => (
-            <ServiceIcon key={serviceType}>
-              {serviceTypeToIcon[serviceType]}
-            </ServiceIcon>
-          ))}
+          <ServiceIcon
+            key={servicesTypeArray as keyof typeof serviceTypeToIcon}>
+            {
+              serviceTypeToIcon[
+                servicesTypeArray as keyof typeof serviceTypeToIcon
+              ]
+            }
+          </ServiceIcon>
         </ServiceIcons>
       </Information>
     </Container>

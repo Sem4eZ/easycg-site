@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
 
-import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { Tags } from 'shared/ui/tags'
 import { LFont } from 'shared/ui/typography'
@@ -30,10 +29,10 @@ export const ArticleCard = ({
         <article>
           <ImageContainer>
             <Picture>
-              {imageSrcSet.map(imageSrcSetData => {
+              {imageSrcSet.map((imageSrcSetData, index) => {
                 return (
                   <source
-                    key={imageSrcSetData.path}
+                    key={index}
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )

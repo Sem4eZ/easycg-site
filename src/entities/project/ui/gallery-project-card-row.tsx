@@ -11,7 +11,7 @@ type Props = Pick<Project, 'id' | 'name' | 'servicesType'>
 
 export const GalleryProjectCardRow = ({ id, name, servicesType }: Props) => {
   return (
-    <Link to={`${PAGES.Projects}/${id}`}>
+    <Link to={`/projects/${id}`}>
       <Name>{name}</Name>
       <Tags>{servicesType}</Tags>
     </Link>

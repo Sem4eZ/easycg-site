@@ -77,7 +77,7 @@ const ProjectsPage = () => {
 
   return (
     <Page
-      title="work"
+      title="projects"
       decorationText={
         <TextOutlined viewBoxWidth={800} type="headerSmall">
           02

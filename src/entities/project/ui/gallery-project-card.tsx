@@ -5,7 +5,6 @@ import { Link as ReactRouterDomLink } from 'react-router-dom'
 import { getImagePath, getImageSrcSetByImageObj } from 'entities/image/types'
 import { serviceTypeToIcon } from 'entities/services/data'
 
-import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
 import { Tags } from 'shared/ui/tags'
@@ -32,13 +31,13 @@ export const GalleryProjectCard = ({
   return (
     <Container>
       <article>
-        <Link to={`${PAGES.Projects}/${id}`}>
+        <Link to={`/projects/${id}`}>
           <ImageContainer>
             <picture>
-              {imageSrcSet.map(imageSrcSetData => {
+              {imageSrcSet.map((imageSrcSetData, index) => {
                 return (
                   <source
-                    key={imageSrcSetData.path}
+                    key={index} // Использование индекса массива как ключа
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )

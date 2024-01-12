@@ -9,25 +9,17 @@ export type ProjectTags = typeof projectTags[number]
 export interface Project {
   id: string
   name: string
+  titleDescription: string
   description: string
   image: Image
   date: Date
   servicesType: ServiceType[]
   type: string
+  titleAbout: string
   about: string
   details: Price
   detailsRemark: string
   picturesRemark: string[]
-  detailPreview:
-    | {
-        type: 'image'
-        image: Image
-      }
-    | { type: 'video'; url: string }
-  link: {
-    type: 'app' | 'site' | 'video'
-    url: string
-  }
-  carousel: Image[]
+  detailPreview: string
   tags: ProjectTags[]
 }
