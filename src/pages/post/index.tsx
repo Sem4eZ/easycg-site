@@ -90,7 +90,6 @@ const PostPage = () => {
       </PictureContainer>
 
       <Content style={{ marginTop: 50 }}>
-        {/* Use dangerouslySetInnerHTML to render sanitized HTML content */}
         <div
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(article?.content || ''),
