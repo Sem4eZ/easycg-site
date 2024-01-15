@@ -40,20 +40,20 @@ export function truncateString(inputString: string, maxLength: number) {
 function Projects() {
   const [projects, setProjects] = useState([])
   const [name, setName] = useState('')
-  const [content, setContent] = useState('')
+  // const [content, setContent] = useState('')
   const [description, setDescription] = useState('')
   const [image, setImage] = useState('')
   const [type, setType] = useState('')
-  const [remark, setRemark] = useState('')
+  // const [remark, setRemark] = useState('')
   const [newName, setNewName] = useState('')
-  const [newContent, setNewContent] = useState('')
+  // const [newContent, setNewContent] = useState('')
   const [newDescription, setNewDescription] = useState('')
   const [newImage, setNewImage] = useState('')
   const [newType, setNewType] = useState('')
-  const [newRemark, setNewRemark] = useState('')
+  // const [newRemark, setNewRemark] = useState('')
   const [createProjectModalOpen, setCreateProjectModalOpen] = useState(false)
-  const { quill, quillRef } = useQuill()
-  const { quill: newQuill, quillRef: newContentQuillRef } = useQuill()
+  // const { quill, quillRef } = useQuill()
+  // const { quill: newQuill, quillRef: newContentQuillRef } = useQuill()
   const [selectedProject, setSelectedProject] = useState<any>(null)
 
   const [newDetailPreview, setNewDetailPreview] = useState('')
@@ -84,21 +84,21 @@ function Projects() {
     fetchData()
   }, [])
 
-  React.useEffect(() => {
-    if (quill) {
-      quill.on('text-change', (delta: any, oldDelta: any, source: any) => {
-        setContent(quill.root.innerHTML)
-      })
-    }
-  }, [quill])
+  // React.useEffect(() => {
+  //   if (quill) {
+  //     quill.on('text-change', (delta: any, oldDelta: any, source: any) => {
+  //       setContent(quill.root.innerHTML)
+  //     })
+  //   }
+  // }, [quill])
 
-  React.useEffect(() => {
-    if (newQuill) {
-      newQuill.on('text-change', (delta: any, oldDelta: any, source: any) => {
-        setNewContent(newQuill.root.innerHTML)
-      })
-    }
-  }, [newQuill])
+  // React.useEffect(() => {
+  //   if (newQuill) {
+  //     newQuill.on('text-change', (delta: any, oldDelta: any, source: any) => {
+  //       setNewContent(newQuill.root.innerHTML)
+  //     })
+  //   }
+  // }, [newQuill])
 
   const handleClose = () => {
     setCreateProjectModalOpen(false)
@@ -111,9 +111,9 @@ function Projects() {
       !newProject.image ||
       !newProject.type ||
       !newProject.detailPreview ||
-      !newProject.remark ||
+      // !newProject.remark ||
       !newProject.servicesType ||
-      !newProject.content ||
+      // !newProject.content ||
       !newProject.about ||
       !newProject.titleDescription || // Новое поле для создания проекта
       !newProject.titleAbout // Новое поле для создания проекта
@@ -122,23 +122,23 @@ function Projects() {
       return
     }
 
-    const sanitizedContent = DOMPurify.sanitize(newProject.content)
+    // const sanitizedContent = DOMPurify.sanitize(newProject.content)
 
     await addDoc(collection(db, 'projects'), {
       ...newProject,
-      content: sanitizedContent,
+      // content: sanitizedContent,
       date: new Date().toISOString(),
     })
 
     await fetchData()
 
-    setContent('')
+    // setContent('')
     setName('')
     setDescription('')
     setImage('')
     setType('')
     setDetailPreview('')
-    setRemark('')
+    // setRemark('')
     setServicesType('')
     setAbout('')
     setTitleDescription('') // Сброс нового поля
@@ -149,10 +149,10 @@ function Projects() {
 
   const onNewProject = async () => {
     await handleCreateProject({
-      content: content,
+      // content: content,
       name: name,
       image,
-      remark,
+      // remark,
       description,
       type,
       detailPreview,
@@ -309,7 +309,7 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="remark">Remark</Form.Label>
+          {/* <Form.Label htmlFor="remark">Remark</Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -320,7 +320,7 @@ function Projects() {
               setRemark((event.target as any).value!)
             }}
             required
-          />
+          /> */}
 
           <Form.Label htmlFor="servicesType">Services Type</Form.Label>
           <Form.Control
@@ -334,7 +334,7 @@ function Projects() {
             }}
           />
 
-          <div ref={quillRef} />
+          {/* <div ref={quillRef} /> */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -455,7 +455,7 @@ function Projects() {
             }}
           />
 
-          <Form.Label htmlFor="newremark">Remark</Form.Label>
+          {/* <Form.Label htmlFor="newremark">Remark</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -465,7 +465,7 @@ function Projects() {
             onInput={event => {
               setNewRemark((event.target as any).value!)
             }}
-          />
+          /> */}
 
           <Form.Label htmlFor="newServicesType">New Services Type</Form.Label>
           <Form.Control
@@ -479,7 +479,7 @@ function Projects() {
             }}
           />
 
-          <div ref={newContentQuillRef} />
+          {/* <div ref={newContentQuillRef} /> */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -489,14 +489,14 @@ function Projects() {
             variant="primary"
             onClick={async () => {
               await updateProject(selectedProject?.id, {
-                content: newContent || selectedProject?.content,
+                // content: newContent || selectedProject?.content,
                 name: newName || selectedProject?.name,
                 description: newDescription || selectedProject?.description,
                 image: newImage || selectedProject?.image,
                 type: newType || selectedProject?.type,
                 detailPreview:
                   newDetailPreview || selectedProject?.newDetailPreview,
-                remark: newRemark || selectedProject?.remark,
+                // remark: newRemark || selectedProject?.remark,
               })
               setSelectedProject(null)
               await fetchData()
@@ -538,14 +538,14 @@ function Projects() {
                   variant="primary"
                   onClick={() => {
                     setNewName(project.name)
-                    setNewContent(project.content)
+                    // setNewContent(project.content)
                     setNewDescription(project.description)
                     setNewImage(project.image)
                     setNewType(project.type)
-                    setNewRemark(project.remark)
+                    // setNewRemark(project.remark)
 
                     setSelectedProject(project)
-                    newQuill.setContent(project.content)
+                    // newQuill.setContent(project.content)
                   }}>
                   Edit
                 </Button>
