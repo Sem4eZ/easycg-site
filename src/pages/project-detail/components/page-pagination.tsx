@@ -2,10 +2,11 @@ import { Button } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { collection, getDocs } from 'firebase/firestore'
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
 
-import { getNextProject, getPreviousProject } from 'entities/project/data'
 import { Project } from 'entities/project/types'
+import { GalleryProjectCard } from 'entities/project/ui/gallery-project-card'
 import { ProjectPaginationCard } from 'entities/project/ui/project-pagination-card'
 
 import { PAGES } from 'shared/config'
@@ -20,6 +21,31 @@ interface Props {
 }
 
 export const PagePagination = ({ currentProjectId }: Props) => {
+  const getPreviousProject = (id: Project['id']): Project => {
+    let currentProjectId = 0
+    for (let i = 0; i < projects.length; i++) {
+      const project = projects[i]
+      if (project.id === id) {
+        currentProjectId = i
+      }
+    }
+
+    if (currentProjectId === 0) return projects[projects.length - 1]
+    return projects[currentProjectId - 1]
+  }
+
+  const getNextProject = (id: Project['id']): Project => {
+    let currentProjectId = 0
+    for (let i = 0; i < projects.length; i++) {
+      const project = projects[i]
+      if (project.id === id) {
+        currentProjectId = i
+      }
+    }
+
+    if (currentProjectId === projects.length - 1) return projects[0]
+    return projects[currentProjectId + 1]
+  }
   const [projects, setProjects] = React.useState<Project[]>([]) // Состояние для хранения данных проектов
 
   const fetchData = async () => {
@@ -39,18 +65,24 @@ export const PagePagination = ({ currentProjectId }: Props) => {
     useGetDevice()
 
   const showSlider = isDesktopS || isLaptop || isMacbook || isDesktop
+  const navigate = useNavigate()
 
   return (
     <Container>
       {!showSlider && (
         <ProjectsNavigationButtons>
           <Button
-            href={`/projects/${getPreviousProject(currentProjectId).id}`}
+            onClick={() =>
+              navigate(`/projects/${getPreviousProject(currentProjectId).id}`)
+            }
             endIcon=""
             startIcon={<ArrowFatIcon />}>
             previous {!isMobileS && 'project'}
           </Button>
-          <Button href={`/projects/${getNextProject(currentProjectId).id}`}>
+          <Button
+            onClick={() =>
+              navigate(`/projects/${getNextProject(currentProjectId).id}`)
+            }>
             next {!isMobileS && 'project'}
           </Button>
         </ProjectsNavigationButtons>
@@ -64,7 +96,7 @@ export const PagePagination = ({ currentProjectId }: Props) => {
               .filter(project => project.id !== currentProjectId)
               .map(project => (
                 <SwiperSlide key={project.id}>
-                  <ProjectPaginationCard {...project} />
+                  <GalleryProjectCard {...project} />
                 </SwiperSlide>
               ))}
           </Swiper>
@@ -107,7 +139,7 @@ const SliderContainer = styled('div')(({ theme }) => ({
   maxWidth: 1120,
   marginLeft: 'auto',
   marginRight: 'auto',
-  boxSizing: 'content-box',
+  boxSizing: 'border-box',
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
@@ -115,9 +147,11 @@ const SliderContainer = styled('div')(({ theme }) => ({
   '& .swiper': {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'space-between',
   },
   '& .swiper-wrapper': {
     order: 1,
+    alignItems: 'space-between',
   },
 }))
 

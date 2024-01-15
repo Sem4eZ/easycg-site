@@ -83,6 +83,7 @@ const ProjectDetailPage = () => {
               <time dateTime={moment(project.date).format('YYYY-MM-DD')}>
                 {moment(project.date).format('YYYY-MM-DD')}
               </time>,
+              project.type,
             ]}
           />
           <ServiceIcons>
@@ -104,8 +105,9 @@ const ProjectDetailPage = () => {
         </Information>
       }>
       {/* <ProjectDetailHero preview={project.detailPreview} /> */}
+      {/* <VideoPreview url="../../../public/assets/videos/projects/detail_preview.webm" /> */}
       <Preview>
-        <VideoPreview url={project.detailPreview} />
+        <iframe src={project.detailPreview} width="100%"></iframe>
       </Preview>
 
       <RemarkContainer>
@@ -163,6 +165,17 @@ export default ProjectDetailPage
 
 const Preview = styled('div')(({ theme }) => ({
   position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  minHeight: 'calc(100vh - 100px)', // Adjust the height based on your design
+  margin: '0 auto',
+  overflow: 'hidden',
+  backgroundColor: 'transparent',
+  // ...getBreakpointsStylesByArray(theme, {
+  //   marginTop: [72, null, 50, 104, 93, 80, 184, null, 270, 248],
+  //   // Add more styles based on breakpoints if needed
+  // }),
 }))
 
 const RemarkContainer = styled('div')(({ theme }) => ({
@@ -222,14 +235,6 @@ const ServiceIcon = styled('div')(({ theme }) => ({
   svg: {
     height: '100%',
     width: 'auto',
-  },
-}))
-
-const PricesBlockStyled = styled(PricesBlock)(({ theme }) => ({
-  '& li': {
-    ...getBreakpointsStylesByArray(theme, {
-      paddingRight: [6, 0, null, null, 29, 0, 135, null, 114, 112],
-    }),
   },
 }))
 

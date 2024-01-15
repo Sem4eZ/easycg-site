@@ -1,13 +1,10 @@
 import { styled } from '@mui/material/styles'
-import { collection, getDocs } from 'firebase/firestore'
 import moment from 'moment'
-import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { getImagePath } from 'entities/image/types'
 import { serviceTypeToIcon } from 'entities/services/data'
 
-import { db } from 'shared/firebase'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { Tags } from 'shared/ui/tags'
 
