@@ -107,9 +107,13 @@ const ProjectDetailPage = () => {
       {/* <ProjectDetailHero preview={project.detailPreview} /> */}
       {/* <VideoPreview url="../../../public/assets/videos/projects/detail_preview.webm" /> */}
       <Preview>
-        <iframe src={project.detailPreview} width="100%"></iframe>
+        <iframe
+          src={project.detailPreview}
+          style={{
+            width: '100% !important',
+          }}
+        />
       </Preview>
-
       <RemarkContainer>
         <Remark>
           *Before we start, you should know one thing. Content that we made can
@@ -167,15 +171,86 @@ const Preview = styled('div')(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
-  width: '100%',
-  minHeight: 'calc(100vh - 100px)', // Adjust the height based on your design
-  margin: '0 auto',
+  width: '100',
+  paddingLeft: '10px',
+  paddingRight: '10px',
   overflow: 'hidden',
-  backgroundColor: 'transparent',
-  // ...getBreakpointsStylesByArray(theme, {
-  //   marginTop: [72, null, 50, 104, 93, 80, 184, null, 270, 248],
-  //   // Add more styles based on breakpoints if needed
-  // }),
+  '& iframe': {
+    width: '1688px',
+    height: '950px', // Высота для разрешения 1920x1080
+    border: 'none',
+  },
+  '@media (max-width: 1670px)': {
+    '& iframe': {
+      maxeight: '930px', // Высота для разрешения менее 1600px
+    },
+  },
+  '@media (max-width: 1500px)': {
+    '& iframe': {
+      height: '800px', // Высота для разрешения от 1500px до 1400px
+    },
+  },
+  '@media (max-width: 1400px)': {
+    '& iframe': {
+      height: '750px', // Высота для разрешения от 1400px до 1300px
+    },
+  },
+  '@media (max-width: 1300px)': {
+    '& iframe': {
+      height: '700px', // Высота для разрешения от 1300px до 1200px
+    },
+  },
+  '@media (max-width: 1200px)': {
+    '& iframe': {
+      height: '650px', // Высота для разрешения от 1200px до 1100px
+    },
+  },
+  '@media (max-width: 1100px)': {
+    '& iframe': {
+      height: '600px', // Высота для разрешения менее 1100px и до 1000px
+    },
+  },
+  '@media (max-width: 1000px)': {
+    '& iframe': {
+      height: '550px', // Высота для разрешения менее 1000px и до 900px
+    },
+  },
+  '@media (max-width: 900px)': {
+    '& iframe': {
+      height: '500px', // Высота для разрешения менее 900px и до 800px
+    },
+  },
+  '@media (max-width: 800px)': {
+    '& iframe': {
+      height: '450px', // Высота для разрешения менее 900px и до 800px
+    },
+  },
+  '@media (max-width: 700px)': {
+    '& iframe': {
+      height: '400px', // Высота для разрешения менее 900px и до 800px
+    },
+  },
+  '@media (max-width: 600px)': {
+    '& iframe': {
+      height: '350px', // Высота для разрешения менее 900px и до 800px
+    },
+  },
+  '@media (max-width: 500px)': {
+    '& iframe': {
+      height: '300px', // Высота для разрешения менее 900px и до 800px
+    },
+  },
+  '@media (max-width: 400px)': {
+    '& iframe': {
+      height: '250px', // Высота для разрешения менее 900px и до 800px
+    },
+  },
+  '@media (max-width: 300px)': {
+    '& iframe': {
+      height: '200px', // Высота для разрешения менее 900px и до 800px
+    },
+  },
+  // Добавьте дополнительные медиа-запросы по мере необходимости
 }))
 
 const RemarkContainer = styled('div')(({ theme }) => ({
