@@ -44,19 +44,20 @@ function Projects() {
   const [description, setDescription] = useState('')
   const [image, setImage] = useState('')
   const [type, setType] = useState('')
-  const [detailPreviewImage, setDetailPreviewImage] = useState('')
   const [remark, setRemark] = useState('')
   const [newName, setNewName] = useState('')
   const [newContent, setNewContent] = useState('')
   const [newDescription, setNewDescription] = useState('')
   const [newImage, setNewImage] = useState('')
   const [newType, setNewType] = useState('')
-  const [newDetailPreviewImage, setNewDetailPreviewImage] = useState('')
   const [newRemark, setNewRemark] = useState('')
   const [createProjectModalOpen, setCreateProjectModalOpen] = useState(false)
   const { quill, quillRef } = useQuill()
   const { quill: newQuill, quillRef: newContentQuillRef } = useQuill()
   const [selectedProject, setSelectedProject] = useState<any>(null)
+
+  const [newDetailPreview, setNewDetailPreview] = useState('')
+  const [detailPreview, setDetailPreview] = useState('')
 
   const [servicesType, setServicesType] = useState('')
   const [newServicesType, setNewServicesType] = useState('')
@@ -109,7 +110,7 @@ function Projects() {
       !newProject.description ||
       !newProject.image ||
       !newProject.type ||
-      !newProject.detailPreviewImage ||
+      !newProject.detailPreview ||
       !newProject.remark ||
       !newProject.servicesType ||
       !newProject.content ||
@@ -136,7 +137,7 @@ function Projects() {
     setDescription('')
     setImage('')
     setType('')
-    setDetailPreviewImage('')
+    setDetailPreview('')
     setRemark('')
     setServicesType('')
     setAbout('')
@@ -154,7 +155,7 @@ function Projects() {
       remark,
       description,
       type,
-      detailPreviewImage,
+      detailPreview,
       servicesType,
       about,
       titleAbout,
@@ -301,9 +302,9 @@ function Projects() {
             type="text"
             id="detail preview image"
             aria-describedby="detail preview image"
-            value={detailPreviewImage}
+            value={detailPreview}
             onInput={event => {
-              setDetailPreviewImage((event.target as any).value!)
+              setDetailPreview((event.target as any).value!)
             }}
             required
           />
@@ -448,9 +449,9 @@ function Projects() {
             type="text"
             id="newdetailpreviewimage"
             aria-describedby="newdetailpreviewimage"
-            value={newDetailPreviewImage}
+            value={newDetailPreview}
             onInput={event => {
-              setNewDetailPreviewImage((event.target as any).value!)
+              setNewDetailPreview((event.target as any).value!)
             }}
           />
 
@@ -493,9 +494,8 @@ function Projects() {
                 description: newDescription || selectedProject?.description,
                 image: newImage || selectedProject?.image,
                 type: newType || selectedProject?.type,
-                detailPreviewImage:
-                  newDetailPreviewImage ||
-                  selectedProject?.newDetailPreviewImage,
+                detailPreview:
+                  newDetailPreview || selectedProject?.newDetailPreview,
                 remark: newRemark || selectedProject?.remark,
               })
               setSelectedProject(null)
@@ -527,8 +527,8 @@ function Projects() {
               <td>{project.name}</td>
               <td>{project.type}</td>
               <td>
-                {project.detailPreviewImage &&
-                  truncateString(project.detailPreviewImage, 30)}
+                {project.detailPreview &&
+                  truncateString(project.detailPreview, 30)}
               </td>
               <td>{project.image && truncateString(project.image, 30)}</td>
               <td>{moment(project.date).format('YYYY-MM-DD')}</td>
