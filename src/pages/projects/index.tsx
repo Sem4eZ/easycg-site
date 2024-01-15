@@ -47,29 +47,27 @@ const ProjectsPage = () => {
     fetchData()
   }, [])
 
-  const filteredProjects = useMemo(() => {
-    const filteredProjects: Project[] = []
+  const expectedServicesTypes = [
+    'mobile',
+    'web',
+    'CGI',
+    'AR',
+    'VR',
+    'UXUI',
+    'clothes',
+    'food',
+  ]
 
+  const filteredProjects = useMemo(() => {
     if (filter.length === 0) {
       return projects
     }
 
-    for (let i = 0; i < projects.length; i++) {
-      const project = projects[i]
-      let inFilter = false
-      for (let j = 0; j < project.servicesType.length; j++) {
-        if (filter.includes(project.servicesType[j])) {
-          inFilter = true
-          break
-        }
-      }
-
-      if (inFilter) {
-        filteredProjects.push(project)
-      }
-    }
-
-    return filteredProjects
+    return projects.filter(
+      project =>
+        filter.includes(project.servicesType as any) &&
+        expectedServicesTypes.includes(project.servicesType as any),
+    )
   }, [filter, projects])
 
   const showSlider =
