@@ -6,7 +6,7 @@ import {
   getImagePath,
   getImageSrcSetByImageObj,
 } from 'entities/image/types'
-import { projects } from 'entities/project/data'
+import useProjects from 'entities/project/data'
 
 import { PAGES } from 'shared/config'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
@@ -24,7 +24,7 @@ const image: Image = {
 
 const Error404Page = () => {
   const imageSrcSet = getImageSrcSetByImageObj(image)
-
+  const projects = useProjects()
   return (
     <>
       <Header projectsCount={projects.length} />

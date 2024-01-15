@@ -5,7 +5,6 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 
-import { projects } from 'entities/project/data'
 import { Project } from 'entities/project/types'
 import { ProjectCard } from 'entities/project/ui/project-card'
 
@@ -15,6 +14,8 @@ import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-b
 import { useGetDevice } from 'shared/lib/use-get-device'
 import { maxWidth, spaceArr, spaceObj } from 'shared/theme'
 import { XLFont } from 'shared/ui/typography'
+
+import useProjects from './../../../entities/project/data'
 
 export const MainPageProjectsSlider = () => {
   const navigate = useNavigate()

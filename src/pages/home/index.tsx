@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import { projects } from 'entities/project/data'
+import useProjects from 'entities/project/data'
 import { ServicesHeroMenu } from 'entities/services/ui/services-hero-menu'
 
 import {
@@ -22,6 +22,7 @@ import { MainPageServicesSection } from './components/services-section'
 
 const HomePage = () => {
   const processSectionRef = useRef<HTMLDivElement | null>(null)
+  const projects = useProjects()
   return (
     <>
       <Header projectsCount={projects.length} />

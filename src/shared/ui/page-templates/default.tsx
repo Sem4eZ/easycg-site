@@ -3,8 +3,6 @@ import { styled } from '@mui/material/styles'
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { projects } from 'entities/project/data'
-
 import { ArrowFatIcon } from 'shared/icons/arrow-fat'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { pxToRem } from 'shared/lib/px-to-rem'
@@ -14,6 +12,7 @@ import { Footer } from 'shared/ui/footer'
 import { Header } from 'shared/ui/header'
 
 import { XXLFont, XXXLFont } from '../typography'
+import useProjects from './../../../entities/project/data'
 
 type PageType = 'default' | 'article'
 
@@ -53,6 +52,7 @@ export const Page = ({
   }, [])
 
   const Title = titleSize === 'normal' ? NormalTitle : SmallTitle
+  const projects = useProjects()
 
   return (
     <>
