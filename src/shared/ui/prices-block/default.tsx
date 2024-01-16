@@ -27,7 +27,6 @@ export const PricesBlock = ({ items, services, remark, ...rest }: Props) => {
           </Row>
         )}
       </Container>
-      {/* <Remark>{remark}</Remark> */}
     </div>
   )
 }
@@ -41,12 +40,13 @@ const Container = styled('ul')(({ theme }) => ({
 
 const ServicesList = styled('ul')(({ theme }) => ({
   listStyle: 'none',
-  textAlign: 'end',
+  textAlign: 'start',
   '& li': {
     display: 'flex',
     alignItems: 'flex-start',
     ...getBreakpointsStylesByArray(theme, {
-      marginBottom: [32, null, 24, null, 32, null, 48, null, 24],
+      marginBottom: [12, 12, 12, null, 12, null, 16, null, 12],
+      marginLeft: [50, 100, 50, 300, 200, 300, 400, 600, 750],
     }),
     '&:before': {
       position: 'relative',
@@ -54,6 +54,7 @@ const ServicesList = styled('ul')(({ theme }) => ({
       background: theme.palette.text.primary,
       width: '16px',
       height: '16px',
+      borderRadius: '50%',
       ...getBreakpointsStylesByArray(theme, {
         top: [7, null, null, null, null, null, 19],
         width: [8, null, null, null, null, null, 16],
@@ -79,7 +80,8 @@ const ServicesList = styled('ul')(({ theme }) => ({
 
 const Row = styled('li')(({ theme }) => ({
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'start',
+  alignItems: 'center',
   paddingBottom: '8px',
   borderBottom: `1px ${theme.palette.text.disabled}`,
   borderBottomStyle: 'solid',

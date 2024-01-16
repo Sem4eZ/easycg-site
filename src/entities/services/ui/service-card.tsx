@@ -43,7 +43,7 @@ const Container = styled('article')(() => ({
 const Title = styled(XXLFont)(({ theme }) => ({
   position: 'relative',
   ...getBreakpointsStylesByArray(theme, {
-    marginBottom: [24, 40, 48, 92, 40, null, 116, null, null, 208],
+    marginBottom: [0, 10, 15, 0, 15, 15, 15, 15, 0, 20],
   }),
 }))
 
@@ -52,8 +52,7 @@ const Footer = styled('div')(({ theme }) => ({
   justifyContent: 'space-between',
   rowGap: 40,
   ...getBreakpointsStylesByArray(theme, {
-    marginTop: [56, null, 96, 64, 104, null, 211, null, 258, 132],
-    marginBottom: [24],
+    marginTop: [5, 10, 15, 15, 15, 15, 15, 15, 15, 20],
     justifyContent: [
       'space-between',
       'flex-start',

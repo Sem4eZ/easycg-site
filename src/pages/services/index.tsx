@@ -85,7 +85,7 @@ const Container = styled('ul')(({ theme }) => ({
   marginLeft: 'auto',
   marginRight: 'auto',
   ...getBreakpointsStylesByArray(theme, {
-    gridRowGap: [286, 204, 224, 232, 286, null, 400, 500],
+    gridRowGap: [40, 40, 50, 70, 100, null, 100, 150],
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
     paddingBottom: [150, null, 115, 158, 136, 259, 195, null, 223, 532],
