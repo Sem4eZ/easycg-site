@@ -61,8 +61,8 @@ export const services: Service[] = [
     description: `we create CGI content, ranging from 3D still images to action-packed animations, offering versatile solutions to meet a wide range of needs`,
     services: [
       '3D computer graphics and animation',
-      'VFX',
       'preparation of 2D and 3D assets',
+      'VFX',
     ],
     details: {
       price: 830,
@@ -82,9 +82,9 @@ export const services: Service[] = [
     // nameExplanation: '(aguamented reality)',
     description: `we create innovative solutions using AR, VR and MR technologies to help grow your business, provide effective employee training and increase your brand awareness`,
     services: [
-      `we develop AR of any complexity: from image 
-      and object tracking to gesture recognition and 
-      terrain navigator`,
+      `VR - virtual reality`,
+      `AR - augmented reality`,
+      `MR - mixed reality`,
     ],
     details: {
       price: 830,
@@ -104,9 +104,9 @@ export const services: Service[] = [
     // nameExplanation: '(virtual reality)',
     description: `we design and develop applications tailored to the specific needs of your business, offering a comprehensive cycle of digital product development to ensure the delivery of solutions of any complexity.`,
     services: [
-      'virtual tour or interactive VR',
-      'training simulator (rehabilitation systems)',
-      'VR Showcase // NFT Gallery',
+      'native apps for ios & android',
+      'desktop apps for pc & mac',
+      'standalone platforms',
     ],
     details: {
       price: 830,

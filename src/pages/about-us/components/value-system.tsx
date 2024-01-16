@@ -26,19 +26,19 @@ export const AboutUsPageValueStystem = () => {
 
           <DreamsAndFeelingOrbit>
             <DreamsAndFeelingPlanet>
-              <DreamsAndFeelingText>dreams & feeling</DreamsAndFeelingText>
+              <DreamsAndFeelingText>effective solutions</DreamsAndFeelingText>
             </DreamsAndFeelingPlanet>
           </DreamsAndFeelingOrbit>
 
           <MinimalistOrbit>
             <MinimalistPlanet>
-              <MinimalistText>minimalist</MinimalistText>
+              <MinimalistText>social responsibility</MinimalistText>
             </MinimalistPlanet>
           </MinimalistOrbit>
 
           <FriendlyOrbit>
             <FriendlyPlanet>
-              <FriendlyText>friendly</FriendlyText>
+              <FriendlyText>friendship & support</FriendlyText>
             </FriendlyPlanet>
           </FriendlyOrbit>
 

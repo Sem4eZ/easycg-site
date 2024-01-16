@@ -5,133 +5,110 @@ const IMAGES_PATH = '/assets/images/team/'
 export const team: Teammate[] = [
   {
     id: '1',
-    name: 'TONY ANTONY',
-    description: 'Это Наш pr smm',
+    name: 'Anton Khanyakin',
+    description: `long-term cooperation is the result of mutual responsibility. we strive to be reliable partners, providing effective solutions and support at every stage of cooperation`,
     image: {
       main: {
-        path: IMAGES_PATH,
-        name: 'Egor_frontend_easy_cg_teammate',
+        path: `${IMAGES_PATH}`,
+        name: 'teammate_anton',
         fileType: 'png',
         alt: 'Our teammate 1',
       },
       hidden: {
-        path: IMAGES_PATH,
-        name: 'Egor_frontend_easy_cg_teammate-evil',
-        fileType: 'jpg',
-        alt: '',
-      },
-    },
-    date: new Date('2021-11-12'),
-    position: 'seo',
-  },
-  {
-    id: '2',
-    name: 'Teammate2',
-    description:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: {
-      main: {
-        path: IMAGES_PATH,
-        name: 'Anton_owner_easy_cg_teammate',
-        fileType: 'png',
-        alt: 'Our teammate 2',
-      },
-      hidden: {
-        path: IMAGES_PATH,
-        name: 'Anton_owner_easy_cg_teammate-evil',
+        path: `${IMAGES_PATH}`,
+        name: 'teammate_anton-evil',
         fileType: 'png',
         alt: '',
       },
     },
-    date: new Date('2021-11-12'),
-    position: 'seo',
-  },
-  {
-    id: '3',
-    name: 'Teammate3',
-    description:
-      'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
-    image: {
-      main: {
-        path: IMAGES_PATH,
-        name: 'teammate',
-        fileType: 'png',
-        alt: 'Our teammate 3',
-      },
-      hidden: {
-        path: IMAGES_PATH,
-        name: 'teammate-evil',
-        fileType: 'png',
-        alt: '',
-      },
-    },
-    date: new Date('2021-11-12'),
-    position: 'seo',
+    date: new Date('2018'),
+    position: 'founder, CEO',
   },
   // {
-  //   id: '4',
-  //   name: 'Teammate4',
-  //   description:
-  //     'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
+  //   id: '2',
+  //   name: 'egor galembo',
+  //   description: `an important aspect in development is crafting interfaces that provide users with the best experience`,
   //   image: {
   //     main: {
-  //       path: IMAGES_PATH,
+  //       path: IMAGES_PATH + 'Egor_frontend_easy_cg_',
   //       name: 'teammate',
   //       fileType: 'png',
-  //       alt: 'Our teammate 4',
+  //       alt: 'Our teammate 2',
   //     },
   //     hidden: {
-  //       path: IMAGES_PATH,
+  //       path: IMAGES_PATH + 'Egor_frontend_easy_cg_',
   //       name: 'teammate-evil',
-  //       fileType: 'png',
+  //       fileType: 'jpg',
   //       alt: '',
   //     },
   //   },
-  //   date: new Date('2021-11-12'),
-  //   position: 'seo',
+  //   date: new Date('2019'),
+  //   position: 'teamlead',
   // },
   // {
-  //   id: '5',
-  //   name: 'Teammate4',
+  //   id: '3',
+  //   name: 'tanya makarova',
   //   description:
-  //     'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
+  //     'my goal is to ensure effective project management by achieving set objectives within the budget and timeline',
   //   image: {
   //     main: {
-  //       path: IMAGES_PATH,
+  //       path: IMAGES_PATH + 'Tatiana_project_manager_easy_cg_',
+  //       name: 'teammate',
+  //       fileType: 'png',
+  //       alt: 'Our teammate 3',
+  //     },
+  //     hidden: {
+  //       path: IMAGES_PATH + 'Tatiana_project_manager_easy_cg_',
+  //       name: 'teammate-evil',
+  //       fileType: 'jpg',
+  //       alt: '',
+  //     },
+  //   },
+  //   date: new Date('2021'),
+  //   position: 'pm',
+  // },
+  // {
+  //   id: '4',
+  //   name: 'garry shikhov',
+  //   description:
+  //     'for me, the primary focus is creative expression and conveying ideas through visual art',
+  //   image: {
+  //     main: {
+  //       path: IMAGES_PATH + 'Garry_frayo_mes_easy_cg_',
   //       name: 'teammate',
   //       fileType: 'png',
   //       alt: 'Our teammate 4',
   //     },
   //     hidden: {
-  //       path: IMAGES_PATH,
+  //       path: IMAGES_PATH + 'Garry_frayo_mes_easy_cg_',
   //       name: 'teammate-evil',
-  //       fileType: 'png',
+  //       fileType: 'jpg',
   //       alt: '',
   //     },
   //   },
-  //   date: new Date('2021-11-12'),
-  //   position: 'seo',
+  //   date: new Date('2020'),
+  //   position: '3d artist',
   // },
   // {
   //   id: '6',
-  //   name: 'Teammate4',
+  //   name: 'tony zholba',
   //   description:
-  //     'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum quam consequatur repudiandae, delectus tempore sequi molestiae itaque pariatur, ducimus dolores, repellendus a sed? Ab, magni optio vero minus incidunt perspiciatis!',
+  //     'effective process management and communication with the target audience are key factors in achieving project success',
   //   image: {
   //     main: {
-  //       path: IMAGES_PATH,
+  //       path: IMAGES_PATH + 'Tony_Zhoba_easy_cg_',
   //       name: 'teammate',
   //       fileType: 'png',
   //       alt: 'Our teammate 4',
   //     },
   //     hidden: {
-  //       path: IMAGES_PATH,
+  //       path: IMAGES_PATH + 'Tony_Zhoba_easy_cg_',
   //       name: 'teammate-evil',
-  //       fileType: 'png',
+  //       fileType: 'jpg',
   //       alt: '',
   //     },
   //   },
-  //   date: new Date('2021-11-12'),
-  //   position: 'seo',
+  //   date: new Date('2020'),
+  //   position: 'pm, smm',
   // },
 ]

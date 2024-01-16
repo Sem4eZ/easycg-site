@@ -16,17 +16,17 @@ const data: {
     value: <a href={`mailto:${COMPANY_EMAIL}`}>{COMPANY_EMAIL}</a>,
   },
   {
-    label: 'tg',
+    label: 'telegram',
     value: <a href={COMPANY_TG}>@workshop_easy</a>,
     // remark:
     //   'now we are based in Bali (Indonesia) and take projects all over the world',
   },
   // { label: 'location*', value: 'worldwide' },
-  {
-    label: 'work time*',
-    value: '10 am to 7 pm',
-    remark: <TimeRemark />,
-  },
+  // {
+  //   // label: 'work time*',
+  //   // value: '10 am to 7 pm',
+  //   remark: <TimeRemark />,
+  // },
 ]
 
 export const ContactPageContactInfo = () => {

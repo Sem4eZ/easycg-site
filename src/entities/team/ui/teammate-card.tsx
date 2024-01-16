@@ -40,7 +40,7 @@ export const TeammateCard = ({
               <img src={getImagePath(image.main, 1920)} alt={image.main.alt} />
             </Picture>
 
-            <HiddenImage className="hidden">
+            {/* <HiddenImage className="hidden">
               {imageHiddenSrcSet.map(imageSrcSetData => {
                 return (
                   <source
@@ -51,7 +51,7 @@ export const TeammateCard = ({
               })}
 
               <img src={getImagePath(image.hidden, 1920)} alt="" />
-            </HiddenImage>
+            </HiddenImage> */}
           </ImagesWrapepr>
         </ImageContainer>
         <Content>
@@ -79,19 +79,19 @@ export const TeammateCard = ({
 
 const Container = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
-    width: [144, '100%', 163, '100%', 352, 365, 454, null, 619],
+    width: [162, '100%', 163, '100%', 315, 365, 497, null, 619],
   }),
 }))
 
 const TagsStyled = styled(Tags)(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
-    magrinBottom: [4, null, null, null, 8],
+    marginBottom: [4, null, null, null, 8],
   }),
 }))
 
 const ImageContainer = styled('div')(({ theme }) => ({
   position: 'relative',
-  borderRadius: '10px',
+  borderRadius: '30px',
   overflow: 'hidden',
   ...getBreakpointsStylesByArray(theme, {
     height: [226, null, null, 443, 438, null, 692, null, 862],
@@ -99,12 +99,12 @@ const ImageContainer = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.card.default,
   transition: 'background-color .2s',
 
-  '&:hover': {
-    backgroundColor: theme.palette.card.hover,
-    '& .hidden': {
-      display: 'flex',
-    },
-  },
+  // '&:hover': {
+  //   backgroundColor: theme.palette.card.hover,
+  //   '& .hidden': {
+  //     display: 'flex',
+  //   },
+  // },
 }))
 
 const Content = styled('div')(({ theme }) => ({
@@ -130,7 +130,6 @@ const Name = styled(LFont)(() => ({
 }))
 
 const Description = styled('span')(({ theme }) => ({
-  WebkitLineClamp: '2',
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
   maxWidth: '100%',
@@ -156,11 +155,33 @@ const HiddenImage = styled('picture')(({ theme }) => ({
   transform: 'translateX(-50%)',
   alignItems: 'flex-end',
   ...getBreakpointsStylesByArray(theme, {
-    height: [194, '100%', 194, '100%', 377, null, 596, null, 742],
+    height: [
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+    ],
+    width: [
+      '162px',
+      '162px',
+      '162px',
+      '162px',
+      '318px',
+      '318px',
+      '497px',
+      '497px',
+      '619px',
+    ],
     objectFit: ['unset', 'contain', 'unset', 'cover', 'unset'],
   }),
   img: {
     height: '100%',
+    width: '100%',
   },
 }))
 
@@ -168,10 +189,32 @@ const Picture = styled('picture')(({ theme }) => ({
   display: 'flex',
   alignItems: 'flex-end',
   ...getBreakpointsStylesByArray(theme, {
-    height: [194, '100%', 194, '100%', 377, null, 596, null, 742],
+    height: [
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+    ],
+    width: [
+      '162px',
+      '162px',
+      '162px',
+      '162px',
+      '318px',
+      '318px',
+      '497px',
+      '497px',
+      '619px',
+    ],
     objectFit: ['unset', 'contain', 'unset', 'cover', 'unset'],
   }),
   img: {
     height: '100%',
+    width: '100%',
   },
 }))

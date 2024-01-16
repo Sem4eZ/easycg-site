@@ -6,5 +6,5 @@ export const leaveProjectDetailsSchema = object({
     .required('Email is required')
     .email('Wrong email')
     .lowercase('Email must be lowercase'),
-  phone: string().required('Phone is required'),
+  // phone: string().required('Phone is required'),
 })

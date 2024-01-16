@@ -114,7 +114,7 @@ const ProjectDetailPage = () => {
           }}
         />
       </Preview>
-      <RemarkContainer>
+      {/* <RemarkContainer>
         <Remark>
           *Before we start, you should know one thing. Content that we made can
           be different from owner’s content. We gave an ideas, clients develop
@@ -122,7 +122,7 @@ const ProjectDetailPage = () => {
           we made can be different from owner’s content. We gave an ideas,
           clients develop it themselves
         </Remark>
-      </RemarkContainer>
+      </RemarkContainer> */}
 
       <FreeRightPartContainer
         number={
@@ -136,7 +136,7 @@ const ProjectDetailPage = () => {
         content={
           <HorizontalList
             title="we decided it will be"
-            items={['simple', 'clear', 'accesible', 'locanic']}
+            items={['modern', 'сreative', 'impressive', 'exciting']}
           />
         }
       />
