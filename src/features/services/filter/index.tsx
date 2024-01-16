@@ -23,24 +23,16 @@ const FILTER: {
     value: ['all'],
   },
   {
-    title: 'mobile/web',
-    value: ['mobile', 'web'],
+    title: 'APP',
+    value: ['APP'],
   },
   {
     title: 'CGI',
     value: ['CGI'],
   },
   {
-    title: 'AR',
-    value: ['AR'],
-  },
-  {
-    title: 'VR',
-    value: ['VR'],
-  },
-  {
-    title: 'UX/UI',
-    value: ['UXUI'],
+    title: 'XR',
+    value: ['XR'],
   },
 ]
 

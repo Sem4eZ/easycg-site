@@ -2,6 +2,8 @@ import { styled } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
 
 import { PAGES } from 'shared/config'
+import { FramedCube } from 'shared/icons/framedCube'
+import { Glasses } from 'shared/icons/glasses'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { visuallyHiddenStyles } from 'shared/ui/accesibility'
 
@@ -21,6 +23,12 @@ export const ServicesMenu = () => {
             </li>
           )
         })}
+        <ServiceIcon to={`${PAGES.Services}#XR`}>
+          <Glasses />
+        </ServiceIcon>
+        <ServiceIcon to={`${PAGES.Services}#XR`}>
+          <FramedCube />
+        </ServiceIcon>
       </List>
     </nav>
   )
