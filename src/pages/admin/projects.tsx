@@ -361,19 +361,19 @@ function Projects() {
             required
           /> */}
 
-          <Form.Label htmlFor="servicesType">
-            Сервисный тип проекта (CGI, APP, XR на выбор)
-          </Form.Label>
-          <Form.Control
+          <Form.Label htmlFor="servicesType">Сервисный тип проекта</Form.Label>
+          <Form.Select
             className="my-2"
-            type="text"
             id="servicesType"
             aria-describedby="servicesType"
             value={servicesType}
-            onInput={event => {
+            onChange={event => {
               setServicesType((event.target as any).value!)
-            }}
-          />
+            }}>
+            <option value="APP">APP</option>
+            <option value="CGI">CGI</option>
+            <option value="XR">XR</option>
+          </Form.Select>
 
           {/* <div ref={quillRef} /> */}
         </Modal.Body>
@@ -394,7 +394,7 @@ function Projects() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label htmlFor="title">Name</Form.Label>
+          <Form.Label htmlFor="title">New Название проекта</Form.Label>
           <Form.Control
             className="mb-3"
             type="text"
@@ -405,7 +405,9 @@ function Projects() {
               setNewName((event.target as any).value!)
             }}
           />
-          <Form.Label htmlFor="newTitleAbout">New Title About</Form.Label>
+          <Form.Label htmlFor="newTitleAbout">
+            New Заголовок для введения проекта
+          </Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -418,7 +420,9 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="about">About</Form.Label>
+          <Form.Label htmlFor="about">
+            New Текст для введения проекта
+          </Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -432,7 +436,7 @@ function Projects() {
           />
 
           <Form.Label htmlFor="newTitleDescription">
-            New Title Description
+            New Заголовок для описания проекта
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -446,7 +450,7 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="desc">Description</Form.Label>
+          <Form.Label htmlFor="desc">New Описание проекта</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -458,7 +462,7 @@ function Projects() {
             }}
           />
 
-          <Form.Label htmlFor="newimg">Image</Form.Label>
+          <Form.Label htmlFor="newimg">New Картинка для обложки</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -470,7 +474,7 @@ function Projects() {
             }}
           />
 
-          <Form.Label htmlFor="newtype">Type</Form.Label>
+          <Form.Label htmlFor="newtype">New Тип проекта</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -483,7 +487,7 @@ function Projects() {
           />
 
           <Form.Label htmlFor="newdetailpreviewimage">
-            Detail preview image
+            New Видео внутри проекта
           </Form.Label>
           <Form.Control
             className="my-3"
@@ -508,7 +512,9 @@ function Projects() {
             }}
           /> */}
 
-          <Form.Label htmlFor="newServicesType">New Services Type</Form.Label>
+          <Form.Label htmlFor="newServicesType">
+            New Сервисный тип проекта
+          </Form.Label>
           <Form.Control
             className="my-3"
             type="text"
