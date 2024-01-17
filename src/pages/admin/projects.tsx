@@ -204,7 +204,7 @@ function Projects() {
           <Modal.Title>Новый проект</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label htmlFor="name">Name</Form.Label>
+          <Form.Label htmlFor="name">Название проекта</Form.Label>
           <Form.Control
             className="mb-3"
             type="text"
@@ -216,7 +216,9 @@ function Projects() {
             }}
             required
           />
-          <Form.Label htmlFor="titleAbout">Title About</Form.Label>
+          <Form.Label htmlFor="titleAbout">
+            Заголовок для введения проекта
+          </Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -229,7 +231,7 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="about">About</Form.Label>
+          <Form.Label htmlFor="about">Текст для введения проекта</Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -242,7 +244,9 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="titleDescription">Title Description</Form.Label>
+          <Form.Label htmlFor="titleDescription">
+            Заголовок для описания проекта
+          </Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -255,7 +259,7 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="description">Description</Form.Label>
+          <Form.Label htmlFor="description">Описание проекта</Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -268,7 +272,7 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="img">Image</Form.Label>
+          <Form.Label htmlFor="img">Картинка для обложки</Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -281,7 +285,7 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="type">Type</Form.Label>
+          <Form.Label htmlFor="type">Тип проекта</Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -295,7 +299,7 @@ function Projects() {
           />
 
           <Form.Label htmlFor="detail preview image">
-            Detail Preview Image
+            Видео внутри проекта (ссылка)
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -322,7 +326,9 @@ function Projects() {
             required
           /> */}
 
-          <Form.Label htmlFor="servicesType">Services Type</Form.Label>
+          <Form.Label htmlFor="servicesType">
+            Сервисный тип проекта (CGI, APP, XR на выбор)
+          </Form.Label>
           <Form.Control
             className="my-2"
             type="text"

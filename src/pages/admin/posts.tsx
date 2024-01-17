@@ -175,7 +175,7 @@ function Posts() {
           <Modal.Title>Новый пост</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label htmlFor="name">Title</Form.Label>
+          <Form.Label htmlFor="name">Название поста</Form.Label>
           <Form.Control
             className="mb-3"
             type="text"
@@ -188,7 +188,7 @@ function Posts() {
             required
           />
 
-          <Form.Label htmlFor="description">Description</Form.Label>
+          <Form.Label htmlFor="description">Описание поста карточки</Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -201,7 +201,9 @@ function Posts() {
             required
           />
 
-          <Form.Label htmlFor="img">Image</Form.Label>
+          <Form.Label htmlFor="img">
+            Картинка поста карточки (ссылка)
+          </Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -214,7 +216,7 @@ function Posts() {
             required
           />
 
-          <Form.Label htmlFor="type">Type</Form.Label>
+          <Form.Label htmlFor="type">Тип поста</Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -228,7 +230,7 @@ function Posts() {
           />
 
           <Form.Label htmlFor="detail preview image">
-            Detail Preview Image
+            Картинка внутри поста (ссылка)
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -242,7 +244,9 @@ function Posts() {
             required
           />
 
-          <Form.Label htmlFor="remark">Remark</Form.Label>
+          <Form.Label htmlFor="remark">
+            Заголовок поста внутри карточки
+          </Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -269,10 +273,10 @@ function Posts() {
 
       <Modal show={!!selectedPost} onHide={() => setSelectedPost(null)}>
         <Modal.Header closeButton>
-          <Modal.Title>{selectedPost ? selectedPost.title : ''}</Modal.Title>
+          <Modal.Title>Редактирование поста</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label htmlFor="title">Title</Form.Label>
+          <Form.Label htmlFor="title">Название поста</Form.Label>
           <Form.Control
             className="mb-3"
             type="text"
@@ -284,7 +288,7 @@ function Posts() {
             }}
           />
 
-          <Form.Label htmlFor="desc">Description</Form.Label>
+          <Form.Label htmlFor="desc">Описание поста карточки</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -296,7 +300,9 @@ function Posts() {
             }}
           />
 
-          <Form.Label htmlFor="newimg">Image</Form.Label>
+          <Form.Label htmlFor="newimg">
+            Картинка поста карточки (ссылка)
+          </Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -308,7 +314,7 @@ function Posts() {
             }}
           />
 
-          <Form.Label htmlFor="newtype">Type</Form.Label>
+          <Form.Label htmlFor="newtype">Тип поста</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -381,7 +387,7 @@ function Posts() {
             <th>type</th>
             <th>Превью картинка поста</th>
             <th>Картинка</th>
-            <th>Date</th>
+            <th>Дата</th>
 
             <th>Edit</th>
             <th>Delete</th>
