@@ -76,6 +76,9 @@ function Posts() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [selectedDetailPreviewFile, setSelectedDetailPreviewFile] =
     useState<File | null>(null)
+  const [newSelectedFile, setNewSelectedFile] = useState<File | null>(null)
+  const [newSelectedDetailPreviewFile, setNewSelectedDetailPreviewFile] =
+    useState<File | null>(null)
 
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, 'posts'))
@@ -148,7 +151,6 @@ function Posts() {
       console.error('Ошибка при загрузке изображения:', error)
     }
   }
-
   const handleDetailPreviewImageUpload = async () => {
     try {
       if (!selectedDetailPreviewFile) {
@@ -156,18 +158,91 @@ function Posts() {
         return
       }
 
-      console.log('Selected Detail Preview File:', selectedDetailPreviewFile)
-
       const storage = getStorage()
       const storageRef = ref(
         storage,
         'images/detailPreviews/' + selectedDetailPreviewFile.name,
       )
-      console.log('Storage Reference for Detail Preview Image:', storageRef)
+      console.log('Storage Reference:', storageRef)
 
       const uploadTask = uploadBytesResumable(
         storageRef,
         selectedDetailPreviewFile,
+      )
+
+      uploadTask.on(
+        'state_changed',
+        snapshot => {
+          console.log(
+            'Upload Progress:',
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100 + '%',
+          )
+        },
+        (error: any) => {
+          console.error('Ошибка при загрузке изображения:', error)
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+          console.log('Download URL:', downloadURL)
+
+          setDetailPreviewImage(downloadURL)
+        },
+      )
+    } catch (error) {
+      console.error('Ошибка при загрузке изображения:', error)
+    }
+  }
+
+  const handleNewImageUpload = async () => {
+    try {
+      if (!newSelectedFile) {
+        alert('Выберите изображение для загрузки')
+        return
+      }
+
+      const storage = getStorage()
+      const storageRef = ref(storage, 'images/articles/' + newSelectedFile.name)
+
+      const uploadTask = uploadBytesResumable(storageRef, newSelectedFile)
+
+      uploadTask.on(
+        'state_changed',
+        snapshot => {
+          console.log(
+            'Detail Preview Image Upload Progress:',
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100 + '%',
+          )
+        },
+        (error: any) => {
+          console.error('Ошибка при загрузке изображения внутри поста:', error)
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+
+          setNewImage(downloadURL)
+        },
+      )
+    } catch (error) {
+      console.error('Ошибка при загрузке изображения внутри поста:', error)
+    }
+  }
+
+  const handleNewDetailPreviewImageUpload = async () => {
+    try {
+      if (!newSelectedDetailPreviewFile) {
+        alert('Выберите изображение для загрузки')
+        return
+      }
+
+      const storage = getStorage()
+      const storageRef = ref(
+        storage,
+        'images/detailPreviews/' + newSelectedDetailPreviewFile.name,
+      )
+
+      const uploadTask = uploadBytesResumable(
+        storageRef,
+        newSelectedDetailPreviewFile,
       )
 
       uploadTask.on(
@@ -183,9 +258,8 @@ function Posts() {
         },
         async () => {
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-          console.log('Detail Preview Image Download URL:', downloadURL)
 
-          setDetailPreviewImage(downloadURL)
+          setNewDetailPreviewImage(downloadURL)
         },
       )
     } catch (error) {
@@ -203,7 +277,7 @@ function Posts() {
       !newPost.description ||
       // !newPost.image ||
       !newPost.type ||
-      !newPost.detailPreviewImage ||
+      // !newPost.detailPreviewImage ||
       !newPost.remark ||
       !newPost.content
     ) {
@@ -453,14 +527,24 @@ function Posts() {
           <Form.Label htmlFor="newimg">New Картинка поста карточки</Form.Label>
           <Form.Control
             className="my-3"
-            type="text"
+            type="file"
             id="newimg"
             aria-describedby="newimg"
-            value={newImage}
-            onInput={event => {
-              setNewImage((event.target as any).value!)
-            }}
+            onChange={event =>
+              setNewSelectedFile(
+                (event.target as HTMLInputElement).files?.[0] || null,
+              )
+            }
+            accept="image/*"
           />
+          {newSelectedFile && (
+            <>
+              <Button variant="primary" onClick={handleNewImageUpload}>
+                Загрузить изображение
+              </Button>
+              <br />
+            </>
+          )}
 
           <Form.Label htmlFor="newtype">New Тип поста</Form.Label>
           <Form.Control
@@ -479,14 +563,26 @@ function Posts() {
           </Form.Label>
           <Form.Control
             className="my-3"
-            type="text"
+            type="file"
             id="newdetailpreviewimage"
             aria-describedby="newdetailpreviewimage"
-            value={newDetailPreviewImage}
-            onInput={event => {
-              setNewDetailPreviewImage((event.target as any).value!)
-            }}
+            onChange={event =>
+              setNewSelectedDetailPreviewFile(
+                (event.target as HTMLInputElement).files?.[0] || null,
+              )
+            }
+            accept="image/*"
           />
+          {newSelectedDetailPreviewFile && (
+            <>
+              <Button
+                variant="primary"
+                onClick={handleNewDetailPreviewImageUpload}>
+                Загрузить изображение
+              </Button>
+              <br />
+            </>
+          )}
 
           <Form.Label htmlFor="newremark">New Подзаголовок</Form.Label>
           <Form.Control
