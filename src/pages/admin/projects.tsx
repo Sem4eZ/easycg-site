@@ -94,6 +94,13 @@ function Projects() {
     setSelectedProjectDetailPreviewFile,
   ] = useState<File | null>(null)
 
+  const [newselectedProjectFile, setNewSelectedProjectFile] =
+    useState<File | null>(null)
+  const [
+    newSelectedProjectDetailPreviewFile,
+    setNewSelectedProjectDetailPreviewFile,
+  ] = useState<File | null>(null)
+
   const [isUpdating, setIsUpdating] = useState(false) // Добавим новое состояние
 
   const fetchData = async () => {
@@ -113,22 +120,6 @@ function Projects() {
   useEffect(() => {
     fetchData()
   }, [])
-
-  // React.useEffect(() => {
-  //   if (quill) {
-  //     quill.on('text-change', (delta: any, oldDelta: any, source: any) => {
-  //       setContent(quill.root.innerHTML)
-  //     })
-  //   }
-  // }, [quill])
-
-  // React.useEffect(() => {
-  //   if (newQuill) {
-  //     newQuill.on('text-change', (delta: any, oldDelta: any, source: any) => {
-  //       setNewContent(newQuill.root.innerHTML)
-  //     })
-  //   }
-  // }, [newQuill])
 
   const handleImageUploadProject = async () => {
     try {
@@ -208,6 +199,94 @@ function Projects() {
           console.log('Download URL:', downloadURL)
 
           setDetailPreview(downloadURL) // Обновляем состояние detailPreview
+        },
+      )
+    } catch (error) {
+      console.error('Ошибка при загрузке изображения:', error)
+    }
+  }
+
+  const handleNewImageUploadProject = async () => {
+    try {
+      if (!newselectedProjectFile) {
+        alert('Выберите изображение для загрузки')
+        return
+      }
+
+      console.log('Selected File:', newselectedProjectFile)
+
+      const storage = getStorage()
+      const storageRef = ref(
+        storage,
+        'images/projectImg/' + newselectedProjectFile.name,
+      )
+      console.log('Storage Reference:', storageRef)
+
+      const uploadTask = uploadBytesResumable(
+        storageRef,
+        newselectedProjectFile,
+      )
+
+      uploadTask.on(
+        'state_changed',
+        snapshot => {
+          console.log(
+            'Upload Progress:',
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100 + '%',
+          )
+        },
+        (error: any) => {
+          console.error('Ошибка при загрузке изображения:', error)
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+          console.log('Download URL:', downloadURL)
+
+          setNewImage(downloadURL)
+        },
+      )
+    } catch (error) {
+      console.error('Ошибка при загрузке изображения:', error)
+    }
+  }
+
+  const handleNewImageUploadProjectDetail = async () => {
+    try {
+      if (!newSelectedProjectDetailPreviewFile) {
+        alert('Выберите изображение для загрузки')
+        return
+      }
+
+      console.log('Selected File:', newSelectedProjectDetailPreviewFile)
+
+      const storage = getStorage()
+      const storageRef = ref(
+        storage,
+        'images/projectDetail/' + newSelectedProjectDetailPreviewFile.name,
+      )
+      console.log('Storage Reference:', storageRef)
+
+      const uploadTask = uploadBytesResumable(
+        storageRef,
+        newSelectedProjectDetailPreviewFile,
+      )
+
+      uploadTask.on(
+        'state_changed',
+        snapshot => {
+          console.log(
+            'Upload Progress:',
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100 + '%',
+          )
+        },
+        (error: any) => {
+          console.error('Ошибка при загрузке изображения:', error)
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+          console.log('Download URL:', downloadURL)
+
+          setNewDetailPreview(downloadURL) // Обновляем состояние detailPreview
         },
       )
     } catch (error) {
@@ -572,14 +651,25 @@ function Projects() {
           <Form.Label htmlFor="newimg">New Картинка для обложки</Form.Label>
           <Form.Control
             className="my-3"
-            type="text"
+            type="file"
             id="newimg"
             aria-describedby="newimg"
-            value={newImage}
-            onInput={event => {
-              setNewImage((event.target as any).value!)
-            }}
+            onChange={event =>
+              setNewSelectedProjectFile(
+                (event.target as HTMLInputElement).files?.[0] || null,
+              )
+            }
+            required
+            accept="image/*"
           />
+          {newselectedProjectFile && (
+            <>
+              <Button variant="primary" onClick={handleNewImageUploadProject}>
+                Загрузить изображение
+              </Button>
+              <br />
+            </>
+          )}
 
           <Form.Label htmlFor="newtype">New Тип проекта</Form.Label>
           <Form.Control
@@ -598,40 +688,59 @@ function Projects() {
           </Form.Label>
           <Form.Control
             className="my-3"
-            type="text"
+            type="file"
             id="newdetailpreviewimage"
             aria-describedby="newdetailpreviewimage"
-            value={newDetailPreview}
-            onInput={event => {
-              setNewDetailPreview((event.target as any).value!)
-            }}
+            onChange={event =>
+              setNewSelectedProjectDetailPreviewFile(
+                (event.target as HTMLInputElement).files?.[0] || null,
+              )
+            }
+            required
+            accept="image/*"
           />
-
-          {/* <Form.Label htmlFor="newremark">Remark</Form.Label>
-          <Form.Control
-            className="my-3"
-            type="text"
-            id="newremark"
-            aria-describedby="newremark"
-            value={newRemark}
-            onInput={event => {
-              setNewRemark((event.target as any).value!)
-            }}
-          /> */}
+          {newSelectedProjectDetailPreviewFile && (
+            <>
+              <Button
+                variant="primary"
+                onClick={handleNewImageUploadProjectDetail}>
+                Загрузить видео
+              </Button>
+              <br />
+            </>
+          )}
 
           <Form.Label htmlFor="newServicesType">
             New Сервисный тип проекта
           </Form.Label>
-          <Form.Control
+          <Form.Select
             className="my-3"
-            type="text"
             id="newServicesType"
             aria-describedby="newServicesType"
             value={newServicesType}
-            onInput={event => {
+            onChange={event => {
               setNewServicesType((event.target as any).value!)
-            }}
-          />
+            }}>
+            <option>Выбери поле</option>
+            <option value="APP">APP</option>
+            <option value="CGI">CGI</option>
+            <option value="XR">XR</option>
+          </Form.Select>
+
+          {/* <Form.Label htmlFor="servicesType">Сервисный тип проекта</Form.Label>
+          <Form.Select
+            className="my-2"
+            id="servicesType"
+            aria-describedby="servicesType"
+            value={servicesType}
+            onChange={event => {
+              setServicesType((event.target as any).value!)
+            }}>
+            <option>Выбери поле</option>
+            <option value="APP">APP</option>
+            <option value="CGI">CGI</option>
+            <option value="XR">XR</option>
+          </Form.Select> */}
 
           {/* <div ref={newContentQuillRef} /> */}
         </Modal.Body>
@@ -643,14 +752,13 @@ function Projects() {
             variant="primary"
             onClick={async () => {
               await updateProject(selectedProject?.id, {
-                // content: newContent || selectedProject?.content,
                 name: newName || selectedProject?.name,
                 description: newDescription || selectedProject?.description,
                 image: newImage || selectedProject?.image,
                 type: newType || selectedProject?.type,
+                servicesType: newServicesType || selectedProject?.servicesType,
                 detailPreview:
                   newDetailPreview || selectedProject?.newDetailPreview,
-                // remark: newRemark || selectedProject?.remark,
               })
               setSelectedProject(null)
               await fetchData()
@@ -672,7 +780,7 @@ function Projects() {
 
             <th>Edit</th>
             <th>Delete</th>
-            <th>Скрыть показать</th>
+            <th>Статус видимости</th>
           </tr>
         </thead>
         <tbody>
