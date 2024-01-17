@@ -17,6 +17,12 @@ import {
   getDocs,
   updateDoc,
 } from 'firebase/firestore'
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from 'firebase/storage'
 import moment from 'moment'
 // projects.tsx
 import React, { useEffect, useState } from 'react'
@@ -80,6 +86,14 @@ function Projects() {
   const [titleAbout, setTitleAbout] = useState('')
   const [newTitleAbout, setNewTitleAbout] = useState('')
 
+  const [selectedProjectFile, setSelectedProjectFile] = useState<File | null>(
+    null,
+  )
+  const [
+    selectedProjectDetailPreviewFile,
+    setSelectedProjectDetailPreviewFile,
+  ] = useState<File | null>(null)
+
   const [isUpdating, setIsUpdating] = useState(false) // Добавим новое состояние
 
   const fetchData = async () => {
@@ -116,6 +130,91 @@ function Projects() {
   //   }
   // }, [newQuill])
 
+  const handleImageUploadProject = async () => {
+    try {
+      if (!selectedProjectFile) {
+        alert('Выберите изображение для загрузки')
+        return
+      }
+
+      console.log('Selected File:', selectedProjectFile)
+
+      const storage = getStorage()
+      const storageRef = ref(
+        storage,
+        'images/projectImg/' + selectedProjectFile.name,
+      )
+      console.log('Storage Reference:', storageRef)
+
+      const uploadTask = uploadBytesResumable(storageRef, selectedProjectFile)
+
+      uploadTask.on(
+        'state_changed',
+        snapshot => {
+          console.log(
+            'Upload Progress:',
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100 + '%',
+          )
+        },
+        (error: any) => {
+          console.error('Ошибка при загрузке изображения:', error)
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+          console.log('Download URL:', downloadURL)
+
+          setImage(downloadURL)
+        },
+      )
+    } catch (error) {
+      console.error('Ошибка при загрузке изображения:', error)
+    }
+  }
+
+  const handleImageUploadProjectDetail = async () => {
+    try {
+      if (!selectedProjectDetailPreviewFile) {
+        alert('Выберите изображение для загрузки')
+        return
+      }
+
+      console.log('Selected File:', selectedProjectDetailPreviewFile)
+
+      const storage = getStorage()
+      const storageRef = ref(
+        storage,
+        'images/projectDetail/' + selectedProjectDetailPreviewFile.name,
+      )
+      console.log('Storage Reference:', storageRef)
+
+      const uploadTask = uploadBytesResumable(
+        storageRef,
+        selectedProjectDetailPreviewFile,
+      )
+
+      uploadTask.on(
+        'state_changed',
+        snapshot => {
+          console.log(
+            'Upload Progress:',
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100 + '%',
+          )
+        },
+        (error: any) => {
+          console.error('Ошибка при загрузке изображения:', error)
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+          console.log('Download URL:', downloadURL)
+
+          setDetailPreview(downloadURL) // Обновляем состояние detailPreview
+        },
+      )
+    } catch (error) {
+      console.error('Ошибка при загрузке изображения:', error)
+    }
+  }
+
   const handleClose = () => {
     setCreateProjectModalOpen(false)
   }
@@ -124,12 +223,10 @@ function Projects() {
     if (
       !newProject.name ||
       !newProject.description ||
-      !newProject.image ||
+      // !newProject.image ||
       !newProject.type ||
-      !newProject.detailPreview ||
-      // !newProject.remark ||
+      // !newProject.detailPreview ||
       !newProject.servicesType ||
-      // !newProject.content ||
       !newProject.about ||
       !newProject.titleDescription || // Новое поле для создания проекта
       !newProject.titleAbout // Новое поле для создания проекта
@@ -310,15 +407,22 @@ function Projects() {
           <Form.Label htmlFor="img">Картинка для обложки</Form.Label>
           <Form.Control
             className="my-2"
-            type="text"
+            type="file"
             id="img"
             aria-describedby="img"
-            value={image}
-            onInput={event => {
-              setImage((event.target as any).value!)
-            }}
+            onChange={event =>
+              setSelectedProjectFile(
+                (event.target as HTMLInputElement).files?.[0] || null,
+              )
+            }
             required
+            accept="image/*"
           />
+          {selectedProjectFile && (
+            <Button variant="primary" onClick={handleImageUploadProject}>
+              Загрузить изображение
+            </Button>
+          )}
 
           <Form.Label htmlFor="type">Тип проекта</Form.Label>
           <Form.Control
@@ -334,32 +438,26 @@ function Projects() {
           />
 
           <Form.Label htmlFor="detail preview image">
-            Видео внутри проекта (ссылка)
+            Видео внутри Проекта
           </Form.Label>
           <Form.Control
             className="my-2"
-            type="text"
+            type="file"
             id="detail preview image"
             aria-describedby="detail preview image"
-            value={detailPreview}
-            onInput={event => {
-              setDetailPreview((event.target as any).value!)
-            }}
+            onChange={event =>
+              setSelectedProjectDetailPreviewFile(
+                (event.target as HTMLInputElement).files?.[0] || null,
+              )
+            }
             required
+            accept="image/*"
           />
-
-          {/* <Form.Label htmlFor="remark">Remark</Form.Label>
-          <Form.Control
-            className="my-2"
-            type="text"
-            id="remark"
-            aria-describedby="remark"
-            value={remark}
-            onInput={event => {
-              setRemark((event.target as any).value!)
-            }}
-            required
-          /> */}
+          {selectedProjectDetailPreviewFile && (
+            <Button variant="primary" onClick={handleImageUploadProjectDetail}>
+              Загрузить изображение
+            </Button>
+          )}
 
           <Form.Label htmlFor="servicesType">Сервисный тип проекта</Form.Label>
           <Form.Select
@@ -370,6 +468,7 @@ function Projects() {
             onChange={event => {
               setServicesType((event.target as any).value!)
             }}>
+            <option>Выбери поле</option>
             <option value="APP">APP</option>
             <option value="CGI">CGI</option>
             <option value="XR">XR</option>

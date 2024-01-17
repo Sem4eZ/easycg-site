@@ -37,7 +37,7 @@ export const GalleryProjectCard = ({
               {imageSrcSet.map((imageSrcSetData, index) => {
                 return (
                   <source
-                    key={index} // Использование индекса массива как ключа
+                    key={index}
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )

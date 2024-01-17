@@ -90,9 +90,10 @@ export const PagePagination = ({ currentProjectId }: Props) => {
 
       {showSlider && (
         <SliderContainer>
-          <Swiper spaceBetween={0} slidesPerView={2} loop>
+          <Swiper spaceBetween={30} slidesPerView={2} loop>
             <ListNavigation />
             {projects
+              .filter(project => project.visible)
               .filter(project => project.id !== currentProjectId)
               .map(project => (
                 <SwiperSlide key={project.id}>

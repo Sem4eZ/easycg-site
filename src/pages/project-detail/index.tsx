@@ -107,12 +107,13 @@ const ProjectDetailPage = () => {
       {/* <ProjectDetailHero preview={project.detailPreview} /> */}
       {/* <VideoPreview url="../../../public/assets/videos/projects/detail_preview.webm" /> */}
       <Preview>
-        <iframe
-          src={project.detailPreview}
-          style={{
-            width: '100% !important',
-          }}
-        />
+        <video
+          loop
+          controls={false}
+          style={{ width: '100%', height: 'auto' }}
+          autoPlay>
+          <source src={project.detailPreview} type="video/webm" />
+        </video>
       </Preview>
       {/* <RemarkContainer>
         <Remark>

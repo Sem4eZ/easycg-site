@@ -47,7 +47,7 @@ export const MainPageProjectsSlider = () => {
     fetchData()
   }, [])
 
-  const topProjects = projects.slice(0, 6)
+  const topProjects = projects.slice(0, 10)
 
   return (
     <Container ref={containerRef}>
