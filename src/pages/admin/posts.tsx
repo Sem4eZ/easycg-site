@@ -454,7 +454,11 @@ function Posts() {
                     setNewRemark(post.remark)
 
                     setSelectedPost(post)
-                    newQuill.setContent(post.content)
+                    if (newQuill) {
+                      newQuill.setContents(
+                        newQuill.clipboard.convert(post.content),
+                      )
+                    }
                   }}>
                   Edit
                 </Button>
