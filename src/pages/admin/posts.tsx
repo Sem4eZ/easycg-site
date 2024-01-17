@@ -10,6 +10,12 @@ import {
   getDocs,
   updateDoc,
 } from 'firebase/firestore'
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from 'firebase/storage'
 import moment from 'moment'
 import 'quill/dist/quill.snow.css'
 import React, { useEffect, useState } from 'react'
@@ -67,6 +73,10 @@ function Posts() {
 
   const [selectedPost, setSelectedPost] = useState<any>(null)
 
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+  const [selectedDetailPreviewFile, setSelectedDetailPreviewFile] =
+    useState<File | null>(null)
+
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, 'posts'))
     const postsData = snapshot.docs.map(
@@ -101,6 +111,88 @@ function Posts() {
     }
   }, [newQuill])
 
+  const handleImageUpload = async () => {
+    try {
+      if (!selectedFile) {
+        alert('Выберите изображение для загрузки')
+        return
+      }
+
+      console.log('Selected File:', selectedFile)
+
+      const storage = getStorage()
+      const storageRef = ref(storage, 'images/articles/' + selectedFile.name)
+      console.log('Storage Reference:', storageRef)
+
+      const uploadTask = uploadBytesResumable(storageRef, selectedFile)
+
+      uploadTask.on(
+        'state_changed',
+        snapshot => {
+          console.log(
+            'Upload Progress:',
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100 + '%',
+          )
+        },
+        (error: any) => {
+          console.error('Ошибка при загрузке изображения:', error)
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+          console.log('Download URL:', downloadURL)
+
+          setImage(downloadURL)
+        },
+      )
+    } catch (error) {
+      console.error('Ошибка при загрузке изображения:', error)
+    }
+  }
+
+  const handleDetailPreviewImageUpload = async () => {
+    try {
+      if (!selectedDetailPreviewFile) {
+        alert('Выберите изображение для загрузки')
+        return
+      }
+
+      console.log('Selected Detail Preview File:', selectedDetailPreviewFile)
+
+      const storage = getStorage()
+      const storageRef = ref(
+        storage,
+        'images/detailPreviews/' + selectedDetailPreviewFile.name,
+      )
+      console.log('Storage Reference for Detail Preview Image:', storageRef)
+
+      const uploadTask = uploadBytesResumable(
+        storageRef,
+        selectedDetailPreviewFile,
+      )
+
+      uploadTask.on(
+        'state_changed',
+        snapshot => {
+          console.log(
+            'Detail Preview Image Upload Progress:',
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100 + '%',
+          )
+        },
+        (error: any) => {
+          console.error('Ошибка при загрузке изображения внутри поста:', error)
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+          console.log('Detail Preview Image Download URL:', downloadURL)
+
+          setDetailPreviewImage(downloadURL)
+        },
+      )
+    } catch (error) {
+      console.error('Ошибка при загрузке изображения внутри поста:', error)
+    }
+  }
+
   const handleClose = () => {
     setCreatePostModalOpen(false)
   }
@@ -109,10 +201,11 @@ function Posts() {
     if (
       !newPost.name ||
       !newPost.description ||
-      !newPost.image ||
+      // !newPost.image ||
       !newPost.type ||
       !newPost.detailPreviewImage ||
-      !newPost.remark
+      !newPost.remark ||
+      !newPost.content
     ) {
       alert('Все поля должны быть заполнены')
       return
@@ -239,20 +332,24 @@ function Posts() {
             required
           />
 
-          <Form.Label htmlFor="img">
-            Картинка поста карточки (ссылка)
-          </Form.Label>
+          <Form.Label htmlFor="img">Картинка поста карточки</Form.Label>
           <Form.Control
             className="my-2"
-            type="text"
+            type="file"
             id="img"
             aria-describedby="img"
-            value={image}
-            onInput={event => {
-              setImage((event.target as any).value!)
-            }}
-            required
+            onChange={event =>
+              setSelectedFile(
+                (event.target as HTMLInputElement).files?.[0] || null,
+              )
+            }
+            accept="image/*"
           />
+          {selectedFile && (
+            <Button variant="primary" onClick={handleImageUpload}>
+              Загрузить изображение
+            </Button>
+          )}
 
           <Form.Label htmlFor="type">Тип поста</Form.Label>
           <Form.Control
@@ -267,20 +364,27 @@ function Posts() {
             required
           />
 
-          <Form.Label htmlFor="detail preview image">
-            Картинка внутри поста (ссылка)
+          <Form.Label htmlFor="detailPreviewImage">
+            Картинка внутри поста
           </Form.Label>
           <Form.Control
             className="my-2"
-            type="text"
-            id="detail preview image"
-            aria-describedby="detail preview image"
-            value={detailPreviewImage}
-            onInput={event => {
-              setDetailPreviewImage((event.target as any).value!)
-            }}
+            type="file"
+            id="detailPreviewImage"
+            aria-describedby="detailPreviewImage"
+            onChange={event =>
+              setSelectedDetailPreviewFile(
+                (event.target as HTMLInputElement).files?.[0] || null,
+              )
+            }
+            accept="image/*"
             required
           />
+          {selectedDetailPreviewFile && (
+            <Button variant="primary" onClick={handleDetailPreviewImageUpload}>
+              Загрузить изображение
+            </Button>
+          )}
 
           <Form.Label htmlFor="remark">
             Заголовок поста внутри карточки
@@ -314,7 +418,7 @@ function Posts() {
           <Modal.Title>Редактирование поста</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label htmlFor="title">Название поста</Form.Label>
+          <Form.Label htmlFor="title">New Название поста</Form.Label>
           <Form.Control
             className="mb-3"
             type="text"
@@ -326,7 +430,7 @@ function Posts() {
             }}
           />
 
-          <Form.Label htmlFor="desc">Описание поста карточки</Form.Label>
+          <Form.Label htmlFor="desc">New Описание поста карточки</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -338,9 +442,7 @@ function Posts() {
             }}
           />
 
-          <Form.Label htmlFor="newimg">
-            Картинка поста карточки (ссылка)
-          </Form.Label>
+          <Form.Label htmlFor="newimg">New Картинка поста карточки</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -352,7 +454,7 @@ function Posts() {
             }}
           />
 
-          <Form.Label htmlFor="newtype">Тип поста</Form.Label>
+          <Form.Label htmlFor="newtype">New Тип поста</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -365,7 +467,7 @@ function Posts() {
           />
 
           <Form.Label htmlFor="newdetailpreviewimage">
-            Detail preview image
+            New Картинка внутри поста
           </Form.Label>
           <Form.Control
             className="my-3"
@@ -378,7 +480,7 @@ function Posts() {
             }}
           />
 
-          <Form.Label htmlFor="newremark">Remark</Form.Label>
+          <Form.Label htmlFor="newremark">New Подзаголовок</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
