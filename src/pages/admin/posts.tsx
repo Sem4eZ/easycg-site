@@ -118,11 +118,8 @@ function Posts() {
         return
       }
 
-      console.log('Selected File:', selectedFile)
-
       const storage = getStorage()
       const storageRef = ref(storage, 'images/articles/' + selectedFile.name)
-      console.log('Storage Reference:', storageRef)
 
       const uploadTask = uploadBytesResumable(storageRef, selectedFile)
 
@@ -139,7 +136,6 @@ function Posts() {
         },
         async () => {
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-          console.log('Download URL:', downloadURL)
 
           setImage(downloadURL)
         },
@@ -156,14 +152,11 @@ function Posts() {
         return
       }
 
-      console.log('Selected Detail Preview File:', selectedDetailPreviewFile)
-
       const storage = getStorage()
       const storageRef = ref(
         storage,
         'images/detailPreviews/' + selectedDetailPreviewFile.name,
       )
-      console.log('Storage Reference for Detail Preview Image:', storageRef)
 
       const uploadTask = uploadBytesResumable(
         storageRef,
@@ -178,12 +171,8 @@ function Posts() {
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100 + '%',
           )
         },
-        (error: any) => {
-          console.error('Ошибка при загрузке изображения внутри поста:', error)
-        },
         async () => {
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-          console.log('Detail Preview Image Download URL:', downloadURL)
 
           setDetailPreviewImage(downloadURL)
         },
