@@ -346,9 +346,12 @@ function Posts() {
             accept="image/*"
           />
           {selectedFile && (
-            <Button variant="primary" onClick={handleImageUpload}>
-              Загрузить изображение
-            </Button>
+            <>
+              <Button variant="primary" onClick={handleImageUpload}>
+                Загрузить изображение
+              </Button>
+              <br />
+            </>
           )}
 
           <Form.Label htmlFor="type">Тип поста</Form.Label>
@@ -381,9 +384,14 @@ function Posts() {
             required
           />
           {selectedDetailPreviewFile && (
-            <Button variant="primary" onClick={handleDetailPreviewImageUpload}>
-              Загрузить изображение
-            </Button>
+            <>
+              <Button
+                variant="primary"
+                onClick={handleDetailPreviewImageUpload}>
+                Загрузить изображение
+              </Button>
+              <br />
+            </>
           )}
 
           <Form.Label htmlFor="remark">

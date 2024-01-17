@@ -419,9 +419,12 @@ function Projects() {
             accept="image/*"
           />
           {selectedProjectFile && (
-            <Button variant="primary" onClick={handleImageUploadProject}>
-              Загрузить изображение
-            </Button>
+            <>
+              <Button variant="primary" onClick={handleImageUploadProject}>
+                Загрузить изображение
+              </Button>
+              <br />
+            </>
           )}
 
           <Form.Label htmlFor="type">Тип проекта</Form.Label>
@@ -438,7 +441,7 @@ function Projects() {
           />
 
           <Form.Label htmlFor="detail preview image">
-            Видео внутри Проекта
+            Видео внутри Проекта (только .webm)
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -454,9 +457,14 @@ function Projects() {
             accept="image/*"
           />
           {selectedProjectDetailPreviewFile && (
-            <Button variant="primary" onClick={handleImageUploadProjectDetail}>
-              Загрузить изображение
-            </Button>
+            <>
+              <Button
+                variant="primary"
+                onClick={handleImageUploadProjectDetail}>
+                Загрузить видео
+              </Button>
+              <br />
+            </>
           )}
 
           <Form.Label htmlFor="servicesType">Сервисный тип проекта</Form.Label>
