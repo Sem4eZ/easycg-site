@@ -77,9 +77,33 @@ export const MainPageProjectsSlider = () => {
               spaceBetween: 114,
             },
           }}>
-          {topProjects.map(project => {
-            return (
-              <SwiperSlide key={project.id} style={{ width: 'auto' }}>
+          {topProjects
+            .filter(project => project.visible)
+            .map(project => {
+              return (
+                <SwiperSlide key={project.id} style={{ width: 'auto' }}>
+                  <ProjectCard
+                    key={project.id}
+                    id={project.id}
+                    name={project.name}
+                    date={project.date}
+                    description={project.description}
+                    image={project.image}
+                    type={project.type}
+                    servicesType={project.servicesType}
+                  />
+                </SwiperSlide>
+              )
+            })}
+        </Swiper>
+      )}
+
+      {!showSlider && (
+        <List>
+          {topProjects
+            .filter(project => project.visible)
+            .map(project => {
+              return (
                 <ProjectCard
                   key={project.id}
                   id={project.id}
@@ -90,28 +114,8 @@ export const MainPageProjectsSlider = () => {
                   type={project.type}
                   servicesType={project.servicesType}
                 />
-              </SwiperSlide>
-            )
-          })}
-        </Swiper>
-      )}
-
-      {!showSlider && (
-        <List>
-          {topProjects.map(project => {
-            return (
-              <ProjectCard
-                key={project.id}
-                id={project.id}
-                name={project.name}
-                date={project.date}
-                description={project.description}
-                image={project.image}
-                type={project.type}
-                servicesType={project.servicesType}
-              />
-            )
-          })}
+              )
+            })}
         </List>
       )}
 

@@ -1,5 +1,4 @@
 // App.js
-import { Description } from '@mui/icons-material'
 import {
   Container,
   List,
@@ -25,7 +24,6 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Table from 'react-bootstrap/Table'
-import { useQuill } from 'react-quilljs'
 import { NavLink } from 'react-router-dom'
 
 import { db } from '../../shared/firebase'
@@ -37,8 +35,19 @@ export function truncateString(inputString: string, maxLength: number) {
   return inputString
 }
 
+interface Project {
+  id: string
+  name: string
+  description: string
+  image: string
+  type: string
+  detailPreview: string
+  date: string
+  visible: boolean
+}
+
 function Projects() {
-  const [projects, setProjects] = useState([])
+  const [projects, setProjects] = useState<Project[]>([])
   const [name, setName] = useState('')
   // const [content, setContent] = useState('')
   const [description, setDescription] = useState('')
@@ -71,12 +80,19 @@ function Projects() {
   const [titleAbout, setTitleAbout] = useState('')
   const [newTitleAbout, setNewTitleAbout] = useState('')
 
+  const [isUpdating, setIsUpdating] = useState(false) // Добавим новое состояние
+
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, 'projects'))
-    const projectsData = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-    }))
+    const projectsData = snapshot.docs.map(
+      doc =>
+        ({
+          id: doc.id,
+          ...doc.data(),
+          visible: doc.data().visible, // Добавьте это свойство
+        } as { id: string; visible: boolean }),
+    )
+
     setProjects(projectsData as any)
   }
 
@@ -128,6 +144,7 @@ function Projects() {
       ...newProject,
       // content: sanitizedContent,
       date: new Date().toISOString(),
+      visible: true,
     })
 
     await fetchData()
@@ -179,6 +196,24 @@ function Projects() {
       titleAbout: newTitleAbout || selectedProject?.titleAbout, // Новое поле для обновления
     })
     await fetchData()
+  }
+
+  const updateProjectVisibility = async (id: string, isVisible: boolean) => {
+    try {
+      setIsUpdating(true)
+      await updateDoc(doc(db, 'projects', id), {
+        visible: isVisible,
+      })
+
+      // Update local state
+      setProjects(prevProject => {
+        return prevProject.map(project =>
+          project.id === id ? { ...project, visible: isVisible } : project,
+        )
+      })
+    } finally {
+      setIsUpdating(false)
+    }
   }
 
   return (
@@ -524,6 +559,7 @@ function Projects() {
 
             <th>Edit</th>
             <th>Delete</th>
+            <th>Скрыть показать</th>
           </tr>
         </thead>
         <tbody>
@@ -564,6 +600,19 @@ function Projects() {
                     await fetchData()
                   }}>
                   Delete
+                </Button>
+              </td>
+              <td>
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    updateProjectVisibility(project.id, !project.visible) // Изменено на инверсию текущего состояния видимости
+                  }}>
+                  {isUpdating
+                    ? 'Updating...'
+                    : project.visible
+                    ? 'Скрыть'
+                    : 'Показать'}
                 </Button>
               </td>
             </tr>

@@ -40,7 +40,7 @@ export const TeammateCard = ({
               <img src={getImagePath(image.main, 1920)} alt={image.main.alt} />
             </Picture>
 
-            {/* <HiddenImage className="hidden">
+            <HiddenImage className="hidden">
               {imageHiddenSrcSet.map(imageSrcSetData => {
                 return (
                   <source
@@ -51,7 +51,7 @@ export const TeammateCard = ({
               })}
 
               <img src={getImagePath(image.hidden, 1920)} alt="" />
-            </HiddenImage> */}
+            </HiddenImage>
           </ImagesWrapepr>
         </ImageContainer>
         <Content>

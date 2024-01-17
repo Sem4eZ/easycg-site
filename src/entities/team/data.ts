@@ -10,7 +10,7 @@ export const team: Teammate[] = [
     image: {
       main: {
         path: `${IMAGES_PATH}`,
-        name: 'teammate_anton',
+        name: 'teammate_anton2',
         fileType: 'png',
         alt: 'Our teammate 1',
       },

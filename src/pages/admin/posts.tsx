@@ -1,13 +1,5 @@
 // App.js
-import {
-  Container,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
-  TextField,
-  Typography,
-} from '@mui/material'
+import { Container } from '@mui/material'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import DOMPurify from 'dompurify'
 import {
@@ -37,8 +29,21 @@ export function truncateString(inputString: string, maxLength: number) {
   return inputString
 }
 
+interface Post {
+  id: string
+  name: string
+  content: string
+  description: string
+  image: string
+  type: string
+  detailPreviewImage: string
+  remark: string
+  date: string
+  visible: boolean
+}
+
 function Posts() {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<Post[]>([])
   // create post
   const [name, setName] = useState('')
   const [content, setContent] = useState('')
@@ -58,15 +63,21 @@ function Posts() {
   const [createPostModalOpen, setCreatePostModalOpen] = useState(false)
   const { quill, quillRef } = useQuill()
   const { quill: newQuill, quillRef: newContentQuillRef } = useQuill()
+  const [isUpdating, setIsUpdating] = useState(false) // Добавим новое состояние
 
   const [selectedPost, setSelectedPost] = useState<any>(null)
 
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, 'posts'))
-    const postsData = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-    }))
+    const postsData = snapshot.docs.map(
+      doc =>
+        ({
+          id: doc.id,
+          ...doc.data(),
+          visible: doc.data().visible, // Добавьте это свойство
+        } as { id: string; visible: boolean }),
+    )
+
     setPosts(postsData as any)
   }
 
@@ -113,6 +124,7 @@ function Posts() {
       ...newPost,
       content: sanitizedContent,
       date: new Date().toISOString(),
+      visible: true, // Добавьте поле visible с значением true
     })
     await fetchData()
 
@@ -152,6 +164,30 @@ function Posts() {
     await fetchData()
   }
 
+  const updatePostVisibility = async (id: string, isVisible: boolean) => {
+    try {
+      setIsUpdating(true)
+      console.log(
+        `Updating visibility for post with ID ${id} to ${
+          isVisible ? 'visible' : 'hidden'
+        }`,
+      )
+
+      await updateDoc(doc(db, 'posts', id), {
+        visible: isVisible,
+      })
+
+      // Update local state
+      setPosts(prevPosts => {
+        return prevPosts.map(post =>
+          post.id === id ? { ...post, visible: isVisible } : post,
+        )
+      })
+    } finally {
+      setIsUpdating(false)
+    }
+  }
+
   return (
     <Container maxWidth={'md' as any} style={{ marginTop: 20 }}>
       <NavLink to="/admin/posts">
@@ -188,7 +224,9 @@ function Posts() {
             required
           />
 
-          <Form.Label htmlFor="description">Описание поста карточки</Form.Label>
+          <Form.Label htmlFor="description">
+            Подзаголовок поста карточки
+          </Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -391,6 +429,7 @@ function Posts() {
 
             <th>Edit</th>
             <th>Delete</th>
+            <th>Статус отображения</th>
           </tr>
         </thead>
         <tbody>
@@ -428,6 +467,19 @@ function Posts() {
                     await fetchData()
                   }}>
                   Delete
+                </Button>
+              </td>
+              <td>
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    updatePostVisibility(post.id, !post.visible) // Изменено на инверсию текущего состояния видимости
+                  }}>
+                  {isUpdating
+                    ? 'Updating...'
+                    : post.visible
+                    ? 'Скрыть'
+                    : 'Показать'}
                 </Button>
               </td>
             </tr>

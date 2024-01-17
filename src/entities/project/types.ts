@@ -22,4 +22,5 @@ export interface Project {
   picturesRemark: string[]
   detailPreview: string
   tags: ProjectTags[]
+  visible: boolean
 }

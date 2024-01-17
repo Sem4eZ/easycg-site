@@ -18,16 +18,27 @@ import { Page } from 'shared/ui/page-templates'
 
 import { db } from '../../shared/firebase'
 
+interface Post {
+  id: string
+  name: string
+  image: string
+  date: string
+  description: string
+  type: string
+  visible: boolean
+}
+
 const BlogPage = () => {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<Post[]>([])
 
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, 'posts'))
     const postsData = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
-    }))
-    setPosts(postsData as any)
+    })) as Post[] // Cast the result to Post[]
+
+    setPosts(postsData)
   }
 
   useEffect(() => {
@@ -43,17 +54,19 @@ const BlogPage = () => {
         </TextOutlined>
       }>
       <Content>
-        {posts.map((article: any) => (
-          <ArticleCard
-            key={article.id}
-            id={article.id}
-            name={article.name}
-            image={article.image}
-            date={article.date}
-            description={article.description}
-            type={article.type}
-          />
-        ))}
+        {posts
+          .filter(article => article.visible) // Filter based on the 'visible' property
+          .map((article: any) => (
+            <ArticleCard
+              key={article.id}
+              id={article.id}
+              name={article.name}
+              image={article.image}
+              date={article.date}
+              description={article.description}
+              type={article.type}
+            />
+          ))}
       </Content>
     </Page>
   )

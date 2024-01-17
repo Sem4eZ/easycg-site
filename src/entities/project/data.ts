@@ -10,10 +10,13 @@ const useProjects = () => {
 
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, 'projects'))
-    const projectsData = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-    }))
+    const projectsData = snapshot.docs
+      .map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+        visible: doc.data().visible,
+      }))
+      .filter(project => project.visible)
     setProjects(projectsData as Project[])
   }
 

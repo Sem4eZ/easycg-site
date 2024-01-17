@@ -37,10 +37,7 @@ const HomePage = () => {
           }
           section="about us"
           title={[
-            'hello there! it’s EASY on the air',
-            'we are highly enthusiastic about',
-            'immersive technologies and strive',
-            'to share this passion with others',
+            'hello there! it’s EASY on the air we are highly enthusiastic about immersive technologies and strive to share this passion with others',
           ]}
           description={[
             <>

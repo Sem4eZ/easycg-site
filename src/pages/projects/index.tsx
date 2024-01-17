@@ -118,52 +118,58 @@ const ProjectsPage = () => {
                 swiper.slideTo(swiper.activeIndex - 1)
               }
             }}>
-            {filteredProjects.map(project => (
-              <SwiperSlide key={project.id} style={{ width: 'auto' }}>
-                <GalleryProjectCard
-                  key={project.id}
-                  id={project.id}
-                  name={project.name}
-                  date={project.date}
-                  image={project.image}
-                  type={project.type}
-                  servicesType={project.servicesType}
-                />
-              </SwiperSlide>
-            ))}
+            {filteredProjects
+              .filter(project => project.visible)
+              .map(project => (
+                <SwiperSlide key={project.id} style={{ width: 'auto' }}>
+                  <GalleryProjectCard
+                    key={project.id}
+                    id={project.id}
+                    name={project.name}
+                    date={project.date}
+                    image={project.image}
+                    type={project.type}
+                    servicesType={project.servicesType}
+                  />
+                </SwiperSlide>
+              ))}
           </Swiper>
         )}
 
         {!showSlider && view === 'carousel' && (
           <List>
-            {filteredProjects.map(project => (
-              <li key={project.id}>
-                <GalleryProjectCard
-                  key={project.id}
-                  id={project.id}
-                  name={project.name}
-                  date={project.date}
-                  image={project.image}
-                  type={project.type}
-                  servicesType={project.servicesType}
-                />
-              </li>
-            ))}
+            {filteredProjects
+              .filter(project => project.visible)
+              .map(project => (
+                <li key={project.id}>
+                  <GalleryProjectCard
+                    key={project.id}
+                    id={project.id}
+                    name={project.name}
+                    date={project.date}
+                    image={project.image}
+                    type={project.type}
+                    servicesType={project.servicesType}
+                  />
+                </li>
+              ))}
           </List>
         )}
 
         {view === 'list' && (
           <RowList>
-            {filteredProjects.map(project => (
-              <li key={project.id}>
-                <GalleryProjectCardRow
-                  key={project.id}
-                  id={project.id}
-                  name={project.name}
-                  servicesType={project.servicesType}
-                />
-              </li>
-            ))}
+            {filteredProjects
+              .filter(project => project.visible)
+              .map(project => (
+                <li key={project.id}>
+                  <GalleryProjectCardRow
+                    key={project.id}
+                    id={project.id}
+                    name={project.name}
+                    servicesType={project.servicesType}
+                  />
+                </li>
+              ))}
           </RowList>
         )}
       </Content>
