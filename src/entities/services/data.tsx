@@ -58,6 +58,7 @@ export const services: Service[] = [
     type: 'CGI',
     name: 'CGI',
     shortName: 'CGI',
+    nameExplanation: 'comouter-generated imagenery',
     description: `we create CGI content, ranging from 3D still images to action-packed animations, offering versatile solutions to meet a wide range of needs`,
     services: [
       '3D computer graphics and animation',
@@ -79,7 +80,7 @@ export const services: Service[] = [
     type: 'XR',
     name: 'XR',
     shortName: 'XR',
-    // nameExplanation: '(aguamented reality)',
+    nameExplanation: 'extended reality experiences',
     description: `we create innovative solutions using AR, VR and MR technologies to help grow your business, provide effective employee training and increase your brand awareness`,
     services: [
       `VR - virtual reality`,
@@ -101,7 +102,7 @@ export const services: Service[] = [
     type: 'APP',
     name: 'APP',
     shortName: 'APP/',
-    // nameExplanation: '(virtual reality)',
+    nameExplanation: 'mobile applications',
     description: `we design and develop applications tailored to the specific needs of your business, offering a comprehensive cycle of digital product development to ensure the delivery of solutions of any complexity.`,
     services: [
       'native apps for ios & android',

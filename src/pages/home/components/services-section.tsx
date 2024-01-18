@@ -25,7 +25,7 @@ export const MainPageServicesSection = () => {
           name="Services"
           items={services.map(service => ({
             title: service.name,
-            titleExplanation: service.nameExplanation,
+            // titleExplanation: service.nameExplanation,
             content: service.description,
           }))}
         />

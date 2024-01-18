@@ -63,9 +63,7 @@ const Container = styled('div')(({ theme }) => ({
 }))
 
 export const Summary = styled(AccordionSummary)(({ theme }) => ({
-  ...getBreakpointsStylesByArray(theme, {
-    paddingRight: [6, null, null, null, 54, 47, 190, null, 123, 230],
-  }),
+  ...getBreakpointsStylesByArray(theme, {}),
   '& .MuiAccordionSummary-expandIconWrapper': {
     position: 'relative',
     '&::after': {
