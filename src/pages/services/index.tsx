@@ -91,6 +91,7 @@ const ServicesPage = () => {
                     <li>{services.services[2]}</li>
                   </StyledAccordionContent>
                 ),
+                remark: services.remark,
               }))}
             />
           </BlockTextOverview>

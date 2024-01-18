@@ -73,14 +73,14 @@ export const services: Service[] = [
       additionalExpenses: 20,
     },
     remark:
-      'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
+      'CGI is more than just images or video. this is the key to creating an impressive new experience for your product or service. we create 3D visual content that will be the best representation of your concepts',
     icon: <CGIIcon />,
   },
   {
     type: 'XR',
     name: 'XR',
     shortName: 'XR',
-    nameExplanation: 'extended reality experiences',
+    nameExplanation: 'extended reality',
     description: `we create innovative solutions using AR, VR and MR technologies to help grow your business, provide effective employee training and increase your brand awareness`,
     services: [
       `VR - virtual reality`,
@@ -94,8 +94,7 @@ export const services: Service[] = [
       exactPrice: 1020,
       additionalExpenses: 20,
     },
-    remark:
-      'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
+    remark: `the integration of XR technologies into your business expands customer interaction, streamlines processes and enhances efficiency. XR opens up new possibilities in education, marketing and product visualization. unique interactive experiences strengthen your business's competitive advantage`,
     icon: <Cube />,
   },
   {
@@ -117,7 +116,7 @@ export const services: Service[] = [
       additionalExpenses: 20,
     },
     remark:
-      'publishing at the App Store (99 $/year) and Play Market (25 $/year)',
+      'application development is one of the most important components of any modern business strategy. apps provide easy access to your products or services and create additional touchpoints with your audience',
     icon: <AppSVG />,
   },
 

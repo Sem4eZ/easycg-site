@@ -15,6 +15,7 @@ interface Props {
     title: string
     titleExplanation?: string
     content: React.ReactNode
+    remark?: string
   }[]
 }
 
@@ -47,6 +48,7 @@ export const Accordion = ({ name, items }: Props) => {
             </Summary>
             <AccordionDetails>
               <Typography>{item.content}</Typography>
+              <Typography>{item.remark}</Typography>
             </AccordionDetails>
           </AccordionBase>
         )
