@@ -8,21 +8,21 @@ import { services } from '../data'
 import { Service } from '../types'
 
 const getWidthByServiceType = (type: Service['type']) => {
-  switch (type) {
-    case 'mobile':
-      return 87
-    case 'web':
-      return 60
-    default:
-      return 50
-  }
+  // switch (type) {
+  //   case 'mobile':
+  //     return 87
+  //   case 'web':
+  //     return 60
+  //   default:
+  //     return 50
+  // }
 }
 export const ServicesHeroMenu = () => {
   return (
     <Container>
       <List>
         {services
-          .filter(service => service.type !== 'UXUI')
+          // .filter(service => service.type !== 'UXUI')
           .map((service, i) => {
             return (
               <li

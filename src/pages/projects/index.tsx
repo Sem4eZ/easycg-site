@@ -54,6 +54,8 @@ const ProjectsPage = () => {
     'AR',
     'VR',
     'UXUI',
+    'APP',
+    'XR',
     'clothes',
     'food',
   ]

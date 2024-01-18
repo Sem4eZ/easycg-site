@@ -156,12 +156,12 @@ export const serviceDetailsToPricesBlockItems = (
 }
 
 export const serviceTypeToIcon: Record<ServiceType, React.ReactNode> = {
-  web: <ComputerIcon />,
-  mobile: <PhoneIcon />,
+  // web: <ComputerIcon />,
+  // mobile: <PhoneIcon />,
   CGI: <CGIIcon />,
-  AR: <ARIcon />,
-  VR: <VRIcon />,
-  UXUI: <UXUIIcon />,
+  // AR: <ARIcon />,
+  // VR: <VRIcon />,
+  // UXUI: <UXUIIcon />,
   XR: [<FramedCube />, <Glasses />, <Cube />],
   APP: <AppSVG />,
 }

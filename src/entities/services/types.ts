@@ -1,12 +1,12 @@
 import { Price } from 'entities/price/types'
 
 export const serviceType = [
-  'mobile',
-  'web',
+  // 'mobile',
+  // 'web',
   'CGI',
-  'AR',
-  'VR',
-  'UXUI',
+  // 'AR',
+  // 'VR',
+  // 'UXUI',
   'XR',
   'APP',
 ] as const
