@@ -31,13 +31,13 @@ export const ProjectCard = ({
   return (
     <Container>
       <article>
-        <Link to={`projects/${id}`}>
+        <Link to={`projects/${id}`} key={id}>
           <ImageContainer>
             <picture>
-              {imageSrcSet.map(imageSrcSetData => {
+              {imageSrcSet.map((imageSrcSetData, index) => {
                 return (
                   <source
-                    key={imageSrcSetData.media}
+                    key={index}
                     srcSet={imageSrcSetData.path}
                     media={imageSrcSetData.media}></source>
                 )

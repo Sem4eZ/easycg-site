@@ -9,7 +9,7 @@ import { SwimOutContentFromRight } from 'shared/ui/containers'
 export const MainPageCeoSection = () => {
   const imageSrcSet = getImageSrcSetByImageObj({
     path: '/assets/images/',
-    name: 'ceo',
+    name: 'How-we-work',
     fileType: 'png',
     alt: '',
   })
@@ -29,13 +29,13 @@ export const MainPageCeoSection = () => {
                 )
               })}
 
-              <img src="/assets/images/ceo-1920w.png" alt="ceo" />
+              <img src="./assets/images/How-we-work.png" alt="ceo" />
             </picture>
           </ContentContainer>
-          <Caption>
+          {/* <Caption>
             <span>By the way, he's our CEO,&nbsp;</span>
             <span> and his best friend works here too</span>
-          </Caption>
+          </Caption> */}
         </figure>
       }
     />
@@ -50,20 +50,20 @@ const ContentContainer = styled('div')(({ theme }) => ({
     theme.palette.mode === 'dark'
       ? theme.palette.inverted
       : theme.palette.text.disabled,
-  ...getBreakpointsStylesByArray(theme, {
-    height: [260, null, 269, 359, 406, null, 900, null, 833, 900],
-    marginBottom: [24, 32, null, null, null, null, 72, null, 48, 64],
-  }),
+  height: '100vh', // Set height to full viewport height
+  margin: 0, // Remove margin
   '& picture': {
-    height: '90%',
-    width: '90%',
+    height: '100%',
+    width: '100%',
     display: 'flex',
     justifyContent: 'center',
+    backgroundColor: 'transparent',
 
     img: {
-      height: '100%',
-      objectFit: 'contain',
-      objectPosition: 'bottom',
+      width: '100%', // Set width to 100% to span the entire container
+      height: 'auto', // Maintain aspect ratio
+      objectFit: 'cover', // Cover the entire container while maintaining aspect ratio
+      objectPosition: 'bottom', // Adjust as needed
     },
   },
 }))
