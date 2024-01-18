@@ -92,7 +92,7 @@ export const ProjectForm = () => {
           }}
           type="submit"
           variant="contained">
-          Send us a message
+          send us a message
         </ButtonRipple>
         <PrivacyPolicy>
           By sending this message you agree <br />

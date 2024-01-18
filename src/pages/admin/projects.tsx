@@ -559,6 +559,8 @@ function Projects() {
             <option value="APP">APP</option>
             <option value="CGI">CGI</option>
             <option value="XR">XR</option>
+            <option value="AR">AR</option>
+            <option value="VR">VR</option>
           </Form.Select>
 
           {/* <div ref={quillRef} /> */}
@@ -725,6 +727,8 @@ function Projects() {
             <option value="APP">APP</option>
             <option value="CGI">CGI</option>
             <option value="XR">XR</option>
+            <option value="AR">AR</option>
+            <option value="VR">VR</option>
           </Form.Select>
 
           {/* <Form.Label htmlFor="servicesType">Сервисный тип проекта</Form.Label>

@@ -15,7 +15,7 @@ export const MainPageCeoSection = () => {
   })
   return (
     <SwimOutContentFromRight
-      title={['don’t worry. we’re friendly', 'like this guy']}
+      title={['don’t worry. your project', 'is in food hands']}
       content={
         <figure style={{ margin: 0 }}>
           <ContentContainer>

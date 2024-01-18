@@ -34,6 +34,14 @@ const FILTER: {
     title: 'XR',
     value: ['XR'],
   },
+  {
+    title: 'AR',
+    value: ['AR'],
+  },
+  {
+    title: 'VR',
+    value: ['VR'],
+  },
 ]
 
 interface Props {

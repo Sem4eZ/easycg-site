@@ -159,9 +159,9 @@ export const serviceTypeToIcon: Record<ServiceType, React.ReactNode> = {
   // web: <ComputerIcon />,
   // mobile: <PhoneIcon />,
   CGI: <CGIIcon />,
-  // AR: <ARIcon />,
-  // VR: <VRIcon />,
+  AR: <ARIcon />,
+  VR: <VRIcon />,
   // UXUI: <UXUIIcon />,
-  XR: [<FramedCube />, <Glasses />, <Cube />],
+  XR: <Cube />,
   APP: <AppSVG />,
 }
