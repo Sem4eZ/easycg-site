@@ -396,7 +396,7 @@ function Projects() {
     <Container maxWidth={'md' as any} style={{ marginTop: 20 }}>
       <NavLink to="/admin/posts">
         <Button variant="primary" style={{ marginRight: 20 }}>
-          Посты
+          Статьи
         </Button>
       </NavLink>
       <NavLink to="/admin/projects">

@@ -334,11 +334,11 @@ function Posts() {
   const updatePostVisibility = async (id: string, isVisible: boolean) => {
     try {
       setIsUpdating(true)
-      console.log(
-        `Updating visibility for post with ID ${id} to ${
-          isVisible ? 'visible' : 'hidden'
-        }`,
-      )
+      // console.log(
+      //   `Updating visibility for post with ID ${id} to ${
+      //     isVisible ? 'visible' : 'hidden'
+      //   }`,
+      // )
 
       await updateDoc(doc(db, 'posts', id), {
         visible: isVisible,
@@ -359,7 +359,7 @@ function Posts() {
     <Container maxWidth={'md' as any} style={{ marginTop: 20 }}>
       <NavLink to="/admin/posts">
         <Button variant="primary" style={{ marginRight: 20 }}>
-          Посты
+          Статьи
         </Button>
       </NavLink>
       <NavLink to="/admin/projects">
@@ -370,15 +370,15 @@ function Posts() {
         variant="primary"
         style={{ margin: 20 }}
         onClick={() => setCreatePostModalOpen(true)}>
-        Создать пост
+        Создать статью
       </Button>
 
       <Modal show={createPostModalOpen} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Новый пост</Modal.Title>
+          <Modal.Title>Новая статья</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label htmlFor="name">Название поста</Form.Label>
+          <Form.Label htmlFor="name">Заголовок статьи</Form.Label>
           <Form.Control
             className="mb-3"
             type="text"
@@ -392,7 +392,7 @@ function Posts() {
           />
 
           <Form.Label htmlFor="description">
-            Подзаголовок поста карточки
+            Подзаголовок статьи в каталоге
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -406,7 +406,7 @@ function Posts() {
             required
           />
 
-          <Form.Label htmlFor="img">Картинка поста карточки</Form.Label>
+          <Form.Label htmlFor="img">Обложка статьи в катологе</Form.Label>
           <Form.Control
             className="my-2"
             type="file"
@@ -428,7 +428,7 @@ function Posts() {
             </>
           )}
 
-          <Form.Label htmlFor="type">Тип поста</Form.Label>
+          <Form.Label htmlFor="type">Тип статьи</Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -442,7 +442,7 @@ function Posts() {
           />
 
           <Form.Label htmlFor="detailPreviewImage">
-            Картинка внутри поста
+            Изображение в карточке статьи
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -469,7 +469,7 @@ function Posts() {
           )}
 
           <Form.Label htmlFor="remark">
-            Заголовок поста внутри карточки
+            Подзаголовок в карточке статьи
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -497,10 +497,10 @@ function Posts() {
 
       <Modal show={!!selectedPost} onHide={() => setSelectedPost(null)}>
         <Modal.Header closeButton>
-          <Modal.Title>Редактирование поста</Modal.Title>
+          <Modal.Title>Редактирование статьи</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Label htmlFor="title">New Название поста</Form.Label>
+          <Form.Label htmlFor="title">New Название статьи</Form.Label>
           <Form.Control
             className="mb-3"
             type="text"
@@ -512,7 +512,9 @@ function Posts() {
             }}
           />
 
-          <Form.Label htmlFor="desc">New Описание поста карточки</Form.Label>
+          <Form.Label htmlFor="desc">
+            New Подзаголовок статьи в каталоге
+          </Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -524,7 +526,9 @@ function Posts() {
             }}
           />
 
-          <Form.Label htmlFor="newimg">New Картинка поста карточки</Form.Label>
+          <Form.Label htmlFor="newimg">
+            New Обложка статьи в каталоге
+          </Form.Label>
           <Form.Control
             className="my-3"
             type="file"
@@ -546,7 +550,7 @@ function Posts() {
             </>
           )}
 
-          <Form.Label htmlFor="newtype">New Тип поста</Form.Label>
+          <Form.Label htmlFor="newtype">New Тип статьи</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -559,7 +563,7 @@ function Posts() {
           />
 
           <Form.Label htmlFor="newdetailpreviewimage">
-            New Картинка внутри поста
+            New Изображение в карточке статьи
           </Form.Label>
           <Form.Control
             className="my-3"
@@ -584,7 +588,9 @@ function Posts() {
             </>
           )}
 
-          <Form.Label htmlFor="newremark">New Подзаголовок</Form.Label>
+          <Form.Label htmlFor="newremark">
+            New Подзаголовок в карточке статьи
+          </Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -626,16 +632,16 @@ function Posts() {
       <Table responsive striped bordered hover>
         <thead>
           <tr>
-            <th># Поста</th>
+            <th># Article</th>
             <th>Name</th>
-            <th>type</th>
-            <th>Превью картинка поста</th>
-            <th>Картинка</th>
+            <th>Type</th>
+            <th>Обложка статьи</th>
+            <th>Изображение</th>
             <th>Дата</th>
 
             <th>Edit</th>
+            <th>Display status</th>
             <th>Delete</th>
-            <th>Статус отображения</th>
           </tr>
         </thead>
         <tbody>
@@ -644,8 +650,8 @@ function Posts() {
               <td>{index + 1}</td>
               <td>{post.name}</td>
               <td>{post.type}</td>
-              <td>{truncateString(post.detailPreviewImage, 30)}</td>
-              <td>{truncateString(post.image, 30)}</td>
+              <td>{truncateString(post.detailPreviewImage, 5)}</td>
+              <td>{truncateString(post.image, 5)}</td>
               <td>{moment(post.date).format('YYYY-MM-DD')}</td>
 
               <td>
@@ -671,25 +677,21 @@ function Posts() {
               </td>
               <td>
                 <Button
+                  variant="primary"
+                  onClick={() => {
+                    updatePostVisibility(post.id, !post.visible) // Изменено на инверсию текущего состояния видимости
+                  }}>
+                  {isUpdating ? 'Updating...' : post.visible ? 'Hide' : 'Show'}
+                </Button>
+              </td>
+              <td>
+                <Button
                   variant="danger"
                   onClick={async () => {
                     await deletePost(post.id)
                     await fetchData()
                   }}>
                   Delete
-                </Button>
-              </td>
-              <td>
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    updatePostVisibility(post.id, !post.visible) // Изменено на инверсию текущего состояния видимости
-                  }}>
-                  {isUpdating
-                    ? 'Updating...'
-                    : post.visible
-                    ? 'Скрыть'
-                    : 'Показать'}
                 </Button>
               </td>
             </tr>
