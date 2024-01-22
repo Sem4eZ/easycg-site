@@ -24,6 +24,7 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage'
 import moment from 'moment'
+import { title } from 'process'
 // projects.tsx
 import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
@@ -103,6 +104,10 @@ function Projects() {
 
   const [isUpdating, setIsUpdating] = useState(false) // Добавим новое состояние
 
+  const [buttonVariants, setButtonVariants] = useState<{
+    [key: string]: string
+  }>({})
+
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, 'projects'))
     const projectsData = snapshot.docs.map(
@@ -155,6 +160,10 @@ function Projects() {
           console.log('Download URL:', downloadURL)
 
           setImage(downloadURL)
+          setButtonVariants(prevVariants => ({
+            ...prevVariants,
+            img: 'success',
+          }))
         },
       )
     } catch (error) {
@@ -199,6 +208,10 @@ function Projects() {
           console.log('Download URL:', downloadURL)
 
           setDetailPreview(downloadURL) // Обновляем состояние detailPreview
+          setButtonVariants(prevVariants => ({
+            ...prevVariants,
+            detailpreviewimage: 'success',
+          }))
         },
       )
     } catch (error) {
@@ -243,6 +256,10 @@ function Projects() {
           console.log('Download URL:', downloadURL)
 
           setNewImage(downloadURL)
+          setButtonVariants(prevVariants => ({
+            ...prevVariants,
+            newimg: 'success',
+          }))
         },
       )
     } catch (error) {
@@ -287,6 +304,10 @@ function Projects() {
           console.log('Download URL:', downloadURL)
 
           setNewDetailPreview(downloadURL) // Обновляем состояние detailPreview
+          setButtonVariants(prevVariants => ({
+            ...prevVariants,
+            newdetailpreviewimage: 'success',
+          }))
         },
       )
     } catch (error) {
@@ -499,7 +520,9 @@ function Projects() {
           />
           {selectedProjectFile && (
             <>
-              <Button variant="primary" onClick={handleImageUploadProject}>
+              <Button
+                variant={buttonVariants['img'] || 'primary'}
+                onClick={handleImageUploadProject}>
                 Загрузить изображение
               </Button>
               <br />
@@ -519,14 +542,14 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="detail preview image">
+          <Form.Label htmlFor="detailpreviewimage">
             Видео внутри Проекта (только .webm)
           </Form.Label>
           <Form.Control
             className="my-2"
             type="file"
-            id="detail preview image"
-            aria-describedby="detail preview image"
+            id="detailpreviewimage"
+            aria-describedby="detailpreviewimage"
             onChange={event =>
               setSelectedProjectDetailPreviewFile(
                 (event.target as HTMLInputElement).files?.[0] || null,
@@ -538,7 +561,7 @@ function Projects() {
           {selectedProjectDetailPreviewFile && (
             <>
               <Button
-                variant="primary"
+                variant={buttonVariants['detailpreviewimage'] || 'primary'}
                 onClick={handleImageUploadProjectDetail}>
                 Загрузить видео
               </Button>
@@ -666,7 +689,9 @@ function Projects() {
           />
           {newselectedProjectFile && (
             <>
-              <Button variant="primary" onClick={handleNewImageUploadProject}>
+              <Button
+                variant={buttonVariants['newimg'] || 'primary'}
+                onClick={handleNewImageUploadProject}>
                 Загрузить изображение
               </Button>
               <br />
@@ -704,7 +729,7 @@ function Projects() {
           {newSelectedProjectDetailPreviewFile && (
             <>
               <Button
-                variant="primary"
+                variant={buttonVariants['newdetailpreviewimage'] || 'primary'}
                 onClick={handleNewImageUploadProjectDetail}>
                 Загрузить видео
               </Button>
@@ -762,7 +787,11 @@ function Projects() {
                 type: newType || selectedProject?.type,
                 servicesType: newServicesType || selectedProject?.servicesType,
                 detailPreview:
-                  newDetailPreview || selectedProject?.newDetailPreview,
+                  newDetailPreview || selectedProject?.detailPreview,
+                about: newAbout || selectedProject?.about,
+                titleAbout: newTitleAbout || selectedProject?.titleAbout,
+                titleDescription:
+                  newDescription || selectedProject?.titleDescription,
               })
               setSelectedProject(null)
               await fetchData()
@@ -778,7 +807,7 @@ function Projects() {
             <th># Проекта</th>
             <th>Name</th>
             <th>type</th>
-            <th>Превью картинка проекта</th>
+            <th>Обложка проекта</th>
             <th>Картинка</th>
             <th>Date</th>
 
@@ -795,9 +824,9 @@ function Projects() {
               <td>{project.type}</td>
               <td>
                 {project.detailPreview &&
-                  truncateString(project.detailPreview, 30)}
+                  truncateString(project.detailPreview, 20)}
               </td>
-              <td>{project.image && truncateString(project.image, 30)}</td>
+              <td>{project.image && truncateString(project.image, 10)}</td>
               <td>{moment(project.date).format('YYYY-MM-DD')}</td>
 
               <td>
@@ -805,13 +834,15 @@ function Projects() {
                   variant="primary"
                   onClick={() => {
                     setNewName(project.name)
-                    // setNewContent(project.content)
                     setNewDescription(project.description)
+                    setNewTitleAbout(project.titleAbout)
                     setNewImage(project.image)
                     setNewType(project.type)
-                    // setNewRemark(project.remark)
+                    setNewAbout(project.about)
 
                     setSelectedProject(project)
+                    // setNewContent(project.content)
+                    // setNewRemark(project.remark)
                     // newQuill.setContent(project.content)
                   }}>
                   Edit
