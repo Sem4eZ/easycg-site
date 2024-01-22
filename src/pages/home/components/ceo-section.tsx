@@ -50,14 +50,15 @@ const ContentContainer = styled('div')(({ theme }) => ({
     theme.palette.mode === 'dark'
       ? theme.palette.inverted
       : theme.palette.text.disabled,
-  height: '100vh', // Set height to full viewport height
+  // height: '100vh', // Set height to full viewport height
   margin: 0, // Remove margin
   '& picture': {
-    height: '100%',
+    // height: '100%',
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: 'transparent',
+    objectFit: 'cover',
 
     img: {
       width: '100%', // Set width to 100% to span the entire container
