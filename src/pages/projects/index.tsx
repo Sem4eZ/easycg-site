@@ -8,6 +8,7 @@ import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 
 import { useProjectsFilter } from 'features/project/filter'
 
+import useProjects from 'entities/project/data'
 import { Project } from 'entities/project/types'
 import { GalleryProjectCard } from 'entities/project/ui/gallery-project-card'
 import { GalleryProjectCardRow } from 'entities/project/ui/gallery-project-card-row'
@@ -33,7 +34,7 @@ const ProjectsPage = () => {
   const { template: viewTemplate, view } = useProjectViewPicker()
 
   const [projects, setProjects] = React.useState<Project[]>([]) // Состояние для хранения данных проектов
-
+  const projectsLength = useProjects()
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, 'projects')) // Получаем данные из коллекции 'projects'
     const projectsData = snapshot.docs.map(doc => ({
@@ -90,7 +91,7 @@ const ProjectsPage = () => {
           </FilterButton>
           <div style={{ gridArea: 'view' }}>{viewTemplate}</div>
           <ProjectsCount style={{ gridArea: 'projects-count' }}>
-            {projects.length} projects
+            {projectsLength.length} projects
           </ProjectsCount>
         </FilterArea>
       }>
