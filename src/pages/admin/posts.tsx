@@ -80,6 +80,10 @@ function Posts() {
   const [newSelectedDetailPreviewFile, setNewSelectedDetailPreviewFile] =
     useState<File | null>(null)
 
+  const [buttonVariants, setButtonVariants] = useState<{
+    [key: string]: string
+  }>({})
+
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, 'posts'))
     const postsData = snapshot.docs.map(
@@ -145,6 +149,10 @@ function Posts() {
           console.log('Download URL:', downloadURL)
 
           setImage(downloadURL)
+          setButtonVariants(prevVariants => ({
+            ...prevVariants,
+            img: 'success',
+          }))
         },
       )
     } catch (error) {
@@ -186,6 +194,10 @@ function Posts() {
           console.log('Download URL:', downloadURL)
 
           setDetailPreviewImage(downloadURL)
+          setButtonVariants(prevVariants => ({
+            ...prevVariants,
+            detailPreviewImage: 'success',
+          }))
         },
       )
     } catch (error) {
@@ -220,6 +232,10 @@ function Posts() {
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
 
           setNewImage(downloadURL)
+          setButtonVariants(prevVariants => ({
+            ...prevVariants,
+            newimg: 'success',
+          }))
         },
       )
     } catch (error) {
@@ -260,6 +276,10 @@ function Posts() {
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
 
           setNewDetailPreviewImage(downloadURL)
+          setButtonVariants(prevVariants => ({
+            ...prevVariants,
+            newdetailpreviewimage: 'success',
+          }))
         },
       )
     } catch (error) {
@@ -421,7 +441,9 @@ function Posts() {
           />
           {selectedFile && (
             <>
-              <Button variant="primary" onClick={handleImageUpload}>
+              <Button
+                variant={buttonVariants['img'] || 'primary'}
+                onClick={handleImageUpload}>
                 Загрузить изображение
               </Button>
               <br />
@@ -460,7 +482,7 @@ function Posts() {
           {selectedDetailPreviewFile && (
             <>
               <Button
-                variant="primary"
+                variant={buttonVariants['detailPreviewImage'] || 'primary'}
                 onClick={handleDetailPreviewImageUpload}>
                 Загрузить изображение
               </Button>
@@ -543,7 +565,9 @@ function Posts() {
           />
           {newSelectedFile && (
             <>
-              <Button variant="primary" onClick={handleNewImageUpload}>
+              <Button
+                variant={buttonVariants['newimg'] || 'primary'}
+                onClick={handleNewImageUpload}>
                 Загрузить изображение
               </Button>
               <br />
@@ -580,7 +604,7 @@ function Posts() {
           {newSelectedDetailPreviewFile && (
             <>
               <Button
-                variant="primary"
+                variant={buttonVariants['newdetailpreviewimage'] || 'primary'}
                 onClick={handleNewDetailPreviewImageUpload}>
                 Загрузить изображение
               </Button>
