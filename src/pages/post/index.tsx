@@ -155,7 +155,7 @@ const PictureContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center', // Центрируем содержимое по горизонтали
   alignItems: 'center', // Центрируем содержимое по вертикали
-  height: '100vh', // Высота экрана
+  // height: '100vh', // Высота экрана
   overflow: 'hidden', // Обрезаем избыточное содержимое
 }))
 
