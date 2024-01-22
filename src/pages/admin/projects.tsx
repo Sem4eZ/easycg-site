@@ -804,16 +804,16 @@ function Projects() {
       <Table responsive striped bordered hover>
         <thead>
           <tr>
-            <th># Проекта</th>
+            <th># Project</th>
             <th>Name</th>
-            <th>type</th>
+            <th>Type</th>
             <th>Обложка проекта</th>
-            <th>Картинка</th>
+            <th>Видео</th>
             <th>Date</th>
 
             <th>Edit</th>
+            <th>Display status</th>
             <th>Delete</th>
-            <th>Статус видимости</th>
           </tr>
         </thead>
         <tbody>
@@ -850,16 +850,6 @@ function Projects() {
               </td>
               <td>
                 <Button
-                  variant="danger"
-                  onClick={async () => {
-                    await deleteProject(project.id)
-                    await fetchData()
-                  }}>
-                  Delete
-                </Button>
-              </td>
-              <td>
-                <Button
                   variant="primary"
                   onClick={() => {
                     updateProjectVisibility(project.id, !project.visible) // Изменено на инверсию текущего состояния видимости
@@ -867,8 +857,18 @@ function Projects() {
                   {isUpdating
                     ? 'Updating...'
                     : project.visible
-                    ? 'Скрыть'
-                    : 'Показать'}
+                    ? 'Hide'
+                    : 'Show'}
+                </Button>
+              </td>
+              <td>
+                <Button
+                  variant="danger"
+                  onClick={async () => {
+                    await deleteProject(project.id)
+                    await fetchData()
+                  }}>
+                  Delete
                 </Button>
               </td>
             </tr>
