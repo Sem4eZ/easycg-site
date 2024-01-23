@@ -58,20 +58,6 @@ export const ProjectForm = () => {
     reset(defaultValues)
   }
 
-  const handleDownload = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    e.preventDefault()
-    const downloadLink = document.createElement('a')
-    downloadLink.href =
-      'https://firebasestorage.googleapis.com/v0/b/easy-admin-28c89.appspot.com/o/terms_of_service.pdf?alt=media&token=aeefe42a-f799-41e3-8ba6-df75091b1084'
-    downloadLink.download = 'Terms and Conditions'
-    downloadLink.target = '_blank' // Открывает ссылку в новом окне или вкладке
-    document.body.appendChild(downloadLink)
-    downloadLink.click()
-    document.body.removeChild(downloadLink)
-  }
-
   return (
     <FormProvider {...formMethods}>
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -98,12 +84,6 @@ export const ProjectForm = () => {
           send us a message
         </ButtonRipple>
       </Form>
-      {/* <PrivacyPolicy>
-        By sending this message you agree <br />
-        to our <button onClick={handleDownload}>privacy policy</button> of
-        personal data
-      </PrivacyPolicy> */}
-
       <ConfirmingApplicationModal open={isOpen} onClose={closeModal} />
     </FormProvider>
   )
@@ -125,16 +105,5 @@ const FieldsContainer = styled('div')(({ theme }) => ({
 
   '& label>div': {
     width: '100%',
-  },
-}))
-
-const PrivacyPolicy = styled('div')(({ theme }) => ({
-  marginTop: '10px',
-  marginLeft: '1rem',
-  '& button': {
-    cursor: 'pointer',
-    border: 'none',
-    // fontWeight: 700,
-    textDecoration: 'underline',
   },
 }))
