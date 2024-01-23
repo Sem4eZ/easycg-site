@@ -113,8 +113,8 @@ const Message = styled('div')(({ theme }) => ({
   maxWidth: maxWidth,
   marginLeft: 'auto',
   marginRight: 'auto',
+  // paddingRight: '30rem',
   ...getBreakpointsStylesByArray(theme, {
-    paddingRight: spaceArr,
     paddingLeft: [
       spaceObj.se,
       spaceObj.se_horizontal,
@@ -127,6 +127,7 @@ const Message = styled('div')(({ theme }) => ({
       760,
     ],
     marginBottom: [56, 72, 31, 72, 72, null, 72, null, 82, 100],
+    paddingRight: [56, 72, 250, 150, 330, null, 400, null, 500, 500],
   }),
 }))
 
