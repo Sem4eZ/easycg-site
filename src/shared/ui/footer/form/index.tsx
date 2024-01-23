@@ -97,12 +97,12 @@ export const ProjectForm = () => {
           variant="contained">
           send us a message
         </ButtonRipple>
-        <PrivacyPolicy>
-          By sending this message you agree <br />
-          to our <button onClick={handleDownload}>privacy policy</button> of
-          personal data
-        </PrivacyPolicy>
       </Form>
+      {/* <PrivacyPolicy>
+        By sending this message you agree <br />
+        to our <button onClick={handleDownload}>privacy policy</button> of
+        personal data
+      </PrivacyPolicy> */}
 
       <ConfirmingApplicationModal open={isOpen} onClose={closeModal} />
     </FormProvider>
@@ -112,7 +112,7 @@ export const ProjectForm = () => {
 const Form = styled('form')(({ theme }) => ({
   width: '100%',
   ...getBreakpointsStylesByArray(theme, {
-    paddingBottom: [146, 142, 240, null, 222, null, 247, null, 274],
+    paddingBottom: [20, 20, 20, null, 20, null, 20, null, 20],
   }),
 }))
 
