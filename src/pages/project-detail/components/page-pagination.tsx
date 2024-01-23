@@ -46,7 +46,8 @@ export const PagePagination = ({ currentProjectId }: Props) => {
     if (currentProjectId === projects.length - 1) return projects[0]
     return projects[currentProjectId + 1]
   }
-  const [projects, setProjects] = React.useState<Project[]>([]) // Состояние для хранения данных проектов
+  const [projectsAll, setProjects] = React.useState<Project[]>([]) // Состояние для хранения данных проектов
+  const projects = projectsAll.filter(project => project.visible)
 
   const fetchData = async () => {
     const snapshot = await getDocs(collection(db, 'projects')) // Получаем данные из коллекции 'projects'
