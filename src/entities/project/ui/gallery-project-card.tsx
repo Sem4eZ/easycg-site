@@ -14,13 +14,14 @@ import { Project } from '../types'
 
 type Props = Pick<
   Project,
-  'id' | 'name' | 'date' | 'image' | 'type' | 'servicesType'
+  'id' | 'name' | 'date' | 'image' | 'type' | 'servicesType' | 'description'
 >
 
 export const GalleryProjectCard = ({
   id,
   name,
   date,
+  description,
   image,
   type,
   servicesType,
@@ -70,6 +71,7 @@ export const GalleryProjectCard = ({
                 </ServiceIcon>
               </ServiceIcons>
             </Header>
+            <Description>{description}</Description>
           </Content>
         </Link>
       </article>
@@ -175,5 +177,17 @@ const Name = styled(LFont)(({ theme }) => ({
   textOverflow: 'ellipsis',
   ...getBreakpointsStylesByArray(theme, {
     marginBottom: [16, 0, null, 16, 0, 24, 32, null, 0],
+  }),
+}))
+
+const Description = styled('span')(({ theme }) => ({
+  WebkitLineClamp: '2',
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  color: theme.palette.text.secondary,
+  ...getBreakpointsStylesByArray(theme, {
+    WebkitLineClamp: ['3', null, null, null, null, null, null, null, '2'],
+    display: ['none', null, null, null, '-webkit-box'],
+    maxWidth: [253, '100%', 253, '100%', 352, null, 454, 619],
   }),
 }))

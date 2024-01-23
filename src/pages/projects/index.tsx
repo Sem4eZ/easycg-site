@@ -129,6 +129,7 @@ const ProjectsPage = () => {
                     key={project.id}
                     id={project.id}
                     name={project.name}
+                    description={project.description}
                     date={project.date}
                     image={project.image}
                     type={project.type}
@@ -149,6 +150,7 @@ const ProjectsPage = () => {
                     key={project.id}
                     id={project.id}
                     name={project.name}
+                    description={project.description}
                     date={project.date}
                     image={project.image}
                     type={project.type}
