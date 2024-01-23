@@ -58,7 +58,10 @@ export const ProjectForm = () => {
     reset(defaultValues)
   }
 
-  const handleDownload = () => {
+  const handleDownload = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.preventDefault()
     const downloadLink = document.createElement('a')
     downloadLink.href =
       'https://firebasestorage.googleapis.com/v0/b/easy-admin-28c89.appspot.com/o/terms_of_service.pdf?alt=media&token=aeefe42a-f799-41e3-8ba6-df75091b1084'
