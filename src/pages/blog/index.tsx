@@ -56,6 +56,7 @@ const BlogPage = () => {
       <Content>
         {posts
           .filter(article => article.visible) // Filter based on the 'visible' property
+          .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
           .map((article: any) => (
             <ArticleCard
               key={article.id}
