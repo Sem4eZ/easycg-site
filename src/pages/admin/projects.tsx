@@ -386,11 +386,6 @@ function Projects() {
   const updateProject = async (id: string, newProjectData: any) => {
     await updateDoc(doc(db, 'projects', id), {
       ...newProjectData,
-      servicesType: newServicesType || selectedProject?.servicesType,
-      about: newAbout || selectedProject?.about, // Добавлено поле about для обновления
-      titleDescription:
-        newTitleDescription || selectedProject?.titleDescription, // Новое поле для обновления
-      titleAbout: newTitleAbout || selectedProject?.titleAbout, // Новое поле для обновления
     })
     await fetchData()
   }
@@ -601,7 +596,7 @@ function Projects() {
       <Modal show={!!selectedProject} onHide={() => setSelectedProject(null)}>
         <Modal.Header closeButton>
           <Modal.Title>
-            {selectedProject ? selectedProject.title : ''}
+            {selectedProject ? selectedProject.name : ''}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -639,7 +634,7 @@ function Projects() {
             type="text"
             id="about"
             aria-describedby="about"
-            value={about}
+            value={newAbout}
             onInput={event => {
               setNewAbout((event.target as any).value!)
             }}
@@ -661,12 +656,12 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="desc">New Описание проекта</Form.Label>
+          <Form.Label htmlFor="newdescription">New Описание проекта</Form.Label>
           <Form.Control
             className="my-3"
             type="text"
-            id="desc"
-            aria-describedby="desc"
+            id="newdescription"
+            aria-describedby="newdescription"
             value={newDescription}
             onInput={event => {
               setNewDescription((event.target as any).value!)
@@ -782,6 +777,8 @@ function Projects() {
             onClick={async () => {
               await updateProject(selectedProject?.id, {
                 name: newName || selectedProject?.name,
+                titleDescription:
+                  newTitleDescription || selectedProject?.titleDescription,
                 description: newDescription || selectedProject?.description,
                 image: newImage || selectedProject?.image,
                 type: newType || selectedProject?.type,
@@ -790,8 +787,6 @@ function Projects() {
                   newDetailPreview || selectedProject?.detailPreview,
                 about: newAbout || selectedProject?.about,
                 titleAbout: newTitleAbout || selectedProject?.titleAbout,
-                titleDescription:
-                  newDescription || selectedProject?.titleDescription,
               })
               setSelectedProject(null)
               await fetchData()
@@ -839,7 +834,8 @@ function Projects() {
                     setNewImage(project.image)
                     setNewType(project.type)
                     setNewAbout(project.about)
-
+                    setNewTitleDescription(project.titleDescription)
+                    setNewServicesType(project.servicesType)
                     setSelectedProject(project)
                     // setNewContent(project.content)
                     // setNewRemark(project.remark)

@@ -642,7 +642,7 @@ function Posts() {
                 image: newImage || selectedPost?.image,
                 type: newType || selectedPost?.type,
                 detailPreviewImage:
-                  newDetailPreviewImage || selectedPost?.newDetailPreviewImage,
+                  newDetailPreviewImage || selectedPost?.detailPreviewImage,
                 remark: newRemark || selectedPost?.remark,
               })
               setSelectedPost(null)
