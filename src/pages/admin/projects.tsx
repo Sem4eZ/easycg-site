@@ -34,6 +34,7 @@ import Table from 'react-bootstrap/Table'
 import { NavLink } from 'react-router-dom'
 
 import { db } from '../../shared/firebase'
+import { services } from './../../entities/services/data'
 
 export function truncateString(inputString: string, maxLength: number) {
   if (inputString.length > maxLength) {
@@ -444,7 +445,7 @@ function Projects() {
             required
           />
           <Form.Label htmlFor="titleAbout">
-            Заголовок для введения проекта
+            Подзаголовок introduction
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -458,7 +459,7 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="about">Текст для введения проекта</Form.Label>
+          <Form.Label htmlFor="about">Текст introduction</Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -472,7 +473,7 @@ function Projects() {
           />
 
           <Form.Label htmlFor="titleDescription">
-            Заголовок для описания проекта
+            Подзаголовок description
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -486,7 +487,7 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="description">Описание проекта</Form.Label>
+          <Form.Label htmlFor="description">Текст description</Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -499,7 +500,7 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="img">Картинка для обложки</Form.Label>
+          <Form.Label htmlFor="img">Обложка проекта в каталоге</Form.Label>
           <Form.Control
             className="my-2"
             type="file"
@@ -538,7 +539,7 @@ function Projects() {
           />
 
           <Form.Label htmlFor="detailpreviewimage">
-            Видео внутри Проекта (только .webm)
+            Видео в карточке проекта (только .webm)
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -564,7 +565,7 @@ function Projects() {
             </>
           )}
 
-          <Form.Label htmlFor="servicesType">Сервисный тип проекта</Form.Label>
+          <Form.Label htmlFor="servicesType">Тэг проекта</Form.Label>
           <Form.Select
             className="my-2"
             id="servicesType"
@@ -612,7 +613,7 @@ function Projects() {
             }}
           />
           <Form.Label htmlFor="newTitleAbout">
-            New Заголовок для введения проекта
+            New Подзаголовок introduction
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -626,9 +627,7 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="about">
-            New Текст для введения проекта
-          </Form.Label>
+          <Form.Label htmlFor="about">New Текст introduction</Form.Label>
           <Form.Control
             className="my-2"
             type="text"
@@ -642,7 +641,7 @@ function Projects() {
           />
 
           <Form.Label htmlFor="newTitleDescription">
-            New Заголовок для описания проекта
+            New Подзаголовок description
           </Form.Label>
           <Form.Control
             className="my-2"
@@ -656,7 +655,9 @@ function Projects() {
             required
           />
 
-          <Form.Label htmlFor="newdescription">New Описание проекта</Form.Label>
+          <Form.Label htmlFor="newdescription">
+            New Текст description
+          </Form.Label>
           <Form.Control
             className="my-3"
             type="text"
@@ -668,7 +669,9 @@ function Projects() {
             }}
           />
 
-          <Form.Label htmlFor="newimg">New Картинка для обложки</Form.Label>
+          <Form.Label htmlFor="newimg">
+            New Обложка проекта в каталоге
+          </Form.Label>
           <Form.Control
             className="my-3"
             type="file"
@@ -706,7 +709,7 @@ function Projects() {
           />
 
           <Form.Label htmlFor="newdetailpreviewimage">
-            New Видео внутри проекта
+            New Видео в карточке проекта (.webm)
           </Form.Label>
           <Form.Control
             className="my-3"
@@ -732,9 +735,7 @@ function Projects() {
             </>
           )}
 
-          <Form.Label htmlFor="newServicesType">
-            New Сервисный тип проекта
-          </Form.Label>
+          <Form.Label htmlFor="newServicesType">New Тэг проекта</Form.Label>
           <Form.Select
             className="my-3"
             id="newServicesType"
@@ -802,7 +803,10 @@ function Projects() {
             <th># Project</th>
             <th>Name</th>
             <th>Type</th>
-            <th>Обложка проекта</th>
+            <th>Тэг</th>
+            <th>Введение</th>
+            <th>Описание</th>
+            <th>Обложка</th>
             <th>Видео</th>
             <th>Date</th>
 
@@ -817,9 +821,14 @@ function Projects() {
               <td>{index + 1}</td>
               <td>{project.name}</td>
               <td>{project.type}</td>
+              <td>{project.servicesType}</td>
+              <td>{project.about && truncateString(project.about, 40)}</td>
+              <td>
+                {project.description && truncateString(project.description, 40)}
+              </td>
               <td>
                 {project.detailPreview &&
-                  truncateString(project.detailPreview, 20)}
+                  truncateString(project.detailPreview, 10)}
               </td>
               <td>{project.image && truncateString(project.image, 10)}</td>
               <td>{moment(project.date).format('YYYY-MM-DD')}</td>
