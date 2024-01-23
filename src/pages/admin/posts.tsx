@@ -670,7 +670,7 @@ function Posts() {
             <th>Type</th>
             <th>Cover of article</th>
             <th>Image</th>
-            <th>Дата</th>
+            <th>Date</th>
 
             <th>Edit</th>
             <th>Display status</th>
