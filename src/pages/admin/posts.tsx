@@ -8,6 +8,8 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  orderBy,
+  query,
   updateDoc,
 } from 'firebase/firestore'
 import {
@@ -85,17 +87,24 @@ function Posts() {
   }>({})
 
   const fetchData = async () => {
-    const snapshot = await getDocs(collection(db, 'posts'))
-    const postsData = snapshot.docs.map(
-      doc =>
-        ({
-          id: doc.id,
-          ...doc.data(),
-          visible: doc.data().visible, // Добавьте это свойство
-        } as { id: string; visible: boolean }),
-    )
+    try {
+      const snapshot = await getDocs(
+        query(collection(db, 'posts'), orderBy('date', 'desc')),
+      )
 
-    setPosts(postsData as any)
+      const postsData = snapshot.docs.map(
+        doc =>
+          ({
+            id: doc.id,
+            ...doc.data(),
+            visible: doc.data().visible,
+          } as { id: string; visible: boolean }),
+      )
+
+      setPosts(postsData as any)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
   }
 
   useEffect(() => {

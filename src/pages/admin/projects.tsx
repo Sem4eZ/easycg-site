@@ -15,6 +15,8 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  orderBy,
+  query,
   updateDoc,
 } from 'firebase/firestore'
 import {
@@ -110,17 +112,23 @@ function Projects() {
   }>({})
 
   const fetchData = async () => {
-    const snapshot = await getDocs(collection(db, 'projects'))
-    const projectsData = snapshot.docs.map(
-      doc =>
-        ({
-          id: doc.id,
-          ...doc.data(),
-          visible: doc.data().visible, // Добавьте это свойство
-        } as { id: string; visible: boolean }),
-    )
+    try {
+      const snapshot = await getDocs(
+        query(collection(db, 'projects'), orderBy('date', 'desc')),
+      )
+      const projectsData = snapshot.docs.map(
+        doc =>
+          ({
+            id: doc.id,
+            ...doc.data(),
+            visible: doc.data().visible, // Добавьте это свойство
+          } as { id: string; visible: boolean }),
+      )
 
-    setProjects(projectsData as any)
+      setProjects(projectsData as any)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
   }
 
   useEffect(() => {
