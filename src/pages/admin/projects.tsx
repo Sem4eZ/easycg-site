@@ -811,11 +811,11 @@ function Projects() {
             <th># Project</th>
             <th>Name</th>
             <th>Type</th>
-            <th>Тэг</th>
-            <th>Введение</th>
-            <th>Описание</th>
-            <th>Обложка</th>
-            <th>Видео</th>
+            <th>Tag</th>
+            <th>Introduction</th>
+            <th>Description</th>
+            <th>Video</th>
+            <th>Image</th>
             <th>Date</th>
 
             <th>Edit</th>

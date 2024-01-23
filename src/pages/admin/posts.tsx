@@ -668,8 +668,8 @@ function Posts() {
             <th># Article</th>
             <th>Name</th>
             <th>Type</th>
-            <th>Обложка статьи</th>
-            <th>Изображение</th>
+            <th>Cover of article</th>
+            <th>Image</th>
             <th>Дата</th>
 
             <th>Edit</th>

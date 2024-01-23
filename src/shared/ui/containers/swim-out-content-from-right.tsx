@@ -15,9 +15,10 @@ import { XLFont } from '../typography'
 interface Props {
   title: string[]
   content: React.ReactNode
+  message?: string[]
 }
 
-export const SwimOutContentFromRight = ({ title, content }: Props) => {
+export const SwimOutContentFromRight = ({ title, content, message }: Props) => {
   const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
 
   const doAnimate = isDesktopS || isLaptop || isMacbook || isDesktop
@@ -70,6 +71,7 @@ export const SwimOutContentFromRight = ({ title, content }: Props) => {
           </Fragment>
         ))}
       </Title>
+      <Message>{message}</Message>
       <Content>
         <ContentAnimationBlock ref={contentRef}>
           {content}
@@ -103,7 +105,28 @@ const Title = styled(XLFont)(({ theme }) => ({
       null,
       760,
     ],
-    marginBottom: [56, 72, 31, 72, 104, null, 72, null, 82, 100],
+    marginBottom: [56, 72, 31, 72, 72, null, 72, null, 82, 100],
+  }),
+}))
+
+const Message = styled('div')(({ theme }) => ({
+  maxWidth: maxWidth,
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  ...getBreakpointsStylesByArray(theme, {
+    paddingRight: spaceArr,
+    paddingLeft: [
+      spaceObj.se,
+      spaceObj.se_horizontal,
+      spaceObj.ip13,
+      spaceObj.ip13_horizontal,
+      '40%',
+      null,
+      null,
+      null,
+      760,
+    ],
+    marginBottom: [56, 72, 31, 72, 72, null, 72, null, 82, 100],
   }),
 }))
 

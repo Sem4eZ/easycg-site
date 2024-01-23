@@ -76,6 +76,8 @@ const PrivacyPolicyContainer = styled('div')(({ theme }) => ({
     cursor: 'pointer',
     border: 'none',
     textDecoration: 'underline',
+    backgroundColor: 'transparent',
+    color: 'inherit',
   },
   ...getBreakpointsStylesByArray(theme, {
     paddingBottom: [146, 142, 240, null, 222, null, 247, null, 274],
