@@ -123,6 +123,10 @@ const ProjectsPage = () => {
             }}>
             {filteredProjects
               .filter(project => project.visible)
+              .sort(
+                (a, b) =>
+                  new Date(b.date).getTime() - new Date(a.date).getTime(),
+              )
               .map(project => (
                 <SwiperSlide key={project.id} style={{ width: 'auto' }}>
                   <GalleryProjectCard
@@ -144,6 +148,10 @@ const ProjectsPage = () => {
           <List>
             {filteredProjects
               .filter(project => project.visible)
+              .sort(
+                (a, b) =>
+                  new Date(b.date).getTime() - new Date(a.date).getTime(),
+              )
               .map(project => (
                 <li key={project.id}>
                   <GalleryProjectCard
@@ -165,6 +173,10 @@ const ProjectsPage = () => {
           <RowList>
             {filteredProjects
               .filter(project => project.visible)
+              .sort(
+                (a, b) =>
+                  new Date(b.date).getTime() - new Date(a.date).getTime(),
+              )
               .map(project => (
                 <li key={project.id}>
                   <GalleryProjectCardRow

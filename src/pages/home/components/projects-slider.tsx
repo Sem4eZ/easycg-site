@@ -79,6 +79,9 @@ export const MainPageProjectsSlider = () => {
           }}>
           {topProjects
             .filter(project => project.visible)
+            .sort(
+              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+            )
             .map(project => {
               return (
                 <SwiperSlide key={project.id} style={{ width: 'auto' }}>
