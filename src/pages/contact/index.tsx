@@ -27,10 +27,10 @@ const ContactPage = () => (
       </OutlinedTextSTyled>
     }>
     <Content>
-      <section>
+      {/* <section>
         <ContactPageHeader title="let’s discuss your project" />
         <LeaveProjectDetailsPlain />
-      </section>
+      </section> */}
 
       <div>
         <ContactPageHeader title="keep in touch with us" />
@@ -53,9 +53,9 @@ const Content = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
-    paddingBottom: [123, 46, 64, 114, 241, 113, 245, null, 6, 235],
+    paddingBottom: [64, 46, 64, 64, 24, 60, 114, null, 6, 235],
     paddingTop: [85, 51, 34, 122, 32, 38, 88, null, 191, 286],
-    gap: [146, 120, 294, 234, 127, 194, 319, null, 360],
+    gap: [70, 100, 100, 124, 127, 124, 200, 250, 300],
   }),
 }))
 

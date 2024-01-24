@@ -4,8 +4,6 @@ import { COMPANY_EMAIL, COMPANY_TG } from 'shared/config/environment-variables'
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { LFont } from 'shared/ui/typography'
 
-import { TimeRemark } from './time-remark'
-
 const data: {
   label: string
   value: React.ReactNode
@@ -48,12 +46,13 @@ export const ContactPageContactInfo = () => {
 const Row = styled('div')(({ theme }) => ({
   '&:not(:first-of-type)': {
     ...getBreakpointsStylesByArray(theme, {
-      paddingTop: [56, null, null, null, 40, null, 72, null, 80],
+      paddingTop: [56, null, null, null, 40, null, 72, null, 60],
     }),
   },
 }))
 
 const RowContent = styled('div')(({ theme }) => ({
+  color: 'rgb(121, 127, 154);',
   display: 'grid',
   borderBottom: `1px solid ${theme.palette.text.secondary} `,
   gridTemplateColumns: '1fr 1fr',

@@ -18,7 +18,7 @@ export const ContactPageAskEverything = () => {
       <Remark>
         <p>
           we prefer to work as a team and will be glad to give answers to
-          everything. you're welcome!
+          everything.
         </p>
         <p>you’re welcome!</p>
       </Remark>
