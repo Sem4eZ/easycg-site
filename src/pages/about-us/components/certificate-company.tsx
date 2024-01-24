@@ -87,10 +87,8 @@ const ContainerPlace = styled('div')(({ theme }) => ({
 const ContainerInfo = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  maxWidth: '40%',
+  maxWidth: '70%',
 }))
-
-// const TitleName = styled('div')(({ theme }) => ({}))
 
 const TextName = styled('div')(({ theme }) => ({
   paddingTop: '20px',
@@ -98,6 +96,12 @@ const TextName = styled('div')(({ theme }) => ({
 
 const ButtonDownload = styled('div')(({ theme }) => ({
   cursor: 'pointer',
+  '& svg': {
+    ...getBreakpointsStylesByArray(theme, {
+      width: [40, 42, 45, 50, 60, 70, 80],
+      height: [40, 42, 45, 50, 60, 70, 80],
+    }),
+  },
 }))
 
 const XLFont = styled(Typography)<TypographyProps>(({ theme }) => ({
