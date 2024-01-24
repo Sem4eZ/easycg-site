@@ -74,7 +74,7 @@ export const CertificateCompany = () => {
 const Container = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     // paddingTop: [84, 74, 56, 140, 150, 112, 140, null, 181, 200],
-    paddingBottom: [50, 74, 56, 140, 150, 112, 165, null, 60, 60],
+    paddingBottom: [50, 74, 56, 100, 100, 0, 0, null, 60, 60],
   }),
 }))
 
@@ -122,7 +122,7 @@ const Content = styled('div')(({ theme }) => ({
   ...getBreakpointsStylesByArray(theme, {
     paddingLeft: spaceArr,
     paddingRight: spaceArr,
-    paddingBottom: [123, 46, 64, 114, 241, 113, 245, null, 6, 235],
+    paddingBottom: [123, 46, 64, 0, 0, 113, 112, null, 6, 112],
     gap: [30, 30, 30, 30, 30, 30, 40, null, 60],
   }),
 }))
