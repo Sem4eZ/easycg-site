@@ -80,24 +80,24 @@ export const getQuiz = ({ register, errors }: Props) => {
         />
       }
     />,
-    <InputQuestion
-      content={
-        <RadioGroup
-          type="budget"
-          label={
-            <>
-              what budget
-              <br />
-              do you have?
-            </>
-          }
-          options={budget.map(budgetItem => ({
-            value: budgetItem,
-            label: budgetItem,
-          }))}
-        />
-      }
-    />,
+    // <InputQuestion
+    //   content={
+    //     <RadioGroup
+    //       type="budget"
+    //       label={
+    //         <>
+    //           what budget
+    //           <br />
+    //           do you have?
+    //         </>
+    //       }
+    //       options={budget.map(budgetItem => ({
+    //         value: budgetItem,
+    //         label: budgetItem,
+    //       }))}
+    //     />
+    //   }
+    // />,
     <InputQuestion
       title={
         <>
