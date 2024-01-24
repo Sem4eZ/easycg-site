@@ -71,7 +71,11 @@ export const SwimOutContentFromRight = ({ title, content, message }: Props) => {
           </Fragment>
         ))}
       </Title>
-      <Message>{message}</Message>
+      <Message>
+        we combine experience and creativity <br />
+        striving to create unique solutions <br />
+        in every projects
+      </Message>
       <Content>
         <ContentAnimationBlock ref={contentRef}>
           {content}
@@ -105,7 +109,7 @@ const Title = styled(XLFont)(({ theme }) => ({
       null,
       760,
     ],
-    marginBottom: [56, 72, 31, 72, 72, null, 72, null, 82, 100],
+    marginBottom: [24, 24, 24, 24, 24, 24, 24, 24, 24, 24],
   }),
 }))
 
@@ -127,7 +131,7 @@ const Message = styled('div')(({ theme }) => ({
       760,
     ],
     marginBottom: [56, 72, 31, 72, 72, null, 72, null, 82, 100],
-    paddingRight: [56, 72, 250, 150, 330, null, 400, null, 500, 500],
+    // paddingRight: [56, 72, 250, 150, 330, null, 400, null, 500, 500],/
   }),
 }))
 
