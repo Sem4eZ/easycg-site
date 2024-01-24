@@ -1,18 +1,22 @@
 import { styled } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles'
 
 import { getImageSrcSetByImageObj } from 'entities/image/types'
 
+// Импортируем хук useTheme
 import { getBreakpointsStylesByArray } from 'shared/lib/get-breakpoints-styles-by-array'
 import { spaceArr, spaceObj } from 'shared/theme'
 import { SwimOutContentFromRight } from 'shared/ui/containers'
 
 export const MainPageCeoSection = () => {
+  const theme = useTheme() // Получаем текущую тему с помощью useTheme
   const imageSrcSet = getImageSrcSetByImageObj({
     path: '/assets/images/',
-    name: 'How-we-work',
+    name: theme.palette.mode === 'dark' ? 'team_work_light' : 'team_work_dark', // Используем разные имена для темной и светлой тем
     fileType: 'png',
     alt: '',
   })
+
   return (
     <SwimOutContentFromRight
       title={['don’t worry. your project', 'is in safe hands']}
@@ -34,13 +38,16 @@ export const MainPageCeoSection = () => {
                 )
               })}
 
-              <img src="./assets/images/How-we-work.png" alt="ceo" />
+              <img
+                src={`./assets/images/${
+                  theme.palette.mode === 'dark'
+                    ? 'team_work_light'
+                    : 'team_work_dark'
+                }.png`}
+                alt="our command work"
+              />
             </picture>
           </ContentContainer>
-          {/* <Caption>
-            <span>By the way, he's our CEO,&nbsp;</span>
-            <span> and his best friend works here too</span>
-          </Caption> */}
         </figure>
       }
     />
@@ -51,10 +58,10 @@ const ContentContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'flex-end',
-  backgroundColor:
-    theme.palette.mode === 'dark'
-      ? theme.palette.inverted
-      : theme.palette.text.disabled,
+  // backgroundColor:
+  //   theme.palette.mode === 'dark'
+  //     ? theme.palette.inverted
+  //     : theme.palette.text.disabled,
   // height: '100vh', // Set height to full viewport height
   margin: 0, // Remove margin
   '& picture': {

@@ -21,43 +21,43 @@ interface Props {
 export const SwimOutContentFromRight = ({ title, content, message }: Props) => {
   const { isDesktopS, isLaptop, isMacbook, isDesktop } = useGetDevice()
 
-  const doAnimate = isDesktopS || isLaptop || isMacbook || isDesktop
+  // const doAnimate = isDesktopS || isLaptop || isMacbook || isDesktop
 
   const titleRef = useRef<HTMLParagraphElement | null>(null)
   const contentRef = useRef<HTMLDivElement | null>(null)
   useRevealTextByWord({ ref: titleRef })
 
-  const getSectionScroll = useGetSectionScroll(contentRef)
+  // const getSectionScroll = useGetSectionScroll(contentRef)
 
-  const showContent = () => {
-    const content = contentRef.current
-    if (!content) return
+  // const showContent = () => {
+  //   const content = contentRef.current
+  //   if (!content) return
 
-    const percentage = getSectionScroll()
+  //   const percentage = getSectionScroll()
 
-    let newPercentage = 100 - percentage * 100
-    if (newPercentage > 40) newPercentage = 40
+  //   let newPercentage = 100 - percentage * 100
+  //   if (newPercentage > 40) newPercentage = 40
 
-    setTimeout(() => {
-      content.style.transform = `translateX(${newPercentage}%)`
-    }, 0)
-  }
+  //   setTimeout(() => {
+  //     content.style.transform = `translateX(${newPercentage}%)`
+  //   }, 0)
+  // }
 
-  useEffect(() => {
-    if (!doAnimate) return
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          window.addEventListener('scroll', showContent)
-        } else {
-          window.removeEventListener('scroll', showContent)
-        }
-      })
-    })
+  // useEffect(() => {
+  //   if (!doAnimate) return
+  //   const observer = new IntersectionObserver(entries => {
+  //     entries.forEach(entry => {
+  //       if (entry.isIntersecting) {
+  //         window.addEventListener('scroll', showContent)
+  //       } else {
+  //         window.removeEventListener('scroll', showContent)
+  //       }
+  //     })
+  //   })
 
-    const content = contentRef.current
-    content && observer.observe(content)
-  }, [doAnimate])
+  //   const content = contentRef.current
+  //   content && observer.observe(content)
+  // }, [doAnimate])
 
   return (
     <Container>
@@ -135,12 +135,13 @@ const Content = styled('div')(() => ({
   maxWidth: maxWidth,
   marginLeft: 'auto',
   marginRight: 'auto',
+  objectFit: 'cover',
   overflow: 'hidden',
 }))
 
 const ContentAnimationBlock = styled('div')(({ theme }) => ({
   transition: 'transform 0.5s',
   ...getBreakpointsStylesByArray(theme, {
-    transform: ['unset', null, null, null, null, null, 'translateX(40%)'],
+    // transform: ['unset', null, null, null, null, null, 'translateX(0%)'],
   }),
 }))
