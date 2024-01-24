@@ -111,7 +111,9 @@ const ProjectDetailPage = () => {
           loop
           controls={false}
           style={{ width: '100%', height: 'auto' }}
-          autoPlay>
+          autoPlay
+          muted
+          playsInline>
           <source src={project.detailPreview} type="video/webm" />
         </video>
       </Preview>
