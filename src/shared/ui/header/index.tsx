@@ -148,7 +148,7 @@ const BlurContainer = styled('div')<{ isActive: boolean }>(
         ? 'linear-gradient(247.32deg, rgba(250, 250, 255, 0.2) 10.17%, rgba(236, 236, 236, 0.2) 110.17%)'
         : 'linear-gradient(247.32deg, rgba(32, 34, 46, 0.2) 0%, rgba(30, 28, 27, 0.2) 100%)'
       : undefined,
-    backdropFilter: isActive ? 'blur(2px)' : undefined,
+    backdropFilter: isActive ? 'blur(10px)' : undefined,
     borderBottom: isActive
       ? theme.palette.mode === 'light'
         ? `1px solid ${theme.palette.text.secondary}`
