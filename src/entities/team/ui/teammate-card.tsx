@@ -21,7 +21,7 @@ export const TeammateCard = ({
   position,
 }: Props) => {
   const imageMainSrcSet = getImageSrcSetByImageObj(image.main)
-  const imageHiddenSrcSet = getImageSrcSetByImageObj(image.hidden)
+  // const imageHiddenSrcSet = getImageSrcSetByImageObj(image.hidden)
   return (
     <Container>
       <article>
@@ -40,7 +40,7 @@ export const TeammateCard = ({
               <img src={getImagePath(image.main, 1920)} alt={image.main.alt} />
             </Picture>
 
-            <HiddenImage className="hidden">
+            {/* <HiddenImage className="hidden">
               {imageHiddenSrcSet.map(imageSrcSetData => {
                 return (
                   <source
@@ -51,7 +51,7 @@ export const TeammateCard = ({
               })}
 
               <img src={getImagePath(image.hidden, 1920)} alt="" />
-            </HiddenImage>
+            </HiddenImage> */}
           </ImagesWrapepr>
         </ImageContainer>
         <Content>
@@ -78,8 +78,10 @@ export const TeammateCard = ({
 }
 
 const Container = styled('div')(({ theme }) => ({
+  marginLeft: '20px',
+  marginRight: '10px',
   ...getBreakpointsStylesByArray(theme, {
-    width: [162, '100%', 163, '100%', 315, 365, 497, null, 619],
+    width: [250, 300, 330, 360, 315, 365, 497, null, 619],
   }),
 }))
 
@@ -94,7 +96,7 @@ const ImageContainer = styled('div')(({ theme }) => ({
   borderRadius: '30px',
   overflow: 'hidden',
   ...getBreakpointsStylesByArray(theme, {
-    height: [226, null, null, 443, 438, null, 692, null, 862],
+    height: [383, 420, 480, 493, 438, 520, 692, null, 862],
   }),
   backgroundColor: theme.palette.card.default,
   transition: 'background-color .2s',
@@ -134,9 +136,7 @@ const Description = styled('span')(({ theme }) => ({
   overflow: 'hidden',
   maxWidth: '100%',
   color: theme.palette.text.secondary,
-  ...getBreakpointsStylesByArray(theme, {
-    display: ['none', null, null, null, '-webkit-box'],
-  }),
+  display: 'block', // Переключение на блочный элемент
 }))
 
 const ImagesWrapepr = styled('div')(() => ({
@@ -145,44 +145,6 @@ const ImagesWrapepr = styled('div')(() => ({
   alignItems: 'flex-end',
   justifyContent: 'center',
   height: '100%',
-}))
-
-const HiddenImage = styled('picture')(({ theme }) => ({
-  position: 'absolute',
-  bottom: 0,
-  left: '50%',
-  display: 'none',
-  transform: 'translateX(-50%)',
-  alignItems: 'flex-end',
-  ...getBreakpointsStylesByArray(theme, {
-    height: [
-      '100%',
-      '100%',
-      '100%',
-      '100%',
-      '100%',
-      '100%',
-      '100%',
-      '100%',
-      '100%',
-    ],
-    width: [
-      '162px',
-      '162px',
-      '162px',
-      '162px',
-      '318px',
-      '318px',
-      '497px',
-      '497px',
-      '619px',
-    ],
-    objectFit: ['unset', 'contain', 'unset', 'cover', 'unset'],
-  }),
-  img: {
-    height: '100%',
-    width: '100%',
-  },
 }))
 
 const Picture = styled('picture')(({ theme }) => ({
@@ -201,20 +163,21 @@ const Picture = styled('picture')(({ theme }) => ({
       '100%',
     ],
     width: [
-      '162px',
-      '162px',
-      '162px',
-      '162px',
-      '318px',
-      '318px',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
+      '100%',
       '497px',
       '497px',
       '619px',
     ],
-    objectFit: ['unset', 'contain', 'unset', 'cover', 'unset'],
+    objectFit: ['fill', 'fill', 'cover', 'cover', 'cover'],
   }),
   img: {
     height: '100%',
     width: '100%',
+    objectFit: 'fill',
   },
 }))

@@ -20,7 +20,7 @@ export const AboutUsPageValueStystem = () => {
 
           <EasySolutionsOrbit>
             <EasySolutionsPlanet>
-              <EasySolutionsText>easy solutions</EasySolutionsText>
+              <EasySolutionsText>easy communication</EasySolutionsText>
             </EasySolutionsPlanet>
           </EasySolutionsOrbit>
 

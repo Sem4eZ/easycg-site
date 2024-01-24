@@ -148,6 +148,6 @@ const TeamList = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   ...getBreakpointsStylesByArray(theme, {
-    gap: [0, 104, 0, 66],
+    gap: [0, 104, 36, 0],
   }),
 }))
