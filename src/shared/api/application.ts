@@ -18,4 +18,5 @@ export const confirmApplication = (data: Application) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data, null, 2),
+    mode: 'no-cors', // Добавлен параметр mode
   })
