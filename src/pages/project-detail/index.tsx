@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { LeaveProjectDetails } from 'features/project/leave-project-details/quiz'
 
+import { getImageSrcSetByImageObj } from 'entities/image/types'
 import { Project } from 'entities/project/types'
 import { serviceTypeToIcon } from 'entities/services/data'
 
@@ -67,6 +68,10 @@ const ProjectDetailPage = () => {
     return <></>
   }
 
+  // const imageSrcSet = getImageSrcSetByImageObj(
+  //   article?.detailPreviewImage || {},
+  // )
+
   return (
     <PageStyled
       title={project.name}
@@ -107,15 +112,26 @@ const ProjectDetailPage = () => {
       {/* <ProjectDetailHero preview={project.detailPreview} /> */}
       {/* <VideoPreview url="../../../public/assets/videos/projects/detail_preview.webm" /> */}
       <Preview>
-        <video
-          loop
-          controls={false}
-          style={{ width: '100%', height: 'auto' }}
-          autoPlay
-          muted
-          playsInline>
-          <source src={project.detailPreview} type="video/webm" />
-        </video>
+        {project.detailPreview ? (
+          <video
+            loop
+            controls={false}
+            style={{ width: '100%', height: 'auto' }}
+            autoPlay
+            muted
+            playsInline>
+            <source src={project.detailPreview} type="video/webm" />
+          </video>
+        ) : (
+          <PictureContainer>
+            <Picture>
+              <img
+                src="/assets/images/projects/detail_preview.png" // Нужно поменять на существующую картинку вместо заглушки!
+                alt="Картинка выполненной работы"
+              />
+            </Picture>
+          </PictureContainer>
+        )}
       </Preview>
       {/* <RemarkContainer>
         <Remark>
@@ -174,7 +190,7 @@ const Preview = styled('div')(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   justifyContent: 'center',
-  width: '100',
+  width: '100%',
   paddingLeft: '10px',
   paddingRight: '10px',
   overflow: 'hidden',
@@ -321,4 +337,28 @@ const PageStyled = styled(Page)(({ theme }) => ({
     left: [-184, -250, -198, -160, -150, -220, -300, -260, -420, -140],
     top: [-146, null, null, -141, -196, -196, -266, null, -380],
   }),
+}))
+
+const PictureContainer = styled('div')(({ theme }) => ({
+  width: '100wh',
+  display: 'flex',
+  justifyContent: 'center', // Центрируем содержимое по горизонтали
+  alignItems: 'center', // Центрируем содержимое по вертикали
+  // height: '100vh', // Высота экрана
+  overflow: 'hidden', // Обрезаем избыточное содержимое
+}))
+
+const Picture = styled('picture')(({ theme }) => ({
+  maxWidth: '100%',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  height: '100%',
+  width: '100%',
+  objectFit: 'cover',
+  '& img': {
+    height: '100%',
+    width: '100%',
+    objectFit: 'cover',
+  },
+  ...getBreakpointsStylesByArray(theme, {}),
 }))
