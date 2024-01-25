@@ -24,7 +24,6 @@ import { PricesBlock } from 'shared/ui/prices-block'
 import { Tags } from 'shared/ui/tags'
 
 import { ProjectDetailHero } from './components/hero'
-import { VideoPreview } from './components/hero/video-preview'
 
 const ProjectDetailPage = () => {
   const navigate = useNavigate()
@@ -110,10 +109,10 @@ const ProjectDetailPage = () => {
         </Information>
       }>
       {/* <ProjectDetailHero preview={project.detailPreview} /> */}
-      {/* <VideoPreview url="../../../public/assets/videos/projects/detail_preview.webm" /> */}
       <Preview>
         {project.detailPreview ? (
           <video
+            key={project.detailPreview}
             loop
             controls={false}
             style={{ width: '100%', height: 'auto' }}
