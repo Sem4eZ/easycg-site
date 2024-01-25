@@ -4,6 +4,7 @@ import { collection, getDocs } from 'firebase/firestore'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react'
+import { transform } from 'typescript'
 
 import { Project } from 'entities/project/types'
 import { GalleryProjectCard } from 'entities/project/ui/gallery-project-card'
@@ -132,34 +133,33 @@ const Container = styled('div')(({ theme }) => ({
     paddingBottom: [76, null, null, null, null, null, 230, null],
   }),
   '& .swiper-slide-next a': {
-    marginRight: 0,
+    marginRight: 'auto',
     marginLeft: 'auto',
   },
 }))
 
 const SliderContainer = styled('div')(({ theme }) => ({
-  maxWidth: 1120,
+  maxWidth: 1320,
   marginLeft: 'auto',
   marginRight: 'auto',
   boxSizing: 'border-box',
-  ...getBreakpointsStylesByArray(theme, {
-    paddingLeft: spaceArr,
-    paddingRight: spaceArr,
-  }),
+  ...getBreakpointsStylesByArray(theme, {}),
   '& .swiper': {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'space-between',
   },
   '& .swiper-wrapper': {
+    display: 'flex',
     order: 1,
-    alignItems: 'space-between',
+    ...getBreakpointsStylesByArray(theme, {
+      marginLeft: [null, null, null, null, null, null, 170, null, 140, 140],
+    }),
   },
 }))
 
 const ProjectsNavigationButtons = styled('div')(({ theme }) => ({
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'space-around',
   marginLeft: 'auto',
   marginRight: 'auto',
   paddingTop: 50,
@@ -175,14 +175,16 @@ const ProjectsNavigationButtons = styled('div')(({ theme }) => ({
 
 const SliderNavigationButtons = styled('div')(({ theme }) => ({
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'space-around',
   ...getBreakpointsStylesByArray(theme, {
-    paddingTop: [null, null, null, null, null, null, 354, null, 349, 538],
+    paddingTop: [null, null, null, null, null, null, 354, null, 349, 48],
     paddingBottom: [null, null, null, null, null, null, 100, null, 93],
   }),
 }))
 
 const SliderNavigationButton = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'flex-end',
   ...getBreakpointsStylesByArray(theme, {
     width: [400, null, null, null, null, null, null, null, 352, 400],
   }),
@@ -190,7 +192,7 @@ const SliderNavigationButton = styled('div')(({ theme }) => ({
 
 const PreviousSliderNavigationButton = styled(SliderNavigationButton)(() => ({
   display: 'flex',
-  justifyContent: 'flex-end',
+  justifyContent: 'flex-start',
 }))
 
 const PreviousButton = styled(Button)(() => ({
