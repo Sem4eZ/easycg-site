@@ -200,8 +200,8 @@ const Preview = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
-  paddingLeft: '10px',
-  paddingRight: '10px',
+  // paddingLeft: '10px',
+  // paddingRight: '10px',
   overflow: 'hidden',
   '& iframe': {
     width: '1688px',
