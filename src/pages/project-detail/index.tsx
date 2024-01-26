@@ -119,8 +119,17 @@ const ProjectDetailPage = () => {
             autoPlay
             muted
             playsInline>
+            <source
+              src={project.detailPreview}
+              type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+            />
             <source src={project.detailPreview} type="video/webm" />
             <source src={project.detailPreview} type="video/mp4" />
+            <source src={project.detailPreview} type="video/ogg" />
+            <p>
+              Если вы видите эту надпись, значит ваш браузер не поддерживает
+              видео HTML5.
+            </p>
           </video>
         ) : (
           <PictureContainer>
