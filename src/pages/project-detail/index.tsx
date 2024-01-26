@@ -120,6 +120,7 @@ const ProjectDetailPage = () => {
             muted
             playsInline>
             <source src={project.detailPreview} type="video/webm" />
+            <source src={project.detailPreview} type="video/mp4" />
           </video>
         ) : (
           <PictureContainer>

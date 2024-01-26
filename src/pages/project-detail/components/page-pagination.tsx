@@ -152,7 +152,7 @@ const SliderContainer = styled('div')(({ theme }) => ({
     display: 'flex',
     order: 1,
     ...getBreakpointsStylesByArray(theme, {
-      marginLeft: [null, null, null, null, null, null, 170, null, 140, 140],
+      marginLeft: [null, null, null, null, null, null, 240, null, 135, 150], // ЗДЕСЬ РАБОАТЕМ
     }),
   },
 }))
@@ -174,11 +174,14 @@ const ProjectsNavigationButtons = styled('div')(({ theme }) => ({
 }))
 
 const SliderNavigationButtons = styled('div')(({ theme }) => ({
+  maxWidth: 1320,
   display: 'flex',
-  justifyContent: 'space-around',
+  // justifyContent: 'center',
   ...getBreakpointsStylesByArray(theme, {
     paddingTop: [null, null, null, null, null, null, 354, null, 349, 48],
     paddingBottom: [null, null, null, null, null, null, 100, null, 93],
+    marginLeft: [null, null, null, null, null, null, 170, null, 280, 200],
+    gap: [null, null, null, null, null, 15, 200, 255, 120], // ЗДЕСЬ РАБОАТЕМ
   }),
 }))
 
