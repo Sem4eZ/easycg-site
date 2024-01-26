@@ -65,7 +65,7 @@ const RightPart = styled(LFont)(() => ({
   textAlign: 'end',
   '& a': {
     textDecoration: 'none',
-    color: 'inherit',
+    color: 'rgba(50, 53, 69, 1)',
   },
 }))
 
