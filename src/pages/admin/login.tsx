@@ -5,8 +5,6 @@ import React, { useState } from 'react'
 
 import app from '../../shared/firebase'
 
-// Импортируйте настроенный firebase
-
 const auth = getAuth(app)
 
 const AdminLoginPage = () => {

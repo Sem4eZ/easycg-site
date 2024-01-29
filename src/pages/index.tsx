@@ -5,6 +5,7 @@ import { PAGES } from 'shared/config'
 
 import AdminLoginPage from './admin/login'
 import Dashboard from './admin/posts'
+import PrivateRoute from './admin/private-route'
 import Projects from './admin/projects'
 
 const HomePage = lazy(() => import('./home'))
@@ -41,10 +42,13 @@ const Pages = () => (
 
     <Route path={PAGES.Contact} element={<ContactPage />} />
 
-    <Route path={PAGES.Components} element={<ComponentsPage />} />
+    <Route element={<PrivateRoute />}>
+      <Route path={PAGES.Dashboard} element={<Dashboard />} />
+      <Route path={PAGES.AdminProjects} element={<Projects />} />
+    </Route>
     <Route path={PAGES.AdminLogin} element={<AdminLoginPage />} />
-    <Route path={PAGES.AdminProjects} element={<Projects />} />
-    <Route path={PAGES.Dashboard} element={<Dashboard />} />
+
+    <Route path={PAGES.Components} element={<ComponentsPage />} />
 
     <Route path="*" element={<Error404Page />} />
   </Routes>
