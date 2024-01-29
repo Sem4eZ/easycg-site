@@ -685,7 +685,7 @@ function Posts() {
               <td>{post.type}</td>
               <td>{truncateString(post.detailPreviewImage, 5)}</td>
               <td>{truncateString(post.image, 5)}</td>
-              <td>{moment(post.date).format('YYYY-MM-DD')}</td>
+              <td>{moment(post.date).format('YYYY-MM')}</td>
 
               <td>
                 <Button

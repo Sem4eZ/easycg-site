@@ -839,7 +839,7 @@ function Projects() {
                   truncateString(project.detailPreview, 10)}
               </td>
               <td>{project.image && truncateString(project.image, 10)}</td>
-              <td>{moment(project.date).format('YYYY-MM-DD')}</td>
+              <td>{moment(project.date).format('YYYY')}</td>
 
               <td>
                 <Button

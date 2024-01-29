@@ -51,8 +51,8 @@ export const ProjectCard = ({
               <HeaderLeftPart>
                 <TagsStyled
                   items={[
-                    <time dateTime={moment(date).format('YYYY-MM-DD')}>
-                      {moment(date).format('YYYY-MM-DD')}
+                    <time dateTime={moment(date).format('YYYY')}>
+                      {moment(date).format('YYYY')}
                     </time>,
                     type,
                   ]}

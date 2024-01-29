@@ -45,8 +45,8 @@ export const ArticleCard = ({
             <Header>
               <TagsStyled
                 items={[
-                  <time dateTime={moment(date).format('YYYY-MM-DD')}>
-                    {moment(date).format('YYYY-MM-DD')}
+                  <time dateTime={moment(date).format('YYYY-MM')}>
+                    {moment(date).format('YYYY-MM')}
                   </time>,
                   type,
                 ]}

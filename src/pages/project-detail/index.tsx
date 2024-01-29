@@ -84,8 +84,8 @@ const ProjectDetailPage = () => {
         <Information>
           <Tags
             items={[
-              <time dateTime={moment(project.date).format('YYYY-MM-DD')}>
-                {moment(project.date).format('YYYY-MM-DD')}
+              <time dateTime={moment(project.date).format('YYYY')}>
+                {moment(project.date).format('YYYY')}
               </time>,
               project.type,
             ]}
