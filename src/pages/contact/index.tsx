@@ -12,7 +12,7 @@ import { ContactPageContactInfo } from './components/contact-info'
 import { ContactPageHeader } from './components/header'
 
 const ContactPage = () => (
-  <PageStyled
+  <Page
     title={
       <>
         let's do something
@@ -22,9 +22,9 @@ const ContactPage = () => (
     }
     titleSize="small"
     decorationText={
-      <OutlinedTextSTyled viewBoxWidth={2510} type="headerSmall">
-        contacts
-      </OutlinedTextSTyled>
+      <TextOutlined viewBoxWidth={806} type="header">
+        06
+      </TextOutlined>
     }>
     <Content>
       {/* <section>
@@ -39,7 +39,7 @@ const ContactPage = () => (
 
       <ContactPageAskEverything />
     </Content>
-  </PageStyled>
+  </Page>
 )
 
 export default ContactPage

@@ -80,7 +80,7 @@ const ProjectsPage = () => {
     <Page
       title="projects"
       decorationText={
-        <TextOutlined viewBoxWidth={800} type="headerSmall">
+        <TextOutlined viewBoxWidth={840} type="header">
           02
         </TextOutlined>
       }
