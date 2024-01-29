@@ -73,8 +73,8 @@ export const SwimOutContentFromRight = ({ title, content, message }: Props) => {
       </Title>
       <Message>
         we combine experience and creativity <br />
-        striving to create unique solutions <br />
-        in every projects
+        striving to find unique solutions <br />
+        in every project
       </Message>
       <Content>
         <ContentAnimationBlock ref={contentRef}>

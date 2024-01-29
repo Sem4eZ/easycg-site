@@ -12,13 +12,13 @@ export const ContactPageAskEverything = () => {
   return (
     <Container ref={containerRef}>
       <Title>
-        <span>don't worry. you can ask us about everything.</span>
-        <span>we are sure that there are no silly questions in the world</span>
+        <span>feel free to communicate with us </span>
+        {/* <span>we are sure that there are no silly questions in the world</span> */}
       </Title>
       <Remark>
         <p>
-          we prefer to work as a team and will be glad to give answers to
-          everything.
+          we convince that there are no silly questions and we are ready to
+          answer all your requests
         </p>
         <p>you’re welcome!</p>
       </Remark>

@@ -72,7 +72,7 @@ export const useProjectsFilter = ({ initial }: Props) => {
           onClose={closeModal}
           keepMounted={true}>
           <Header>
-            <LFont>chose tags</LFont>
+            <LFont>choose tags</LFont>
             {!showClearAllInFooter && (
               <ClearButton endIcon="" onClick={clearFilter}>
                 clear all
@@ -99,7 +99,7 @@ export const useProjectsFilter = ({ initial }: Props) => {
                 clear all
               </ClearButton>
             )}
-            <ApplyButoon onClick={activateFilter}>apply filters</ApplyButoon>
+            <ApplyButoon onClick={activateFilter}>apply</ApplyButoon>
           </Footer>
         </ModalStyled>
       </section>

@@ -66,8 +66,8 @@ const ServicesPage = () => {
           <TextPlace>overview</TextPlace>
           <BlockTextOverview>
             <TitleOverview>
-              we do impressive things to make your presence visible in the
-              digital space
+              we do impressive things to make your presence in the digital space
+              visible
             </TitleOverview>
             <TextOverview>
               we specialize in high-quality and photorealistic
@@ -97,9 +97,9 @@ const ServicesPage = () => {
           </BlockTextOverview>
         </ServicesPlace>
         <Footer>
-          <LeaveProjectDetails buttonText="order a project" />
+          <LeaveProjectDetails buttonText="request a project" />
           <Button onClick={() => navigate(PAGES.Projects)}>
-            view out portfolio
+            view our portfolio
           </Button>
         </Footer>
       </Container>

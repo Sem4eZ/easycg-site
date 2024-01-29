@@ -16,7 +16,7 @@ export const AboutUsPageOurTeam = () => {
 
   return (
     <Container>
-      <Title variant="h2">leadership</Title>
+      <Title variant="h2">introducing our head</Title>
       {showSlider ? (
         <Swiper
           slideToClickedSlide

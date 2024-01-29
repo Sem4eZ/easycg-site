@@ -79,7 +79,7 @@ export const LeaveProjectDetailsPlain = () => {
 
           <Select
             label="select type of project"
-            explanation="(you can chose few)"
+            explanation="(you can choose few)"
             field="projectType"
             options={services.map(service => ({
               value: service.type,

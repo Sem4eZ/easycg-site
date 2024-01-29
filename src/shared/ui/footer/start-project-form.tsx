@@ -51,7 +51,7 @@ export const StartProjectForm: FC = ({}) => {
       <div>
         <ProjectForm />
         <PrivacyPolicyContainer onClick={handlePrivacyPolicyClick}>
-          By sending this message you agree <br />
+          by submitting this form, you agree <br />
           to our <button onClick={handleDownload}>privacy policy</button> of
           personal data
         </PrivacyPolicyContainer>

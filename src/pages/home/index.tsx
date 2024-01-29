@@ -37,20 +37,18 @@ const HomePage = () => {
           }
           section="about us"
           title={[
-            'hello there! it’s EASY on the air we are highly enthusiastic about immersive technologies and strive to share this passion with others',
+            'hello there! it’s EASY on the air! we don’t only speak about digital, we DO digital',
           ]}
           description={[
             <>
-              our purpose is&nbsp;
-              <b>to help</b>
-              &nbsp;entrepreneurs achieve digital transformation and reach a new
-              level of business development
+              we’re passionate about immersive technologies and strive to share
+              this passion with others
             </>,
           ]}
           content={
             <HorizontalList
-              title="our work style is"
-              items={['responsible', 'flexible', 'clear', 'honest']}
+              title="our work style embodies"
+              items={['responsibility', 'flexibility', 'clarity', 'honesty']}
             />
           }
         />

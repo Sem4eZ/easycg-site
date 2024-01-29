@@ -33,13 +33,13 @@ export const getQuiz = ({ register, errors }: Props) => {
     <Announcement
       title={
         <>
-          hi there! <br /> let's talk?
+          hello there! <br /> how to start?
         </>
       }
       description={
         <>
-          let us ask you a few questions <br />
-          and we'll write you back
+          go ahead, great things start with <br />
+          filling this contact form
         </>
       }
     />,
@@ -55,7 +55,7 @@ export const getQuiz = ({ register, errors }: Props) => {
         <Input
           fullWidth
           id="name"
-          label="your name"
+          label="name"
           variant="standard"
           {...register('name')}
         />
@@ -67,9 +67,9 @@ export const getQuiz = ({ register, errors }: Props) => {
           type="projectType"
           label={
             <>
-              kind a project
+              what are you
               <br />
-              you have in mind?
+              aiming for?
             </>
           }
           options={services.map(service => ({
@@ -101,9 +101,9 @@ export const getQuiz = ({ register, errors }: Props) => {
     <InputQuestion
       title={
         <>
-          how we will
+          how will we
           <br />
-          get in touch?
+          keep in touch?
         </>
       }
       content={
@@ -113,7 +113,7 @@ export const getQuiz = ({ register, errors }: Props) => {
               fullWidth
               id="name"
               type="email"
-              label="type your email*"
+              label="e-mail*"
               variant="standard"
               {...register('email')}
               error={Boolean(errors?.email)}
@@ -129,7 +129,7 @@ export const getQuiz = ({ register, errors }: Props) => {
 
           <Input
             id="name"
-            label="company’s name"
+            label="company name"
             variant="standard"
             {...register('companyName')}
           />

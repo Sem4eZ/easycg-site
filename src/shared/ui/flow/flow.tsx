@@ -131,22 +131,19 @@ export const Flow = ({ sectionRef }: Props) => {
 
       <Cycle ref={cycleRef}>
         <div className="top-step">
-          <div className="title">built</div>
+          <div className="title">produce</div>
           <div className="circle" />
         </div>
         <div className="right-step">
-          <div className="title">
-            test &<br />
-            evaluate
-          </div>
+          <div className="title">develop</div>
           <div className="circle" />
         </div>
         <div className="bottom-step">
-          <div className="title">find&nbsp;solution</div>
+          <div className="title">test</div>
           <div className="circle" />
         </div>
         <div className="left-step">
-          <div className="title">redesign</div>
+          <div className="title">report</div>
           <div className="circle" />
         </div>
 
@@ -167,12 +164,12 @@ export const Flow = ({ sectionRef }: Props) => {
 
       <Step ref={developmentRef} className="end-step">
         <Arrow />
-        <div className="title">development</div>
+        <div className="title">release</div>
       </Step>
 
       <Step ref={readyRef} className="end-step">
         <Arrow />
-        <div className="title">ready</div>
+        <div className="title">support</div>
       </Step>
     </Container>
   )

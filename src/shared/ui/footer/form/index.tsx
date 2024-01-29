@@ -62,15 +62,15 @@ export const ProjectForm = () => {
     <FormProvider {...formMethods}>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FieldsContainer>
-          <Input id="name" label="what’s your name?" name="name" />
+          <Input id="name" label="name" name="name" />
 
-          <Input id="company" label="company’s name" name="company" />
+          <Input id="company" label="company name" name="company" />
 
           <PhoneInput name="phone" />
 
           <Input id="email" type="email" label="e-mail" name="email" />
 
-          <Input id="comment" label="comment" name="comment" />
+          <Input id="comment" label="share your ideas" name="comment" />
         </FieldsContainer>
         <ButtonRipple
           fullWidth={isMobileS}
@@ -81,7 +81,7 @@ export const ProjectForm = () => {
           }}
           type="submit"
           variant="contained">
-          send us a message
+          submit
         </ButtonRipple>
       </Form>
       <ConfirmingApplicationModal open={isOpen} onClose={closeModal} />

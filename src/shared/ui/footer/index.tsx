@@ -51,7 +51,7 @@ export const Footer = ({ projectsCount }: Props) => {
       {!showMobileSocial && <SocialMediaStyled size="medium" />}
       <ContactInfo>
         <BlockWithCity>
-          <City>Based in Indonesia</City>
+          <City>based in Indonesia</City>
           <Time>{`${time.getHours()}:${
             time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes()
           } (GTM +8)`}</Time>
@@ -69,7 +69,7 @@ export const Footer = ({ projectsCount }: Props) => {
         )}
       </ContactInfo>
       {showMobileSocial && <SocialMediaStyled size="medium" />}
-      <Copyright>copyright © 2018-2023 . made by EASY</Copyright>
+      <Copyright>copyright © 2018-2024 . made by EASY</Copyright>
     </Container>
   )
 }

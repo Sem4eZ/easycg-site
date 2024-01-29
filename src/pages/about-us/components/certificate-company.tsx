@@ -21,13 +21,13 @@ export const CertificateCompany = () => {
   return (
     <Container>
       <Content>
-        <XLFont>here’s some docs prove we are really serious guys</XLFont>
+        <XLFont>here’s why we are really serious guys</XLFont>
 
         <ContainerPlace>
           <ContainerInfo>
             <LFont>corporate profile for a detailed insight</LFont>
             <TextName>
-              our investment status, address, and a glimpse into our dynamic
+              our investment status, address and a glimpse into our dynamic
               realm of operations, highlighting our impactful contributions in
               the industry
             </TextName>

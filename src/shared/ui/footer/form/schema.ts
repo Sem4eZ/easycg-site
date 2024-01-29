@@ -5,7 +5,7 @@ export const ProjectFormSchema = object({
   company: string().required('Name is required'),
   // phone: string().required('Phone is required'),
   email: string()
-    .required('Email is required')
-    .email('Wrong email')
+    .required('e-mail required')
+    .email('incorrect e-mail')
     .lowercase('Email must be lowercase'),
 })

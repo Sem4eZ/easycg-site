@@ -10,7 +10,7 @@ export const ThemeAndLocation = ({ ...rest }) => {
 
   return (
     <Container {...rest}>
-      {toggler} <Divider>/</Divider> Based in Indonesia
+      {toggler} <Divider>/</Divider> based in Indonesia
       <br />
       {`${time.getHours()}:${
         time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes()

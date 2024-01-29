@@ -34,7 +34,7 @@ export const getMenuSchema = ({ projectsCount }: GetMenuSchema): MenuItem[] => {
       path: PAGES.Blog,
     },
     {
-      title: 'contacts',
+      title: 'contact',
       path: PAGES.Contact,
     },
   ]

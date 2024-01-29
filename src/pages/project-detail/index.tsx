@@ -163,7 +163,7 @@ const ProjectDetailPage = () => {
         description={[<>{project.about}</>]}
         content={
           <HorizontalList
-            title="we decided it will be"
+            title="we decided it would be"
             items={['modern', 'сreative', 'impressive', 'exciting']}
           />
         }

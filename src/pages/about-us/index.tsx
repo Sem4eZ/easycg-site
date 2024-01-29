@@ -16,16 +16,21 @@ const AboutUsPage = () => (
       </TextOutlined>
     }>
     <FreeRightPartContainer
-      section="beggining"
+      section="beginning"
       title={['just know us better', 'we’re really easy guys']}
       description={[
-        <>we create effective solutions without unnecessary complexity.</>,
-        <>we make the complex easy</>,
+        <>we focus only on what matters turning</>,
+        <>complex ideas into easy solutions </>,
       ]}
       content={
         <HorizontalList
           title="we are"
-          items={['friendly', 'enthusiasts', 'fast-thinkers', 'experienced']}
+          items={[
+            'customer-focused',
+            'enthusiastic',
+            'fast-thinking',
+            'experienced',
+          ]}
         />
       }
     />

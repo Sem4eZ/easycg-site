@@ -24,11 +24,8 @@ export const MainPageServicesMenu = () => {
       <ServicesMenu />
 
       <Footer>
-        <ButtonLink href={`mailto:${COMPANY_EMAIL}`}>say hello</ButtonLink>
-        <LeaveProjectDetails
-          buttonText="discuss a project"
-          variant="contained"
-        />
+        <ButtonLink href={`mailto:${COMPANY_EMAIL}`}>e-mail us</ButtonLink>
+        <LeaveProjectDetails buttonText="get started" variant="contained" />
       </Footer>
     </Container>
   )

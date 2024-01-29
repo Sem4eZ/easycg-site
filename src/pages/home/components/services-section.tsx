@@ -19,7 +19,7 @@ export const MainPageServicesSection = () => {
         </TextOutlined>
       }
       section="services"
-      title={[`let's see what we DO`]}
+      title={[`explore what we DO`]}
       content={
         <Accordion
           name="Services"

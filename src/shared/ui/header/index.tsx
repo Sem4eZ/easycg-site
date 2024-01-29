@@ -112,7 +112,7 @@ export const Header = ({ projectsCount }: Props) => {
                   marginRight: 48,
                 }}>
                 <LeaveProjectDetails
-                  buttonText="discuss a project"
+                  buttonText="get started"
                   variant="contained"
                   size="small"
                   endIcon=""
