@@ -93,7 +93,7 @@ export const ModalContent: FC<Props> = ({
 
       {hideDiscussHeaderButton && (
         <DiscussButtonWrapper>
-          <LeaveProjectDetails buttonText="discuss a project" endIcon="" />
+          <LeaveProjectDetails buttonText="get started" endIcon="" />
         </DiscussButtonWrapper>
       )}
     </>
