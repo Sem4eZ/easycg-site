@@ -61,11 +61,11 @@ const RowContent = styled('div')(({ theme }) => ({
   }),
 }))
 
-const RightPart = styled(LFont)(() => ({
+const RightPart = styled(LFont)(({ theme }) => ({
   textAlign: 'end',
   '& a': {
     textDecoration: 'none',
-    color: 'rgba(50, 53, 69, 1)',
+    color: theme.palette.text.primary,
   },
 }))
 
