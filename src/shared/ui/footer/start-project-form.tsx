@@ -48,7 +48,7 @@ export const StartProjectForm: FC = ({}) => {
   return (
     <Container isMobile={isMobileWidth}>
       <ContactHeader title="let's start a project" isMobile={isMobileWidth} />
-      <div>
+      <div style={{ width: '100%' }}>
         <ProjectForm />
         <PrivacyPolicyContainer onClick={handlePrivacyPolicyClick}>
           by submitting this form, you agree <br />
@@ -63,6 +63,7 @@ export const StartProjectForm: FC = ({}) => {
 const Container = styled('section')<{ isMobile: boolean }>(
   ({ theme, isMobile }) => ({
     display: isMobile ? 'block' : 'flex',
+    // justifyContent: 'space-between',
     ...getBreakpointsStylesByArray(theme, {
       gap: [null, null, null, null, null, 280, null, 334, null],
     }),
