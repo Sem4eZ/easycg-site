@@ -69,6 +69,8 @@ function Projects() {
   const [newDescription, setNewDescription] = useState('')
   const [newImage, setNewImage] = useState('')
   const [newType, setNewType] = useState('')
+  const [newDate, setNewDate] = useState('')
+
   // const [newRemark, setNewRemark] = useState('')
   const [createProjectModalOpen, setCreateProjectModalOpen] = useState(false)
   // const { quill, quillRef } = useQuill()
@@ -760,6 +762,19 @@ function Projects() {
             <option value="VR">VR</option>
           </Form.Select>
 
+          <Form.Label htmlFor="newdate">Дата проекта</Form.Label>
+          <Form.Control
+            placeholder="2023"
+            className="my-3"
+            type="text"
+            id="newdate"
+            aria-describedby="newdate"
+            value={newDate}
+            onInput={event => {
+              setNewDate((event.target as any).value!)
+            }}
+          />
+
           {/* <Form.Label htmlFor="servicesType">Сервисный тип проекта</Form.Label>
           <Form.Select
             className="my-2"
@@ -796,6 +811,7 @@ function Projects() {
                   newDetailPreview || selectedProject?.detailPreview,
                 about: newAbout || selectedProject?.about,
                 titleAbout: newTitleAbout || selectedProject?.titleAbout,
+                date: newDate || selectedProject?.date,
               })
               setSelectedProject(null)
               await fetchData()
@@ -853,6 +869,8 @@ function Projects() {
                     setNewAbout(project.about)
                     setNewTitleDescription(project.titleDescription)
                     setNewServicesType(project.servicesType)
+                    setNewDate(project.date)
+
                     setSelectedProject(project)
                     // setNewContent(project.content)
                     // setNewRemark(project.remark)
