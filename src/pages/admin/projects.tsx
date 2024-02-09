@@ -390,8 +390,10 @@ function Projects() {
   }
 
   const deleteProject = async (id: string) => {
-    await deleteDoc(doc(db, 'projects', id))
-    await fetchData()
+    if (window.confirm('Вы действительно хотите удалить проект')) {
+      await deleteDoc(doc(db, 'projects', id))
+      await fetchData()
+    }
   }
 
   const updateProject = async (id: string, newProjectData: any) => {
