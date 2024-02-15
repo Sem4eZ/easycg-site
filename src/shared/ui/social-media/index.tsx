@@ -18,7 +18,7 @@ const SOCIAL_MEDIA: { link: string; icon: React.ReactNode }[] = [
     icon: <TwitterIcon />,
   },
   {
-    link: 'https://www.facebook.com/easycg.ru/',
+    link: 'https://facebook.com/easycg.dev',
     icon: <FacebookIcon />,
   },
   {
